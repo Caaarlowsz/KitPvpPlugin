@@ -1,0 +1,33 @@
+name: KitPvp
+version: ${project.version}
+main: me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft
+api-version: 1.16
+authors: [FinneganMcGuire]
+description: All custom kit pvp plugins for server
+website: finneganmcguire.com
+commands:
+  timewizard:
+    description: Gives Clock, Clock can stop timearound you stoping all players from moving!
+    usage: /<command>
+  wolverine:
+    description: Become A Wolf!
+    usage: /<command>
+  brawler:
+    description: Punch with fist, your stronger
+    usage: /<command>
+  lumberjack:
+    description: Cut Trees Faster
+    usage: /<command>
+  grandpa:
+    description: Old man stick hits enemies far
+    usage: /<command>
+  turtle:
+    description: Holding shift makes you stronger
+    usage: /<command>
+  milkman:
+    description: Milk gives you buffs
+    usage: /<command>
+  fireman:
+    description: Gives water bucket and fire resistance
+    usage: /<command>
+
