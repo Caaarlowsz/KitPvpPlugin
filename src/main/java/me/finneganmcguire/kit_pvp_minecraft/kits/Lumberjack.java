@@ -39,10 +39,7 @@ public class Lumberjack implements CommandExecutor {
         axeMeta.addEnchant(axeEnchant, axeEfficiencyLevel, true);
         axeMeta.setUnbreakable(true);
         axeMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
         axe.setItemMeta(axeMeta);
-
-
 
         if(sender instanceof Player){
             Player player = (Player) sender;
@@ -51,6 +48,7 @@ public class Lumberjack implements CommandExecutor {
             for(PotionEffect effect : player.getActivePotionEffects()){
                 player.removePotionEffect(effect.getType());
             }
+
             kit_Lumberjack = true;
 
             if(player.isOp()){

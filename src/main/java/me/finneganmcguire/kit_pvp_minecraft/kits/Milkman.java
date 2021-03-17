@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import com.google.gson.internal.$Gson$Preconditions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -46,8 +47,6 @@ public class Milkman implements CommandExecutor, Listener {
                 player.removePotionEffect(effect.getType());
             }
 
-            kit_MilkmanActive = true;
-
             if (player.isOp()) {
                 Inventory inv = player.getInventory();
                 inv.clear();
@@ -65,7 +64,7 @@ public class Milkman implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void MilkBucketDrink(PlayerItemConsumeEvent p) {
+    public void MilkBucketDrink(PlayerItemConsumeEvent p, boolean kit_MilkmanActive) {
         Player player = p.getPlayer();
 
         int timer_effects = 1000;
@@ -78,6 +77,8 @@ public class Milkman implements CommandExecutor, Listener {
         PotionEffect fireresBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, timer_effects, 0);
 
         if (p.getItem().getType().equals(Material.MILK_BUCKET)) {
+            System.out.println(kit_MilkmanActive);
+
             if (kit_MilkmanActive) {
                 p.setItem(bucket_normal);
                 System.out.print(p.getItem().toString());
