@@ -50,12 +50,8 @@ public class Fireman implements CommandExecutor, Listener {
                 int strengthOfResistance = 1;
                 PotionEffect firemanResistance = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, lengthOfResistance, strengthOfResistance);
 
-                kit_FiremanActive = true;
-
-                if(kit_FiremanActive){
-                    player.getInventory().addItem(firemanWater);
-                    firemanResistance.apply(player);
-                }
+                player.getInventory().addItem(firemanWater);
+                firemanResistance.apply(player);
 
 
             } else{

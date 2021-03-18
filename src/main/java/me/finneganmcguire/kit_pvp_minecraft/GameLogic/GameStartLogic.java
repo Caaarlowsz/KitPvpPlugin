@@ -5,6 +5,7 @@ import org.bukkit.World;
 
 public class GameStartLogic {
 
+    // When Game Starts
     public static void GameStart(World w){
         // Finds all players and teleports them to spawn
         for (int i = 0; i < w.getPlayers().size(); i++) {
@@ -12,5 +13,4 @@ public class GameStartLogic {
             w.getPlayers().get(i).setGameMode(GameMode.SURVIVAL);
         }
     }
-
 }
