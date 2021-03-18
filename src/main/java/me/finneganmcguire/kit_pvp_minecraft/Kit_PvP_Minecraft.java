@@ -1,10 +1,12 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GracePeriodLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.ChestCircleSpawnTask;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.DeathmatchTask;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.GameStartTask;
+import me.finneganmcguire.kit_pvp_minecraft.tasks.GracePeriodEndTask;
 import org.bukkit.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,9 +28,12 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     public static World world;
 
-    public long GameStartDelayTimer = 400;
-    public long ChestCircleDelayTimer = 800;
-    public long DeathmatchDelayTimer = 1000;
+    public boolean EventsFired = true;
+
+    public long GracePeriodDelayTimer = 1000;
+    public long GameStartDelayTimer = 4000;
+    public long ChestCircleDelayTimer = 8000;
+    public long DeathmatchDelayTimer = 100000;
 
     // ON PLUGIN ENABLED
     @Override
@@ -40,9 +45,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         PluginManager pluginManager = getServer().getPluginManager();
 
         // TASKS (Specific Timed Events)
-        BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
-        BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
-        BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
+        if(EventsFired){
+            BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
+            BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
+            BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
+            BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer);
+            EventsFired = false;
+        }
 
         // BACKGROUND WORLD EVENTS
         CreateNewWorld();

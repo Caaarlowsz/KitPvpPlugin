@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameStartLogic;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,9 +15,9 @@ public class GameStartTask extends BukkitRunnable {
         this.plugin = plugin;
     }
 
-
     @Override
     public void run() {
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "GAME IS ABOUT TO START! (30 SECONDS)");
+        Bukkit.broadcastMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
+        GameStartLogic.GameStart(Kit_PvP_Minecraft.world);
     }
 }

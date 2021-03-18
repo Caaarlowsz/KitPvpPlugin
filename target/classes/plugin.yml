@@ -1,5 +1,5 @@
 name: KitPvp
-version: ${project.version}
+version: 1.0-SNAPSHOT
 main: me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft
 api-version: 1.16
 authors: [FinneganMcGuire]

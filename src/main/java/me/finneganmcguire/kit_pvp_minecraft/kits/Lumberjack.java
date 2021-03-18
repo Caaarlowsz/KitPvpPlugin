@@ -24,11 +24,10 @@ public class Lumberjack implements CommandExecutor {
 
     public boolean kit_Lumberjack;
 
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        int axeEfficiencyLevel = 4;
+        int axeEfficiencyLevel = 10;
 
         Enchantment axeEnchant = Enchantment.DIG_SPEED;
         Material lumberjackAxe = Material.WOODEN_AXE;
@@ -38,7 +37,6 @@ public class Lumberjack implements CommandExecutor {
         axeMeta.setDisplayName(ChatColor.DARK_GREEN + "Lumberjack Axe");
         axeMeta.addEnchant(axeEnchant, axeEfficiencyLevel, true);
         axeMeta.setUnbreakable(true);
-        axeMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         axe.setItemMeta(axeMeta);
 
         if(sender instanceof Player){

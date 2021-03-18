@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
-public class Lumberjack implements CommandExecutor {
+public class Beastmaster implements CommandExecutor {
 
     private Kit_PvP_Minecraft main;
 
@@ -22,24 +22,8 @@ public class Lumberjack implements CommandExecutor {
         this.main = main;
     }
 
-    public boolean kit_Lumberjack;
-
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        int axeEfficiencyLevel = 4;
-
-        Enchantment axeEnchant = Enchantment.DIG_SPEED;
-        Material lumberjackAxe = Material.WOODEN_AXE;
-
-        ItemStack axe = new ItemStack(lumberjackAxe, 1);
-        ItemMeta axeMeta = axe.getItemMeta();
-        axeMeta.setDisplayName(ChatColor.DARK_GREEN + "Lumberjack Axe");
-        axeMeta.addEnchant(axeEnchant, axeEfficiencyLevel, true);
-        axeMeta.setUnbreakable(true);
-        axeMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        axe.setItemMeta(axeMeta);
 
         if(sender instanceof Player){
             Player player = (Player) sender;
@@ -49,16 +33,17 @@ public class Lumberjack implements CommandExecutor {
                 player.removePotionEffect(effect.getType());
             }
 
-            kit_Lumberjack = true;
+            //Beastmaster Items
+            ItemStack bones = new ItemStack(Material.BONE, 3);
+            ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
 
             if(player.isOp()){
                 Inventory inv = player.getInventory();
                 inv.clear();
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " LUMBERJACK! ");
+                inv.addItem(bones, wolfSpawnEggs);
 
-                // Give Axe To Player
-                inv.addItem(axe);
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
             } else{
                 player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
             }

@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import com.google.gson.internal.$Gson$Preconditions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -46,16 +47,10 @@ public class Milkman implements CommandExecutor, Listener {
             for(PotionEffect effect : player.getActivePotionEffects()){
                 player.removePotionEffect(effect.getType());
             }
-
-            if (player.isOp()) {
-                Inventory inv = player.getInventory();
-                inv.clear();
-                inv.addItem(milk_bucket);
-                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
-
-            } else {
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
-            }
+            Inventory inv = player.getInventory();
+            inv.clear();
+            inv.addItem(milk_bucket);
+            player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
 
         } else {
             main.getLogger().info("You Have To Be Player To Get Kit");
@@ -64,7 +59,7 @@ public class Milkman implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void MilkBucketDrink(PlayerItemConsumeEvent p, boolean kit_MilkmanActive) {
+    public void MilkBucketDrink(PlayerItemConsumeEvent p) {
         Player player = p.getPlayer();
 
         int timer_effects = 1000;
@@ -76,17 +71,13 @@ public class Milkman implements CommandExecutor, Listener {
         PotionEffect regenBuff = new PotionEffect(PotionEffectType.REGENERATION, timer_effects, 0);
         PotionEffect fireresBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, timer_effects, 0);
 
+        // Currently Effects All Milk Buckets
         if (p.getItem().getType().equals(Material.MILK_BUCKET)) {
-            System.out.println(kit_MilkmanActive);
-
-            if (kit_MilkmanActive) {
-                p.setItem(bucket_normal);
-                System.out.print(p.getItem().toString());
-                Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
-                speedBuff.apply(player);
-                regenBuff.apply(player);
-                fireresBuff.apply(player);
-            }
+            p.setItem(bucket_normal);
+            Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
+            speedBuff.apply(player);
+            regenBuff.apply(player);
+            fireresBuff.apply(player);
         }
     }
 }

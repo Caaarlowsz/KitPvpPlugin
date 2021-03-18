@@ -14,6 +14,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Brawler implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;

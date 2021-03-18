@@ -24,11 +24,12 @@ public class ForceEndServer extends BukkitRunnable implements Listener {
     // When Deathmatch task is called, run this
     @Override
     public void run() {
-
+        StopServer();
     }
 
     @EventHandler
-    public void StopServer(ServerCommandEvent e){
+    public void StopServer(){
+        //WILL STOP SERVER
 
     }
 }
