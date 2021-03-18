@@ -80,6 +80,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new Milkman(), this); // Registers Events
 
         getServer().getPluginCommand("Fireman").setExecutor(new Fireman()); //Stable and Working
+
+        getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
     }
 
     @Override
