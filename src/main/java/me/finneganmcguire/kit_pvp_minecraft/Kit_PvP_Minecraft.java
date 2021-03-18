@@ -25,10 +25,11 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static World world;
     public static boolean EventsFired = true;
 
-    public static int totalAmountOfPlayersOnServer = 0;
+    public static int currentAmountOfPlayers;
+    public static int totalAmountOfPlayersOnServer = 1;
 
     public long GracePeriodDelayTimer = 4000;
-    public long GameStartDelayTimer = 2000;
+    public long GameStartDelayTimer = 1100;
     public long ChestCircleDelayTimer = 8000;
     public long DeathmatchDelayTimer = 100000;
 
@@ -38,19 +39,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // Current problem:
             // Variables that are static, effect all players. FIX IT!
-
         PluginManager pluginManager = getServer().getPluginManager();
-
-        // TASKS (Specific Timed Events)
-        if(EventsFired){
-            BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
-            BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
-            BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
-            BukkitTask countdownTask = new CountDownTask(this).runTaskTimer(this, GameStartDelayTimer - 100, 20);
-            BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer);
-            EventsFired = false;
-        }
-
 
         // BACKGROUND WORLD EVENTS
         CreateNewWorld();
@@ -92,7 +81,18 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
-        totalAmountOfPlayersOnServer++;
+        currentAmountOfPlayers++;
+
+        if(currentAmountOfPlayers >= totalAmountOfPlayersOnServer){
+            if(EventsFired){
+                BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
+                BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
+                BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
+                BukkitTask countdownTask = new CountDownTask(this).runTaskTimer(this, GameStartDelayTimer - 1050, 20);
+                BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer);
+                EventsFired = false;
+            }
+        }
 
         // Create Player Hash Data
         HashMap<String, String> player_data = new HashMap<String, String>();
@@ -114,7 +114,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerLeave(PlayerQuitEvent e){
-        totalAmountOfPlayersOnServer--;
+        currentAmountOfPlayers--;
         for (int i = 0; i < PlayerStorage.playerHashData.size(); i++) {
             PlayerStorage.playerHashData.get(i).remove(e.getPlayer().getName());
         }
