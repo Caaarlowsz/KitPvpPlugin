@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.ChestCircleSpawnTask;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.DeathmatchTask;
@@ -16,7 +17,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
-import org.graalvm.compiler.word.Word;
+//import org.graalvm.compiler.word.Word;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -48,6 +49,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
+        pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(this, this);
 
         //COMMANDS & KITS
