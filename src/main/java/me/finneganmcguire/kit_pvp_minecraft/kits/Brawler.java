@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -42,23 +43,13 @@ public class Brawler implements CommandExecutor, Listener {
                 player.removePotionEffect(effect.getType());
             }
 
-            if(player.isOp()){
-                Inventory inv = player.getInventory();
-                inv.clear();
+            Inventory inv = player.getInventory();
+            inv.clear();
+            player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
 
-                kit_BrawlerActive = true;
-                if(kit_BrawlerActive){
-                    player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
-                    brawlerExtraHealth.apply(player);
-                    player.setHealth(player.getHealth() + 2);
-                }
-
-
-
-            } else{
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
-            }
-
+            PlayerStorage.setPlayerNewKit(player.getPlayer(), "brawler");
+            brawlerExtraHealth.apply(player);
+            player.setHealth(player.getHealth() + 2);
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");
@@ -79,7 +70,7 @@ public class Brawler implements CommandExecutor, Listener {
         Inventory inv = e.getPlayer().getInventory();
 
         // If Player Isnt holding an Item, give more damage per punch
-        if(!e.hasItem() && kit_BrawlerActive){
+        if(!e.hasItem() && PlayerStorage.playerHasKitActive(e.getPlayer(), "brawler")){
             brawlerDamage.apply(player);
         }
     }

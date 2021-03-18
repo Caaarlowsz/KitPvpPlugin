@@ -1,8 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerData;
+import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -47,8 +46,13 @@ public class Milkman implements CommandExecutor, Listener {
             for(PotionEffect effect : player.getActivePotionEffects()){
                 player.removePotionEffect(effect.getType());
             }
+
             Inventory inv = player.getInventory();
             inv.clear();
+
+            //Finds player in hashmap database --> Changes Kit To milkman
+            PlayerStorage.setPlayerNewKit(player.getPlayer(), "milkman");
+
             inv.addItem(milk_bucket);
             player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
 
@@ -72,12 +76,18 @@ public class Milkman implements CommandExecutor, Listener {
         PotionEffect fireresBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, timer_effects, 0);
 
         // Currently Effects All Milk Buckets
-        if (p.getItem().getType().equals(Material.MILK_BUCKET)) {
-            p.setItem(bucket_normal);
-            Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
-            speedBuff.apply(player);
-            regenBuff.apply(player);
-            fireresBuff.apply(player);
+        try{
+            if (p.getItem().getType().equals(Material.MILK_BUCKET) && PlayerStorage.playerHasKitActive(p.getPlayer(), "milkman")) {
+
+                p.setItem(bucket_normal);
+                Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
+                speedBuff.apply(player);
+                regenBuff.apply(player);
+                fireresBuff.apply(player);
+            }
+        } catch (Exception e){
+            System.out.println("Didnt Work");
         }
+
     }
 }

@@ -12,6 +12,7 @@ import org.bukkit.event.world.WorldEvent;
 
 public class DeathmatchLogic{
 
+    // When deathmatch begins
     public static void DeathmatchBegin(World e){
         Bukkit.broadcastMessage("THE DEATHMATCH BEGINS NOW!");
 

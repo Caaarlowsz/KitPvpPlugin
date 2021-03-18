@@ -1,25 +1,14 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
-import com.google.gson.internal.$Gson$Preconditions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerData;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-
-import java.util.Arrays;
 
 public class Pyromancer implements CommandExecutor {
 
