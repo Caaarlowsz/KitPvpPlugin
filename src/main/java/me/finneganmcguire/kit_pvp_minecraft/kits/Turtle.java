@@ -53,15 +53,19 @@ public class Turtle implements CommandExecutor, Listener {
         int damageBoostTime = 1000000000;
 
         PotionEffect turtleShield = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, damageBoostTime, damageBoost);
+        PotionEffect turtleDebuf = new PotionEffect(PotionEffectType.WEAKNESS, 1000000000, 1);
+
 
         // WHEN PLAYER PRESSES SHIFT
         if(!p.getPlayer().isSneaking() && PlayerStorage.playerHasKitActive(p.getPlayer(), "turtle")){
             turtleShield.apply(p.getPlayer());
+            turtleDebuf.apply(p.getPlayer());
         }
 
         // WHEN PLAYER RELEASES SHIFT
         else if(p.getPlayer().isSneaking() && PlayerStorage.playerHasKitActive(p.getPlayer(), "turtle")){
             p.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+            p.getPlayer().removePotionEffect(PotionEffectType.WEAKNESS);
         }
 
     }
