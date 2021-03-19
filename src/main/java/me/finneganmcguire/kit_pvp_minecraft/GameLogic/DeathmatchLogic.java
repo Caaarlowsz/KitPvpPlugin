@@ -18,7 +18,7 @@ public class DeathmatchLogic{
 
     // When deathmatch begins
     public static void DeathmatchBegin(World e){
-        Bukkit.broadcastMessage("THE DEATHMATCH BEGINS NOW!");
+        Bukkit.broadcastMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
 
         deathmatchLocation = e.getSpawnLocation(); //Change to somewhere else???
         float deathMatchCenterX = deathmatchLocation.getBlockX();
