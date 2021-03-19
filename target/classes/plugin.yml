@@ -36,5 +36,6 @@ commands:
   pyromancer:
     description: Fire shit
     usage: /<command>
-
-
+  game:
+    description: commands to modify the current game
+    usage: /game <args>
