@@ -29,6 +29,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     // World Reference and Keeps Track Of If Events Have Started Or Not
     public static World world;
     public static boolean EventsFired = true;
+    public static final int WORLDSIZE = 500;
 
     // This is in all .kits classes and checks if kits can be executed (turns false when game starts)
     public static boolean canChangeKit = true;
