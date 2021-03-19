@@ -34,7 +34,7 @@ commands:
     description: Instant Wolf Tameing
     usage: /<command>
   pyromancer:
-    description: Fire shit
+    description: Fire stuff
     usage: /<command>
   game:
     description: commands to modify the current game

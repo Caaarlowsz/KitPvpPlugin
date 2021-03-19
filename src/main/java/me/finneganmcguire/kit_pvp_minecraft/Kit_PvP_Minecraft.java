@@ -1,6 +1,5 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.DeathmatchLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
@@ -19,8 +18,6 @@ import org.bukkit.scheduler.BukkitTask;
 //import org.graalvm.compiler.word.Word;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
@@ -42,8 +39,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static int minimumPlayersToStart = 1;
 
     // Timers For Events
-    public long GracePeriodDelayTimer = 4000;
-    public long GameStartDelayTimer = 500;
+    public long GracePeriodDelayTimer = 2000;
+    public long GameStartDelayTimer = 1000;
     public long ChestCircleDelayTimer = 8000;
     public long DeathmatchDelayTimer = 100000;
 
@@ -109,14 +106,17 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
                 BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
                 BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
                 BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
-                BukkitTask countdownTask = new CountDownTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
-                BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer);
+                BukkitTask countDownToGameStartTask = new CountDownToStartTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
+                BukkitTask countDownGracePeriodTask = new CountDownGracePeriodTask(this).runTaskTimer(this, GracePeriodDelayTimer - 999, 20);
+                BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer + 200);
 
                 EventsFired = false;
+
                 // When game starts - sets time to this
                 world.setTime(setTimeWhenGameStarts);
                 world.setDifficulty(Difficulty.NORMAL);
                 world.setGameRule(GameRule.DO_ENTITY_DROPS, true);
+                world.setGameRule(GameRule.DO_MOB_SPAWNING, true);
             }
         }
 

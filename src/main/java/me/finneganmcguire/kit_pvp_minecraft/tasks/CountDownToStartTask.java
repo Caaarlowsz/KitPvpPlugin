@@ -5,11 +5,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class CountDownTask extends BukkitRunnable {
+public class CountDownToStartTask extends BukkitRunnable {
 
     Kit_PvP_Minecraft plugin;
 
-    public CountDownTask(Kit_PvP_Minecraft plugin){
+    public CountDownToStartTask(Kit_PvP_Minecraft plugin){
         this.plugin = plugin;
     }
     public static int timerCurrent = 16;
