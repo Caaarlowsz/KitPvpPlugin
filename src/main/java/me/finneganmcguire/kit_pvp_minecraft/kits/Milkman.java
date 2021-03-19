@@ -78,7 +78,6 @@ public class Milkman implements CommandExecutor, Listener {
         // Milkman Effects
         PotionEffect speedBuff = new PotionEffect(PotionEffectType.SPEED, timer_effects, 0);
         PotionEffect regenBuff = new PotionEffect(PotionEffectType.REGENERATION, timer_effects, 0);
-        PotionEffect fireresBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, timer_effects, 0);
 
         // Currently Effects All Milk Buckets
         try{
@@ -88,7 +87,6 @@ public class Milkman implements CommandExecutor, Listener {
                 Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
                 speedBuff.apply(player);
                 regenBuff.apply(player);
-                fireresBuff.apply(player);
             }
         } catch (Exception e){
             System.out.println("Didnt Work");
