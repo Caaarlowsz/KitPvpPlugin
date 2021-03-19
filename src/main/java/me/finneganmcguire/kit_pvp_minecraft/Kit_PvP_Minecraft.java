@@ -42,7 +42,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public long GracePeriodDelayTimer = 2000;
     public long GameStartDelayTimer = 1000;
     public long ChestCircleDelayTimer = 8000;
-    public long DeathmatchDelayTimer = 100000;
+    public long DeathmatchDelayTimer = 12000;
 
     // ON PLUGIN ENABLED
     @Override
@@ -68,7 +68,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         //COMMANDS & KITS
         getServer().getPluginCommand("TimeWizard").setExecutor(new TimeWizard()); // Needs Work
 
-        getServer().getPluginCommand("Wolverine").setExecutor(new Wolverine()); // Needs Work
+        getServer().getPluginCommand("Werewolf").setExecutor(new Werewolf()); // Needs Work
 
         getServer().getPluginCommand("Brawler").setExecutor(new Brawler()); // Stabel and Working
         pluginManager.registerEvents(new Brawler(), this); // Registers Events Like Free Hand
@@ -117,6 +117,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
                 world.setDifficulty(Difficulty.NORMAL);
                 world.setGameRule(GameRule.DO_ENTITY_DROPS, true);
                 world.setGameRule(GameRule.DO_MOB_SPAWNING, true);
+                world.setGameRule(GameRule.DO_MOB_LOOT, true);
             }
         }
 

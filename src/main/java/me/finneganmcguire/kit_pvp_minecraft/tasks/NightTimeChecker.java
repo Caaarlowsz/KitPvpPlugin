@@ -26,11 +26,11 @@ public class NightTimeChecker extends BukkitRunnable {
         if(Kit_PvP_Minecraft.world.getTime() < 13000){
             // It is day
             day = true;
-            wolverineEffect();
+            werewolfEffect();
         } else if(Kit_PvP_Minecraft.world.getTime() >= 13000){
             // It is night
             day = false;
-            wolverineEffect();
+            werewolfEffect();
         }
     }
 
@@ -39,23 +39,25 @@ public class NightTimeChecker extends BukkitRunnable {
     }
 
 
-    // Effects When It Turns Night For Wolverine Players
-    public void wolverineEffect(){
+    // Effects When It Turns Night For Werewolf Players
+    public void werewolfEffect(){
         for (int i = 0; i < Kit_PvP_Minecraft.world.getPlayers().size(); i++) {
-            if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i),"wolverine")){
+            if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i),"werewolf")){
 
-                PotionEffect wolverineStrength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 200000, 0);
-                PotionEffect wolverineHealth = new PotionEffect(PotionEffectType.HEALTH_BOOST, 200000, 1);
-                PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.HEALTH_BOOST, 200000, 0);
+                // Potion Effects
+                PotionEffect wolverineNightvision = new PotionEffect(PotionEffectType.NIGHT_VISION, 200000, 0);
+                PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.SPEED, 200000, 0);
+                PotionEffect wolverineSpectral = new PotionEffect(PotionEffectType.GLOWING, 200000, 0);
 
-                if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "wolverine") && !day){
-                    wolverineHealth.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
-                    wolverineStrength.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
+                if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "werewolf") && !day){
+                    wolverineNightvision.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
                     wolverineSpeed.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
-                } else if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "wolverine") && day){
-                    Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineHealth.getType());
-                    Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineStrength.getType());
+                    wolverineSpectral.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
+
+                } else if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "werewolf") && day){
+                    Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineNightvision.getType());
                     Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineSpeed.getType());
+                    Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineSpectral.getType());
                 }
             }
         }

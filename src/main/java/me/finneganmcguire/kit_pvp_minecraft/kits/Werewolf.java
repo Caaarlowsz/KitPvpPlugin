@@ -16,7 +16,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Wolverine implements CommandExecutor, Listener {
+public class Werewolf implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
@@ -41,8 +41,8 @@ public class Wolverine implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
 
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "wolverine");
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WOLVERINE! ");
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "werewolf");
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WEREWOLF! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + kitDescription);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");

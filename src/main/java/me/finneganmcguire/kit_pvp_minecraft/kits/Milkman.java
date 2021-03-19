@@ -28,8 +28,6 @@ public class Milkman implements CommandExecutor, Listener {
         this.main = main;
     }
 
-    public boolean kit_MilkmanActive;
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -60,7 +58,6 @@ public class Milkman implements CommandExecutor, Listener {
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-
         } else {
             main.getLogger().info("You Have To Be Player To Get Kit");
         }
@@ -78,6 +75,7 @@ public class Milkman implements CommandExecutor, Listener {
         // Milkman Effects
         PotionEffect speedBuff = new PotionEffect(PotionEffectType.SPEED, timer_effects, 0);
         PotionEffect regenBuff = new PotionEffect(PotionEffectType.REGENERATION, timer_effects, 0);
+        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1500, 0);
 
         // Currently Effects All Milk Buckets
         try{
@@ -87,6 +85,7 @@ public class Milkman implements CommandExecutor, Listener {
                 Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
                 speedBuff.apply(player);
                 regenBuff.apply(player);
+                fireResistBuff.apply(player);
             }
         } catch (Exception e){
             System.out.println("Didnt Work");

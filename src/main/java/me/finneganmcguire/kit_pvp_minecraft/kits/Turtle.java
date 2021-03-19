@@ -22,8 +22,6 @@ public class Turtle implements CommandExecutor, Listener {
         this.main = main;
     }
 
-    public boolean turtleKit_Active;
-
     String kitDescription = "The Turtle Kit Is A Very Good At Defense. \nHolding Sneak/Shift Gives You Resistance 2 & Weakness 2";
 
     @Override
