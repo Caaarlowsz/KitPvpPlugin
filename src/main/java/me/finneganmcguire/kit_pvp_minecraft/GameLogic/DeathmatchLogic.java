@@ -35,11 +35,4 @@ public class DeathmatchLogic{
             e.getPlayers().get(i).teleport(tLocation);
         }
     }
-
-
-    // Runs When Deathmatch Ends
-    public void DeathmatchEnd(Player p){
-        Bukkit.broadcastMessage(ChatColor.GREEN + "CONGRATS " + p.getPlayer() + " YOU HAVE WON!");
-    }
-
 }

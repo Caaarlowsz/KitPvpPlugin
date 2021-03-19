@@ -1,11 +1,13 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.*;
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -90,8 +92,6 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
     }
 
-
-
     @Override
     public void onDisable() {
 
@@ -147,7 +147,17 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerDie(PlayerDeathEvent e){
-        e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
+
+        if(!EventsFired){
+            currentAmountOfPlayers--;
+            e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
+            if(currentAmountOfPlayers <= 1){
+                Player finalPlayerLeft = e.getEntity().getPlayer().getKiller();
+                GameEndsLogic.EndGame(finalPlayerLeft);
+                Bukkit.broadcastMessage("All Players Will Be Kicked In 30 Seconds, Thanks For Playing :)");
+                BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 1000); // Kick Player In 30 Sec
+            }
+        }
     }
 
     // Delete Files Functionality

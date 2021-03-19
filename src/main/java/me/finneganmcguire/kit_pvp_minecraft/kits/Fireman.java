@@ -22,9 +22,6 @@ public class Fireman implements CommandExecutor, Listener {
         this.main = main;
     }
 
-    // Local Fireman
-    public boolean kit_FiremanActive;
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -52,8 +49,6 @@ public class Fireman implements CommandExecutor, Listener {
 
                 player.getInventory().addItem(firemanWater);
                 firemanResistance.apply(player);
-
-
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
