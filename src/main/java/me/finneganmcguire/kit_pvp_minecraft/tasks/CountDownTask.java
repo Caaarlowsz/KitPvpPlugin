@@ -19,7 +19,7 @@ public class CountDownTask extends BukkitRunnable {
 
         timerCurrent -= 1;
 
-        //30 seconds till start
+        //15 seconds till start
         if(timerCurrent == 15){
             Bukkit.broadcastMessage(ChatColor.DARK_GREEN + "Game Starting In 15 Seconds");
         }

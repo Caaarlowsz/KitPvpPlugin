@@ -39,6 +39,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
+        //Timed Checkers
+        BukkitTask CheckDayTime = new NightTimeChecker(this).runTaskAsynchronously(this);
+
         // Current problem:
             // Variables that are static, effect all players. FIX IT!
         PluginManager pluginManager = getServer().getPluginManager();

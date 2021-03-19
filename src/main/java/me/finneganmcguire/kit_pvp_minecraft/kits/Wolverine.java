@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.WorldEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
@@ -20,8 +23,6 @@ public class Wolverine implements CommandExecutor, Listener {
     public void WolverineKit(Kit_PvP_Minecraft main){
         this.main = main;
     }
-
-    public boolean kit_wolverineActive;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -38,8 +39,9 @@ public class Wolverine implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
 
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "wolverine");
+
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WOLVERINE! ");
-                kit_wolverineActive = true;
 
             } else{
                 player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
@@ -54,7 +56,7 @@ public class Wolverine implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void NightListener(WorldEvent w){
+    public void NightListener(PlayerInteractEvent p){
 
         //Health Buff
         int AddedHealthBonus = 1;
@@ -72,5 +74,11 @@ public class Wolverine implements CommandExecutor, Listener {
         PotionEffect wolverineHealth = new PotionEffect(PotionEffectType.HEALTH_BOOST, HealthBonusTime, AddedHealthBonus);
         PotionEffect wolverineStrength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, damageIncreaseTime, damageIncrease);
         PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.SPEED, speedIncreaseTime, speedIncrease);
+
+        if(PlayerStorage.playerHasKitActive(p.getPlayer(), "wolverine")){
+            if(p.getAction().equals(Action.PHYSICAL)){
+                
+            }
+        }
     }
 }
