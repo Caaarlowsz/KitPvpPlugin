@@ -31,7 +31,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static int totalAmountOfPlayersOnServer = 1;
 
     public long GracePeriodDelayTimer = 4000;
-    public long GameStartDelayTimer = 1100;
+    public long GameStartDelayTimer = 500;
     public long ChestCircleDelayTimer = 8000;
     public long DeathmatchDelayTimer = 100000;
 
@@ -95,7 +95,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
                 BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
                 BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
                 BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
-                BukkitTask countdownTask = new CountDownTask(this).runTaskTimer(this, GameStartDelayTimer - 1050, 20);
+                BukkitTask countdownTask = new CountDownTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
                 BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer);
                 EventsFired = false;
             }
