@@ -31,6 +31,7 @@ public class GameCommands implements CommandExecutor {
                 if (args[1].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin(e);
                 if (args[1].equals("game")) GameStartLogic.GameStart(e);
             }
+            if (args[0].equals("feast")) FeastLogic.SpawnFeast(e);
 
         } else {
         }
