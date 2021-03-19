@@ -42,19 +42,24 @@ public class Milkman implements CommandExecutor, Listener {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
+
+                Inventory inv = player.getInventory();
+                inv.clear();
+
+                //Finds player in hashmap database --> Changes Kit To milkman
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "milkman");
+
+                inv.addItem(milk_bucket);
+                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
+            } else{
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-            Inventory inv = player.getInventory();
-            inv.clear();
-
-            //Finds player in hashmap database --> Changes Kit To milkman
-            PlayerStorage.setPlayerNewKit(player.getPlayer(), "milkman");
-
-            inv.addItem(milk_bucket);
-            player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
 
         } else {
             main.getLogger().info("You Have To Be Player To Get Kit");

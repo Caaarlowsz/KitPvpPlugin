@@ -39,20 +39,23 @@ public class NightTimeChecker extends BukkitRunnable {
     }
 
 
-    // Effects When It Turns Night For Wolverine
+    // Effects When It Turns Night For Wolverine Players
     public void wolverineEffect(){
         for (int i = 0; i < Kit_PvP_Minecraft.world.getPlayers().size(); i++) {
             if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i),"wolverine")){
 
                 PotionEffect wolverineStrength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 200000, 0);
                 PotionEffect wolverineHealth = new PotionEffect(PotionEffectType.HEALTH_BOOST, 200000, 1);
+                PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.HEALTH_BOOST, 200000, 0);
 
                 if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "wolverine") && !day){
                     wolverineHealth.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
                     wolverineStrength.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
+                    wolverineSpeed.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
                 } else if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "wolverine") && day){
                     Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineHealth.getType());
                     Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineStrength.getType());
+                    Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineSpeed.getType());
                 }
             }
         }

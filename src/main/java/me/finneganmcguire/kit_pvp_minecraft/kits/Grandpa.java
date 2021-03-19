@@ -47,16 +47,14 @@ public class Grandpa implements CommandExecutor {
                 player.removePotionEffect(effect.getType());
             }
 
-            kit_GrandpaActive = true;
-
-            if(player.isOp() && kit_GrandpaActive){
+            if(Kit_PvP_Minecraft.canChangeKit){
                 Inventory inv = player.getInventory();
                 inv.clear();
                 inv.addItem(grandpaStick);
 
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GRANDPA! ");
             } else{
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
         }

@@ -38,18 +38,23 @@ public class Brawler implements CommandExecutor, Listener {
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
+
+                Inventory inv = player.getInventory();
+                inv.clear();
+                player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
+
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "brawler");
+                brawlerExtraHealth.apply(player);
+                player.setHealth(player.getHealth() + 2);
+            } else{
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-            Inventory inv = player.getInventory();
-            inv.clear();
-            player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
-
-            PlayerStorage.setPlayerNewKit(player.getPlayer(), "brawler");
-            brawlerExtraHealth.apply(player);
-            player.setHealth(player.getHealth() + 2);
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");

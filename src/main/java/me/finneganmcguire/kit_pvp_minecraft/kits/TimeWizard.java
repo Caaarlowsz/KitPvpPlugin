@@ -39,30 +39,33 @@ public class TimeWizard implements CommandExecutor {
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
+
+                Material timewizClock = Material.CLOCK;
+                ItemStack clock = new ItemStack(timewizClock);
+                ItemMeta timewizclockmeta = clock.getItemMeta();
+
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "timewizard");
+
+                // ITEM DATA
+                timewizclockmeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Wizard Clock");
+                timewizclockmeta.addEnchant(Enchantment.CHANNELING, 10, true);
+                timewizclockmeta.setLore(Arrays.asList(ChatColor.DARK_PURPLE + "This used to belong to one of the greatest wizards of all time...\n",ChatColor.WHITE + "Current Owner: " + player.getDisplayName()));
+                timewizclockmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                // SET ITEM SATA
+                clock.setItemMeta(timewizclockmeta);
+
+                Inventory inv = player.getInventory();
+                inv.clear();
+                inv.addItem(clock);
+                player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " TIME WIZARD! ");
+            } else{
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
-            Material timewizClock = Material.CLOCK;
-            ItemStack clock = new ItemStack(timewizClock);
-            ItemMeta timewizclockmeta = clock.getItemMeta();
-
-            PlayerStorage.setPlayerNewKit(player.getPlayer(), "timewizard");
-
-            // ITEM DATA
-            timewizclockmeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Wizard Clock");
-            timewizclockmeta.addEnchant(Enchantment.CHANNELING, 10, true);
-            timewizclockmeta.setLore(Arrays.asList(ChatColor.DARK_PURPLE + "This used to belong to one of the greatest wizards of all time...\n",ChatColor.WHITE + "Current Owner: " + player.getDisplayName()));
-            timewizclockmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            // SET ITEM SATA
-            clock.setItemMeta(timewizclockmeta);
-
-            Inventory inv = player.getInventory();
-            inv.clear();
-            inv.addItem(clock);
-            player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " TIME WIZARD! ");
-
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");

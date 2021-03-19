@@ -24,24 +24,28 @@ public class Wolverine implements CommandExecutor, Listener {
         this.main = main;
     }
 
+    String kitDescription = "Wolverine is best when it is night time. \nYou get Strength, Speed & Extra Health At Night";
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
-            }
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
 
-            if(player.isOp()){
                 Inventory inv = player.getInventory();
                 inv.clear();
+
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "wolverine");
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WOLVERINE! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + kitDescription);
             } else{
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
         else {

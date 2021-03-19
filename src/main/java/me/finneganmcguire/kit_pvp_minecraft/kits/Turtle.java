@@ -24,21 +24,29 @@ public class Turtle implements CommandExecutor, Listener {
 
     public boolean turtleKit_Active;
 
+    String kitDescription = "The Turtle Kit Is A Very Good At Defense. \nHolding Sneak/Shift Gives You Resistance 2 & Weakness 2";
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
+
+                Inventory inv = player.getInventory();
+                inv.clear();
+                player.sendMessage("You Have Chosen: " + ChatColor.GREEN + " TURTLE! ");
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "turtle");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor  + kitDescription);
+            } else{
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-            Inventory inv = player.getInventory();
-            inv.clear();
-            player.sendMessage("You Have Chosen: " + ChatColor.GREEN + " TURTLE! ");
-            PlayerStorage.setPlayerNewKit(player.getPlayer(), "turtle");
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");

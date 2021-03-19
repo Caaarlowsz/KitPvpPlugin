@@ -8,10 +8,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
@@ -19,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import sun.jvm.hotspot.oops.Metadata;
 
 public class Beastmaster implements CommandExecutor, Listener {
 
@@ -34,24 +38,27 @@ public class Beastmaster implements CommandExecutor, Listener {
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
+
+                //Beastmaster Items
+                ItemStack bones = new ItemStack(Material.BONE, 3);
+                ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
+
+                Inventory inv = player.getInventory();
+                inv.clear();
+
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "beastmaster");
+
+                inv.addItem(bones, wolfSpawnEggs);
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
+                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
+            } else{
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
-            //Beastmaster Items
-            ItemStack bones = new ItemStack(Material.BONE, 3);
-            ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
-
-            Inventory inv = player.getInventory();
-            inv.clear();
-
-            PlayerStorage.setPlayerNewKit(player.getPlayer(), "beastmaster");
-
-            inv.addItem(bones, wolfSpawnEggs);
-            player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
-            player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
-
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");
@@ -61,11 +68,11 @@ public class Beastmaster implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void WhenFistOut(PlayerInteractEvent e){
+    public void WhenFistOut(PlayerInteractEntityEvent e){
         if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){
-            if(e.getItem().getType().equals(Material.BONE)){
-                if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
-                    
+            if(e.getRightClicked().equals(EntityType.WOLF) && e.getHand().equals(Material.BONE)){
+                if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){
+                    Entity wolf = e.getRightClicked();
                 }
             }
         }

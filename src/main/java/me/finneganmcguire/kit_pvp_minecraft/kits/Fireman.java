@@ -36,7 +36,7 @@ public class Fireman implements CommandExecutor, Listener {
                 player.removePotionEffect(effect.getType());
             }
 
-            if(player.isOp()){
+            if(Kit_PvP_Minecraft.canChangeKit){
                 Inventory inv = player.getInventory();
                 inv.clear();
 
@@ -47,7 +47,7 @@ public class Fireman implements CommandExecutor, Listener {
 
                 // Potion Effects
                 int lengthOfResistance = 1000000;
-                int strengthOfResistance = 1;
+                int strengthOfResistance = 2;
                 PotionEffect firemanResistance = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, lengthOfResistance, strengthOfResistance);
 
                 player.getInventory().addItem(firemanWater);
@@ -55,7 +55,7 @@ public class Fireman implements CommandExecutor, Listener {
 
 
             } else{
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
         else {

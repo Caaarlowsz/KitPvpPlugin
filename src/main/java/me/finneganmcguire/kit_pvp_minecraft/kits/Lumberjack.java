@@ -47,9 +47,7 @@ public class Lumberjack implements CommandExecutor {
                 player.removePotionEffect(effect.getType());
             }
 
-            kit_Lumberjack = true;
-
-            if(player.isOp()){
+            if(Kit_PvP_Minecraft.canChangeKit){
                 Inventory inv = player.getInventory();
                 inv.clear();
 
@@ -58,7 +56,7 @@ public class Lumberjack implements CommandExecutor {
                 // Give Axe To Player
                 inv.addItem(axe);
             } else{
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
         }

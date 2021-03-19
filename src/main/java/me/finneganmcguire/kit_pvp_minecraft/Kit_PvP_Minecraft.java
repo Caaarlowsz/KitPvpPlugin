@@ -24,12 +24,24 @@ import java.util.HashMap;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
+    //KIT SETTINGS
+    public static ChatColor kitDescriptionColor = ChatColor.GRAY; //All Of The Kit Description Chat Colors
+
+    // World Reference and Keeps Track Of If Events Have Started Or Not
     public static World world;
     public static boolean EventsFired = true;
 
-    public static int currentAmountOfPlayers;
-    public static int totalAmountOfPlayersOnServer = 1;
+    // This is in all .kits classes and checks if kits can be executed (turns false when game starts)
+    public static boolean canChangeKit = true;
 
+    // World Time When Game Starts
+    public long setTimeWhenGameStarts = 11000;
+
+    // Keeps Track of current players and min players to start game
+    public static int currentAmountOfPlayers;
+    public static int minimumPlayersToStart = 1;
+
+    // Timers For Events
     public long GracePeriodDelayTimer = 4000;
     public long GameStartDelayTimer = 500;
     public long ChestCircleDelayTimer = 8000;
@@ -40,7 +52,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public void onEnable() {
 
         //Timed Checkers
-        BukkitTask CheckDayTime = new NightTimeChecker(this).runTaskTimer(this, 10, 10);
+        BukkitTask CheckDayTime = new NightTimeChecker(this).runTaskTimer(this, 10, 10); // Checks If Its Day Or Night
 
         // Current problem:
             // Variables that are static, effect all players. FIX IT!
@@ -79,7 +91,6 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
 
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
-
     }
 
 
@@ -93,14 +104,19 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public void OnPlayerJoin(PlayerJoinEvent e){
         currentAmountOfPlayers++;
 
-        if(currentAmountOfPlayers >= totalAmountOfPlayersOnServer){
+        if(currentAmountOfPlayers >= minimumPlayersToStart){
             if(EventsFired){
                 BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskLater(this, ChestCircleDelayTimer);
                 BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskLater(this, DeathmatchDelayTimer);
                 BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
                 BukkitTask countdownTask = new CountDownTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
                 BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer);
+
                 EventsFired = false;
+                // When game starts - sets time to this
+                world.setTime(setTimeWhenGameStarts);
+                world.setDifficulty(Difficulty.NORMAL);
+                world.setGameRule(GameRule.DO_ENTITY_DROPS, true);
             }
         }
 
@@ -170,9 +186,4 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             System.out.println(ChatColor.RED + "Didnt Find Previous World To Delete, Making New World...");
         }
     }
-
-
-
-
-
 }

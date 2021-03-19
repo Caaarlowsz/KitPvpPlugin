@@ -24,21 +24,27 @@ public class Pyromancer implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
+
+            if(Kit_PvP_Minecraft.canChangeKit){
+                // REMOVE POTION EFFECTS
+                for(PotionEffect effect : player.getActivePotionEffects()){
+                    player.removePotionEffect(effect.getType());
+                }
+
+                Inventory inv = player.getInventory();
+                inv.clear();
+
+                // Class Items
+                ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
+                ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);
+
+                inv.addItem(lavabucket, flintandsteel);
+
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + ChatColor.BOLD + " PYROMANCER! ");
+            } else{
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-            Inventory inv = player.getInventory();
-            inv.clear();
-
-            // Class Items
-            ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
-            ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);
-
-            inv.addItem(lavabucket, flintandsteel);
-
-            player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + ChatColor.BOLD + " PYROMANCER! ");
 
         } else {
             main.getLogger().info("You Have To Be Player To Get Kit");
