@@ -38,47 +38,16 @@ public class Wolverine implements CommandExecutor, Listener {
             if(player.isOp()){
                 Inventory inv = player.getInventory();
                 inv.clear();
-
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "wolverine");
-
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WOLVERINE! ");
-
             } else{
                 player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
             }
-
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");
         }
 
         return false;
-    }
-
-    @EventHandler
-    public void NightListener(PlayerInteractEvent p){
-
-        //Health Buff
-        int AddedHealthBonus = 1;
-        int HealthBonusTime = 10000;
-        // Damage Buff
-        int damageIncrease = 1;
-        int damageIncreaseTime = 10000;
-        // Speed Buff
-        int speedIncrease = 1;
-        int speedIncreaseTime = 10000;
-
-        // Time Effects Come In
-        int timeToTurn = 12000;
-
-        PotionEffect wolverineHealth = new PotionEffect(PotionEffectType.HEALTH_BOOST, HealthBonusTime, AddedHealthBonus);
-        PotionEffect wolverineStrength = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, damageIncreaseTime, damageIncrease);
-        PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.SPEED, speedIncreaseTime, speedIncrease);
-
-        if(PlayerStorage.playerHasKitActive(p.getPlayer(), "wolverine")){
-            if(p.getAction().equals(Action.PHYSICAL)){
-                
-            }
-        }
     }
 }
