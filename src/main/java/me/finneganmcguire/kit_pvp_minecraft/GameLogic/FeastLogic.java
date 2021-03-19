@@ -19,10 +19,10 @@ public class FeastLogic {
     static final int spawnX = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockX();
     static final int spawnZ = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockZ();
 
-    static int min_x = spawnX - Kit_PvP_Minecraft.WORLDSIZE + 100;
-    static int max_x = spawnX + Kit_PvP_Minecraft.WORLDSIZE - 100;
-    static int min_z = spawnZ - Kit_PvP_Minecraft.WORLDSIZE + 100;
-    static int max_z = spawnZ + Kit_PvP_Minecraft.WORLDSIZE - 100;
+    static int min_x = spawnX - Kit_PvP_Minecraft.WORLDSIZE/2 + 100;
+    static int max_x = spawnX + Kit_PvP_Minecraft.WORLDSIZE/2 - 100;
+    static int min_z = spawnZ - Kit_PvP_Minecraft.WORLDSIZE/2 + 100;
+    static int max_z = spawnZ + Kit_PvP_Minecraft.WORLDSIZE/2 - 100;
 
     public static void SpawnFeast(World w) {
         int feast_center_x = min_x + rng.nextInt(Math.abs(min_x - max_x));
