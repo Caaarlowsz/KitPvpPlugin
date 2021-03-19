@@ -17,5 +17,6 @@ public class ChestCircleSpawnTask extends BukkitRunnable {
     @Override
     public void run() {
         Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "CHEST CIRCLE SPAWNING SOON! (event not complete yet)");
+        FeastLogic.SpawnFeast(Kit_PvP_Minecraft.world);
     }
 }
