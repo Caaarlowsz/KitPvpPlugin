@@ -80,6 +80,7 @@ public class TimeWizard implements CommandExecutor {
                 if(p.getItem().getItemMeta().getDisplayName().equals("Wizard Clock")){
                     if(PlayerStorage.playerHasKitActive(p.getPlayer(), "timewizard")){
                         // Time Wizard Clock Effects
+
                     }
                 }
             }

@@ -1,4 +1,4 @@
-me/finneganmcguire/kit_pvp_minecraft/Player_Data/PlayerStorage.class
-me/finneganmcguire/kit_pvp_minecraft/GlobalEvents/SoundsAndEffects.class
-me/finneganmcguire/kit_pvp_minecraft/kits/Pyromancer.class
-me/finneganmcguire/kit_pvp_minecraft/tasks/CountDownTask.class
+me\finneganmcguire\kit_pvp_minecraft\Player_Data\PlayerStorage.class
+me\finneganmcguire\kit_pvp_minecraft\kits\Pyromancer.class
+me\finneganmcguire\kit_pvp_minecraft\tasks\CountDownTask.class
+me\finneganmcguire\kit_pvp_minecraft\GlobalEvents\SoundsAndEffects.class
