@@ -95,11 +95,11 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         }
 
         // Create Player Hash Data
-        HashMap<String, String> player_data = new HashMap<String, String>();
-        player_data.put(e.getPlayer().getName(), null);
+        //HashMap<String, String> player_data = new HashMap<String, String>();
+        //player_data.put(e.getPlayer().getName(), null);
 
         // Add Player To Global Hash Database
-        PlayerStorage.playerHashData.add(player_data);
+        PlayerStorage.setPlayerNewKit(e.getPlayer(), null);
 
         e.getPlayer().setGameMode(GameMode.ADVENTURE);
         e.getPlayer().getInventory().clear();
@@ -115,9 +115,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     @EventHandler
     public void OnPlayerLeave(PlayerQuitEvent e){
         currentAmountOfPlayers--;
-        for (int i = 0; i < PlayerStorage.playerHashData.size(); i++) {
-            PlayerStorage.playerHashData.get(i).remove(e.getPlayer().getName());
-        }
+        PlayerStorage.remove(e.getPlayer());
     }
 
     @EventHandler
