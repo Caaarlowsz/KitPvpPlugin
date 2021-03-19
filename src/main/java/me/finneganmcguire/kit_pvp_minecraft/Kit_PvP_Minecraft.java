@@ -1,5 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.DeathmatchLogic;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
@@ -49,6 +51,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(this, this);
 
+        GameCommands.e = world;
+
         //COMMANDS & KITS
         getServer().getPluginCommand("TimeWizard").setExecutor(new TimeWizard()); // Needs Work
 
@@ -70,6 +74,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Fireman").setExecutor(new Fireman()); //Stable and Working
 
         getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
+
+        getServer().getPluginCommand("game").setExecutor(new GameCommands());
+
     }
 
 

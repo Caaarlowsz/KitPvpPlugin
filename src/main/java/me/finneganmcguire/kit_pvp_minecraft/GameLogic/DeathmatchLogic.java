@@ -1,26 +1,41 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import com.google.common.util.concurrent.Service;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Server;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldEvent;
 
+import static java.lang.Math.PI;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 public class DeathmatchLogic{
+    //TODO
+    private static Location deathmatchLocation;
+    private static float r = 15;
 
     // When deathmatch begins
     public static void DeathmatchBegin(World e){
         Bukkit.broadcastMessage("THE DEATHMATCH BEGINS NOW!");
 
+        deathmatchLocation = e.getSpawnLocation(); //Change to somewhere else???
+        float deathMatchCenterX = deathmatchLocation.getBlockX();
+        float deathMatchCenterY = deathmatchLocation.getBlockY();
+        float deathMatchCenterZ = deathmatchLocation.getBlockZ();
+        int playerCount = e.getPlayers().size();
+
         // Finds all players left and teleports them to spawn
-        for (int i = 0; i < e.getPlayers().size(); i++) {
-            e.getPlayers().get(i).teleport(e.getSpawnLocation());
+        for (int i = 0; i < playerCount; i++) {
+            double tX = deathMatchCenterX + r*cos(2*PI*i/playerCount);
+            double tY = deathMatchCenterY + r*sin(2*PI*i/playerCount);
+            double tZ = deathMatchCenterZ + r*sin(2*PI*i/playerCount);
+            Location tLocation = new Location(e, tX, tY, tZ);
+            e.getPlayers().get(i).teleport(tLocation);
         }
     }
+
 
     // Runs When Deathmatch Ends
     public void DeathmatchEnd(Player p){
