@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -37,16 +38,12 @@ public class Beastmaster implements CommandExecutor {
             ItemStack bones = new ItemStack(Material.BONE, 3);
             ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
 
-            if(player.isOp()){
-                Inventory inv = player.getInventory();
-                inv.clear();
+            Inventory inv = player.getInventory();
+            inv.clear();
 
-                inv.addItem(bones, wolfSpawnEggs);
-
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
-            } else{
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
-            }
+            inv.addItem(bones, wolfSpawnEggs);
+            player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
+            player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
 
         }
         else {
