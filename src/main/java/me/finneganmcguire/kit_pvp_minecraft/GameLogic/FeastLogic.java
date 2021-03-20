@@ -59,7 +59,7 @@ public class FeastLogic {
         int feast_center_x = min_x + rng.nextInt(Math.abs(min_x - max_x));
         int feast_center_z = min_z + rng.nextInt(Math.abs(min_x - max_x));
         int feast_center_y = w.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
-        Bukkit.broadcastMessage(String.format(ChatColor.GOLD + "" + ChatColor.GOLD + "Feast Spawned At %d %d %d", feast_center_x, feast_center_y, feast_center_z));
+        Bukkit.broadcastMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "Feast Spawned At %d %d %d", feast_center_x, feast_center_y, feast_center_z));
         boolean flag = false;
 
         //Place chests

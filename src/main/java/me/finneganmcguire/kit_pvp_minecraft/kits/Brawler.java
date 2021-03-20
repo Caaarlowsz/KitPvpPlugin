@@ -63,7 +63,7 @@ public class Brawler implements CommandExecutor, Listener {
 
     @EventHandler
     public void WhenFistOut(PlayerInteractEvent e){
-        int damageBoost = 1;
+        int damageBoost = 0; //dmg 1
         int damageBoostTime = 10;
 
         PotionEffect brawlerDamage = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, damageBoostTime, damageBoost);

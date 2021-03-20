@@ -40,9 +40,18 @@ public class PlayerInteractions implements Listener {
     public void playerTakeDamage(EntityDamageEvent p) {
         if (!playerCanTakeDamage) {
             p.setCancelled(true);
-            p.getEntity().sendMessage(ChatColor.DARK_RED + "You cannot take damage before game");
         } else {
             p.setCancelled(false);
+        }
+    }
+
+    @EventHandler
+    public void flintAndSteelEvent(PlayerInteractEvent e){
+        if (!playerCanDropLava && e.getItem().getType().equals(Material.FLINT_AND_STEEL)) {
+            e.setCancelled(true);
+            e.getPlayer().sendMessage(ChatColor.DARK_RED + "Cannot use flint and steel before grace period ends");
+        } else {
+            e.setCancelled(false);
         }
     }
 }
