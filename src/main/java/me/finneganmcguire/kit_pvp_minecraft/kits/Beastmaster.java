@@ -79,8 +79,6 @@ public class Beastmaster implements CommandExecutor, Listener {
                     }
                 }
             }
-        } else {
-            System.out.println("Player not beastmaster");
         }
     }
 }
