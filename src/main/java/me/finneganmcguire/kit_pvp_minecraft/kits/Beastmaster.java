@@ -68,10 +68,14 @@ public class Beastmaster implements CommandExecutor, Listener {
         Wolf wolf = (Wolf) e.getRightClicked();
 
         if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){
-            if(e.getRightClicked().getType().equals(EntityType.WOLF) && e.getHand().equals(Material.BONE)){
-                wolf.setTamed(true);
-                wolf.setOwner(e.getPlayer());
+            if(e.getRightClicked().getType().equals(EntityType.WOLF)){
+                if(e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.BONE)){
+                    wolf.setTamed(true);
+                    wolf.setOwner(e.getPlayer());
+                }
             }
+        } else {
+            System.out.println("Player not beastmaster");
         }
     }
 }
