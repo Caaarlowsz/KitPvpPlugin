@@ -18,8 +18,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import java.io.FileReader;
-
 public class Beastmaster implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
