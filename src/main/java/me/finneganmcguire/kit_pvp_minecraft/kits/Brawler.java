@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,11 +45,14 @@ public class Brawler implements CommandExecutor, Listener {
 
                 Inventory inv = player.getInventory();
                 inv.clear();
-                player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
+
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "brawler");
                 brawlerExtraHealth.apply(player);
                 player.setHealth(player.getHealth() + 2);
+
+                player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.brawler_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }

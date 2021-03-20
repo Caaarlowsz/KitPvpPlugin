@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -51,6 +52,7 @@ public class Lumberjack implements CommandExecutor {
                 inv.clear();
 
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " LUMBERJACK! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.lumberjack_Description);
 
                 // Give Axe To Player
                 inv.addItem(axe);

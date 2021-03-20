@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -54,6 +55,7 @@ public class Milkman implements CommandExecutor, Listener {
 
                 inv.addItem(milk_bucket);
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.milkman_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
@@ -75,7 +77,7 @@ public class Milkman implements CommandExecutor, Listener {
         // Milkman Effects
         PotionEffect speedBuff = new PotionEffect(PotionEffectType.SPEED, timer_effects, 0);
         PotionEffect regenBuff = new PotionEffect(PotionEffectType.REGENERATION, timer_effects, 0);
-        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1500, 0);
+        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 800, 0);
 
         // Currently Effects All Milk Buckets
         try{

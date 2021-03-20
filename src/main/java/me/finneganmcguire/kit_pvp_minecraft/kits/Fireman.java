@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -49,6 +50,9 @@ public class Fireman implements CommandExecutor, Listener {
 
                 player.getInventory().addItem(firemanWater);
                 firemanResistance.apply(player);
+
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
