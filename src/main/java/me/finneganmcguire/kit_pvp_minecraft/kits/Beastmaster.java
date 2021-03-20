@@ -2,24 +2,20 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -27,7 +23,7 @@ public class Beastmaster implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Lumberjack(Kit_PvP_Minecraft main){
+    public void Beastmaster(Kit_PvP_Minecraft main){
         this.main = main;
     }
 
@@ -54,7 +50,7 @@ public class Beastmaster implements CommandExecutor, Listener {
 
                 inv.addItem(bones, wolfSpawnEggs);
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
-                player.sendMessage(ChatColor.RED + "YOU DO NOT HAVE ACCESS TO THIS KIT");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.beastmaster_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
@@ -68,10 +64,19 @@ public class Beastmaster implements CommandExecutor, Listener {
 
     @EventHandler
     public void WhenFistOut(PlayerInteractEntityEvent e){
+
+        Wolf wolf = (Wolf) e.getRightClicked();
+        int amountOfBones = e.getPlayer().getInventory().getItemInMainHand().getAmount();
+
         if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){
-            if(e.getRightClicked().equals(EntityType.WOLF) && e.getHand().equals(Material.BONE)){
-                if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){
-                    Entity wolf = e.getRightClicked();
+            if(e.getRightClicked().getType().equals(EntityType.WOLF)){
+                if(e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.BONE)){
+                    if(!wolf.isTamed()){
+                        wolf.setTamed(true);
+                        wolf.setOwner(e.getPlayer());
+                        amountOfBones--;
+                        e.getPlayer().getInventory().getItemInMainHand().setAmount(amountOfBones);
+                    }
                 }
             }
         }

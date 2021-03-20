@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,8 +25,6 @@ public class Werewolf implements CommandExecutor, Listener {
         this.main = main;
     }
 
-    String kitDescription = "Wolverine is best when it is night time. \nYou get Strength, Speed & Extra Health At Night";
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -42,8 +41,9 @@ public class Werewolf implements CommandExecutor, Listener {
                 inv.clear();
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "werewolf");
+
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WEREWOLF! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + kitDescription);
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.werewolf_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }

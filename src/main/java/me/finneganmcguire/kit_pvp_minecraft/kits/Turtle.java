@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,8 +23,6 @@ public class Turtle implements CommandExecutor, Listener {
         this.main = main;
     }
 
-    String kitDescription = "The Turtle Kit Is A Very Good At Defense. \nHolding Sneak/Shift Gives You Resistance 2 & Weakness 2";
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -38,9 +37,11 @@ public class Turtle implements CommandExecutor, Listener {
 
                 Inventory inv = player.getInventory();
                 inv.clear();
-                player.sendMessage("You Have Chosen: " + ChatColor.GREEN + " TURTLE! ");
+
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "turtle");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor  + kitDescription);
+
+                player.sendMessage("You Have Chosen: " + ChatColor.GREEN + " TURTLE! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor  + KitDescriptions.turtle_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }

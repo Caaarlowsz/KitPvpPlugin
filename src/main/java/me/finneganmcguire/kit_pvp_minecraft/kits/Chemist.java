@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -46,9 +47,12 @@ public class Chemist implements CommandExecutor, Listener {
                 }
                 Inventory inv = player.getInventory();
                 inv.clear();
-                player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " CHEMIST! ");
+
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "chemist");
+
+                player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " CHEMIST! ");
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.chemist_Description);
 
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");

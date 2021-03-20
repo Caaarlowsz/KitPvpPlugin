@@ -44,10 +44,10 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static int minimumPlayersToStart = 1;
 
     // Timers For Events
-    public long GracePeriodDelayTimer = 2000;
-    public long GameStartDelayTimer = 1000;
-    public long ChestCircleDelayTimer = 8000;
-    public long DeathmatchDelayTimer = 12000;
+    public long GracePeriodDelayTimer = 2000; // Time Before Grace Period Ends
+    public long GameStartDelayTimer = 1000; // Time Before Game Starts
+    public long ChestCircleDelayTimer = 4000; // Time Before Chest Circle Spawns
+    public long DeathmatchDelayTimer = 10000; // Time Before Deathmatch Starts
 
     // ON PLUGIN ENABLED
     @Override
@@ -84,6 +84,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Brawler").setExecutor(new Brawler()); // Stabel and Working
         pluginManager.registerEvents(new Brawler(), this); // Registers Events Like Free Hand
 
+        getServer().getPluginCommand("Chameleon").setExecutor(new Chameleon()); // Stabel and Working
+        pluginManager.registerEvents(new Chameleon(), this); // Registers Events Like Free Hand
+
         getServer().getPluginCommand("Lumberjack").setExecutor(new Lumberjack()); // Stable and Working
 
         getServer().getPluginCommand("Grandpa").setExecutor(new Grandpa()); //Stable and Working
@@ -98,7 +101,10 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
 
-        getServer().getPluginCommand("Chemist").setExecutor(new Chemist());
+        getServer().getPluginCommand("Beastmaster").setExecutor(new Beastmaster());
+        pluginManager.registerEvents(new Beastmaster(), this); // Registers Events
+
+        //getServer().getPluginCommand("Chemist").setExecutor(new Chemist());
 
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
     }
