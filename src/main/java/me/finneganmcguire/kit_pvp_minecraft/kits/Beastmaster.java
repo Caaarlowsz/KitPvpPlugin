@@ -17,7 +17,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.Potion;
-import org.bukkit.potion.PotionEffect;
+//import org.bukkit.potion.PotionEffect;
 
 public class Beastmaster implements CommandExecutor, Listener {
 
@@ -35,9 +35,9 @@ public class Beastmaster implements CommandExecutor, Listener {
 
             if(Kit_PvP_Minecraft.canChangeKit){
                 // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
+               // for(PotionEffect effect : player.getActivePotionEffects()){
+              //      player.removePotionEffect(effect.getType());
+               // }
 
                 //Beastmaster Items
                 ItemStack bones = new ItemStack(Material.BONE, 3);
