@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
+import me.finneganmcguire.kit_pvp_minecraft.CustomRecipes.Soups;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
@@ -43,10 +44,10 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static int minimumPlayersToStart = 1;
 
     // Timers For Events
-    public long GracePeriodDelayTimer = 2000; // Time Before Grace Period Ends
+    public long GracePeriodDelayTimer = 2 * 1000; // Time Before Grace Period Ends
     public long GameStartDelayTimer = 1000; // Time Before Game Starts
-    public long ChestCircleDelayTimer = 4000; // Time Before Chest Circle Spawns
-    public long DeathmatchDelayTimer = 10000; // Time Before Deathmatch Starts
+    public long ChestCircleDelayTimer = 13 * 1000; // Time Before Chest Circle Spawns
+    public long DeathmatchDelayTimer = 20 * 1000; // Time Before Deathmatch Starts
 
     // ON PLUGIN ENABLED
     @Override
@@ -61,6 +62,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // BACKGROUND WORLD EVENTS
         CreateNewWorld();
+
+        // CUSTOM RECIPES
+        //Bukkit.addRecipe(Soups.cactiSoup());
 
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
