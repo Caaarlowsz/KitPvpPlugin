@@ -22,7 +22,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import sun.jvm.hotspot.oops.Metadata;
 
 public class Beastmaster implements CommandExecutor, Listener {
 
