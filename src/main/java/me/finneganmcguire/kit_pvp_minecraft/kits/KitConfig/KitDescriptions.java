@@ -8,6 +8,8 @@ public class KitDescriptions {
 
     public static String brawler_Description = "The brawler kit is a great aggressive kit\n - The brawler kit has extra damage when punching with your fist";
 
+    public static String chameleon_Description = "The chameleon kit is great for more passive players\n - You can disguise yourself as any mob\n - Upon taking damage you will be revealed";
+
     public static String chemist_Description = "";
 
     public static String fireman_Description = "The fire man kit is great when it comes to dealing with lava or fire\n - The fire man kit has immunity to fire and starts with a water bucket";

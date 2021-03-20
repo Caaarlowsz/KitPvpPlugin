@@ -15,6 +15,9 @@ commands:
   brawler:
     description: Punch with fist, your stronger
     usage: /<command>
+  chameleon:
+    description: Turn into animals
+    usage: /<command>
   lumberjack:
     description: Cut Trees Faster
     usage: /<command>
