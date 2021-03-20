@@ -3,6 +3,7 @@ package me.finneganmcguire.kit_pvp_minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SpawnMushrooms;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
@@ -71,7 +72,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new PlayerInteractions(), this);
         //pluginManager.registerEvents(new PlayerCanUseLavaBucket(), this);
 
-        GameCommands.e = world;
+
 
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 

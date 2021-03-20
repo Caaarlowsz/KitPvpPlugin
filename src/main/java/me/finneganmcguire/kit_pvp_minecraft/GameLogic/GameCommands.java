@@ -1,36 +1,30 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
-
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.World;
+import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffect;
-
-import java.util.Arrays;
 
 public class GameCommands implements CommandExecutor {
-    public static World e;
 
+    private Kit_PvP_Minecraft main;
 
+    public void GameCommands(Kit_PvP_Minecraft main){
+        this.main = main;
+    }
 
+    // This method is called, when somebody uses our command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-
+        System.out.println("game command registerd?");
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (!player.isOp()) return false;
-            if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin(e);
-            if (args[0].equals("feast")) FeastLogic.SpawnFeast(e);
-
-        } else {
+            if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin(Kit_PvP_Minecraft.world);
+            if (args[0].equals("feast")) {
+                if (args.length == 1) FeastLogic.SpawnFeast(Kit_PvP_Minecraft.world);
+                else for (int i = 0; i < Integer.parseInt(args[1]); i++) FeastLogic.SpawnFeast(Kit_PvP_Minecraft.world);
+            }
         }
         return false;
     }

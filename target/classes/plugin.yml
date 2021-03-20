@@ -38,4 +38,4 @@ commands:
     usage: /<command>
   game:
     description: commands to modify the current game
-    usage: /game <args>
+    usage: /<command> <args>
