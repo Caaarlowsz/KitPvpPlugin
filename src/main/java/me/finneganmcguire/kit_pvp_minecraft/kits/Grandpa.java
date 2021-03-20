@@ -23,8 +23,6 @@ public class Grandpa implements CommandExecutor {
         this.main = main;
     }
 
-    public boolean kit_GrandpaActive;
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
