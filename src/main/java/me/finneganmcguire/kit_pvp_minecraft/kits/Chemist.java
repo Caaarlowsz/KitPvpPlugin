@@ -44,8 +44,6 @@ public class Chemist implements CommandExecutor, Listener {
                 for(PotionEffect effect : player.getActivePotionEffects()){
                     player.removePotionEffect(effect.getType());
                 }
-
-
                 Inventory inv = player.getInventory();
                 inv.clear();
                 player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " CHEMIST! ");
