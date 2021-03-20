@@ -83,6 +83,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Brawler").setExecutor(new Brawler()); // Stabel and Working
         pluginManager.registerEvents(new Brawler(), this); // Registers Events Like Free Hand
 
+        getServer().getPluginCommand("Chameleon").setExecutor(new Chameleon()); // Stabel and Working
+        pluginManager.registerEvents(new Chameleon(), this); // Registers Events Like Free Hand
+
         getServer().getPluginCommand("Lumberjack").setExecutor(new Lumberjack()); // Stable and Working
 
         getServer().getPluginCommand("Grandpa").setExecutor(new Grandpa()); //Stable and Working

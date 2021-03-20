@@ -1,3 +1,4 @@
+me\finneganmcguire\kit_pvp_minecraft\kits\KitConfig\KitsEnabled.class
 me\finneganmcguire\kit_pvp_minecraft\tasks\NightTimeChecker.class
 me\finneganmcguire\kit_pvp_minecraft\tasks\EndGameKickPlayer.class
 me\finneganmcguire\kit_pvp_minecraft\Player_Data\PlayerStorage.class
@@ -6,7 +7,9 @@ me\finneganmcguire\kit_pvp_minecraft\tasks\CountDownToStartTask.class
 me\finneganmcguire\kit_pvp_minecraft\GlobalEvents\PlayerInteractions.class
 me\finneganmcguire\kit_pvp_minecraft\kits\Pyromancer.class
 me\finneganmcguire\kit_pvp_minecraft\kits\Chemist.class
+me\finneganmcguire\kit_pvp_minecraft\kits\Chameleon.class
 me\finneganmcguire\kit_pvp_minecraft\GameLogic\FeastLogic.class
+me\finneganmcguire\kit_pvp_minecraft\kits\KitConfig\KitDescriptions.class
 me\finneganmcguire\kit_pvp_minecraft\tasks\CountDownGracePeriodTask.class
 me\finneganmcguire\kit_pvp_minecraft\GlobalEvents\SoundsAndEffects.class
 me\finneganmcguire\kit_pvp_minecraft\GameLogic\GameCommands.class
