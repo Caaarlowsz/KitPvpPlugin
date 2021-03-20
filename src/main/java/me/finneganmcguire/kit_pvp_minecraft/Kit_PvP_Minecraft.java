@@ -3,6 +3,7 @@ package me.finneganmcguire.kit_pvp_minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
+import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.*;
@@ -66,7 +67,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(this, this);
 
+        // Global Events
+        pluginManager.registerEvents(new PlayerInteractions(), this);
+        //pluginManager.registerEvents(new PlayerCanUseLavaBucket(), this);
+
         GameCommands.e = world;
+
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
         //COMMANDS & KITS
         getServer().getPluginCommand("TimeWizard").setExecutor(new TimeWizard()); // Needs Work

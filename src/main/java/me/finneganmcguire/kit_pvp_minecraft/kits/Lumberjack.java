@@ -22,7 +22,6 @@ public class Lumberjack implements CommandExecutor {
         this.main = main;
     }
 
-    public boolean kit_Lumberjack;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

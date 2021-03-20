@@ -29,7 +29,6 @@ public class TimeWizard implements CommandExecutor {
         this.main = main;
     }
 
-    public boolean kit_TimeWizardActive;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

@@ -1,12 +1,11 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameStartLogic;
+import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
-import me.finneganmcguire.kit_pvp_minecraft.tasks.ChestCircleSpawnTask;
-import org.bukkit.scheduler.BukkitTask;
 
 public class GameStartTask extends BukkitRunnable {
 
@@ -20,5 +19,7 @@ public class GameStartTask extends BukkitRunnable {
     public void run() {
         Bukkit.broadcastMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
         GameStartLogic.GameStart(Kit_PvP_Minecraft.world);
+
+        PlayerInteractions.playerCanDropLava = false;
     }
 }
