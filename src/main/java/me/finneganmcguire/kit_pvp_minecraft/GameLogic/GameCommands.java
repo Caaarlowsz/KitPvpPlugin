@@ -27,10 +27,7 @@ public class GameCommands implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (!player.isOp()) return false;
-            if (args[0].equals("start")) {
-                if (args[1].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin(e);
-                if (args[1].equals("game")) GameStartLogic.GameStart(e);
-            }
+            if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin(e);
             if (args[0].equals("feast")) FeastLogic.SpawnFeast(e);
 
         } else {
