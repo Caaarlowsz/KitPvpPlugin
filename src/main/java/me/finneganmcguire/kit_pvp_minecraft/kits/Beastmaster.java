@@ -58,7 +58,6 @@ public class Beastmaster implements CommandExecutor, Listener {
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");
         }
-
         return false;
     }
 
