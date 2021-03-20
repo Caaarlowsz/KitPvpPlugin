@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class GameStartLogic {
     static final int WORLDSIZE = 500;
@@ -26,5 +27,6 @@ public class GameStartLogic {
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", WORLDSIZE));
 
         PlayerInteractions.playersCanDropItems = true;
+        PlayerInteractions.playerCanTakeDamage = true;
     }
 }
