@@ -21,7 +21,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.awt.event.ActionEvent;
 
@@ -66,7 +68,6 @@ public class Chameleon implements CommandExecutor, Listener {
         Player player = e.getPlayer();
 
         if(PlayerStorage.playerHasKitActive(player, "chameleon")){
-
             EntityType playerRightClickEntity = e.getRightClicked().getType();
             DisguiseType mobType = DisguiseType.getType(playerRightClickEntity);
             MobDisguise mobDisguise = new MobDisguise(mobType, true);
@@ -87,8 +88,6 @@ public class Chameleon implements CommandExecutor, Listener {
                     console.getServer().dispatchCommand(console, "undisguiseplayer " + playerhit.getName());
                 }
             }
-        } else{
-            return;
         }
     }
 }

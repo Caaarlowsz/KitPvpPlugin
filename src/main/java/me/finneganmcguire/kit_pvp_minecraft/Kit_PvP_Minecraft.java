@@ -1,6 +1,12 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.*;
+
+import me.finneganmcguire.kit_pvp_minecraft.CustomRecipes.Soups;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SpawnMushrooms;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
@@ -16,8 +22,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
-//import org.graalvm.compiler.word.Word;
-
 import java.io.File;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
@@ -41,10 +45,10 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static int minimumPlayersToStart = 1;
 
     // Timers For Events
-    public long GracePeriodDelayTimer = 2000; // Time Before Grace Period Ends
+    public long GracePeriodDelayTimer = 2 * 1000; // Time Before Grace Period Ends
     public long GameStartDelayTimer = 1000; // Time Before Game Starts
-    public long ChestCircleDelayTimer = 4000; // Time Before Chest Circle Spawns
-    public long DeathmatchDelayTimer = 10000; // Time Before Deathmatch Starts
+    public long ChestCircleDelayTimer = 13 * 1000; // Time Before Chest Circle Spawns
+    public long DeathmatchDelayTimer = 20 * 1000; // Time Before Deathmatch Starts
 
     // ON PLUGIN ENABLED
     @Override
@@ -60,6 +64,11 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         // BACKGROUND WORLD EVENTS
         CreateNewWorld();
 
+        SpawnMushrooms.spawnMushrooms(world);
+
+        // CUSTOM RECIPES
+        //Bukkit.addRecipe(Soups.cactiSoup());
+
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
         pluginManager.registerEvents(new SoupEvent(), this);
@@ -68,9 +77,6 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // Global Events
         pluginManager.registerEvents(new PlayerInteractions(), this);
-        //pluginManager.registerEvents(new PlayerCanUseLavaBucket(), this);
-
-
 
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
