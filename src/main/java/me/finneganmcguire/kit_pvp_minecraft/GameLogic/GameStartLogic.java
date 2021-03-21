@@ -5,6 +5,7 @@ import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
+import org.bukkit.WorldBorder;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.player.PlayerInteractEvent;
 

@@ -24,7 +24,6 @@ public class CompassTracker implements Listener {
                 if(nearestEntities.get(i).getType().equals(EntityType.PLAYER)){
                     Player player = (Player) nearestEntities.get(i);
                     playersNearbyPlayer.add(player);
-
                 }
         }
 
@@ -35,7 +34,6 @@ public class CompassTracker implements Listener {
     public void rightClickCompass(PlayerInteractEvent e){
         if(e.getItem().getType().equals(Material.COMPASS)){
             if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
-
                 // When Right Clicking Compass - give nearest player
 
             }
