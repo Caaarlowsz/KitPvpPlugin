@@ -10,7 +10,7 @@ import org.bukkit.event.world.WorldEvent;
 import static java.lang.Math.*;
 
 public class DeathmatchLogic{
-    //TODO
+
     private static Location deathmatchLocation;
     private static float r = 15;
 
