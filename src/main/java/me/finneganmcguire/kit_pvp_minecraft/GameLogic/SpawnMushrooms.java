@@ -25,8 +25,8 @@ public class SpawnMushrooms {
         for (int i = min_x; i < max_x; i++) {
             for (int k = min_z; k < max_z; k++) {
                 int j = w.getHighestBlockYAt(i, k);
-                //if (!((new Location(w, i, j, k)).getBlock().equals(Material.GRASS_BLOCK) )) continue;
-                if (rng.nextInt(50) < 3) {
+                if (!((new Location(w, i, j, k)).getBlock().getType().equals(Material.GRASS_BLOCK) )) continue;
+                if (rng.nextInt(50) == 0) {
                     if (rng.nextInt(2)==0) {
                         Location redShroomer = new Location(w, i, j+1, k);
                         redShroomer.getBlock().setType(Material.RED_MUSHROOM);
