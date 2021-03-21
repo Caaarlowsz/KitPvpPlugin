@@ -22,7 +22,7 @@ public class EndGameKickPlayer extends BukkitRunnable {
             Player player = Kit_PvP_Minecraft.world.getPlayers().get(i);
             player.kickPlayer(ChatColor.GOLD + "Thank You For Playing :)");
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-            Bukkit.getServer().dispatchCommand(console, "stop");
+            Bukkit.getServer().dispatchCommand(console, "restart");
         }
     }
 }

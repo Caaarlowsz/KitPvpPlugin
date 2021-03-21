@@ -15,9 +15,35 @@ public class ChestCircleSpawnTask extends BukkitRunnable {
         this.plugin = plugin;
     }
 
+    int timer = 120; // 2min timer
+
     @Override
     public void run() {
-        Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "CHEST CIRCLE SPAWNING SOON! (event not complete yet)");
-        FeastLogic.SpawnFeast(Kit_PvP_Minecraft.world);
+
+        if(timer == 120){
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 2 MINUTES!");
+        }
+
+        else if(timer == 60){
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 1 MINUTE!");
+        }
+
+        else if(timer == 30){
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 30 SECONDS!");
+        }
+
+        else if(timer == 10){
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 10 SECONDS!");
+        }
+
+        else if(timer < 10 && timer > 1){
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN " + timer + "!");
+        }
+
+        else if (timer == 1){
+            FeastLogic.SpawnFeast(Kit_PvP_Minecraft.world);
+        }
+
+        timer--;
     }
 }

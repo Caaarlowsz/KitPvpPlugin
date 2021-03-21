@@ -12,12 +12,10 @@ public class CountDownToStartTask extends BukkitRunnable {
     public CountDownToStartTask(Kit_PvP_Minecraft plugin){
         this.plugin = plugin;
     }
-    public static int timerCurrent = 16;
+    public static int timerCurrent = 15;
 
     @Override
     public void run() {
-
-        timerCurrent -= 1;
 
         //15 seconds till start
         if(timerCurrent == 15){
@@ -28,5 +26,6 @@ public class CountDownToStartTask extends BukkitRunnable {
         if(timerCurrent > 0 && timerCurrent <= 4){
             Bukkit.broadcastMessage(ChatColor.GREEN + "Game Starting in... " + timerCurrent);
         }
+        timerCurrent -= 1;
     }
 }

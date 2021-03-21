@@ -17,10 +17,40 @@ public class DeathmatchTask extends BukkitRunnable {
         this.plugin = plugin;
     }
 
+    int timer = 180;
+
     // When Deathmatch task is called, run this
     @Override
     public void run() {
-        Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING SOON...");
-        DeathmatchLogic.DeathmatchBegin(Kit_PvP_Minecraft.world);
+
+        if(timer == 180){
+            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 3 MINUTES");
+        }
+
+        else if(timer == 120){
+            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 2 MINUTES");
+        }
+
+        else if(timer == 60){
+            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 1 MINUTE");
+        }
+
+        else if(timer == 30){
+            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 30 SECONDS!");
+        }
+
+        else if(timer == 10){
+            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 10 SECONDS!");
+        }
+
+        else if(timer <= 5 && timer > 1){
+            Bukkit.broadcastMessage(ChatColor.RED + "DEATHMATCH STARTING IN " + timer + "!");
+        }
+
+        else if (timer == 1){
+            DeathmatchLogic.DeathmatchBegin(Kit_PvP_Minecraft.world);
+        }
+
+        timer++;
     }
 }
