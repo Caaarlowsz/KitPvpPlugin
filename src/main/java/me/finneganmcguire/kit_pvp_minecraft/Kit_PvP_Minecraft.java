@@ -20,8 +20,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
-//import org.graalvm.compiler.word.Word;
-
 import java.io.File;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
@@ -63,6 +61,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // BACKGROUND WORLD EVENTS
         CreateNewWorld();
+
+        SpawnMushrooms.spawnMushrooms(world);
 
         // CUSTOM RECIPES
         //Bukkit.addRecipe(Soups.cactiSoup());

@@ -14,4 +14,5 @@ me\finneganmcguire\kit_pvp_minecraft\kits\KitConfig\KitDescriptions.class
 me\finneganmcguire\kit_pvp_minecraft\tasks\CountDownGracePeriodTask.class
 me\finneganmcguire\kit_pvp_minecraft\GlobalEvents\SoundsAndEffects.class
 me\finneganmcguire\kit_pvp_minecraft\GameLogic\GameCommands.class
+me\finneganmcguire\kit_pvp_minecraft\GameLogic\SpawnMushrooms.class
 me\finneganmcguire\kit_pvp_minecraft\GameLogic\GameEndsLogic.class
