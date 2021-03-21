@@ -1,5 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.*;
+
 import me.finneganmcguire.kit_pvp_minecraft.CustomRecipes.Soups;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
@@ -70,6 +72,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
         pluginManager.registerEvents(new SoupEvent(), this);
+        pluginManager.registerEvents(new CompassTracker(), this);
         pluginManager.registerEvents(this, this);
 
         // Global Events
