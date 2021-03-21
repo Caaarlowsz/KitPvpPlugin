@@ -13,9 +13,9 @@ import java.util.Random;
 public class FeastLogic {
 
     static final ItemStack common[] = {
-            new ItemStack(Material.SPLASH_POTION, 1, (short) 16388), //poison splash
-            new ItemStack(Material.SPLASH_POTION, 1, (short) 8201), //strength splash
-            new ItemStack(Material.POTION, 1, (short) 8201), //strength
+            //new ItemStack(Material.SPLASH_POTION, 1, (short) 16388), //poison splash
+            //new ItemStack(Material.SPLASH_POTION, 1, (short) 8201), //strength splash
+            //new ItemStack(Material.POTION, 1, (short) 8201), //strength
             new ItemStack(Material.LAVA_BUCKET, 1),
             new ItemStack(Material.EXPERIENCE_BOTTLE, 1),
             new ItemStack(Material.EXPERIENCE_BOTTLE, 2),
@@ -24,6 +24,8 @@ public class FeastLogic {
             new ItemStack(Material.GOLDEN_APPLE, 1),
             new ItemStack(Material.TNT, 3),
             new ItemStack(Material.FLINT_AND_STEEL, 1),
+            new ItemStack(Material.BOWL, 1),
+            new ItemStack(Material.ARROW, 16),
             new ItemStack(Material.IRON_SWORD, 1),
             new ItemStack(Material.IRON_HELMET, 1),
             new ItemStack(Material.IRON_CHESTPLATE, 1),
@@ -62,14 +64,22 @@ public class FeastLogic {
         int feast_center_y = w.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
         Bukkit.broadcastMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "Feast Spawned At %d %d %d", feast_center_x, feast_center_y, feast_center_z));
         boolean flag = false;
+        int r = 15;
+
+        //Place platform below chests
+        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
+            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
+                Location air = new Location(w, i, feast_center_y, j);
+                air.getBlock().setType(Material.AIR); //delete block
+            }
+        }
 
         //Place chests
         for (int i = feast_center_x - 2; i <= feast_center_x + 2; i++) {
             for (int j = feast_center_z - 2; j <= feast_center_z + 2; j++) {
-                Location chest = new Location(w, i, feast_center_y, j);
-                chest.getBlock().setType(Material.AIR); //delete block
                 flag = !flag;
                 if (!flag) continue;
+                Location chest = new Location(w, i, feast_center_y, j);
                 chest.getBlock().setType(Material.CHEST); //spawn chest
 
                 //Fill chest
@@ -86,16 +96,16 @@ public class FeastLogic {
         enchanting_table.getBlock().setType(Material.ENCHANTING_TABLE);
 
         //Place platform below chests
-        for (int i = feast_center_x - 2; i <= feast_center_x + 2; i++) {
-            for (int j = feast_center_z - 2; j <= feast_center_z + 2; j++) {
+        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
+            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
                 Location chest = new Location(w, i, feast_center_y-1, j);
                 chest.getBlock().setType(Material.GRASS_BLOCK); //spawn grass
             }
         }
 
         //Remove blocks above chests
-        for (int i = feast_center_x - 2; i <= feast_center_x + 2; i++) {
-            for (int j = feast_center_z - 2; j <= feast_center_z + 2; j++) {
+        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
+            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
                 Location chest = new Location(w, i, feast_center_y+1, j);
                 chest.getBlock().setType(Material.AIR); //spawn grass
             }
