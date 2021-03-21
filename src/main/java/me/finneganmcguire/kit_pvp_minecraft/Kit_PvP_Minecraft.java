@@ -74,9 +74,6 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // Global Events
         pluginManager.registerEvents(new PlayerInteractions(), this);
-        //pluginManager.registerEvents(new PlayerCanUseLavaBucket(), this);
-
-
 
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
