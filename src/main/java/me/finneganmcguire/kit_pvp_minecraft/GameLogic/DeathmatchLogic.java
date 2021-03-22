@@ -21,6 +21,7 @@ public class DeathmatchLogic{
     public static void DeathmatchBegin(World e){
 
         GameState.gameState = GameState.gamestate_deathmatch;
+        System.out.println("GAME STATE IS NOW: " + GameState.gameState);
 
         Bukkit.broadcastMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
 

@@ -39,13 +39,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     // World Reference and Keeps Track Of If Events Have Started Or Not
     public static World world;
     public static boolean EventsFired = true;
-    public static final int WORLDSIZE = 1500;
+    public static final int WORLDSIZE = 500;
 
     // This is in all .kits classes and checks if kits can be executed (turns false when game starts)
     public static boolean canChangeKit = true;
 
     // World Time When Game Starts
-    public long TimeWhenGameStarts = 11000;
+    public long WorldTimeWhenGameStarts = 11000;
 
     // Keeps Track of current players and min players to start game
     public static int currentAmountOfPlayers;
@@ -62,15 +62,21 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public void onEnable() {
 
         GameState.gameState = GameState.gamestate_lobby;
+        System.out.println("GAME STATE IS NOW: " + GameState.gameState);
 
         // Current problem:
             // Variables that are static, effect all players. FIX IT!
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Creates New World When Game Is Complete For Next Game
-        //CreateNewWorld();
+        CreateNewWorld();
 
-        //SpawnMushrooms.spawnMushrooms(world);
+        try{
+            SpawnMushrooms.spawnMushrooms(world);
+        } catch (Exception exception){
+            System.out.println("COULD NOT SPAWN MUSHROOMS");
+        }
+
 
         // CUSTOM RECIPES
         //Bukkit.addRecipe(Soups.cactiSoup());
@@ -124,12 +130,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
-        currentAmountOfPlayers++;
+
 
         if(!GameState.gameState.equals(GameState.gamestate_lobby)){
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
             e.getPlayer().sendMessage("GAME ALREADY IN PROGRESS...");
         } else {
+            currentAmountOfPlayers++;
             PlayerStorage.setPlayerNewKit(e.getPlayer(), null);
 
             e.getPlayer().setGameMode(GameMode.ADVENTURE);
@@ -201,11 +208,11 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     }
 
     public void WORLD_DATA(){
-        WorldCreator wc = new WorldCreator("KIT_PVP_WORLD2");
-        wc.type(WorldType.NORMAL);
-        wc.generateStructures(false);
-        world = wc.createWorld();
-        world.setTime(TimeWhenGameStarts);
+        //WorldCreator wc = new WorldCreator("KIT_PVP_WORLD2");
+        //wc.type(WorldType.NORMAL);
+        //wc.generateStructures(false);
+        world = Bukkit.getWorld("KIT_PVP_WORLD2"); //wc.createWorld();
+        world.setTime(WorldTimeWhenGameStarts);
         world.setGameRule(GameRule.DO_ENTITY_DROPS, true);
         world.setGameRule(GameRule.DO_MOB_SPAWNING, true);
         world.setGameRule(GameRule.DO_MOB_LOOT, true);
@@ -215,6 +222,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     //Deletes Old World then creates new world
     public void CreateNewWorld(){
         // DELETE PREVIOUS WORLD.
+        WORLD_DATA();
+
+        /*
         String filepath = "KIT_PVP_WORLD2";
         File worldDir = new File(filepath);
         boolean result = deleteDirectory(worldDir);
@@ -230,5 +240,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             WORLD_DATA();
             System.out.println(ChatColor.RED + "Didnt Find Previous World To Delete, Making New World...");
         }
+
+         */
     }
 }
