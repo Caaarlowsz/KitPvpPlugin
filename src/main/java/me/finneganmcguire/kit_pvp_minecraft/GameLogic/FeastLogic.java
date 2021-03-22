@@ -5,12 +5,19 @@ import org.bukkit.*;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffectType;
 
 import java.lang.Math;
 
 import java.util.Random;
 
 public class FeastLogic {
+
+    //ItemStack potion = new ItemStack(Material.POTION);
+    //PotionMeta potionMeta = (PotionMeta)potion.getItemMeta();
+    //potionMeta.setMainEffect(PotionEffectType.INCREASE_DAMAGE);
+    //potion.setItemMeta(potionMeta);
 
     static final ItemStack common[] = {
             //new ItemStack(Material.SPLASH_POTION, 1, (short) 16388), //poison splash
@@ -24,7 +31,7 @@ public class FeastLogic {
             new ItemStack(Material.GOLDEN_APPLE, 1),
             new ItemStack(Material.TNT, 3),
             new ItemStack(Material.FLINT_AND_STEEL, 1),
-            new ItemStack(Material.BOWL, 1),
+            new ItemStack(Material.BOW, 1),
             new ItemStack(Material.ARROW, 16),
             new ItemStack(Material.IRON_SWORD, 1),
             new ItemStack(Material.IRON_HELMET, 1),
@@ -58,10 +65,12 @@ public class FeastLogic {
     static int min_z = spawnZ - Kit_PvP_Minecraft.WORLDSIZE/2 + 100;
     static int max_z = spawnZ + Kit_PvP_Minecraft.WORLDSIZE/2 - 100;
 
-    public static void SpawnFeast(World w) {
-        int feast_center_x = min_x + rng.nextInt(Math.abs(min_x - max_x));
-        int feast_center_z = min_z + rng.nextInt(Math.abs(min_z - max_z));
-        int feast_center_y = w.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
+    public static int feast_center_x = min_x + rng.nextInt(Math.abs(min_x - max_x));
+    public static int feast_center_z = min_z + rng.nextInt(Math.abs(min_z - max_z));
+    public static int feast_center_y = Kit_PvP_Minecraft.world.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
+
+    public static void SpawnFeast() {
+        World w = Kit_PvP_Minecraft.world;
         Bukkit.broadcastMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "FEAST HAS SPAWNED AT: X:%d Y:%d Z:%d", feast_center_x, feast_center_y, feast_center_z));
         boolean flag = false;
         int r = 15;
@@ -85,9 +94,10 @@ public class FeastLogic {
                 //Fill chest
                 Chest c = (Chest) chest.getBlock().getState();
                 final Inventory inventory = c.getBlockInventory();
-                inventory.setItem(rng.nextInt(9), generateItem());
-                inventory.setItem(9 + rng.nextInt(9), generateItem());
-                inventory.setItem(18 + rng.nextInt(9), generateItem());
+                inventory.setItem(rng.nextInt(7), generateItem());
+                inventory.setItem(7 + rng.nextInt(7), generateItem());
+                inventory.setItem(14 + rng.nextInt(7), generateItem());
+                inventory.setItem(21 + rng.nextInt(6), generateItem());
             }
         }
 
@@ -116,9 +126,9 @@ public class FeastLogic {
 
         int rarity = rng.nextInt(100);
 
-        if (rarity < 70) {
+        if (rarity < 80) {
             return common[rng.nextInt(common.length)];
-        } else if (rarity < 98) {
+        } else if (rarity < 99) {
             return uncommon[rng.nextInt(uncommon.length)];
         } else {
             return rare[rng.nextInt(rare.length)];
