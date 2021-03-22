@@ -74,19 +74,117 @@ public class Cultivator implements CommandExecutor, Listener {
     }
    
     @EventHandler
-    //Instant Tree
-    public void onSaplingPlace(BlockPlaceEvent event) {
+    //Instant Oak Tree
+    public void onOakSaplingPlace(BlockPlaceEvent event) {
+        Material material = event.getBlockPlaced().getType();
+           
+        if (material == Material.oak_sapling) {
+            Sapling s = new Sapling(Material.oak_sapling);
+            ItemStack item = s.toItemStack();
+           
+            s.setIsInstantGrowable(true);
+           
+            event.getBlock().setType(item.getType());
+        }
+    }
+  
+    //Instant Spruce Tree
+    public void onSpruceSaplingPlace(BlockPlaceEvent event) {
+        Material material = event.getBlockPlaced().getType();
+           
+        if (material == Material.spruce_sapling) {
+            Sapling s = new Sapling(Material.spruce_sapling);
+            ItemStack item = s.toItemStack();
+           
+            s.setIsInstantGrowable(true);
+           
+            event.getBlock().setType(item.getType());
+        }
+    }
+  
+    //Instant Birch Tree
+    public void onBirchSaplingPlace(BlockPlaceEvent event) {
+        Material material = event.getBlockPlaced().getType();
+           
+        if (material == Material.birch_sapling) {
+            Sapling s = new Sapling(Material.birch_sapling);
+            ItemStack item = s.toItemStack();
+           
+            s.setIsInstantGrowable(true);
+           
+            event.getBlock().setType(item.getType());
+        }
+    }
+  
+    //Instant Jungle Tree
+    public void onJungleSaplingPlace(BlockPlaceEvent event) {
+        Material material = event.getBlockPlaced().getType();
+           
+        if (material == Material.jungle_sapling) {
+            Sapling s = new Sapling(Material.jungle_sapling);
+            ItemStack item = s.toItemStack();
+           
+            s.setIsInstantGrowable(true);
+           
+            event.getBlock().setType(item.getType());
+        }
+    }
+  
+    //Instant Acacia Tree
+    public void onAcaciaSaplingPlace(BlockPlaceEvent event) {
+        Material material = event.getBlockPlaced().getType();
+           
+        if (material == Material.acacia_sapling) {
+            Sapling s = new Sapling(Material.acacia_sapling);
+            ItemStack item = s.toItemStack();
+           
+            s.setIsInstantGrowable(true);
+           
+            event.getBlock().setType(item.getType());
+        }
+    }
+  
+    //Instant Dark Oak Tree
+    public void onDarkOakSaplingPlace(BlockPlaceEvent event) {
+        Material material = event.getBlockPlaced().getType();
+           
+        if (material == Material.dark_oak_sapling) {
+            Sapling s = new Sapling(Material.dark_oak_sapling);
+            ItemStack item = s.toItemStack();
+           
+            s.setIsInstantGrowable(true);
+           
+            event.getBlock().setType(item.getType());
+        }
+    }
+  
+   //Instant Red Mushrooms
+   public void onRedMushroomPlace(BlockPlaceEvent event) {
         BlockData data = event.getBlock().getBlockData();
      
-        if (data instanceof Sapling) {
-            event.getBlock().setType(Material.AIR);
+        if (data instanceof red_mushroom) {
+            //event.getBlock().setType(Material.AIR);
          
             Location location = event.getBlock().getLocation();
          
-            location.getWorld().generateTree(location, TreeType.OAK);
+            red_mushroom.setStage(red_mushroom.getMaximumStage());
         }
     }
-
+  
+   //Instant Brown Mushrooms
+   public void onBrownMushroomPlace(BlockPlaceEvent event) {
+        BlockData data = event.getBlock().getBlockData();
+     
+        if (data instanceof brown_mushroom) {
+            //event.getBlock().setType(Material.AIR);
+         
+            Location location = event.getBlock().getLocation();
+         
+            brown_mushroom.setStage(brown_mushroom.getMaximumStage());
+        }
+    }
+    
+  
     //Instant Wheat
     public void onWheatSeedsPlace(BlockPlaceEvent event) {
         BlockData data = event.getBlock().getBlockData();
