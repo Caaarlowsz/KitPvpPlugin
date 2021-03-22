@@ -47,11 +47,16 @@ public class PlayerInteractions implements Listener {
 
     @EventHandler
     public void flintAndSteelEvent(PlayerInteractEvent e){
-        if (!playerCanDropLava && e.getItem().getType().equals(Material.FLINT_AND_STEEL)) {
-            e.setCancelled(true);
-            e.getPlayer().sendMessage(ChatColor.DARK_RED + "Cannot use flint and steel before grace period ends");
-        } else {
-            e.setCancelled(false);
+        try{
+            if (!playerCanDropLava && e.getItem().getType().equals(Material.FLINT_AND_STEEL)) {
+                e.setCancelled(true);
+                e.getPlayer().sendMessage(ChatColor.DARK_RED + "Cannot use flint and steel before grace period ends");
+            } else {
+                e.setCancelled(false);
+            }
+        } catch (Exception exception){
+            return;
         }
+
     }
 }

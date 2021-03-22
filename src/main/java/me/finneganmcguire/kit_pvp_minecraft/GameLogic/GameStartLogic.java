@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
+import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.*;
@@ -15,6 +16,9 @@ public class GameStartLogic {
 
     // When Game Starts
     public static void GameStart(World w){
+
+        GameState.gameState = GameState.gamestate_graceperiod;
+        System.out.println("GAME STATE IS NOW: " + GameState.gameState);
 
         // Finds all players and teleports them to spawn
         for (int i = 0; i < w.getPlayers().size(); i++) {

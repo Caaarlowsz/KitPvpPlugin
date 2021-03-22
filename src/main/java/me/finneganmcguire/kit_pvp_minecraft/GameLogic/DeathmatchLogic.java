@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import com.google.common.util.concurrent.Service;
+import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
@@ -18,6 +19,10 @@ public class DeathmatchLogic{
 
     // When deathmatch begins
     public static void DeathmatchBegin(World e){
+
+        GameState.gameState = GameState.gamestate_deathmatch;
+        System.out.println("GAME STATE IS NOW: " + GameState.gameState);
+
         Bukkit.broadcastMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
 
         deathmatchLocation = e.getSpawnLocation(); //Change to somewhere else???
