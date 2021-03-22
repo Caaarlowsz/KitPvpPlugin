@@ -21,8 +21,10 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 
-public class Cultivator implements CommandExecutor, Listener {
-  
+public class Cultivator {
+
+    /*
+
     private Kit_PvP_Minecraft main;
     
     public void Cultivator(Kit_PvP_Minecraft main) {
@@ -33,7 +35,7 @@ public class Cultivator implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
       
-      ItemStack stone_hoe = new ItemStack(Material.stone_hoe, 1);
+      ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
       ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
       stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
       stone_hoe_data.setLore(Arrays.asList("Instantly grows any crop or sapling"));
@@ -302,4 +304,6 @@ public class Cultivator implements CommandExecutor, Listener {
             cocoa_beans.setStage(cocoa_beans.getMaximumStage());
         }
     }
+
+     */
 }
