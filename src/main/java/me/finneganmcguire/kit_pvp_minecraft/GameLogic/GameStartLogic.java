@@ -2,12 +2,10 @@ package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.World;
-import org.bukkit.WorldBorder;
+import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class GameStartLogic {
     static final int WORLDSIZE = 500;
@@ -22,6 +20,7 @@ public class GameStartLogic {
         for (int i = 0; i < w.getPlayers().size(); i++) {
             w.getPlayers().get(i).teleport(w.getSpawnLocation());
             w.getPlayers().get(i).setGameMode(GameMode.SURVIVAL);
+            w.getPlayers().get(i).getInventory().addItem(new ItemStack(Material.COMPASS, 1));
         }
         Kit_PvP_Minecraft.canChangeKit = false;
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
