@@ -21,27 +21,19 @@ public class ChestCircleSpawnTask extends BukkitRunnable {
     public void run() {
 
         if(timer == 120){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 2 MINUTES!");
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 2 MINUTES at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
         }
 
         else if(timer == 60){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 1 MINUTE!");
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 1 MINUTE at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
         }
 
-        else if(timer == 30){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 30 SECONDS!");
-        }
-
-        else if(timer == 10){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN 10 SECONDS!");
-        }
-
-        else if(timer < 10 && timer > 1){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "FEAST SPAWNING IN " + timer + "!");
+        else if(timer == 10 || timer == 30 || timer < 10 && timer > 1){
+            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN %d SECONDS at (%d, %d)!", timer, FeastLogic.feast_center_x, FeastLogic.feast_center_z));
         }
 
         else if (timer == 1){
-            FeastLogic.SpawnFeast(Kit_PvP_Minecraft.world);
+            FeastLogic.SpawnFeast();
         }
 
         timer--;
