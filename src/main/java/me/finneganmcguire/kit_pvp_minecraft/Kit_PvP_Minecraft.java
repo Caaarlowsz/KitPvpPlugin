@@ -6,6 +6,7 @@ import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameEndsLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SpawnMushrooms;
+import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
@@ -38,13 +39,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     // World Reference and Keeps Track Of If Events Have Started Or Not
     public static World world;
     public static boolean EventsFired = true;
-    public static final int WORLDSIZE = 500;
+    public static final int WORLDSIZE = 1500;
 
     // This is in all .kits classes and checks if kits can be executed (turns false when game starts)
     public static boolean canChangeKit = true;
 
     // World Time When Game Starts
-    public long setTimeWhenGameStarts = 11000;
+    public long TimeWhenGameStarts = 11000;
 
     // Keeps Track of current players and min players to start game
     public static int currentAmountOfPlayers;
@@ -60,17 +61,16 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
-        //Timed Checkers
-        BukkitTask CheckDayTime = new NightTimeChecker(this).runTaskTimer(this, 10, 10); // Checks If Its Day Or Night
+        GameState.gameState = GameState.gamestate_lobby;
 
         // Current problem:
             // Variables that are static, effect all players. FIX IT!
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Creates New World When Game Is Complete For Next Game
-        CreateNewWorld();
+        //CreateNewWorld();
 
-        SpawnMushrooms.spawnMushrooms(world);
+        //SpawnMushrooms.spawnMushrooms(world);
 
         // CUSTOM RECIPES
         //Bukkit.addRecipe(Soups.cactiSoup());
@@ -83,8 +83,6 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // Global Events
         pluginManager.registerEvents(new PlayerInteractions(), this);
-
-        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 
         //COMMANDS & KITS
         getServer().getPluginCommand("TimeWizard").setExecutor(new TimeWizard()); // Needs Work
@@ -128,6 +126,23 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public void OnPlayerJoin(PlayerJoinEvent e){
         currentAmountOfPlayers++;
 
+        if(!GameState.gameState.equals(GameState.gamestate_lobby)){
+            e.getPlayer().setGameMode(GameMode.SPECTATOR);
+            e.getPlayer().sendMessage("GAME ALREADY IN PROGRESS...");
+        } else {
+            PlayerStorage.setPlayerNewKit(e.getPlayer(), null);
+
+            e.getPlayer().setGameMode(GameMode.ADVENTURE);
+            e.getPlayer().getInventory().clear();
+
+            for(PotionEffect effect : e.getPlayer().getActivePotionEffects()){
+                e.getPlayer().removePotionEffect(effect.getType());
+            }
+
+            e.getPlayer().teleport(world.getSpawnLocation());
+            Bukkit.broadcastMessage(ChatColor.RED + "Welcome " + e.getPlayer().getName() + " To KIT PVP!");
+        }
+
         if(currentAmountOfPlayers >= minimumPlayersToStart){
             if(EventsFired){
                 BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskTimer(this, ChestCircleDelayTimer, 20);
@@ -146,17 +161,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         //player_data.put(e.getPlayer().getName(), null);
 
         // Add Player To Global Hash Database
-        PlayerStorage.setPlayerNewKit(e.getPlayer(), null);
 
-        e.getPlayer().setGameMode(GameMode.ADVENTURE);
-        e.getPlayer().getInventory().clear();
-
-        for(PotionEffect effect : e.getPlayer().getActivePotionEffects()){
-            e.getPlayer().removePotionEffect(effect.getType());
-        }
-
-        e.getPlayer().teleport(world.getSpawnLocation());
-        Bukkit.broadcastMessage(ChatColor.RED + "Welcome " + e.getPlayer().getName() + " To KIT PVP!");
     }
 
     @EventHandler
@@ -196,11 +201,11 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     }
 
     public void WORLD_DATA(){
-        //WorldCreator wc = new WorldCreator("KIT_PVP_WORLD2");
-        //wc.type(WorldType.NORMAL);
-        //wc.generateStructures(false);
-        world = Bukkit.getWorld("KIT_PVP_WORLD2"); //wc.createWorld();
-        world.setTime(setTimeWhenGameStarts);
+        WorldCreator wc = new WorldCreator("KIT_PVP_WORLD2");
+        wc.type(WorldType.NORMAL);
+        wc.generateStructures(false);
+        world = wc.createWorld();
+        world.setTime(TimeWhenGameStarts);
         world.setGameRule(GameRule.DO_ENTITY_DROPS, true);
         world.setGameRule(GameRule.DO_MOB_SPAWNING, true);
         world.setGameRule(GameRule.DO_MOB_LOOT, true);
