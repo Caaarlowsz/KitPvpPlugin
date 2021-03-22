@@ -48,7 +48,7 @@ public class DeathmatchTask extends BukkitRunnable {
         }
 
         else if (timer == 1){
-            DeathmatchLogic.DeathmatchBegin(Kit_PvP_Minecraft.world);
+            DeathmatchLogic.DeathmatchBegin();
         }
 
         timer++;

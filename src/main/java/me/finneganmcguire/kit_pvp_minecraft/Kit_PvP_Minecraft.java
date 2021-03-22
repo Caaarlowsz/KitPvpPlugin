@@ -57,6 +57,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public long ChestCircleDelayTimer = 3 * 1000; // Time Before Chest Circle Spawns (13 min)
     public long DeathmatchDelayTimer = 4 * 1000; // Time Before Deathmatch Starts
 
+
     // ON PLUGIN ENABLED
     @Override
     public void onEnable() {
@@ -70,6 +71,14 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         // Creates New World When Game Is Complete For Next Game
         CreateNewWorld();
+
+        // Setting static game variables
+        GameVariables.WorldSpawn = world.getSpawnLocation();
+        GameVariables.WORLDSIZE = WORLDSIZE;
+        GameVariables.WorldBounds.MINX = GameVariables.WorldSpawn.getBlockX() - Kit_PvP_Minecraft.WORLDSIZE/2;
+        GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + Kit_PvP_Minecraft.WORLDSIZE/2;
+        GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - Kit_PvP_Minecraft.WORLDSIZE/2;
+        GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + Kit_PvP_Minecraft.WORLDSIZE/2;
 
         try{
             SpawnMushrooms.spawnMushrooms(world);
@@ -85,6 +94,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new GUI(), this);
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(new CompassTracker(), this);
+        pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
         pluginManager.registerEvents(this, this);
 
         // Global Events

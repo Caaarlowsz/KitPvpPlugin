@@ -14,31 +14,27 @@ import static java.lang.Math.*;
 
 public class DeathmatchLogic{
 
-    private static Location deathmatchLocation;
     private static int r = 30;
 
+
+    private static Location deathmatchLocation = Kit_PvP_Minecraft.world.getSpawnLocation(); //Change to somewhere else???
+    static int deathMatchCenterX = deathmatchLocation.getBlockX();
+    static int deathMatchCenterZ = deathmatchLocation.getBlockZ();
+    static int deathMatchCenterY = Kit_PvP_Minecraft.world.getHighestBlockYAt((int) round(deathMatchCenterX), (int) round(deathMatchCenterZ)) - 1;
+
     // When deathmatch begins
-    public static void DeathmatchBegin(World e){
+    public static void DeathmatchBegin(){
 
         GameState.gameState = GameState.gamestate_deathmatch;
         System.out.println("GAME STATE IS NOW: " + GameState.gameState);
 
         Bukkit.broadcastMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
-
-        deathmatchLocation = e.getSpawnLocation(); //Change to somewhere else???
-        int deathMatchCenterX = deathmatchLocation.getBlockX();
-        int deathMatchCenterZ = deathmatchLocation.getBlockZ();
-        int deathMatchCenterY = e.getHighestBlockYAt((int) round(deathMatchCenterX), (int) round(deathMatchCenterZ)) - 1;
-
-        int playerCount = e.getPlayers().size();
-
-
         //Remove blocks above chests
         for (int i = deathMatchCenterX - r; i <= deathMatchCenterX + r; i++) {
             for (int j = deathMatchCenterZ - r; j <= deathMatchCenterZ + r; j++) {
                 Location grass = new Location(Kit_PvP_Minecraft.world, i, deathMatchCenterY, j);
                 grass.getBlock().setType(Material.GRASS_BLOCK); //spawn grass
-                for (int k = 1; k < 10; k++ ) {
+                for (int k = 1; k < 100; k++ ) {
                     Location air = new Location(Kit_PvP_Minecraft.world, i, deathMatchCenterY+k, j);
                     air.getBlock().setType(Material.AIR); //spawn grass
                 }
@@ -47,14 +43,19 @@ public class DeathmatchLogic{
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder center %d %d", deathMatchCenterX, deathMatchCenterZ));
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", r*2));
-        r = 20;
+        hold();
+
+    }
+    public static void hold() {
+        r -= 10;
+        int playerCount = Kit_PvP_Minecraft.world.getPlayers().size();
         // Finds all players left and teleports them to spawn
         for (int i = 0; i < playerCount; i++) {
             double tX = deathMatchCenterX + r*cos(2*PI*i/playerCount);
             double tZ = deathMatchCenterZ + r*sin(2*PI*i/playerCount);
-            double tY = e.getHighestBlockYAt((int) round(tX), (int) round(tZ)) + 1;
-            Location tLocation = new Location(e, tX, tY, tZ);
-            e.getPlayers().get(i).teleport(tLocation);
+            double tY = deathMatchCenterY;
+            Location tLocation = new Location(Kit_PvP_Minecraft.world, tX, tY, tZ);
+            Kit_PvP_Minecraft.world.getPlayers().get(i).teleport(tLocation);
         }
     }
 }

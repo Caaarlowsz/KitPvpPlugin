@@ -12,15 +12,13 @@ import java.util.Random;
 
 public class SpawnMushrooms {
     static Random rng = new Random();
-    static final int spawnX = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockX();
-    static final int spawnZ = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockZ();
-
-    static int min_x = spawnX - Kit_PvP_Minecraft.WORLDSIZE/2;
-    static int max_x = spawnX + Kit_PvP_Minecraft.WORLDSIZE/2;
-    static int min_z = spawnZ - Kit_PvP_Minecraft.WORLDSIZE/2;
-    static int max_z = spawnZ + Kit_PvP_Minecraft.WORLDSIZE/2;
 
     public static void spawnMushrooms(World w) {
+
+        int min_x = GameVariables.WorldBounds.MINX;
+        int max_x = GameVariables.WorldBounds.MAXX;
+        int min_z = GameVariables.WorldBounds.MINZ;
+        int max_z = GameVariables.WorldBounds.MAXZ;
 
         for (int i = min_x; i < max_x; i++) {
             for (int k = min_z; k < max_z; k++) {
