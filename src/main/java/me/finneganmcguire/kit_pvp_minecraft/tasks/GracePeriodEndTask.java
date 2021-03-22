@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameStartLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GracePeriodLogic;
+import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,5 +21,7 @@ public class GracePeriodEndTask extends BukkitRunnable {
     public void run() {
         Bukkit.broadcastMessage(ChatColor.BOLD+ "GRACE PERIOD HAS ENDED");
         GracePeriodLogic.GracePeriodEnd(Kit_PvP_Minecraft.world);
+
+        GameState.gameState = GameState.gamestate_main;
     }
 }
