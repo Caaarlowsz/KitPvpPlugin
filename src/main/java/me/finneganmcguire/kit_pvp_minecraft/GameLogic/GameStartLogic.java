@@ -7,6 +7,7 @@ import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 
 public class GameStartLogic {
     static final int WORLDSIZE = 500;
@@ -24,6 +25,9 @@ public class GameStartLogic {
         for (int i = 0; i < w.getPlayers().size(); i++) {
             w.getPlayers().get(i).teleport(w.getSpawnLocation());
             w.getPlayers().get(i).setGameMode(GameMode.SURVIVAL);
+            //remove potion effects
+            for(PotionEffect effect : w.getPlayers().get(i).getActivePotionEffects())
+                w.getPlayers().get(i).removePotionEffect(effect.getType());
             w.getPlayers().get(i).getInventory().addItem(new ItemStack(Material.COMPASS, 1));
         }
         Kit_PvP_Minecraft.canChangeKit = false;
@@ -33,6 +37,10 @@ public class GameStartLogic {
 
         PlayerInteractions.playersCanDropItems = true;
         PlayerInteractions.playerCanTakeDamage = true;
+
+        //set time to morning
+        w.setTime(0);
+
 
     }
 }
