@@ -55,7 +55,7 @@ public class Groundhog implements CommandExecutor, Listener {
 
                 inv.addItem(slime_ball);
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GROUNDHOG! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.milkman_Description);
+                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.groundhog_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
