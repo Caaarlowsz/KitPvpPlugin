@@ -39,7 +39,7 @@ commands:
   pyromancer:
     description: Fire stuff
     usage: /<command>
-  recylcer:
+  recycler:
     description: Recylce bowls after souping
     usage: /<command>
   game:

@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
@@ -23,8 +24,6 @@ public class Recycler implements CommandExecutor, Listener {
     public void Recycler(Kit_PvP_Minecraft main) {
         this.main = main;
     }
-
-    public static HashMap<String, Integer> bowls = new HashMap<>();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -41,7 +40,7 @@ public class Recycler implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
 
-                bowls.put(player.getName(), 0);
+                GameVariables.bowls.put(player.getName(), 0);
 
                 player.sendMessage("You Have Chosen: " + ChatColor.GREEN + ChatColor.BOLD + " Recycler! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.recycler_Description);
