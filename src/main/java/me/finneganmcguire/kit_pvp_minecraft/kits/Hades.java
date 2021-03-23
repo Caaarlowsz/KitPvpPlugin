@@ -22,11 +22,11 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.Arrays;
 
-public class Hades implements CommandExecutor, Listener {
-
+public class Hades {
+    /*
     private Kit_PvP_Minecraft main;
 
-    public void Hades(Kit_PvP_Minecraft main){
+    public void Hades(Kit_PvP_Minecraft main) {
         this.main = main;
     }
 
@@ -35,13 +35,12 @@ public class Hades implements CommandExecutor, Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
 
-
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
+                for (PotionEffect effect : player.getActivePotionEffects()) {
                     player.removePotionEffect(effect.getType());
                 }
 
@@ -56,18 +55,17 @@ public class Hades implements CommandExecutor, Listener {
                 iron_ingot_meta.setDisplayName(ChatColor.RED + "Hades' Reckoning");
                 iron_ingot_meta.setLore(Arrays.asList(ChatColor.RED + "This ingot is used to control the minds and hearts of the world.\n"));
                 iron_ingot.setItemMeta(iron_ingot_meta);
-              
+
                 //Inventory
                 Inventory inv = player.getInventory();
                 inv.clear();
                 inv.addItem(hadesIngot);
                 player.sendMessage("You Have Chosen: " + ChatColor.RED + " HADES! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.hades_Description);
-            } else{
+            } else {
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-        }
-        else {
+        } else {
             main.getLogger().info("You Have To Be Player To Get Kit");
         }
 
@@ -76,16 +74,17 @@ public class Hades implements CommandExecutor, Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onEntityTarget(EntityTargetLivingEntityEvent evt) {
-    if (evt.getTarget() instanceof Player) {
-        evt.setCancelled(true);
-        evt.setTarget(null);
-    }
-    //If the mob is already targeting another entity
-    if (evt.getEntity() instanceof Mob) {
-        Mob mob = (Mob) evt.getEntity();
-        if (mob.getTarget() instanceof Player) {
-            mob.setTarget(null);
+        if (evt.getTarget() instanceof Player) {
+            evt.setCancelled(true);
+            evt.setTarget(null);
+        }
+        //If the mob is already targeting another entity
+        if (evt.getEntity() instanceof Mob) {
+            Mob mob = (Mob) evt.getEntity();
+            if (mob.getTarget() instanceof Player) {
+                mob.setTarget(null);
+            }
         }
     }
+    */
 }
-    
