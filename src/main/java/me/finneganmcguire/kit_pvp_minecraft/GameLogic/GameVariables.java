@@ -8,7 +8,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+
 public class GameVariables {
+    public static HashMap<String, Integer> bowls = new HashMap<>();
     public static Location WorldSpawn;
     public static int WORLDSIZE; //Length of bounding box edge
     public static boolean feastPlatformSpawned = false;
