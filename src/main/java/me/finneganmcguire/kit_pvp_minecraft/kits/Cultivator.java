@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 
-public class Cultivator {
+public class Cultivator implements CommandExecutor, Listener {
 
     /*
 
