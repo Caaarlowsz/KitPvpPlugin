@@ -122,7 +122,8 @@ public class Groundhog implements CommandExecutor, Listener {
       Location playerLocation = player.getLocation();
       player.teleport(pos(0, -20, 0));
       
-      //Strikes lightning at previous location to indicate slime ball use 
-      world.strikeLightning(playerLocation);
+      //Places and ignites TNT to indicate slime ball use
+      setblock(pos(playerLocation), tnt, replace);
+      playerLocation.setFireTicks(5);
       
       }
