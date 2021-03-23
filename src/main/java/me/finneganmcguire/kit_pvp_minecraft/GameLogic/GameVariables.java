@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 public class GameVariables {
     public static Location WorldSpawn;
     public static int WORLDSIZE; //Length of bounding box edge
+    public static boolean feastPlatformSpawned = false;
+    public static Location feastLocation;
     public static class WorldBounds {
         public static int MINX = 0;
         public static int MAXX = 0;

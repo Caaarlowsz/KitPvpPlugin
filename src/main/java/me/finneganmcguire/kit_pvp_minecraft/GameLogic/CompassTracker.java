@@ -35,7 +35,10 @@ public class CompassTracker implements Listener {
             }
         }
 
-        if (players.size() == 0) return new Location(Kit_PvP_Minecraft.world, 0, 0, 0);
+        if (players.size() == 0) {
+            p.sendMessage("No players found, compass now pointing at spawn" );
+            return GameVariables.WorldSpawn;
+        }
 
         Location p_loc = p.getLocation();
         Player near = players.get(0);
@@ -53,8 +56,15 @@ public class CompassTracker implements Listener {
     public void rightClickCompass(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         boolean holdingCompass = player.getInventory().getItemInMainHand().getType() == Material.COMPASS;
-        if(holdingCompass){
+        boolean leftClick = event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK);
+        boolean rightClick = event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK);
+
+        if(holdingCompass && rightClick){
             Location l = getNearestPlayertoSelf(player);
+            player.setCompassTarget(l);
+        } else if (holdingCompass && GameVariables.feastPlatformSpawned && leftClick) {
+            Location l = GameVariables.feastLocation;
+            player.sendMessage("Compass now pointing at feast location");
             player.setCompassTarget(l);
         }
     }

@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import org.bukkit.*;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
@@ -107,6 +108,8 @@ public class FeastLogic {
     }
 
     public static void SpawnFeastPlatform() {
+        GameVariables.feastPlatformSpawned = true;
+        GameVariables.feastLocation = new Location(w, feast_center_x, feast_center_y, feast_center_z);
         for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
             for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
                 Location grass = new Location(w, i, feast_center_y-1, j);
