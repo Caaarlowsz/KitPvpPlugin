@@ -56,7 +56,7 @@ public class Cultivator implements CommandExecutor, Listener {
           //Finds player in hashmap database - Changes kit to Cultivator
           PlayerStorage.setPlayerNewKit(player.getPlayer(), "cultivator");
           
-          inv.addItem(oak_sapling);
+          inv.addItem(stone_hoe);
           player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " CULTIVATOR! ");
           player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.cultivator_Description);
           
