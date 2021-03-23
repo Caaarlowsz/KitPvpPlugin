@@ -39,6 +39,9 @@ commands:
   pyromancer:
     description: Fire stuff
     usage: /<command>
+  recylcer:
+    description: Recylce bowls after souping
+    usage: /<command>
   game:
     description: commands to modify the current game
     usage: /<command> <args>

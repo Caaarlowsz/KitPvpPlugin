@@ -122,6 +122,10 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
 
+        getServer().getPluginCommand("Recycler").setExecutor(new Recycler());
+        //pluginManager.registerEvents(new Milkman(), this); // Registers Events
+
+
         getServer().getPluginCommand("Beastmaster").setExecutor(new Beastmaster());
         pluginManager.registerEvents(new Beastmaster(), this); // Registers Events
 

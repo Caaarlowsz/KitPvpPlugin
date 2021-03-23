@@ -39,7 +39,6 @@ public class FeastLogic {
             new ItemStack(Material.IRON_CHESTPLATE, 1),
             new ItemStack(Material.IRON_LEGGINGS, 1),
             new ItemStack(Material.IRON_BOOTS, 1),
-            new ItemStack(Material.DIAMOND_HOE, 20),
             new ItemStack(Material.COOKED_PORKCHOP, 5)
     };
 
@@ -61,7 +60,8 @@ public class FeastLogic {
             new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 1),
             new ItemStack(Material.GOLDEN_APPLE, 16),
             new ItemStack(Material.MUSHROOM_STEW, 8),
-            new ItemStack(Material.NETHERITE_INGOT, 1)
+            new ItemStack(Material.NETHERITE_INGOT, 1),
+            new ItemStack(Material.DIAMOND_HOE, 64)
     };
     static Random rng = new Random();
     static final int spawnX = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockX();
