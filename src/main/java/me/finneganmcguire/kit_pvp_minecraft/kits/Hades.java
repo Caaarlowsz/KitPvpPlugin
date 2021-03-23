@@ -21,7 +21,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.Arrays;
-
+/*
 public class Hades implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
@@ -87,5 +87,5 @@ public class Hades implements CommandExecutor, Listener {
             mob.setTarget(null);
         }
     }
-}
+} */
     

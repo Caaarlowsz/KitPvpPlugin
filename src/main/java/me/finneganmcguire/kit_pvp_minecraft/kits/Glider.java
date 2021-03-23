@@ -39,10 +39,10 @@ public class Glider implements CommandExecutor, Listener {
                 inv.clear();
 
                 //Give Elytra
-                ItemStack glider = new ItemStack(Material.elytra);
+                ItemStack glider = new ItemStack(Material.ELYTRA);
                 ItemMeta glider_Data = glider.getItemMeta();
                 glider.setItemMeta(glider_Data);
-                glider.setDisplayName(ChatColor.BLACK + "Glider");
+                //glider.setDisplayName(ChatColor.BLACK + "Glider");
 
                 //glider.addEnchantment(enchantment.unbreaking, 10, true);
               
