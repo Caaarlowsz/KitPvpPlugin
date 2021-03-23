@@ -21,9 +21,9 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 
-public class Cultivator {
+public class Cultivator implements CommandExecutor, Listener {
 
-    /*
+   
 
     private Kit_PvP_Minecraft main;
     
@@ -56,7 +56,7 @@ public class Cultivator {
           //Finds player in hashmap database - Changes kit to Cultivator
           PlayerStorage.setPlayerNewKit(player.getPlayer(), "cultivator");
           
-          inv.addItem(oak_sapling);
+          inv.addItem(stone_hoe);
           player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " CULTIVATOR! ");
           player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.cultivator_Description);
           
@@ -74,7 +74,8 @@ public class Cultivator {
       
       return false;
     }
-   
+    
+    /* 
     @EventHandler
     //Instant Oak Tree
     public void onOakSaplingPlace(BlockPlaceEvent event) {
@@ -304,6 +305,6 @@ public class Cultivator {
             cocoa_beans.setStage(cocoa_beans.getMaximumStage());
         }
     }
-
-     */
+    /*
+    
 }

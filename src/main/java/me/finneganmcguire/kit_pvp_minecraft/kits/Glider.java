@@ -15,11 +15,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Fireman implements CommandExecutor, Listener {
+public class Glider implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Fireman(Kit_PvP_Minecraft main){
+    public void Glider(Kit_PvP_Minecraft main){
         this.main = main;
     }
 
@@ -38,20 +38,18 @@ public class Fireman implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
 
-                //Fireman Item Stuff
-                ItemStack firemanWater = new ItemStack(Material.WATER_BUCKET);
-                ItemMeta firemanWater_Data = firemanWater.getItemMeta();
-                firemanWater.setItemMeta(firemanWater_Data);
+                //Give Elytra
+                ItemStack glider = new ItemStack(Material.elytra);
+                ItemMeta glider_Data = glider.getItemMeta();
+                glider.setItemMeta(glider_Data);
+                glider.setDisplayName(ChatColor.BLACK + "Glider");
 
-                // Potion Effects
-                int lengthOfResistance = 1000000;
-                int strengthOfResistance = 0;
-                PotionEffect firemanResistance = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, lengthOfResistance, strengthOfResistance);
+                //glider.addEnchantment(enchantment.unbreaking, 10, true);
+              
+                player.getInventory().addItem(glider);
 
-                player.getInventory().addItem(firemanWater);
-                firemanResistance.apply(player);
-
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! ");
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! \n");
+                player.sendMessage("ChatColor.BLACK+ "YOU ARE BATMAN");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");

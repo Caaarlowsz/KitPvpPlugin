@@ -19,6 +19,7 @@ public class FeastLogic {
     //potionMeta.setMainEffect(PotionEffectType.INCREASE_DAMAGE);
     //potion.setItemMeta(potionMeta);
 
+    // COMMON SPAWNS IN FEAST
     static final ItemStack common[] = {
             //new ItemStack(Material.SPLASH_POTION, 1, (short) 16388), //poison splash
             //new ItemStack(Material.SPLASH_POTION, 1, (short) 8201), //strength splash
@@ -26,7 +27,6 @@ public class FeastLogic {
             new ItemStack(Material.LAVA_BUCKET, 1),
             new ItemStack(Material.EXPERIENCE_BOTTLE, 1),
             new ItemStack(Material.EXPERIENCE_BOTTLE, 2),
-            new ItemStack(Material.EXPERIENCE_BOTTLE, 3),
             new ItemStack(Material.MUSHROOM_STEW, 1),
             new ItemStack(Material.GOLDEN_APPLE, 1),
             new ItemStack(Material.TNT, 3),
@@ -38,8 +38,11 @@ public class FeastLogic {
             new ItemStack(Material.IRON_CHESTPLATE, 1),
             new ItemStack(Material.IRON_LEGGINGS, 1),
             new ItemStack(Material.IRON_BOOTS, 1),
-            new ItemStack(Material.DIAMOND_HOE, 20)
+            new ItemStack(Material.DIAMOND_HOE, 20),
+            new ItemStack(Material.COOKED_PORKCHOP, 5)
     };
+
+    // UNCOMMON SPAWNS IN FEAST
     static final ItemStack uncommon[] = {
             new ItemStack(Material.DIAMOND_BOOTS, 1),
             new ItemStack(Material.DIAMOND_LEGGINGS, 1),
@@ -48,8 +51,11 @@ public class FeastLogic {
             new ItemStack(Material.DIAMOND_SWORD, 1),
             new ItemStack(Material.GOLDEN_APPLE, 3),
             new ItemStack(Material.MUSHROOM_STEW, 4),
-            new ItemStack(Material.EXPERIENCE_BOTTLE, 16)
+            new ItemStack(Material.EXPERIENCE_BOTTLE, 4),
+            new ItemStack(Material.COOKED_BEEF, 8)
     };
+
+    // RARE SPAWNS IN FEAST
     static final ItemStack rare[] = {
             new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 1),
             new ItemStack(Material.GOLDEN_APPLE, 16),

@@ -8,8 +8,7 @@ public class GameState {
     public static String gamestate_main = "main";
     public static String gamestate_deathmatch = "deathmatch";
 
-    public static String getCurrentGameState(){
-        return gameState;
-    }
+    // Returns The Current Game State
+    public static String getCurrentGameState(){ return gameState; }
 
 }
