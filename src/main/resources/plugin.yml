@@ -41,6 +41,8 @@ commands:
     usage: /<command>
   recycler:
     description: Recylce bowls after souping
+  glider:
+    description: fly
     usage: /<command>
   game:
     description: commands to modify the current game
