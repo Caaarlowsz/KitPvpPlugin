@@ -19,7 +19,7 @@ public class Fireman implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Brawler(Kit_PvP_Minecraft main){
+    public void Fireman(Kit_PvP_Minecraft main){
         this.main = main;
     }
 
