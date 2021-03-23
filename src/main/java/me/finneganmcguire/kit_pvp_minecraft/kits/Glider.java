@@ -49,7 +49,7 @@ public class Glider implements CommandExecutor, Listener {
                 player.getInventory().addItem(glider);
 
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! \n");
-                player.sendMessage("ChatColor.BLACK+ "YOU ARE BATMAN");
+                player.sendMessage(ChatColor.BLACK+ "YOU ARE BATMAN");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.glider_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
