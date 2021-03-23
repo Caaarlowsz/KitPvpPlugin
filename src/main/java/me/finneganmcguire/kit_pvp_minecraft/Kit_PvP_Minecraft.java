@@ -15,6 +15,7 @@ import me.finneganmcguire.kit_pvp_minecraft.tasks.*;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -26,6 +27,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
@@ -65,6 +67,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         GameState.gameState = GameState.gamestate_lobby;
         System.out.println("GAME STATE IS NOW: " + GameState.gameState);
 
+        Kit_PvP_Minecraft.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         // Current problem:
             // Variables that are static, effect all players. FIX IT!
         PluginManager pluginManager = getServer().getPluginManager();
@@ -125,6 +128,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Beastmaster").setExecutor(new Beastmaster());
         pluginManager.registerEvents(new Beastmaster(), this); // Registers Events
 
+        getServer().getPluginCommand("Glider").setExecutor(new Glider());
+
         //getServer().getPluginCommand("Chemist").setExecutor(new Chemist());
 
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
@@ -168,7 +173,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
                 BukkitTask countDownToGameStartTask = new CountDownToStartTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
                 BukkitTask countDownGracePeriodTask = new CountDownGracePeriodTask(this).runTaskTimer(this, GracePeriodDelayTimer - 999, 20);
                 BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer + 200);
-                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskLater(this, GameStartDelayTimer);
+                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, GameStartDelayTimer, 20);
 
                 EventsFired = false;
             }
@@ -198,13 +203,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
 
             if(currentAmountOfPlayers <= 1){
-                    List<LivingEntity> livingEntities = world.getLivingEntities();
-                for (int i = 0; i < livingEntities.size(); i++) {
-                    if(livingEntities.get(i).getType().equals(EntityType.PLAYER)){
-                        String playerLeftName = livingEntities.get(i).getName();
-                        Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + playerLeftName + " YOU WON!");
-                    }
+
+                try{
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller() + " YOU WON!");
+                } catch (Exception exception){
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
                 }
+
 
                 Bukkit.broadcastMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
                 BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec

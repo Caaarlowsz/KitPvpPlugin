@@ -25,8 +25,8 @@ public class GameStartLogic {
             w.getPlayers().get(i).teleport(w.getSpawnLocation());
             w.getPlayers().get(i).setGameMode(GameMode.SURVIVAL);
             //remove potion effects
-            for(PotionEffect effect : w.getPlayers().get(i).getActivePotionEffects())
-                w.getPlayers().get(i).removePotionEffect(effect.getType());
+           // for(PotionEffect effect : w.getPlayers().get(i).getActivePotionEffects())
+            //    w.getPlayers().get(i).removePotionEffect(effect.getType());
             w.getPlayers().get(i).getInventory().addItem(new ItemStack(Material.COMPASS, 1));
         }
         Kit_PvP_Minecraft.canChangeKit = false;
