@@ -39,15 +39,16 @@ public class Glider implements CommandExecutor, Listener {
                 inv.clear();
 
                 //Give Elytra
-                ItemStack wings = new ItemStack(Material.elytra);
-                ItemMeta wings_Data = wings.getItemMeta();
-                wings.setItemMeta(wings_Data);
+                ItemStack glider = new ItemStack(Material.elytra);
+                ItemMeta glider_Data = glider.getItemMeta();
+                glider.setItemMeta(glider_Data);
+                glider.setDisplayName(ChatColor.BLACK + "Glider");
 
-                //wings.addEnchantment(enchantment.unbreaking, 10, true);
+                //glider.addEnchantment(enchantment.unbreaking, 10, true);
               
-                player.getInventory().addItem(wings);
+                player.getInventory().addItem(glider);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! ");
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! \n");
                 player.sendMessage("ChatColor.BLACK+ "YOU ARE BATMAN");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
             } else{
