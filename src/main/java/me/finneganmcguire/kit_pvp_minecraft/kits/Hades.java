@@ -84,7 +84,7 @@ public class Hades implements CommandExecutor {
     if (evt.getEntity() instanceof Mob) {
         Mob mob = (Mob) evt.getEntity();
         if (mob.getTarget() instanceof Player) {
-            mob.setTarget(instanceof Mob);
+            mob.setTarget(null);
         }
     }
 }
