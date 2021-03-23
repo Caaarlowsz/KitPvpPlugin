@@ -69,19 +69,13 @@ public class FeastLogic {
     public static int feast_center_z = min_z + rng.nextInt(Math.abs(min_z - max_z));
     public static int feast_center_y = Kit_PvP_Minecraft.world.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
 
+    static World w = Kit_PvP_Minecraft.world;
+    static int r = 15;
+
     public static void SpawnFeast() {
-        World w = Kit_PvP_Minecraft.world;
         Bukkit.broadcastMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "FEAST HAS SPAWNED AT: X:%d Y:%d Z:%d", feast_center_x, feast_center_y, feast_center_z));
         boolean flag = false;
-        int r = 15;
-
-        //Place platform below chests
-        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
-            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
-                Location air = new Location(w, i, feast_center_y, j);
-                air.getBlock().setType(Material.AIR); //delete block
-            }
-        }
+        SpawnFeastPlatform();
 
         //Place chests
         for (int i = feast_center_x - 2; i <= feast_center_x + 2; i++) {
@@ -104,24 +98,21 @@ public class FeastLogic {
         //Place enchanting table
         Location enchanting_table = new Location(w, feast_center_x, feast_center_y, feast_center_z);
         enchanting_table.getBlock().setType(Material.ENCHANTING_TABLE);
-
-        //Place platform below chests
-        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
-            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
-                Location chest = new Location(w, i, feast_center_y-1, j);
-                chest.getBlock().setType(Material.GRASS_BLOCK); //spawn grass
-            }
-        }
-
-        //Remove blocks above chests
-        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
-            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
-                Location chest = new Location(w, i, feast_center_y+1, j);
-                chest.getBlock().setType(Material.AIR); //spawn grass
-            }
-        }
-
     }
+
+    public static void SpawnFeastPlatform() {
+        for (int i = feast_center_x - r; i <= feast_center_x + r; i++) {
+            for (int j = feast_center_z - r; j <= feast_center_z + r; j++) {
+                Location grass = new Location(w, i, feast_center_y-1, j);
+                grass.getBlock().setType(Material.GRASS_BLOCK); //spawn grass
+                for (int k = 0; k < 10; k++) {
+                    Location air = new Location(w, i, feast_center_y + k, j);
+                    air.getBlock().setType(Material.AIR);
+                }
+            }
+        }
+    }
+
     public static ItemStack generateItem() {
 
         int rarity = rng.nextInt(100);

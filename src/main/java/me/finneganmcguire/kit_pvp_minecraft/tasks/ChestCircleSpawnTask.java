@@ -22,6 +22,7 @@ public class ChestCircleSpawnTask extends BukkitRunnable {
 
         if(timer == 120){
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 2 MINUTES at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
+            FeastLogic.SpawnFeastPlatform();
         }
 
         else if(timer == 60){
