@@ -39,6 +39,8 @@ commands:
   pyromancer:
     description: Fire stuff
     usage: /<command>
+  recycler:
+    description: Recylce bowls after souping
   glider:
     description: fly
     usage: /<command>
