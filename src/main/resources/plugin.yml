@@ -39,6 +39,9 @@ commands:
   pyromancer:
     description: Fire stuff
     usage: /<command>
+  glider:
+    description: fly
+    usage: /<command>
   game:
     description: commands to modify the current game
     usage: /<command> <args>

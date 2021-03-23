@@ -46,7 +46,7 @@ public class NightTimeChecker extends BukkitRunnable {
 
                 // Potion Effects
                 PotionEffect wolverineNightvision = new PotionEffect(PotionEffectType.NIGHT_VISION, 200000, 0);
-                PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.SPEED, 200000, 0);
+                PotionEffect wolverineSpeed = new PotionEffect(PotionEffectType.SPEED, 200000, 1);
                 PotionEffect wolverineSpectral = new PotionEffect(PotionEffectType.GLOWING, 200000, 0);
 
                 if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "werewolf") && !day){

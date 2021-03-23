@@ -23,58 +23,53 @@ import java.util.Arrays;
 
 public class Cultivator implements CommandExecutor, Listener {
 
-   
 
     private Kit_PvP_Minecraft main;
-    
+
     public void Cultivator(Kit_PvP_Minecraft main) {
         this.main = main;
     }
-  
-  
+
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-      
-      ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
-      ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
-      stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
-      stone_hoe_data.setLore(Arrays.asList("Instantly grows any crop or sapling"));
-      stone_hoe.setItemMeta(stone_hoe_data);
-      
-      if (sender instanceof Player) {
-        Player player = (Player) sender;
-        
-        if (Kit_PvP_Minecraft.canChangeKit) {
-          //Removing Potion Effects
-          for(PotionEffect effect : player.getActivePotionEffects()) {
+
+        ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
+        ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
+        stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
+        stone_hoe_data.setLore(Arrays.asList("Instantly grows any crop or sapling"));
+        stone_hoe.setItemMeta(stone_hoe_data);
+
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+
+            if (Kit_PvP_Minecraft.canChangeKit) {
+                //Removing Potion Effects
+                for (PotionEffect effect : player.getActivePotionEffects()) {
                     player.removePotionEffect(effect.getType());
                 }
 
-          Inventory inv = player.getInventory();
-          inv.clear();
-    
-          //Finds player in hashmap database - Changes kit to Cultivator
-          PlayerStorage.setPlayerNewKit(player.getPlayer(), "cultivator");
-          
-          inv.addItem(stone_hoe);
-          player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " CULTIVATOR! ");
-          player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.cultivator_Description);
-          
+                Inventory inv = player.getInventory();
+                inv.clear();
+
+                //Finds player in hashmap database - Changes kit to Cultivator
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), "cultivator");
+
+                inv.addItem(stone_hoe);
+                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " CULTIVATOR! ");
+                //player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.cultivator_Description);
+
+            } else {
+                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
+            }
+
+        } else {
+            main.getLogger().info("You Have To Be Player To Get Kit");
         }
-        
-        else {
-          player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
-        }
-        
-      }
-      
-      else {
-        main.getLogger().info("You Have To Be Player To Get Kit");
-      }
-      
-      return false;
+
+        return false;
     }
-    
+}
     /* 
     @EventHandler
     //Instant Oak Tree
@@ -305,6 +300,4 @@ public class Cultivator implements CommandExecutor, Listener {
             cocoa_beans.setStage(cocoa_beans.getMaximumStage());
         }
     }
-    /*
-    
-}
+*/
