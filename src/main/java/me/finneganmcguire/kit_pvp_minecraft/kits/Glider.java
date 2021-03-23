@@ -43,7 +43,7 @@ public class Glider implements CommandExecutor, Listener {
                 ItemMeta wings_Data = wings.getItemMeta();
                 wings.setItemMeta(wings_Data);
 
-                //wings.addEnchantment(enchantment.unbreaking, 3, true);
+                //wings.addEnchantment(enchantment.unbreaking, 10, true);
               
                 player.getInventory().addItem(wings);
 
