@@ -77,7 +77,7 @@ public class Milkman implements CommandExecutor, Listener {
         // Milkman Effects
         PotionEffect speedBuff = new PotionEffect(PotionEffectType.SPEED, timer_effects, 0);
         PotionEffect regenBuff = new PotionEffect(PotionEffectType.REGENERATION, timer_effects, 0);
-        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 800, 0);
+        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 400, 0);
 
         // Currently Effects All Milk Buckets
         try{

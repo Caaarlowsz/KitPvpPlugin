@@ -10,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 public class GameStartLogic {
-    static final int WORLDSIZE = 500;
 
     static final int spawnX = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockX();
     static final int spawnZ = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockZ();
@@ -33,14 +32,12 @@ public class GameStartLogic {
         Kit_PvP_Minecraft.canChangeKit = false;
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder center %d %d", spawnX, spawnZ));
-        Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", WORLDSIZE));
+        Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", Kit_PvP_Minecraft.WORLDSIZE));
 
         PlayerInteractions.playersCanDropItems = true;
         PlayerInteractions.playerCanTakeDamage = true;
 
-        //set time to morning
-        w.setTime(0);
-
-
+        Kit_PvP_Minecraft.world.setTime(Kit_PvP_Minecraft.WorldTimeWhenGameStarts);
+        Kit_PvP_Minecraft.world.setDifficulty(Difficulty.NORMAL);
     }
 }
