@@ -27,4 +27,10 @@ public class KitDescriptions {
     public static String turtle_Description = "The turtle kit is great at players who like more defensive gameplay.\n - Holding Sneak/Shift Gives You Resistance 2 & Weakness 2";
 
     public static String werewolf_Description = "Wolverine is best when it is night time.\n - Other players see a glowing outline of you in the world\n- You get Nightvision, Speed & Extra Health At Night";
+    
+    public static String hades_Description = "Hades is a demigod amongst men.\n Mobs will ignore you and attack other entities.\n";
+    
+    public static String groundhog_Description = "A master at escape.\n Dropping a slimeball will teleport you 20 blocks below your current position in a brick box.\n";
+    
+    public static String glider_Description = "Batmam in the flesh.\n You are given an Elytra to glide down from higher surfaces.\n";
 }
