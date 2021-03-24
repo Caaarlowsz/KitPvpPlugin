@@ -36,6 +36,9 @@ public class SoupEvent implements Listener {
     private void Recycle(Player player) {
         player.sendMessage("Recycling bowl");
         player.getInventory().setItemInMainHand(null); //removes bowl
-        if (PlayerStorage.recycleBowl(player)) player.getInventory().addItem(new ItemStack(Material.MUSHROOM_STEW, 1));
+        if (PlayerStorage.recycleBowl(player)) {
+            player.sendMessage("have a free soup bruv");
+            player.getInventory().addItem(new ItemStack(Material.MUSHROOM_STEW, 1));
+        }
     }
 }

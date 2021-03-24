@@ -28,7 +28,7 @@ public class GameCommands implements CommandExecutor {
                 else for (int i = 0; i < Integer.parseInt(args[1]); i++) FeastLogic.SpawnFeast();
             }
             if (args[0].equals("give")) {
-
+                player.getInventory().addItem(GameVariables.CustomItems.GlassBow.getGlassBow());
             }
         }
         return false;
