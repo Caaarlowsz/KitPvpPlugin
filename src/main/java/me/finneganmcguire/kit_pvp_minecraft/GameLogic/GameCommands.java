@@ -27,6 +27,9 @@ public class GameCommands implements CommandExecutor {
                 if (args.length < 2) FeastLogic.SpawnFeast();
                 else for (int i = 0; i < Integer.parseInt(args[1]); i++) FeastLogic.SpawnFeast();
             }
+            if (args[0].equals("give")) {
+
+            }
         }
         return false;
     }

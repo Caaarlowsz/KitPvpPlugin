@@ -1,12 +1,16 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 
@@ -25,9 +29,18 @@ public class GameVariables {
         public static int MAXZ = 0;
     }
     public static class CustomItems {
+        public static HashMap<String, Object> GameItems = new HashMap<>();
+        //GameItems.put("GlassBow", new GlassBow);
+
         public static class GlassBow {
             public static ItemStack getGlassBow() {
-                ItemStack glassBow = new ItemStack(Material.BOW);
+                ItemStack glassBow = new ItemStack(Material.BOW, 1);
+                ItemMeta bowMeta = glassBow.getItemMeta();
+                bowMeta.setDisplayName(ChatColor.WHITE + "Glass Bow");
+                bowMeta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+                if (bowMeta instanceof Damageable)
+                    ((Damageable) bowMeta).damage(1);
+                glassBow.setItemMeta(bowMeta);
                 return glassBow;
             }
             @EventHandler
@@ -36,6 +49,8 @@ public class GameVariables {
                 if (event.getAction() == Action.RIGHT_CLICK_AIR) {
                     if (event.getItem().getType() == Material.BOW) {
                         // insert logic
+                        p.sendMessage("Your bow shatters into pieces");
+                        p.getInventory().setItemInMainHand(null);
                     }
                 }
             }
