@@ -15,7 +15,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
 
 public class GameVariables {
-    public static HashMap<String, Integer> bowls = new HashMap<>();
+
+    public static HashMap<String, Object> GameItems = new HashMap<>();
     public static Location WorldSpawn;
     public static int WORLDSIZE; //Length of bounding box edge
     public static boolean feastPlatformSpawned = false;
@@ -29,7 +30,6 @@ public class GameVariables {
         public static int MAXZ = 0;
     }
     public static class CustomItems {
-        public static HashMap<String, Object> GameItems = new HashMap<>();
         //GameItems.put("GlassBow", new GlassBow);
 
         public static class GlassBow {
