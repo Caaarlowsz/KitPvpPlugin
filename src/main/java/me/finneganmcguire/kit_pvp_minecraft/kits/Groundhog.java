@@ -15,16 +15,21 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Objects;
 
 import static me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft.world;
 
@@ -32,17 +37,18 @@ public class Groundhog implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Groundhog(Kit_PvP_Minecraft main) {
+    public Groundhog(Kit_PvP_Minecraft main) {
         this.main = main;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
         ItemStack slime_ball = new ItemStack(Material.SLIME_BALL, 2);
         ItemMeta slime_ball_data = slime_ball.getItemMeta();
+        assert slime_ball_data != null;
         slime_ball_data.setDisplayName(ChatColor.BOLD + "The Groundhog's Grounding Gifts");
-        slime_ball_data.setLore(Arrays.asList("Teleports 20 blocks below current level into a box"));
+        slime_ball_data.setLore(Collections.singletonList("Teleports 20 blocks below current level into a box"));
         slime_ball.setItemMeta(slime_ball_data);
 
         if (sender instanceof Player) {
@@ -58,7 +64,7 @@ public class Groundhog implements CommandExecutor, Listener {
                 inv.clear();
 
                 //Finds player in hashmap database --> Changes Kit To milkman
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "Groundhog");
+                PlayerStorage.setPlayerNewKit(Objects.requireNonNull(player.getPlayer()), "Groundhog");
 
                 inv.addItem(slime_ball);
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GROUNDHOG! ");
@@ -74,13 +80,15 @@ public class Groundhog implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void onSlimeBallUse(PlayerDropItemEvent event) {
-        Player player = event.getPlayer();
+    public void onSlimeBallUse(PlayerInteractEvent event) {
 
-        boolean holdingSlimeBall = player.getInventory().getItemInMainHand().getType() == Material.SLIME_BALL;
-        ItemStack slime_ball = event.getItemDrop().getItemStack();
+        if (event.getAction() == Action.RIGHT_CLICK_AIR && event.getItem().getType().equals(Material.SLIME_BALL)) {
 
-        if (holdingSlimeBall = true) {
+            //Removes slime ball
+            int items = event.getPlayer().getInventory().getItemInMainHand().getAmount();
+            items--;
+            event.getPlayer().getInventory().getItemInMainHand().setAmount(items);
+
             //Enable console
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -132,13 +140,18 @@ public class Groundhog implements CommandExecutor, Listener {
                 }
             }
 
-            //Teleports player into box
+            //Places and ignites TNT to indicate slime ball use
+            Bukkit.getServer().dispatchCommand(console, "setblock(pos(playerLocation), primedtnt, replace))");
+
+            //Places and ignites TNT to indicate slime ball use
+            Player player = event.getPlayer();
+
+            Bukkit.getServer().dispatchCommand(console, "setblock(pos(playerLocation), primedtnt, replace))");
             Location location = player.getLocation();
             Location loc = new Location(world, 0, -20, 0);
             player.teleport(loc);
 
-            //Places and ignites TNT to indicate slime ball use
-            Bukkit.getServer().dispatchCommand(console, String.format("setblock(pos(playerLocation), primedtnt, replace))"));
+
         }
     }
 }
