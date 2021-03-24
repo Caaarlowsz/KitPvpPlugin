@@ -46,7 +46,7 @@ public class Turtle extends Kit {
         int damageBoostTime = 1000000000;
 
         PotionEffect turtleShield = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, damageBoostTime, damageBoost);
-        PotionEffect turtleDebuf = new PotionEffect(PotionEffectType.WEAKNESS, 1000000000, 1);
+        PotionEffect turtleDebuf = new PotionEffect(PotionEffectType.WEAKNESS, 100000000, 0);
 
 
         // WHEN PLAYER PRESSES SHIFT

@@ -71,6 +71,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         GameState.gameState = GameState.gamestate_lobby;
         System.out.println("GAME STATE IS NOW: " + GameState.gameState);
 
+        // CACTI SOUP Crafting Addition
         ItemStack soup_item = new ItemStack(Material.MUSHROOM_STEW);
         NamespacedKey key = new NamespacedKey(this, "Cacti_Stew");
         ShapelessRecipe recipe = new ShapelessRecipe(key, soup_item);

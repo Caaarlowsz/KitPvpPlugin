@@ -38,8 +38,8 @@ public class KitDescriptions {
         put("Glider", ChatColor.DARK_GRAY);
         put("Groundhog", ChatColor.DARK_GRAY);
         put("Hades", ChatColor.DARK_RED);
-
     }};
+
     public static ChatColor color(String kitname) {
         return kitcolor.get(kitname);
     }
