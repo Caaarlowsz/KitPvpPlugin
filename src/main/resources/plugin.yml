@@ -44,6 +44,9 @@ commands:
   glider:
     description: fly
     usage: /<command>
+  groundhog:
+    description: groundhog
+    usage: /<command>
   game:
     description: commands to modify the current game
     usage: /<command> <args>

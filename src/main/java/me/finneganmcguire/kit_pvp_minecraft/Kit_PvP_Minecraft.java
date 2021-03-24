@@ -41,7 +41,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public static boolean EventsFired = true;
 
     // BORDER SIZE - PLAY AREA
-    public static final int WORLDSIZE = 500;
+    public static final int WORLDSIZE = 600;
 
     // This is in all .kits classes and checks if kits can be changed (turns false when game starts)
     public static boolean canChangeKit = true;
@@ -137,11 +137,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Recycler").setExecutor(new Recycler());
         //pluginManager.registerEvents(new Milkman(), this); // Registers Events
 
-
         getServer().getPluginCommand("Beastmaster").setExecutor(new Beastmaster());
         pluginManager.registerEvents(new Beastmaster(), this); // Registers Events
 
         getServer().getPluginCommand("Glider").setExecutor(new Glider());
+
+        getServer().getPluginCommand("Groundhog").setExecutor(new Groundhog());
+        pluginManager.registerEvents(new Groundhog(), this);
 
         //getServer().getPluginCommand("Chemist").setExecutor(new Chemist());
 
@@ -218,7 +220,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             if(currentAmountOfPlayers <= 1){
 
                 try{
-                    Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller() + " YOU WON!");
+                    Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
                 } catch (Exception exception){
                     Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
                 }

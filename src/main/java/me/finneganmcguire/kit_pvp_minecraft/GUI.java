@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class GUI implements Listener {
+    /*
     private Inventory startmenu_gui;
     private Inventory kits_gui;
 
@@ -71,5 +72,7 @@ public class GUI implements Listener {
             }
         }
     }
+
+     */
 
 }

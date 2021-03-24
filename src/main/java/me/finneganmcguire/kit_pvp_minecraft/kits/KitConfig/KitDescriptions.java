@@ -28,5 +28,7 @@ public class KitDescriptions {
 
     public static String werewolf_Description = "Wolverine is best when it is night time.\n - Other players see a glowing outline of you in the world\n- You get Nightvision, Speed & Extra Health At Night";
 
-    public static String recycler_Description = "";
+    public static String recycler_Description = "After 3 uses of soup, you get a free soup! :)";
+
+    public static String groundhog_Description = "";
 }
