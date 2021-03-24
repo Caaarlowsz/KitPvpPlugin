@@ -22,21 +22,21 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
-/*
 public class Hades implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Hades(Kit_PvP_Minecraft main) {
+    public Hades(Kit_PvP_Minecraft main) {
         this.main = main;
     }
 
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
 
         if (sender instanceof Player) {
@@ -48,10 +48,11 @@ public class Hades implements CommandExecutor, Listener {
                     player.removePotionEffect(effect.getType());
                 }
 
+                /*
                 //Hades' Ingot
                 Material hadesIngot = Material.IRON_INGOT;
-                ItemStack iron_ingot = new ItemStack(hadesIngot);
-                ItemMeta iron_ingot_meta = iron_ingot.getItemMeta();
+                ItemStack hadesIngot = new ItemStack(iron_ingot);
+                ItemMeta iron_ingot_meta = iron_ingot_meta.getItemMeta();
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "Hades");
 
@@ -59,11 +60,12 @@ public class Hades implements CommandExecutor, Listener {
                 iron_ingot_meta.setDisplayName(ChatColor.RED + "Hades' Reckoning");
                 iron_ingot_meta.setLore(Arrays.asList(ChatColor.RED + "This ingot is used to control the minds and hearts of the world.\n"));
                 iron_ingot.setItemMeta(iron_ingot_meta);
+                */
 
                 //Inventory
                 Inventory inv = player.getInventory();
                 inv.clear();
-                inv.addItem(hadesIngot);
+                //inv.addItem(iron_ingot);
                 player.sendMessage("You Have Chosen: " + ChatColor.RED + " HADES! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.hades_Description);
             } else {
@@ -91,4 +93,4 @@ public class Hades implements CommandExecutor, Listener {
         }
     }
 }
-*/
+
