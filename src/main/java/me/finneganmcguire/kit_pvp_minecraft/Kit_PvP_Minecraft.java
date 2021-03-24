@@ -21,6 +21,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
@@ -66,6 +68,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         GameState.gameState = GameState.gamestate_lobby;
         System.out.println("GAME STATE IS NOW: " + GameState.gameState);
+
+        ItemStack soup_item = new ItemStack(Material.MUSHROOM_STEW);
+        NamespacedKey key = new NamespacedKey(this, "Cacti_Stew");
+        ShapelessRecipe recipe = new ShapelessRecipe(key, soup_item);
+        recipe.addIngredient(2, Material.CACTUS);
+        recipe.addIngredient(1, Material.BOWL);
+        Bukkit.addRecipe(recipe);
 
         Kit_PvP_Minecraft.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         // Current problem:
