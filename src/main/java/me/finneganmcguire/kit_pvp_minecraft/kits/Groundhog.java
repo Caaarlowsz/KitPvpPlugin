@@ -32,7 +32,7 @@ public class Groundhog implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Groundhog(Kit_PvP_Minecraft main) {
+    public void Groundhog (Kit_PvP_Minecraft main) {
         this.main = main;
     }
 
@@ -132,13 +132,16 @@ public class Groundhog implements CommandExecutor, Listener {
                 }
             }
 
-            //Teleports player into box
+            //Places and ignites TNT to indicate slime ball use
+            Bukkit.getServer().dispatchCommand(console, String.format("setblock(pos(playerLocation), primedtnt, replace))"));
+
+            //Places and ignites TNT to indicate slime ball use
+            Bukkit.getServer().dispatchCommand(console, String.format("setblock(pos(playerLocation), primedtnt, replace))"));
             Location location = player.getLocation();
             Location loc = new Location(world, 0, -20, 0);
             player.teleport(loc);
 
-            //Places and ignites TNT to indicate slime ball use
-            Bukkit.getServer().dispatchCommand(console, String.format("setblock(pos(playerLocation), primedtnt, replace))"));
+
         }
     }
 }
