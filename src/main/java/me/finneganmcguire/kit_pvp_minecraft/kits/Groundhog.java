@@ -15,7 +15,9 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -78,12 +80,15 @@ public class Groundhog implements CommandExecutor, Listener {
     }
 
     @EventHandler
-    public void onSlimeBallUse(PlayerDropItemEvent event) {
-        Player player = event.getPlayer();
+    public void onSlimeBallUse(PlayerInteractEvent event) {
 
-        boolean holdingSlimeBall = player.getInventory().getItemInMainHand().getType() == Material.SLIME_BALL;
+        if (event.getAction() == Action.RIGHT_CLICK_AIR && event.getItem().getType().equals(Material.SLIME_BALL)) {
 
-        if (holdingSlimeBall) {
+            //Removes slime ball
+            int items = event.getPlayer().getInventory().getItemInMainHand().getAmount();
+            items--;
+            event.getPlayer().getInventory().getItemInMainHand().setAmount(items);
+
             //Enable console
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -139,6 +144,8 @@ public class Groundhog implements CommandExecutor, Listener {
             Bukkit.getServer().dispatchCommand(console, "setblock(pos(playerLocation), primedtnt, replace))");
 
             //Places and ignites TNT to indicate slime ball use
+            Player player = event.getPlayer();
+
             Bukkit.getServer().dispatchCommand(console, "setblock(pos(playerLocation), primedtnt, replace))");
             Location location = player.getLocation();
             Location loc = new Location(world, 0, -20, 0);
