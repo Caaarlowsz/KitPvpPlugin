@@ -31,4 +31,6 @@ public class KitDescriptions {
     public static String recycler_Description = "After 3 uses of soup, you get a free soup! :)";
 
     public static String groundhog_Description = "";
+
+    public static String hades_Description = "";
 }
