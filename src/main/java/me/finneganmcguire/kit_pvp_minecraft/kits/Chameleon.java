@@ -27,7 +27,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.awt.event.ActionEvent;
 
-public class Chameleon implements CommandExecutor, Listener {
+public class Chameleon extends Kit {
 
     private Kit_PvP_Minecraft main;
 
@@ -37,29 +37,16 @@ public class Chameleon implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "chameleon");
-
-
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " CHAMELEON!");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.chameleon_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 

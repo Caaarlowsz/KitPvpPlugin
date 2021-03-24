@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Turtle implements CommandExecutor, Listener {
+public class Turtle extends Kit {
 
     private Kit_PvP_Minecraft main;
 
@@ -25,30 +25,16 @@ public class Turtle implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        if(sender instanceof Player){
+        super.onCommand(sender, command, label, args);
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
-                Inventory inv = player.getInventory();
-                inv.clear();
-
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "turtle");
-
                 player.sendMessage("You Have Chosen: " + ChatColor.GREEN + " TURTLE! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor  + KitDescriptions.turtle_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-        }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
         return false;
     }

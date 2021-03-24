@@ -24,7 +24,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.awt.*;
 
-public class Chemist implements CommandExecutor, Listener {
+public class Chemist extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -34,17 +34,13 @@ public class Chemist implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         int extraHealthBoost = 0;
 
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 Inventory inv = player.getInventory();
                 inv.clear();
 
@@ -54,15 +50,9 @@ public class Chemist implements CommandExecutor, Listener {
                 player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " CHEMIST! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.chemist_Description);
 
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 }

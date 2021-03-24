@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Beastmaster implements CommandExecutor, Listener {
+public class Beastmaster extends Kit {
 
     private Kit_PvP_Minecraft main;
 
@@ -29,34 +29,21 @@ public class Beastmaster implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
-
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 //Beastmaster Items
                 ItemStack bones = new ItemStack(Material.BONE, 3);
                 ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
 
-                Inventory inv = player.getInventory();
-                inv.clear();
-
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "beastmaster");
 
+                Inventory inv = player.getInventory();
                 inv.addItem(bones, wolfSpawnEggs);
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " BEASTMASTER!");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.beastmaster_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-        }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
         return false;
     }

@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 
-public class Cultivator implements CommandExecutor, Listener {
+public class Cultivator extends Kit{
 
 
     private Kit_PvP_Minecraft main;
@@ -33,7 +33,7 @@ public class Cultivator implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
         ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
         stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
@@ -44,29 +44,16 @@ public class Cultivator implements CommandExecutor, Listener {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
-                //Removing Potion Effects
-                for (PotionEffect effect : player.getActivePotionEffects()) {
-                    player.removePotionEffect(effect.getType());
-                }
-
-                Inventory inv = player.getInventory();
-                inv.clear();
-
                 //Finds player in hashmap database - Changes kit to Cultivator
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "cultivator");
 
+                Inventory inv = player.getInventory();
                 inv.addItem(stone_hoe);
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " CULTIVATOR! ");
                 //player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.cultivator_Description);
 
-            } else {
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
-        } else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
-
         return false;
     }
 }

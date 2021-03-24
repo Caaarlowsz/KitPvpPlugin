@@ -33,7 +33,7 @@ import java.util.Objects;
 
 import static me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft.world;
 
-public class Groundhog implements CommandExecutor, Listener {
+public class Groundhog extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -43,7 +43,7 @@ public class Groundhog implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         ItemStack slime_ball = new ItemStack(Material.SLIME_BALL, 2);
         ItemMeta slime_ball_data = slime_ball.getItemMeta();
         assert slime_ball_data != null;
@@ -55,13 +55,8 @@ public class Groundhog implements CommandExecutor, Listener {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
-                // REMOVE POTION EFFECTS
-                for (PotionEffect effect : player.getActivePotionEffects()) {
-                    player.removePotionEffect(effect.getType());
-                }
 
                 Inventory inv = player.getInventory();
-                inv.clear();
 
                 //Finds player in hashmap database --> Changes Kit To milkman
                 PlayerStorage.setPlayerNewKit(Objects.requireNonNull(player.getPlayer()), "Groundhog");
@@ -69,12 +64,7 @@ public class Groundhog implements CommandExecutor, Listener {
                 inv.addItem(slime_ball);
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GROUNDHOG! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.groundhog_Description);
-            } else {
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
-        } else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
         return false;
     }

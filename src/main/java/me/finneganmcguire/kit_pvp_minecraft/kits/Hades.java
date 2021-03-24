@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
-public class Hades implements CommandExecutor, Listener {
+public class Hades extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -37,16 +37,12 @@ public class Hades implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
 
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
-                // REMOVE POTION EFFECTS
-                for (PotionEffect effect : player.getActivePotionEffects()) {
-                    player.removePotionEffect(effect.getType());
-                }
 
                 /*
                 //Hades' Ingot
@@ -64,7 +60,6 @@ public class Hades implements CommandExecutor, Listener {
 
                 //Inventory
                 Inventory inv = player.getInventory();
-                inv.clear();
                 //inv.addItem(iron_ingot);
                 player.sendMessage("You Have Chosen: " + ChatColor.RED + " HADES! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.hades_Description);

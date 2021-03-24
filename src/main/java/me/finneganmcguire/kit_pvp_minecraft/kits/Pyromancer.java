@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-public class Pyromancer implements CommandExecutor {
+public class Pyromancer extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -21,35 +21,21 @@ public class Pyromancer implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-
             if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
-                Inventory inv = player.getInventory();
-                inv.clear();
-
                 // Class Items
                 ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
                 ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);
 
+                Inventory inv = player.getInventory();
                 inv.addItem(lavabucket, flintandsteel);
 
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + ChatColor.BOLD + " PYROMANCER! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.pyromancer_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
-
-        } else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
         return false;
     }

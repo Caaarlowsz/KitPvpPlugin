@@ -16,7 +16,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Brawler implements CommandExecutor, Listener {
+public class Brawler extends Kit {
 
     private Kit_PvP_Minecraft main;
 
@@ -26,39 +26,23 @@ public class Brawler implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         int extraHealthBoost = 0;
 
         PotionEffect brawlerExtraHealth = new PotionEffect(PotionEffectType.HEALTH_BOOST, 10000000, extraHealthBoost);
 
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
-                Inventory inv = player.getInventory();
-                inv.clear();
-
-
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "brawler");
                 brawlerExtraHealth.apply(player);
                 player.setHealth(player.getHealth() + 2);
 
                 player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.brawler_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 

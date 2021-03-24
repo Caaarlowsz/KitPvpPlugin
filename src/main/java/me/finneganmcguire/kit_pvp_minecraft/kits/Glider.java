@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Glider implements CommandExecutor, Listener {
+public class Glider extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -25,18 +25,12 @@ public class Glider implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
-            }
-
             if(Kit_PvP_Minecraft.canChangeKit){
                 Inventory inv = player.getInventory();
-                inv.clear();
 
                 //Give Elytra
                 ItemStack glider = new ItemStack(Material.ELYTRA);
@@ -52,14 +46,8 @@ public class Glider implements CommandExecutor, Listener {
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " GLIDER!");
                 player.sendMessage(ChatColor.BLACK + "YOU ARE BATMAN");
                 //player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 }

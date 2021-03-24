@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.Arrays;
 
-public class TimeWizard implements CommandExecutor {
+public class TimeWizard extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -33,18 +33,12 @@ public class TimeWizard implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.onCommand(sender, command, label, args);
 
-
-
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 Material timewizClock = Material.CLOCK;
                 ItemStack clock = new ItemStack(timewizClock);
                 ItemMeta timewizclockmeta = clock.getItemMeta();
@@ -56,22 +50,17 @@ public class TimeWizard implements CommandExecutor {
                 timewizclockmeta.addEnchant(Enchantment.CHANNELING, 10, true);
                 timewizclockmeta.setLore(Arrays.asList(ChatColor.DARK_PURPLE + "This used to belong to one of the greatest wizards of all time...\n",ChatColor.WHITE + "Current Owner: " + player.getDisplayName()));
                 timewizclockmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
                 // SET ITEM SATA
                 clock.setItemMeta(timewizclockmeta);
 
                 Inventory inv = player.getInventory();
-                inv.clear();
                 inv.addItem(clock);
+
                 player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " TIME WIZARD! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.timewizard_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 

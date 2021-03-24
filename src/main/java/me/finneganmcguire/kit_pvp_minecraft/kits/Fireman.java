@@ -15,7 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class Fireman implements CommandExecutor, Listener {
+public class Fireman extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -25,18 +25,12 @@ public class Fireman implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        if(sender instanceof Player){
+        super.onCommand(sender, command, label, args);
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
-            }
-
-            if(Kit_PvP_Minecraft.canChangeKit){
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 Inventory inv = player.getInventory();
-                inv.clear();
 
                 //Fireman Item Stuff
                 ItemStack firemanWater = new ItemStack(Material.WATER_BUCKET);
@@ -53,14 +47,8 @@ public class Fireman implements CommandExecutor, Listener {
 
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 }

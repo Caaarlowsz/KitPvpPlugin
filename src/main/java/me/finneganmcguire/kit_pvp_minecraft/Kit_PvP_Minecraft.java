@@ -28,6 +28,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -58,6 +59,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public long GameStartDelayTimer = 1000; // Time Before Game Starts (1 min)
     public long ChestCircleDelayTimer = 13 * 1000; // Time Before Chest Circle Spawns (13 min)
     public long DeathmatchDelayTimer = 18 * 1000; // Time Before Deathmatch Starts (18 min)
+
+    public static HashMap<String, Object> kits = new HashMap<>();
 
 
     // ON PLUGIN ENABLED
@@ -135,7 +138,6 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
 
         getServer().getPluginCommand("Recycler").setExecutor(new Recycler());
-        //pluginManager.registerEvents(new Milkman(), this); // Registers Events
 
         getServer().getPluginCommand("Beastmaster").setExecutor(new Beastmaster());
         pluginManager.registerEvents(new Beastmaster(), this); // Registers Events

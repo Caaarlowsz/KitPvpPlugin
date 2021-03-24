@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.Arrays;
 
-public class Grandpa implements CommandExecutor {
+public class Grandpa extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -26,7 +26,7 @@ public class Grandpa implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         // REMOVE ACCESS TO OTHER KITS
 
         ItemStack grandpaStick = new ItemStack(Material.STICK);
@@ -38,30 +38,17 @@ public class Grandpa implements CommandExecutor {
 
         grandpaStick.setItemMeta(stickData);
 
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
-            }
-
-            if(Kit_PvP_Minecraft.canChangeKit){
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 Inventory inv = player.getInventory();
-                inv.clear();
                 inv.addItem(grandpaStick);
 
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GRANDPA! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.grandpa_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 }

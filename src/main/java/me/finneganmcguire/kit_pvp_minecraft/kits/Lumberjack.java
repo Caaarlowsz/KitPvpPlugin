@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
-public class Lumberjack implements CommandExecutor {
+public class Lumberjack extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -26,7 +26,7 @@ public class Lumberjack implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         int axeEfficiencyLevel = 10;
 
         Enchantment axeEnchant = Enchantment.DIG_SPEED;
@@ -41,30 +41,17 @@ public class Lumberjack implements CommandExecutor {
 
         if(sender instanceof Player){
             Player player = (Player) sender;
-
-            // REMOVE POTION EFFECTS
-            for(PotionEffect effect : player.getActivePotionEffects()){
-                player.removePotionEffect(effect.getType());
-            }
-
             if(Kit_PvP_Minecraft.canChangeKit){
-                Inventory inv = player.getInventory();
-                inv.clear();
 
                 player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " LUMBERJACK! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.lumberjack_Description);
 
                 // Give Axe To Player
+                Inventory inv = player.getInventory();
                 inv.addItem(axe);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
         }
-        else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
-        }
-
         return false;
     }
 }

@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.HashMap;
 
-public class Recycler implements CommandExecutor, Listener {
+public class Recycler extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -26,24 +26,15 @@ public class Recycler implements CommandExecutor, Listener {
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        super.onCommand(sender, command, label, args);
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-
             if (Kit_PvP_Minecraft.canChangeKit) {
-                // REMOVE POTION EFFECTS
-                for (PotionEffect effect : player.getActivePotionEffects()) {
-                    player.removePotionEffect(effect.getType());
-                }
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "recycler");
-                Inventory inv = player.getInventory();
-                inv.clear();
 
                 player.sendMessage("You Have Chosen: " + ChatColor.GREEN + ChatColor.BOLD + " Recycler! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.recycler_Description);
-            } else {
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
         }
         return false;

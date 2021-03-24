@@ -21,7 +21,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Arrays;
 
-public class Milkman implements CommandExecutor, Listener {
+public class Milkman extends Kit{
 
     private Kit_PvP_Minecraft main;
 
@@ -31,6 +31,7 @@ public class Milkman implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.onCommand(sender, command, label, args);
 
         ItemStack milk_bucket = new ItemStack(Material.MILK_BUCKET, 1);
         ItemMeta milk_bucket_data = milk_bucket.getItemMeta();
@@ -41,27 +42,17 @@ public class Milkman implements CommandExecutor, Listener {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
-                // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
-                    player.removePotionEffect(effect.getType());
-                }
-
-                Inventory inv = player.getInventory();
-                inv.clear();
+            if (Kit_PvP_Minecraft.canChangeKit) {
 
                 //Finds player in hashmap database --> Changes Kit To milkman
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "milkman");
 
+                Inventory inv = player.getInventory();
                 inv.addItem(milk_bucket);
                 player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.milkman_Description);
-            } else{
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
 
-        } else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
         return false;
     }
