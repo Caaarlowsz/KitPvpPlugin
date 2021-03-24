@@ -40,8 +40,6 @@ public class Recycler implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
 
-                GameVariables.bowls.put(player.getName(), 0);
-
                 player.sendMessage("You Have Chosen: " + ChatColor.GREEN + ChatColor.BOLD + " Recycler! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.recycler_Description);
             } else {
