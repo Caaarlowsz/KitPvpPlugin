@@ -51,6 +51,6 @@ public class DeathmatchTask extends BukkitRunnable {
             DeathmatchLogic.DeathmatchBegin();
         }
 
-        timer++;
+        timer--;
     }
 }

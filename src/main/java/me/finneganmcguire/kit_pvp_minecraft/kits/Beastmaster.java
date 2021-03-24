@@ -65,6 +65,7 @@ public class Beastmaster implements CommandExecutor, Listener {
     public void WhenFistOut(PlayerInteractEntityEvent e){
 
         Wolf wolf = (Wolf) e.getRightClicked();
+        e.getPlayer().getLocation();
         int amountOfBones = e.getPlayer().getInventory().getItemInMainHand().getAmount();
 
         if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){

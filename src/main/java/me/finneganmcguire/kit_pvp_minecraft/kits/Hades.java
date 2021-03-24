@@ -9,9 +9,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
@@ -19,37 +22,37 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
-/*
 public class Hades implements CommandExecutor, Listener {
 
     private Kit_PvP_Minecraft main;
 
-    public void Hades(Kit_PvP_Minecraft main){
+    public Hades(Kit_PvP_Minecraft main) {
         this.main = main;
     }
 
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
 
-
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
+            if (Kit_PvP_Minecraft.canChangeKit) {
                 // REMOVE POTION EFFECTS
-                for(PotionEffect effect : player.getActivePotionEffects()){
+                for (PotionEffect effect : player.getActivePotionEffects()) {
                     player.removePotionEffect(effect.getType());
                 }
 
+                /*
                 //Hades' Ingot
-                Material hadesIngot = Material.iron_ingot;
-                ItemStack iron_ingot = new ItemStack(hadesIngot);
-                ItemMeta iron_ingot_meta = clock.getItemMeta();
+                Material hadesIngot = Material.IRON_INGOT;
+                ItemStack hadesIngot = new ItemStack(iron_ingot);
+                ItemMeta iron_ingot_meta = iron_ingot_meta.getItemMeta();
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "Hades");
 
@@ -57,18 +60,18 @@ public class Hades implements CommandExecutor, Listener {
                 iron_ingot_meta.setDisplayName(ChatColor.RED + "Hades' Reckoning");
                 iron_ingot_meta.setLore(Arrays.asList(ChatColor.RED + "This ingot is used to control the minds and hearts of the world.\n"));
                 iron_ingot.setItemMeta(iron_ingot_meta);
-              
+                */
+
                 //Inventory
                 Inventory inv = player.getInventory();
                 inv.clear();
-                inv.addItem(hadesIngot);
+                //inv.addItem(iron_ingot);
                 player.sendMessage("You Have Chosen: " + ChatColor.RED + " HADES! ");
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.hades_Description);
-            } else{
+            } else {
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-        }
-        else {
+        } else {
             main.getLogger().info("You Have To Be Player To Get Kit");
         }
 
@@ -77,16 +80,17 @@ public class Hades implements CommandExecutor, Listener {
 
     @EventHandler(ignoreCancelled = true)
     public void onEntityTarget(EntityTargetLivingEntityEvent evt) {
-    if (evt.getTarget() instanceof Player) {
-        evt.setCancelled(true);
-        evt.setTarget(null);
-    }
-    //If the mob is already targeting another entity
-    if (evt.getEntity() instanceof Mob) {
-        Mob mob = (Mob) evt.getEntity();
-        if (mob.getTarget() instanceof Player) {
-            mob.setTarget(null);
+        if (evt.getTarget() instanceof Player) {
+            evt.setCancelled(true);
+            evt.setTarget(null);
+        }
+        //If the mob is already targeting another entity
+        if (evt.getEntity() instanceof Mob) {
+            Mob mob = (Mob) evt.getEntity();
+            if (mob.getTarget() instanceof Player) {
+                mob.setTarget(null);
+            }
         }
     }
 }
-*/
+
