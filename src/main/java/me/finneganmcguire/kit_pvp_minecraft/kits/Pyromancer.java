@@ -18,9 +18,10 @@ public class Pyromancer extends Kit{
     public void Pyromancer(Kit_PvP_Minecraft main) {
         this.main = main;
     }
-
+    public String kitName = "Pyromancer";
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -33,8 +34,6 @@ public class Pyromancer extends Kit{
                 Inventory inv = player.getInventory();
                 inv.addItem(lavabucket, flintandsteel);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + ChatColor.BOLD + " PYROMANCER! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.pyromancer_Description);
             }
         }
         return false;

@@ -16,7 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
 public class Lumberjack extends Kit{
-
+    public String kitName = "Lumberjack";
     private Kit_PvP_Minecraft main;
 
     public void Lumberjack(Kit_PvP_Minecraft main){
@@ -26,6 +26,7 @@ public class Lumberjack extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         int axeEfficiencyLevel = 10;
 
@@ -43,8 +44,6 @@ public class Lumberjack extends Kit{
             Player player = (Player) sender;
             if(Kit_PvP_Minecraft.canChangeKit){
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " LUMBERJACK! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.lumberjack_Description);
 
                 // Give Axe To Player
                 Inventory inv = player.getInventory();

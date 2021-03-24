@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Arrays;
 
 public class Cultivator extends Kit{
-
+    public String kitName = "Cultivator";
 
     private Kit_PvP_Minecraft main;
 
@@ -33,6 +33,7 @@ public class Cultivator extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
         ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
@@ -49,8 +50,6 @@ public class Cultivator extends Kit{
 
                 Inventory inv = player.getInventory();
                 inv.addItem(stone_hoe);
-                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " CULTIVATOR! ");
-                //player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.cultivator_Description);
 
             }
         }

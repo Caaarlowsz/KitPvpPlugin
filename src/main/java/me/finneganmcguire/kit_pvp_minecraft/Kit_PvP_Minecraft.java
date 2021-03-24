@@ -60,8 +60,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public long ChestCircleDelayTimer = 13 * 1000; // Time Before Chest Circle Spawns (13 min)
     public long DeathmatchDelayTimer = 18 * 1000; // Time Before Deathmatch Starts (18 min)
 
-    public static HashMap<String, Object> kits = new HashMap<>();
-
+    public static HashMap<String, Kit> kits;
 
     // ON PLUGIN ENABLED
     @Override
@@ -81,7 +80,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
         Kit_PvP_Minecraft.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         // Current problem:
-            // Variables that are static, effect all players. FIX IT!
+        // Variables that are static, effect all players. FIX IT!
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Setting static game variables
@@ -93,14 +92,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + WORLDSIZE/2;
 
         // Spawn Mushrooms In World
-        try{
-            SpawnMushrooms.spawnMushrooms(world);
-        } catch (Exception exception){
-            System.out.println("COULD NOT SPAWN MUSHROOMS");
-        }
-
-        // CUSTOM RECIPES
-        //Bukkit.addRecipe(Soups.cactiSoup()); // CURRENTLY BREAKS GAME
+        SpawnMushrooms.spawnMushrooms(world);
 
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
@@ -113,41 +105,30 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new PlayerInteractions(), this);
 
         //COMMANDS & KITS
-        getServer().getPluginCommand("TimeWizard").setExecutor(new TimeWizard()); // Needs Work
-
-        getServer().getPluginCommand("Werewolf").setExecutor(new Werewolf()); // Needs Work
-
-        getServer().getPluginCommand("Brawler").setExecutor(new Brawler()); // Stabel and Working
-        pluginManager.registerEvents(new Brawler(), this); // Registers Events Like Free Hand
-
-        getServer().getPluginCommand("Chameleon").setExecutor(new Chameleon()); // Stabel and Working
-        pluginManager.registerEvents(new Chameleon(), this); // Registers Events Like Free Hand
-
-        getServer().getPluginCommand("Lumberjack").setExecutor(new Lumberjack()); // Stable and Working
-
-        getServer().getPluginCommand("Grandpa").setExecutor(new Grandpa()); //Stable and Working
-
-        getServer().getPluginCommand("Turtle").setExecutor(new Turtle()); // Stable and Working
-        pluginManager.registerEvents(new Turtle(), this); // Registers Events Like Shifting
-
-        getServer().getPluginCommand("Milkman").setExecutor(new Milkman()); //Needs Work
-        pluginManager.registerEvents(new Milkman(), this); // Registers Events
-
-        getServer().getPluginCommand("Fireman").setExecutor(new Fireman()); //Stable and Working
-
-        getServer().getPluginCommand("Pyromancer").setExecutor(new Pyromancer());
-
-        getServer().getPluginCommand("Recycler").setExecutor(new Recycler());
-
-        getServer().getPluginCommand("Beastmaster").setExecutor(new Beastmaster());
-        pluginManager.registerEvents(new Beastmaster(), this); // Registers Events
-
-        getServer().getPluginCommand("Glider").setExecutor(new Glider());
-
-        getServer().getPluginCommand("Groundhog").setExecutor(new Groundhog());
+        kits = new HashMap<String,Kit>(){{
+            put("TimeWizard", new TimeWizard());
+            put("Werewolf", new Werewolf());
+            put("Brawler", new Brawler());
+            put("Chameleon", new Chameleon());
+            put("Lumberjack", new Lumberjack());
+            put("Grandpa", new Grandpa());
+            put("Turtle", new Turtle());
+            put("Milkman", new Milkman());
+            put("Fireman", new Fireman());
+            put("Pyromancer", new Pyromancer());
+            put("Recycler", new Recycler());
+            put("Beastmaster", new Beastmaster());
+            put("Glider", new Glider());
+            put("Groundhog", new Groundhog());
+        }};
+        for (String kit : kits.keySet())
+            getServer().getPluginCommand(kit).setExecutor(kits.get(kit));
+        pluginManager.registerEvents(new Brawler(), this);
+        pluginManager.registerEvents(new Chameleon(), this);
+        pluginManager.registerEvents(new Turtle(), this);
+        pluginManager.registerEvents(new Milkman(), this);
+        pluginManager.registerEvents(new Beastmaster(), this);
         pluginManager.registerEvents(new Groundhog(), this);
-
-        //getServer().getPluginCommand("Chemist").setExecutor(new Chemist());
 
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
     }
@@ -215,22 +196,22 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerDie(PlayerDeathEvent e){
-            currentAmountOfPlayers--;
-            System.out.println(currentAmountOfPlayers);
-            e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
+        currentAmountOfPlayers--;
+        System.out.println(currentAmountOfPlayers);
+        e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
 
-            if(currentAmountOfPlayers <= 1){
+        if(currentAmountOfPlayers <= 1){
 
-                try{
-                    Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
-                } catch (Exception exception){
-                    Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
-                }
-
-
-                Bukkit.broadcastMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
-                BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
+            try{
+                Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
+            } catch (Exception exception){
+                Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
             }
+
+
+            Bukkit.broadcastMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
+            BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
+        }
     }
 
     // Delete Files Functionality

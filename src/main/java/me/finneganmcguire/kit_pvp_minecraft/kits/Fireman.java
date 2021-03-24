@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Fireman extends Kit{
-
+    public String kitName = "Fireman";
     private Kit_PvP_Minecraft main;
 
     public void Fireman(Kit_PvP_Minecraft main){
@@ -25,6 +25,7 @@ public class Fireman extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -45,8 +46,6 @@ public class Fireman extends Kit{
                 player.getInventory().addItem(firemanWater);
                 firemanResistance.apply(player);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
             }
         }
         return false;

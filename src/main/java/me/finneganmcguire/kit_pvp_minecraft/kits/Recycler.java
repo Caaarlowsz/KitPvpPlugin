@@ -20,12 +20,13 @@ import java.util.HashMap;
 public class Recycler extends Kit{
 
     private Kit_PvP_Minecraft main;
-
+    public String kitName = "Recycler";
     public void Recycler(Kit_PvP_Minecraft main) {
         this.main = main;
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -33,8 +34,6 @@ public class Recycler extends Kit{
             if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "recycler");
 
-                player.sendMessage("You Have Chosen: " + ChatColor.GREEN + ChatColor.BOLD + " Recycler! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.recycler_Description);
             }
         }
         return false;

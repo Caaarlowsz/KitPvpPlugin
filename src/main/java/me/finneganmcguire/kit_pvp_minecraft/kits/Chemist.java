@@ -25,7 +25,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.awt.*;
 
 public class Chemist extends Kit{
-
+    public String kitName = "Chemist";
     private Kit_PvP_Minecraft main;
 
     public void Brawler(Kit_PvP_Minecraft main){
@@ -34,6 +34,7 @@ public class Chemist extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         int extraHealthBoost = 0;
 
@@ -46,9 +47,6 @@ public class Chemist extends Kit{
 
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "chemist");
-
-                player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " CHEMIST! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.chemist_Description);
 
             }
 

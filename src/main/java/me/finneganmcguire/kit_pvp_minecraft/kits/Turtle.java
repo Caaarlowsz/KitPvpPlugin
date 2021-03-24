@@ -22,17 +22,17 @@ public class Turtle extends Kit {
     public void Turtle(Kit_PvP_Minecraft main){
         this.main = main;
     }
+    public String kitName = "Turtle";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "turtle");
-                player.sendMessage("You Have Chosen: " + ChatColor.GREEN + " TURTLE! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor  + KitDescriptions.turtle_Description);
             }
 
         }

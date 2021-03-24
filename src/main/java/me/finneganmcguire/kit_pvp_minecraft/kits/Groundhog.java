@@ -34,7 +34,7 @@ import java.util.Objects;
 import static me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft.world;
 
 public class Groundhog extends Kit{
-
+    public String kitName = "Groundhog";
     private Kit_PvP_Minecraft main;
 
     public void Groundhog(Kit_PvP_Minecraft main) {
@@ -43,6 +43,7 @@ public class Groundhog extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         ItemStack slime_ball = new ItemStack(Material.SLIME_BALL, 2);
         ItemMeta slime_ball_data = slime_ball.getItemMeta();
@@ -62,8 +63,6 @@ public class Groundhog extends Kit{
                 PlayerStorage.setPlayerNewKit(Objects.requireNonNull(player.getPlayer()), "Groundhog");
 
                 inv.addItem(slime_ball);
-                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GROUNDHOG! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.groundhog_Description);
             }
         }
         return false;

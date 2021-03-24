@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Brawler extends Kit {
-
+    public String kitName = "Brawler";
     private Kit_PvP_Minecraft main;
 
     public void Brawler(Kit_PvP_Minecraft main){
@@ -26,6 +26,7 @@ public class Brawler extends Kit {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         int extraHealthBoost = 0;
 
@@ -39,8 +40,6 @@ public class Brawler extends Kit {
                 brawlerExtraHealth.apply(player);
                 player.setHealth(player.getHealth() + 2);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.BLUE + " BRAWLER! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.brawler_Description);
             }
         }
         return false;

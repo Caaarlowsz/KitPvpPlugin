@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffect;
 import java.util.Arrays;
 
 public class Grandpa extends Kit{
-
+    public String kitName = "Grandpa";
     private Kit_PvP_Minecraft main;
 
     public void Grandpa(Kit_PvP_Minecraft main){
@@ -26,6 +26,7 @@ public class Grandpa extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         // REMOVE ACCESS TO OTHER KITS
 
@@ -45,8 +46,6 @@ public class Grandpa extends Kit{
                 Inventory inv = player.getInventory();
                 inv.addItem(grandpaStick);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " GRANDPA! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.grandpa_Description);
             }
         }
         return false;

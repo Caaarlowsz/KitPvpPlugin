@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 public class Hades extends Kit{
-
+    public String kitName = "Hades";
     private Kit_PvP_Minecraft main;
 
     public Hades(Kit_PvP_Minecraft main) {
@@ -37,6 +37,7 @@ public class Hades extends Kit{
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
 
         if (sender instanceof Player) {
@@ -61,8 +62,6 @@ public class Hades extends Kit{
                 //Inventory
                 Inventory inv = player.getInventory();
                 //inv.addItem(iron_ingot);
-                player.sendMessage("You Have Chosen: " + ChatColor.RED + " HADES! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.hades_Description);
             } else {
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }

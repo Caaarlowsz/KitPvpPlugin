@@ -25,16 +25,18 @@ public class Werewolf extends Kit{
         this.main = main;
     }
 
+    public String kitName = "Werewolf";
+
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "werewolf");
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED + " WEREWOLF! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.werewolf_Description);
             }
         }
         return false;

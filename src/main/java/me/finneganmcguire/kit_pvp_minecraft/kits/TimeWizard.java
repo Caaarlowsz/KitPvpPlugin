@@ -29,10 +29,11 @@ public class TimeWizard extends Kit{
     public void TimeWizardKit(Kit_PvP_Minecraft main){
         this.main = main;
     }
-
+    public String kitName = "TimeWizard";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
 
         if (sender instanceof Player) {
@@ -57,8 +58,6 @@ public class TimeWizard extends Kit{
                 Inventory inv = player.getInventory();
                 inv.addItem(clock);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.LIGHT_PURPLE + " TIME WIZARD! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.timewizard_Description);
             }
         }
         return false;

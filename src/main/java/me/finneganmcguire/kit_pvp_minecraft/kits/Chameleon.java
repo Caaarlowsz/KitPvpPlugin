@@ -28,7 +28,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.awt.event.ActionEvent;
 
 public class Chameleon extends Kit {
-
+    public String kitName = "Chameleon";
     private Kit_PvP_Minecraft main;
 
     public void Chameleon(Kit_PvP_Minecraft main){
@@ -37,14 +37,13 @@ public class Chameleon extends Kit {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "chameleon");
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_GREEN + " CHAMELEON!");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.chameleon_Description);
             }
         }
         return false;

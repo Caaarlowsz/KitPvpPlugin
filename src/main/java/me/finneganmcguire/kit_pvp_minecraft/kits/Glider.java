@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Glider extends Kit{
-
+    public String kitName = "Glider";
     private Kit_PvP_Minecraft main;
 
     public void Glider(Kit_PvP_Minecraft main){
@@ -25,6 +25,7 @@ public class Glider extends Kit{
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
@@ -43,9 +44,6 @@ public class Glider extends Kit{
               
                 player.getInventory().addItem(glider);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " GLIDER!");
-                player.sendMessage(ChatColor.BLACK + "YOU ARE BATMAN");
-                //player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
             }
         }
         return false;

@@ -28,9 +28,10 @@ public class Milkman extends Kit{
     public void Milkman(Kit_PvP_Minecraft main) {
         this.main = main;
     }
-
+    public String kitName = "Milkman";
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        super.passName(kitName);
         super.onCommand(sender, command, label, args);
 
         ItemStack milk_bucket = new ItemStack(Material.MILK_BUCKET, 1);
@@ -49,8 +50,6 @@ public class Milkman extends Kit{
 
                 Inventory inv = player.getInventory();
                 inv.addItem(milk_bucket);
-                player.sendMessage("You Have Chosen: " + ChatColor.BOLD + " MILKMAN! ");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.milkman_Description);
             }
 
         }

