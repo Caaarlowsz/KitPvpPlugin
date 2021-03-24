@@ -80,7 +80,7 @@ public class Groundhog implements CommandExecutor, Listener {
         boolean holdingSlimeBall = player.getInventory().getItemInMainHand().getType() == Material.SLIME_BALL;
         ItemStack slime_ball = event.getItemDrop().getItemStack();
 
-        if (holdingSlimeBall = true) {
+        if (holdingSlimeBall == true) {
             //Enable console
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
