@@ -41,6 +41,7 @@ public class Glider implements CommandExecutor, Listener {
                 //Give Elytra
                 ItemStack glider = new ItemStack(Material.ELYTRA);
                 ItemMeta glider_Data = glider.getItemMeta();
+                glider_Data.setDisplayName(ChatColor.BLACK + "Glider");
                 glider.setItemMeta(glider_Data);
                 //glider.setDisplayName(ChatColor.BLACK + "Glider");
 
@@ -48,9 +49,9 @@ public class Glider implements CommandExecutor, Listener {
               
                 player.getInventory().addItem(glider);
 
-                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " FIREMAN! \n");
-                player.sendMessage(ChatColor.BLACK+ "YOU ARE BATMAN");
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.glider_Description);
+                player.sendMessage("You Have Chosen: " + ChatColor.DARK_RED+ " GLIDER!");
+                player.sendMessage(ChatColor.BLACK + "YOU ARE BATMAN");
+                //player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.fireman_Description);
             } else{
                 player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }

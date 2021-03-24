@@ -40,9 +40,12 @@ commands:
     description: Fire stuff
     usage: /<command>
   recycler:
-    description: Recylce bowls after souping
+    description: Recycler bowls after souping
   glider:
     description: fly
+    usage: /<command>
+  groundhog:
+    description: groundhog
     usage: /<command>
   game:
     description: commands to modify the current game
