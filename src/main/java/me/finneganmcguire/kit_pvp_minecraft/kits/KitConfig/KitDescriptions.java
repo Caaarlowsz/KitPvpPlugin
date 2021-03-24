@@ -27,4 +27,6 @@ public class KitDescriptions {
     public static String turtle_Description = "The turtle kit is great at players who like more defensive gameplay.\n - Holding Sneak/Shift Gives You Resistance 2 & Weakness 2";
 
     public static String werewolf_Description = "Wolverine is best when it is night time.\n - Other players see a glowing outline of you in the world\n- You get Nightvision, Speed & Extra Health At Night";
+
+    public static String recycler_Description = "";
 }
