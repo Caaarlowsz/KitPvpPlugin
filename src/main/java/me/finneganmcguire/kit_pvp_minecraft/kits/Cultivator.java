@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.Inventory;
@@ -140,11 +141,12 @@ public class Cultivator extends Kit {
         }
     }
 
+    /*
     //Instant Red Mushrooms
     public void onRedMushroomPlace(BlockPlaceEvent event) {
         BlockData data = event.getBlock().getBlockData();
 
-        if (data instanceof Sapling) {
+        if (event.getBlockPlaced() == Action.RIGHT_CLICK_BLOCK && event.getItemInHand().getType().equals(Material.RED_MUSHROOM)) {
             event.getBlock().setType(Material.AIR);
 
             Location location = event.getBlock().getLocation();
@@ -154,10 +156,10 @@ public class Cultivator extends Kit {
     }
 
     //Instant Brown Mushrooms
-    public void onBrownMushroomPlace(BlockPlaceEvent event) {
+    public void onRedMushroomPlace(BlockPlaceEvent event) {
         BlockData data = event.getBlock().getBlockData();
 
-        if (data instanceof Sapling) {
+        if (event.getBlockPlaced() == Action.RIGHT_CLICK_BLOCK && event.getItemInHand().getType().equals(Material.BROWN_MUSHROOM)) {
             event.getBlock().setType(Material.AIR);
 
             Location location = event.getBlock().getLocation();
@@ -166,7 +168,7 @@ public class Cultivator extends Kit {
         }
     }
 
-    /*
+
     //Instant Wheat
     public void onWheatSeedsPlace(BlockPlaceEvent event) {
         BlockData data = event.getBlock().getBlockData();
