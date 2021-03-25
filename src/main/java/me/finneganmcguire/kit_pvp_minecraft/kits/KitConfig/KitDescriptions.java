@@ -44,6 +44,7 @@ public class KitDescriptions {
         put("Demonking", ChatColor.DARK_RED);
         put("Blacksmith", ChatColor.DARK_RED);
         put("Viper", ChatColor.GREEN);
+        put("Snail", ChatColor.DARK_GREEN);
 
     }};
 
