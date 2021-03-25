@@ -24,7 +24,7 @@ public class Beastmaster extends Kit {
             Player player = (Player) sender;
             if (Kit_PvP_Minecraft.canChangeKit) {
                 //Beastmaster Items
-                ItemStack bones = new ItemStack(Material.BONE, 3);
+                ItemStack bones = new ItemStack(Material.BONE, 4);
                 ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
 
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), "beastmaster");

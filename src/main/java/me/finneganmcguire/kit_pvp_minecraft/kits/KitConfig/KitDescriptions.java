@@ -21,6 +21,7 @@ public class KitDescriptions {
         put("Glider", "Glide around the map in an elytra. ");
         put("Groundhog", "");
         put("Hades", "");
+        put("Demonking", "");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);
@@ -38,6 +39,7 @@ public class KitDescriptions {
         put("Glider", ChatColor.DARK_GRAY);
         put("Groundhog", ChatColor.DARK_GRAY);
         put("Hades", ChatColor.DARK_RED);
+        put("Demonking", ChatColor.DARK_RED);
     }};
 
     public static ChatColor color(String kitname) {

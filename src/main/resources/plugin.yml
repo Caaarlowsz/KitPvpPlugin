@@ -47,6 +47,9 @@ commands:
   groundhog:
     description: groundhog
     usage: /<command>
+  cultivator:
+    description: seed place = grow fast!
+    usage: /<command>
   game:
     description: commands to modify the current game
     usage: /<command> <args>
