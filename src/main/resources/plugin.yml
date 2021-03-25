@@ -50,6 +50,9 @@ commands:
   cultivator:
     description: seed place = grow fast!
     usage: /<command>
+  sunwalker:
+    description: Buffs during the day
+    usage: /<command>
   game:
     description: commands to modify the current game
     usage: /<command> <args>

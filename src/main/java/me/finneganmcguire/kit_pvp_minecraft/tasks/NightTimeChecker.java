@@ -26,10 +26,12 @@ public class NightTimeChecker extends BukkitRunnable {
         if(Kit_PvP_Minecraft.world.getTime() < 13000){
             // It is day
             day = true;
+            sunwalkerEffect();
             werewolfEffect();
         } else if(Kit_PvP_Minecraft.world.getTime() >= 13000){
             // It is night
             day = false;
+            sunwalkerEffect();
             werewolfEffect();
         }
     }
@@ -58,6 +60,22 @@ public class NightTimeChecker extends BukkitRunnable {
                     Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineNightvision.getType());
                     Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineSpeed.getType());
                     Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(wolverineSpectral.getType());
+                }
+            }
+        }
+    }
+    public void sunwalkerEffect(){
+        for (int i = 0; i < Kit_PvP_Minecraft.world.getPlayers().size(); i++) {
+            if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i),"sunwalker")){
+
+                // Potion Effects
+                PotionEffect sunwalkerSpeed = new PotionEffect(PotionEffectType.SPEED, 200000, 0);
+
+                if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "sunwalker") && day){
+                    sunwalkerSpeed.apply(Kit_PvP_Minecraft.world.getPlayers().get(i));
+
+                } else if(PlayerStorage.playerHasKitActive(Kit_PvP_Minecraft.world.getPlayers().get(i), "sunwalker") && !day){
+                    Kit_PvP_Minecraft.world.getPlayers().get(i).removePotionEffect(sunwalkerSpeed.getType());
                 }
             }
         }

@@ -13,8 +13,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
