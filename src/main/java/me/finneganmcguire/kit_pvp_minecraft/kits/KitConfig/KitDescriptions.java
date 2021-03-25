@@ -22,6 +22,8 @@ public class KitDescriptions {
         put("Groundhog", "");
         put("Hades", "");
         put("Demonking", "");
+        put("Blacksmith", "Upgrade your items to the next tier for free! \n You have an anvil that can upgrade an any item \n One time use");
+        put("Viper", "The viper kit is an aggressive kit \n The viper kit has a 20% chance to apply poison 1 on every hit");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);
@@ -40,6 +42,9 @@ public class KitDescriptions {
         put("Groundhog", ChatColor.DARK_GRAY);
         put("Hades", ChatColor.DARK_RED);
         put("Demonking", ChatColor.DARK_RED);
+        put("Blacksmith", ChatColor.DARK_RED);
+        put("Viper", ChatColor.GREEN);
+
     }};
 
     public static ChatColor color(String kitname) {

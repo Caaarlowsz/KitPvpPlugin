@@ -123,6 +123,10 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             put("Groundhog", new Groundhog());
             put("Cultivator", new Cultivator());
             put("Sunwalker", new Sunwalker());
+            put("Blacksmith", new Blacksmith());
+            put("Viper", new Viper());
+            put("Snail", new Snail());
+
         }};
         for (String kit : kits.keySet())
             getServer().getPluginCommand(kit).setExecutor(kits.get(kit));
@@ -134,6 +138,9 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new Groundhog(), this);
         pluginManager.registerEvents(new Cultivator(), this);
         pluginManager.registerEvents(new Sunwalker(), this);
+        pluginManager.registerEvents(new Blacksmith(), this);
+        pluginManager.registerEvents(new Viper(), this);
+        pluginManager.registerEvents(new Snail(), this);
 
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
     }

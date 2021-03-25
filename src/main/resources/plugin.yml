@@ -53,6 +53,17 @@ commands:
   sunwalker:
     description: Buffs during the day
     usage: /<command>
+  blacksmith:
+    description: Upgrade your items
+    usage: /<command>
+  viper:
+    description: Chance to apply poision
+    usage: /<command>
+  snail:
+    description: Chance to apply slow
+    usage: /<command>
+
+
   game:
     description: commands to modify the current game
     usage: /<command> <args>
