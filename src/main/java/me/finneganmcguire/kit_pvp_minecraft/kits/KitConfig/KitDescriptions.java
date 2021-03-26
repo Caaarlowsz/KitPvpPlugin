@@ -45,7 +45,6 @@ public class KitDescriptions {
         put("Blacksmith", ChatColor.DARK_RED);
         put("Viper", ChatColor.GREEN);
         put("Snail", ChatColor.DARK_GREEN);
-
     }};
 
     public static ChatColor color(String kitname) {

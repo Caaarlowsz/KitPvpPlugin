@@ -147,9 +147,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     // WHEN PLUGIN IS TURNED OFF (SERVER SHUTDOWN)
     @Override
-    public void onDisable() {
-
-    }
+    public void onDisable() { }
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
