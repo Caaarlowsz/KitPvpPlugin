@@ -65,7 +65,9 @@ commands:
   Stomper:
     description: Stomp on enemies damaging them
     usage: /<command>
-
+  Switcher:
+    description: Switch places with another entity
+    usage: /<command>
   game:
     description: commands to modify the current game
     usage: /<command> <args>

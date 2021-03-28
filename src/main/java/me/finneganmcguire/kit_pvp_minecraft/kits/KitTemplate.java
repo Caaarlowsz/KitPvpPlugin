@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -34,7 +35,7 @@ public class KitTemplate extends Kit{
     }
     /* Kit event handlers start here */
     // Used in some kits to add additional functionality
-
+    // if (!PlayerStorage.playerHasKitActive(p, kitName.toLowerCase())) return; // Critical line
 
     /* Kit event handlers end here */
 }
