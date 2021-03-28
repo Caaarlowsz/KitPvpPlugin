@@ -42,8 +42,6 @@ public class Cultivator extends Kit {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
-                //Finds player in hashmap database - Changes kit to Cultivator
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "cultivator");
 
                 Inventory inv = player.getInventory();
                 inv.addItem(stone_hoe);

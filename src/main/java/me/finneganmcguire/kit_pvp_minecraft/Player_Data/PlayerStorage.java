@@ -11,7 +11,8 @@ public class PlayerStorage {
     public static HashMap<String, Integer> bowls = new HashMap<>();
 
     public static boolean playerHasKitActive(Player player, String kitname){
-        if (playerData.containsKey(player.getName())) return playerData.get(player.getName()) == kitname;
+        if (playerData.containsKey(player.getName()))
+            return kitname.toLowerCase().equals(playerData.get(player.getName()));
         playerData.put(player.getName(), "None");
         return false;
     }

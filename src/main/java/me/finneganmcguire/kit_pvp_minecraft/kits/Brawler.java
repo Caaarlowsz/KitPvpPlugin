@@ -36,7 +36,6 @@ public class Brawler extends Kit {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "brawler");
                 brawlerExtraHealth.apply(player);
                 player.setHealth(player.getHealth() + 2);
 

@@ -32,13 +32,6 @@ public class Werewolf extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
-        if(sender instanceof Player){
-            Player player = (Player) sender;
-
-            if (Kit_PvP_Minecraft.canChangeKit) {
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "werewolf");
-            }
-        }
         return false;
     }
 }

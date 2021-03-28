@@ -29,8 +29,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
@@ -126,10 +124,12 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             put("Blacksmith", new Blacksmith());
             put("Viper", new Viper());
             put("Snail", new Snail());
+            put("Stomper", new Stomper());
 
         }};
         for (String kit : kits.keySet())
             getServer().getPluginCommand(kit).setExecutor(kits.get(kit));
+
         pluginManager.registerEvents(new Brawler(), this);
         pluginManager.registerEvents(new Chameleon(), this);
         pluginManager.registerEvents(new Turtle(), this);
@@ -141,6 +141,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new Blacksmith(), this);
         pluginManager.registerEvents(new Viper(), this);
         pluginManager.registerEvents(new Snail(), this);
+        pluginManager.registerEvents(new Stomper(), this);
 
         getServer().getPluginCommand("game").setExecutor(new GameCommands());
     }
