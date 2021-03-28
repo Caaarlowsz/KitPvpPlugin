@@ -45,9 +45,6 @@ public class Chemist extends Kit{
                 Inventory inv = player.getInventory();
                 inv.clear();
 
-
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "chemist");
-
             }
 
         }

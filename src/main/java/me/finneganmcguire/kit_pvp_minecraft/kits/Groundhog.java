@@ -59,9 +59,6 @@ public class Groundhog extends Kit{
 
                 Inventory inv = player.getInventory();
 
-                //Finds player in hashmap database --> Changes Kit To milkman
-                PlayerStorage.setPlayerNewKit(Objects.requireNonNull(player.getPlayer()), "Groundhog");
-
                 inv.addItem(slime_ball);
             }
         }

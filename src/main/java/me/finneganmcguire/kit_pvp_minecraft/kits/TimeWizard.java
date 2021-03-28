@@ -44,8 +44,6 @@ public class TimeWizard extends Kit{
                 ItemStack clock = new ItemStack(timewizClock);
                 ItemMeta timewizclockmeta = clock.getItemMeta();
 
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "timewizard");
-
                 // ITEM DATA
                 timewizclockmeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Wizard Clock");
                 timewizclockmeta.addEnchant(Enchantment.CHANNELING, 10, true);

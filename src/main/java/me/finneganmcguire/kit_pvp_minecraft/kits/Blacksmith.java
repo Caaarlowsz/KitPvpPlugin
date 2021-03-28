@@ -39,7 +39,6 @@ public class Blacksmith extends Kit implements Listener {
             Player player = (Player) sender;
 
             if (Kit_PvP_Minecraft.canChangeKit) {
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "blacksmith");
 
                 ItemStack anvil = new ItemStack(Material.DAMAGED_ANVIL);
                 ItemMeta anvil_meta = anvil.getItemMeta();

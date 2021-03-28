@@ -45,9 +45,6 @@ public class Milkman extends Kit{
 
             if (Kit_PvP_Minecraft.canChangeKit) {
 
-                //Finds player in hashmap database --> Changes Kit To milkman
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "milkman");
-
                 Inventory inv = player.getInventory();
                 inv.addItem(milk_bucket);
             }

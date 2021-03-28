@@ -26,13 +26,6 @@ public class Snail extends Kit implements Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-
-            if (Kit_PvP_Minecraft.canChangeKit) {
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "snail");
-            }
-        }
         return false;
     }
 

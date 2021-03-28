@@ -36,7 +36,7 @@ public class Kit implements CommandExecutor, Listener {
             if (Kit_PvP_Minecraft.canChangeKit) {
                 Inventory inv = player.getInventory();
                 inv.clear();
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), kitName);
+                PlayerStorage.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
                 player.sendMessage("You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
                 player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.description(kitName));
             } else

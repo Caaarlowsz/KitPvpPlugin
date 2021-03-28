@@ -27,8 +27,6 @@ public class Beastmaster extends Kit {
                 ItemStack bones = new ItemStack(Material.BONE, 4);
                 ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
 
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "beastmaster");
-
                 Inventory inv = player.getInventory();
                 inv.addItem(bones, wolfSpawnEggs);
             }

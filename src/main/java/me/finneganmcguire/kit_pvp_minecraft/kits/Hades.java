@@ -51,8 +51,6 @@ public class Hades extends Kit{
                 ItemStack hadesIngot = new ItemStack(iron_ingot);
                 ItemMeta iron_ingot_meta = iron_ingot_meta.getItemMeta();
 
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), "Hades");
-
                 //Ingot Meta Data
                 iron_ingot_meta.setDisplayName(ChatColor.RED + "Hades' Reckoning");
                 iron_ingot_meta.setLore(Arrays.asList(ChatColor.RED + "This ingot is used to control the minds and hearts of the world.\n"));
@@ -62,11 +60,7 @@ public class Hades extends Kit{
                 //Inventory
                 Inventory inv = player.getInventory();
                 //inv.addItem(iron_ingot);
-            } else {
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
             }
-        } else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
         }
 
         return false;

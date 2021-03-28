@@ -62,7 +62,9 @@ commands:
   snail:
     description: Chance to apply slow
     usage: /<command>
-
+  Stomper:
+    description: Stomp on enemies damaging them
+    usage: /<command>
 
   game:
     description: commands to modify the current game
