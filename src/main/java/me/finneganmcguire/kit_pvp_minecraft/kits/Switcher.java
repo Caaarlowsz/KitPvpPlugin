@@ -62,6 +62,7 @@ public class Switcher extends Kit{
     if(event.getEntity() instanceof Snowball && event.getEntity().getShooter() instanceof Player && ((Player) event.getEntity().getShooter()).hasPermission("kit.switcher")) {
         Player player = (Player) event.getEntity().getShooter();
         PlayerInventory inventory = player.getInventory();
+        if (!PlayerStorage.playerHasKitActive(player, kitName.toLowerCase())) return;
         if(inventory.getItemInMainHand().getType() != Material.AIR &&
             inventory.getItemInMainHand().getType() == Material.SNOWBALL &&
             inventory.getItemInMainHand().getItemMeta().hasDisplayName() &&

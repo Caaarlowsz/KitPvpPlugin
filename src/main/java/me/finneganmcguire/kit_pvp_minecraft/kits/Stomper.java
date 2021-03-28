@@ -27,13 +27,16 @@ public class Stomper extends Kit{
     public void onEntityDamageEvent(final EntityDamageEvent e) {
         if (!(e.getEntity() instanceof Player)) return;
         Player p = (Player) e.getEntity();
+        double dist = p.getFallDistance();
+        if (dist < 4) return;
         if (!PlayerStorage.playerHasKitActive(p, kitName.toLowerCase())) return;
         if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
             List<Entity> nearby = e.getEntity().getNearbyEntities(stomperRange, stomperRange, stomperRange);
             for (Entity ent: nearby)
                 if (ent instanceof Player) {
                     ent.sendMessage(p.getName() + " just stomped on you!");
-                    ((org.bukkit.entity.LivingEntity) ent).setHealth(((Player) ent).getHealth() - stomperDamage);
+                    double damage =  dist;
+                    ((org.bukkit.entity.LivingEntity) ent).damage(damage);
                 }
         }
     }
