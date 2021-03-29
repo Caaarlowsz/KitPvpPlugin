@@ -1,7 +1,7 @@
 package com.sgpvp.GameData;
 
-import com.sgpvp.kits.Kit;
-import com.sgpvp.kits.KitConfig.KitDescriptions;
+import com.sgpvp.Kits.Kit;
+import com.sgpvp.Kits.KitConfig.KitDescriptions;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Damageable;
