@@ -2,6 +2,7 @@ package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.DeathmatchLogic;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.DeathmatchLogic.*;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,27 +25,27 @@ public class DeathmatchTask extends BukkitRunnable {
     public void run() {
 
         if(timer == 180){
-            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 3 MINUTES");
+            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 3 MINUTES");
         }
 
         else if(timer == 120){
-            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 2 MINUTES");
+            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 2 MINUTES");
         }
 
         else if(timer == 60){
-            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 1 MINUTE");
+            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 1 MINUTE");
         }
 
         else if(timer == 30){
-            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 30 SECONDS!");
+            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 30 SECONDS!");
         }
 
         else if(timer == 10){
-            Bukkit.broadcastMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 10 SECONDS!");
+            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 10 SECONDS!");
         }
 
         else if(timer <= 5 && timer > 1){
-            Bukkit.broadcastMessage(ChatColor.RED + "DEATHMATCH STARTING IN " + timer + "!");
+            GameVariables.SGPvPMessage(ChatColor.RED + "DEATHMATCH STARTING IN " + timer + "!");
         }
 
         else if (timer == 1){

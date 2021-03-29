@@ -160,7 +160,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
         if(!GameState.gameState.equals(GameState.gamestate_lobby)){
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
-            e.getPlayer().sendMessage("GAME ALREADY IN PROGRESS...");
+            GameVariables.SGPvPMessage(e.getPlayer(), "GAME ALREADY IN PROGRESS...");
         } else {
 
             currentAmountOfPlayers++;
@@ -174,7 +174,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             }
 
             e.getPlayer().teleport(world.getSpawnLocation());
-            Bukkit.broadcastMessage(ChatColor.RED + "Welcome " + e.getPlayer().getName() + " To KIT PVP!");
+            GameVariables.SGPvPMessage(ChatColor.RED + "Welcome " + e.getPlayer().getName() + " To KIT PVP!");
         }
 
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
@@ -218,13 +218,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         if(currentAmountOfPlayers <= 1){
 
             try{
-                Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
+                GameVariables.SGPvPMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
             } catch (Exception exception){
-                Bukkit.broadcastMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
+                GameVariables.SGPvPMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
             }
 
 
-            Bukkit.broadcastMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
+            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
             BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
         }
     }

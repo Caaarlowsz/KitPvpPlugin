@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
@@ -37,10 +38,10 @@ public class Kit implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
                 PlayerStorage.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
-                player.sendMessage("You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
-                player.sendMessage(Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.description(kitName));
+                GameVariables.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
+                GameVariables.SGPvPMessage(player, Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.description(kitName));
             } else
-                player.sendMessage(ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
+                GameVariables.SGPvPMessage(player, ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
         }
         else {
             main.getLogger().info("You Have To Be Player To Get Kit");

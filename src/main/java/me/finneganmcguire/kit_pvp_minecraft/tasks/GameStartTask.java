@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameStartLogic;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
@@ -17,7 +18,7 @@ public class GameStartTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
+        GameVariables.SGPvPMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
         GameStartLogic.GameStart(Kit_PvP_Minecraft.world);
 
         PlayerInteractions.playerCanDropLava = false;

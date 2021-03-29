@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,12 +20,12 @@ public class CountDownToStartTask extends BukkitRunnable {
 
         //15 seconds till start
         if(timerCurrent == 15){
-            Bukkit.broadcastMessage(ChatColor.DARK_GREEN + "Game Starting In 15 Seconds");
+            GameVariables.SGPvPMessage(ChatColor.DARK_GREEN + "Game Starting In 15 Seconds");
         }
 
         // When 4 seconds left
         if(timerCurrent > 0 && timerCurrent <= 4){
-            Bukkit.broadcastMessage(ChatColor.GREEN + "Game Starting in... " + timerCurrent);
+            GameVariables.SGPvPMessage(ChatColor.GREEN + "Game Starting in... " + timerCurrent);
         }
         timerCurrent -= 1;
     }

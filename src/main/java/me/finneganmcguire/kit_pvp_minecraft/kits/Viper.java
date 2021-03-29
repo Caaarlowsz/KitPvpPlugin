@@ -38,6 +38,8 @@ public class Viper extends Kit implements Listener {
 
     @EventHandler
     public void onHitEnemy(EntityDamageByEntityEvent event){
+        if (!(event.getEntity() instanceof Player)) return; // Not a player getting hit
+        if (!(event.getDamager() instanceof Player)) return; // Not a player hitting
 
         Player playerWKit = (Player) event.getEntity();
         Player playerBeingDamaged = (Player) event.getDamager();

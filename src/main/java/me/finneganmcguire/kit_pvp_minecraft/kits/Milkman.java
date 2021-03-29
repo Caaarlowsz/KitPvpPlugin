@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
@@ -71,7 +72,7 @@ public class Milkman extends Kit{
             if (p.getItem().getType().equals(Material.MILK_BUCKET) && PlayerStorage.playerHasKitActive(p.getPlayer(), "milkman")) {
 
                 p.setItem(bucket_normal);
-                Bukkit.broadcastMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
+                GameVariables.SGPvPMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
                 speedBuff.apply(player);
                 regenBuff.apply(player);
                 fireResistBuff.apply(player);

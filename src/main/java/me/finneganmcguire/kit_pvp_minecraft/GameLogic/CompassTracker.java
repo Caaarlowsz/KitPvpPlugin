@@ -36,7 +36,7 @@ public class CompassTracker implements Listener {
         }
 
         if (players.size() == 0) {
-            p.sendMessage("No players found, compass now pointing at spawn" );
+            GameVariables.SGPvPMessage(p, "No players found, compass now pointing at spawn" );
             return GameVariables.WorldSpawn;
         }
 
@@ -48,7 +48,7 @@ public class CompassTracker implements Listener {
                 near = players.get(i);
             }
         }
-        p.sendMessage("Now tracking " + near.getName());
+        GameVariables.SGPvPMessage(p, "Now tracking " + near.getName());
         return near.getLocation();
     }
 
@@ -64,7 +64,7 @@ public class CompassTracker implements Listener {
             player.setCompassTarget(l);
         } else if (holdingCompass && GameVariables.feastPlatformSpawned && leftClick) {
             Location l = GameVariables.feastLocation;
-            player.sendMessage("Compass now pointing at feast location");
+            GameVariables.SGPvPMessage(player, "Compass now pointing at feast location");
             player.setCompassTarget(l);
         }
     }

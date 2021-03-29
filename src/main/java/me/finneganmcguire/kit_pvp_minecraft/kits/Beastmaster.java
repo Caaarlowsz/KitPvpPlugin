@@ -36,6 +36,7 @@ public class Beastmaster extends Kit {
 
     @EventHandler
     public void WhenFistOut(PlayerInteractEntityEvent e){
+        if (!(e.getRightClicked() instanceof Wolf)) return; // Not a wolf clicked
 
         Wolf wolf = (Wolf) e.getRightClicked();
         e.getPlayer().getLocation();

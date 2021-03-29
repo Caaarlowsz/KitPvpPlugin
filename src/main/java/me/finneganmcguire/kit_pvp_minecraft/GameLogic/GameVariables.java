@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,6 +22,18 @@ public class GameVariables {
     public static int WORLDSIZE; //Length of bounding box edge
     public static boolean feastPlatformSpawned = false;
     public static Location feastLocation;
+
+    public static void SGPvPMessage(Player p, String message) {
+        String prefix = "&l&f[&6SG&4PvP&f] &r";
+        message = ChatColor.translateAlternateColorCodes('&', prefix + message);
+        p.sendMessage(message);
+    }
+    public static void SGPvPMessage(String message) {
+        String prefix = "&l&f[&6SG&4PvP&f] &r";
+        message = ChatColor.translateAlternateColorCodes('&', prefix + message);
+        Bukkit.broadcastMessage(message);
+    }
+
     public static class WorldBounds {
         public static int MINX = 0;
         public static int MAXX = 0;
@@ -57,5 +70,7 @@ public class GameVariables {
         }
         public static ItemStack GlassSword;
         public static ItemStack FeastSoup;
+
+
     }
 }

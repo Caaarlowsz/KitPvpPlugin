@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,20 +20,20 @@ public class CountDownGracePeriodTask extends BukkitRunnable {
 
         //15 seconds till start
         if(timerCurrent == 60){
-            Bukkit.broadcastMessage(ChatColor.BOLD + "Grace Period Ends In 1 Minute");
+            GameVariables.SGPvPMessage(ChatColor.BOLD + "Grace Period Ends In 1 Minute");
         }
 
         if(timerCurrent == 30){
-            Bukkit.broadcastMessage(ChatColor.BOLD + "Grace Period Ends In 30 Seconds");
+            GameVariables.SGPvPMessage(ChatColor.BOLD + "Grace Period Ends In 30 Seconds");
         }
 
         if(timerCurrent == 15){
-            Bukkit.broadcastMessage(ChatColor.BOLD + "Grace Period Ends In 15 Seconds");
+            GameVariables.SGPvPMessage(ChatColor.BOLD + "Grace Period Ends In 15 Seconds");
         }
 
         // When 4 seconds left
         if(timerCurrent > 0 && timerCurrent <= 5){
-            Bukkit.broadcastMessage(ChatColor.WHITE + "Grace Period Ends In... " + timerCurrent);
+            GameVariables.SGPvPMessage(ChatColor.WHITE + "Grace Period Ends In... " + timerCurrent);
         }
 
         timerCurrent -= 1;

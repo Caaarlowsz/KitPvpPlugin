@@ -1,6 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.FeastLogic;
+import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -21,16 +22,16 @@ public class ChestCircleSpawnTask extends BukkitRunnable {
     public void run() {
 
         if(timer == 120){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 2 MINUTES at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
+            GameVariables.SGPvPMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 2 MINUTES at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
             FeastLogic.SpawnFeastPlatform();
         }
 
         else if(timer == 60){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 1 MINUTE at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
+            GameVariables.SGPvPMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN 1 MINUTE at (%d, %d)!", FeastLogic.feast_center_x, FeastLogic.feast_center_z));
         }
 
         else if(timer == 10 || timer == 30 || timer < 10 && timer > 1){
-            Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN %d SECONDS at (%d, %d)!", timer, FeastLogic.feast_center_x, FeastLogic.feast_center_z));
+            GameVariables.SGPvPMessage(ChatColor.LIGHT_PURPLE + String.format("FEAST SPAWNING IN %d SECONDS at (%d, %d)!", timer, FeastLogic.feast_center_x, FeastLogic.feast_center_z));
         }
 
         else if (timer == 1){
