@@ -30,23 +30,43 @@ public class KitDescriptions {
         put("Werewolf", ChatColor.DARK_RED);
         put("Brawler", ChatColor.YELLOW);
         put("Chameleon", ChatColor.GREEN);
-        put("Lumberjack", ChatColor.GREEN);
+        put("Lumberjack", ChatColor.DARK_GREEN);
         put("Grandpa", ChatColor.GRAY);
         put("Turtle", ChatColor.GREEN);
-        put("Milkman", ChatColor.WHITE);
+        put("Milkman", ChatColor.AQUA);
         put("Fireman", ChatColor.RED);
         put("Pyromancer", ChatColor.RED);
         put("Recycler", ChatColor.GREEN);
-        put("Beastmaster", ChatColor.WHITE);
+        put("Beastmaster", ChatColor.BLUE);
         put("Glider", ChatColor.DARK_GRAY);
         put("Groundhog", ChatColor.DARK_GRAY);
         put("Hades", ChatColor.DARK_RED);
         put("Demonking", ChatColor.DARK_RED);
-        put("Blacksmith", ChatColor.DARK_RED);
-        put("Viper", ChatColor.GREEN);
+        put("Blacksmith", ChatColor.BLACK);
+        put("Viper", ChatColor.DARK_AQUA);
         put("Snail", ChatColor.DARK_GREEN);
 
     }};
+
+    /*
+        List of colors / kits using:
+            Black: Blacksmith
+            Dark Green: Lumberjack Snail
+            Dark Red: Werewolf Hades Demonking
+            Dark Gray: Glider Groundhog
+            Dark Blue:
+            Dark Aqua: Viper
+            Dark Purple: TimeWizard
+            Gold:
+            Green: Chameleon Turtle Recycler
+            Yellow: Brawler
+            Red: Fireman Pyromancer
+            Gray: Grandpa
+            Blue: Beastmaster
+            Aqua: Milkman
+            Light Purple:
+            White: RESERVED FOR DELIMITERS []
+     */
 
     // Method to return kit color
     public static ChatColor color(String kitname) {
