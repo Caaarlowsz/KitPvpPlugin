@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -23,7 +24,7 @@ public class Pyromancer extends Kit{
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(Kit_PvP_Minecraft.canChangeKit){
+            if(GameVariables.canChangeKit){
                 // Class Items
                 ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
                 ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);

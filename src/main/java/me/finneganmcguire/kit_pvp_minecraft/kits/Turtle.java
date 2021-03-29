@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -36,13 +36,13 @@ public class Turtle extends Kit {
 
 
         // WHEN PLAYER PRESSES SHIFT
-        if(!p.getPlayer().isSneaking() && PlayerStorage.playerHasKitActive(p.getPlayer(), "turtle")){
+        if(!p.getPlayer().isSneaking() && PlayerData.playerHasKitActive(p.getPlayer(), "turtle")){
             turtleShield.apply(p.getPlayer());
             turtleDebuf.apply(p.getPlayer());
         }
 
         // WHEN PLAYER RELEASES SHIFT
-        else if(p.getPlayer().isSneaking() && PlayerStorage.playerHasKitActive(p.getPlayer(), "turtle")){
+        else if(p.getPlayer().isSneaking() && PlayerData.playerHasKitActive(p.getPlayer(), "turtle")){
             p.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
             p.getPlayer().removePotionEffect(PotionEffectType.WEAKNESS);
         }

@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -37,7 +37,7 @@ public class Viper extends Kit implements Listener {
         PotionEffect viperPoision = new PotionEffect(PotionEffectType.POISON, 80, 0);
 
         if(event.getEntity().getType().equals(EntityType.PLAYER)){
-            if(PlayerStorage.playerHasKitActive(playerBeingDamaged, "viper")){
+            if(PlayerData.playerHasKitActive(playerBeingDamaged, "viper")){
 
                 double randomNumber = Math.random() * 10;
 

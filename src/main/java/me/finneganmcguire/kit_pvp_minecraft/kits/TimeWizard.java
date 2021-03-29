@@ -1,7 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -35,7 +36,7 @@ public class TimeWizard extends Kit{
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
                 Material timewizClock = Material.CLOCK;
                 ItemStack clock = new ItemStack(timewizClock);
                 ItemMeta timewizclockmeta = clock.getItemMeta();
@@ -64,7 +65,7 @@ public class TimeWizard extends Kit{
         if(p.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
             if(p.getItem().getType().equals(Material.CLOCK)){
                 if(p.getItem().getItemMeta().getDisplayName().equals("Wizard Clock")){
-                    if(PlayerStorage.playerHasKitActive(p.getPlayer(), "timewizard")){
+                    if(PlayerData.playerHasKitActive(p.getPlayer(), "timewizard")){
                         // Time Wizard Clock Effects
 
                     }

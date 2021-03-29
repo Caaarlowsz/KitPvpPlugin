@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -22,7 +22,7 @@ public class Beastmaster extends Kit {
         super.onCommand(sender, command, label, args);
         if(sender instanceof Player){
             Player player = (Player) sender;
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
                 //Beastmaster Items
                 ItemStack bones = new ItemStack(Material.BONE, 4);
                 ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
@@ -42,7 +42,7 @@ public class Beastmaster extends Kit {
         e.getPlayer().getLocation();
         int amountOfBones = e.getPlayer().getInventory().getItemInMainHand().getAmount();
 
-        if(PlayerStorage.playerHasKitActive(e.getPlayer(), "beastmaster")){
+        if(PlayerData.playerHasKitActive(e.getPlayer(), "beastmaster")){
             if(e.getRightClicked().getType().equals(EntityType.WOLF)){
                 if(e.getPlayer().getInventory().getItemInMainHand().getType().equals(Material.BONE)){
                     if(!wolf.isTamed()){

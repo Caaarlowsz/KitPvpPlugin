@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -38,7 +39,7 @@ public class Lumberjack extends Kit{
 
         if(sender instanceof Player){
             Player player = (Player) sender;
-            if(Kit_PvP_Minecraft.canChangeKit){
+            if(GameVariables.canChangeKit){
 
 
                 // Give Axe To Player

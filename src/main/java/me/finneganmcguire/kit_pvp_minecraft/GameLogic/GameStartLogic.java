@@ -1,22 +1,21 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
-import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
-import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.inventory.ItemStack;
 
 public class GameStartLogic {
 
-    static final int spawnX = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockX();
-    static final int spawnZ = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockZ();
+    static final int spawnX = GameVariables.world.getSpawnLocation().getBlockX();
+    static final int spawnZ = GameVariables.world.getSpawnLocation().getBlockZ();
 
     // When Game Starts
     public static void GameStart(World w){
 
-        GameState.gameState = GameState.gamestate_graceperiod;
-        System.out.println("GAME STATE IS NOW: " + GameState.gameState);
+        GameVariables.gameState = GameVariables.gamestate_graceperiod;
+        System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
 
         // Finds all players and teleports them to spawn
         for (int i = 0; i < w.getPlayers().size(); i++) {
@@ -27,15 +26,15 @@ public class GameStartLogic {
             //    w.getPlayers().get(i).removePotionEffect(effect.getType());
             w.getPlayers().get(i).getInventory().addItem(new ItemStack(Material.COMPASS, 1));
         }
-        Kit_PvP_Minecraft.canChangeKit = false;
+        GameVariables.canChangeKit = false;
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder center %d %d", spawnX, spawnZ));
-        Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", Kit_PvP_Minecraft.WORLDSIZE));
+        Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", GameVariables.WORLDSIZE));
 
         PlayerInteractions.playersCanDropItems = true;
         PlayerInteractions.playerCanTakeDamage = true;
 
-        Kit_PvP_Minecraft.world.setTime(Kit_PvP_Minecraft.WorldTimeWhenGameStarts);
-        Kit_PvP_Minecraft.world.setDifficulty(Difficulty.NORMAL);
+        GameVariables.world.setTime(GameVariables.WorldTimeWhenGameStarts);
+        GameVariables.world.setDifficulty(Difficulty.NORMAL);
     }
 }

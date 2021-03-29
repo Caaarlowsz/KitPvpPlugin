@@ -1,12 +1,13 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.*;
-import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.*;
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -24,33 +25,11 @@ import java.util.HashMap;
 
 public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
-    //KIT SETTINGS
-    public static ChatColor kitDescriptionColor = ChatColor.GRAY; //All Of The Kit Description Chat Colors
-
-    // World Reference and Keeps Track Of If Events Have Started Or Not
-    public static World world;
-    public static boolean EventsFired = true;
-
-    // BORDER SIZE - PLAY AREA
-    public static final int WORLDSIZE = 600;
-
-    // This is in all .kits classes and checks if kits can be changed (turns false when game starts)
-    public static boolean canChangeKit = true;
-
-    // World Time When Game Starts
-    public static long WorldTimeWhenGameStarts = 11000;
-
-    // Keeps Track of current players and min players to start game
-    public static int currentAmountOfPlayers;
-    public static int minimumPlayersToStart = 1;
-
     // Timers For Events - [TIMERS START WHEN MINIMUM AMOUNT OF PLAYERS HAVE BEEN FOUND]
     public long GracePeriodDelayTimer = 2 * 1000; // Time Before Grace Period Ends (2min)
     public long GameStartDelayTimer = 1000; // Time Before Game Starts (1 min)
     public long ChestCircleDelayTimer = 13 * 1000; // Time Before Chest Circle Spawns (13 min)
     public long DeathmatchDelayTimer = 18 * 1000; // Time Before Deathmatch Starts (18 min)
-
-    public static HashMap<String, Kit> kits;
 
     // ON PLUGIN ENABLED
     @Override
@@ -58,8 +37,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         // Creates New World When Game Is Complete For Next Game
         CreateNewWorld();
 
-        GameState.gameState = GameState.gamestate_lobby;
-        System.out.println("GAME STATE IS NOW: " + GameState.gameState);
+        GameVariables.gameState = GameVariables.gamestate_lobby;
+        System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
 
         // CACTI SOUP Crafting Addition
         ItemStack soup_item = new ItemStack(Material.MUSHROOM_STEW);
@@ -69,21 +48,20 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         recipe.addIngredient(1, Material.BOWL);
         Bukkit.addRecipe(recipe);
 
-        Kit_PvP_Minecraft.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        GameVariables.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         // Current problem:
         // Variables that are static, effect all players. FIX IT!
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Setting static game variables
-        GameVariables.WorldSpawn = world.getSpawnLocation();
-        GameVariables.WORLDSIZE = WORLDSIZE;
-        GameVariables.WorldBounds.MINX = GameVariables.WorldSpawn.getBlockX() - WORLDSIZE/2;
-        GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + WORLDSIZE/2;
-        GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - WORLDSIZE/2;
-        GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + WORLDSIZE/2;
+        GameVariables.WorldSpawn = GameVariables.world.getSpawnLocation();
+        GameVariables.WorldBounds.MINX = GameVariables.WorldSpawn.getBlockX() - GameVariables.WORLDSIZE/2;
+        GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + GameVariables.WORLDSIZE/2;
+        GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - GameVariables.WORLDSIZE/2;
+        GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + GameVariables.WORLDSIZE/2;
 
         // Spawn Mushrooms In World
-        SpawnMushrooms.spawnMushrooms(world);
+        SpawnMushrooms.spawnMushrooms(GameVariables.world);
 
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
@@ -96,7 +74,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new PlayerInteractions(), this);
 
         //COMMANDS & KITS
-        kits = new HashMap<String,Kit>(){{
+        GameVariables.kits = new HashMap<String,Kit>(){{
             put("TimeWizard", new TimeWizard());
             put("Werewolf", new Werewolf());
             put("Brawler", new Brawler());
@@ -120,8 +98,8 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
             put("Switcher", new Switcher());
 
         }};
-        for (String kit : kits.keySet())
-            getServer().getPluginCommand(kit).setExecutor(kits.get(kit));
+        for (String kit : GameVariables.kits.keySet())
+            getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
 
         pluginManager.registerEvents(new Brawler(), this);
         pluginManager.registerEvents(new Chameleon(), this);
@@ -137,7 +115,11 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new Stomper(), this);
         pluginManager.registerEvents(new Switcher(), this);
 
-        getServer().getPluginCommand("game").setExecutor(new GameCommands());
+        getServer().getPluginCommand("game").setExecutor(new AdminCommands());
+
+        for(Player p : this.getServer().getOnlinePlayers()) {
+            p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
+        }
     }
 
     // WHEN PLUGIN IS TURNED OFF (SERVER SHUTDOWN)
@@ -148,15 +130,16 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
+        e.getPlayer().setDisplayName(GameVariables.getPrefix(e.getPlayer()) + e.getPlayer().getName());
 
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
-        if(!GameState.gameState.equals(GameState.gamestate_lobby)){
+        if(!GameVariables.gameState.equals(GameVariables.gamestate_lobby)){
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
             GameVariables.SGPvPMessage(e.getPlayer(), "GAME ALREADY IN PROGRESS...");
         } else {
 
-            currentAmountOfPlayers++;
-            PlayerStorage.setPlayerNewKit(e.getPlayer(), null);
+            GameVariables.currentAmountOfPlayers++;
+            PlayerData.setPlayerNewKit(e.getPlayer(), null);
 
             e.getPlayer().setGameMode(GameMode.ADVENTURE);
             e.getPlayer().getInventory().clear();
@@ -165,13 +148,13 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
                 e.getPlayer().removePotionEffect(effect.getType());
             }
 
-            e.getPlayer().teleport(world.getSpawnLocation());
+            e.getPlayer().teleport(GameVariables.world.getSpawnLocation());
             GameVariables.SGPvPMessage(ChatColor.RED + "Welcome " + e.getPlayer().getName() + " To KIT PVP!");
         }
 
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
-        if(currentAmountOfPlayers >= minimumPlayersToStart){
-            if(EventsFired){
+        if(GameVariables.currentAmountOfPlayers >= GameVariables.minimumPlayersToStart){
+            if(GameVariables.EventsFired){
                 BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskTimer(this, ChestCircleDelayTimer, 20);
                 BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskTimer(this, DeathmatchDelayTimer, 20);
                 BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
@@ -180,7 +163,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
                 BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer + 200);
                 BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, GameStartDelayTimer, 20);
 
-                EventsFired = false;
+                GameVariables.EventsFired = false;
             }
         }
 
@@ -196,18 +179,18 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
     public void OnPlayerLeave(PlayerQuitEvent e){
 
         if(e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)){
-            currentAmountOfPlayers--;
+            GameVariables.currentAmountOfPlayers--;
         }
-        PlayerStorage.remove(e.getPlayer());
+        PlayerData.remove(e.getPlayer());
     }
 
     @EventHandler
     public void OnPlayerDie(PlayerDeathEvent e){
-        currentAmountOfPlayers--;
-        System.out.println(currentAmountOfPlayers);
+        GameVariables.currentAmountOfPlayers--;
+        System.out.println(GameVariables.currentAmountOfPlayers);
         e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
 
-        if(currentAmountOfPlayers <= 1){
+        if(GameVariables.currentAmountOfPlayers <= 1){
 
             try{
                 GameVariables.SGPvPMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
@@ -236,7 +219,7 @@ public final class Kit_PvP_Minecraft extends JavaPlugin implements Listener {
         //WorldCreator wc = new WorldCreator("KIT_PVP_WORLD2");
         //wc.type(WorldType.NORMAL);
         //wc.generateStructures(false);
-        world = Bukkit.getWorld("KIT_PVP_WORLD2"); //wc.createWorld();
+        GameVariables.world = Bukkit.getWorld("KIT_PVP_WORLD2"); //wc.createWorld();
     }
 
     //Deletes Old World then creates new world

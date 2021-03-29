@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -36,7 +36,7 @@ public class Snail extends Kit implements Listener {
         PotionEffect snailSlow = new PotionEffect(PotionEffectType.SLOW, 80, 0);
 
         if(event.getEntity().getType().equals(EntityType.PLAYER)){
-            if(PlayerStorage.playerHasKitActive(playerBeingDamaged, "snail")){
+            if(PlayerData.playerHasKitActive(playerBeingDamaged, "snail")){
 
                 double randomNumber = Math.random() * 10;
 

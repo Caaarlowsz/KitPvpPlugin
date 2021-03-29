@@ -48,10 +48,27 @@ public class KitDescriptions {
 
     }};
 
+    // Method to return kit color
     public static ChatColor color(String kitname) {
-        return kitcolor.get(kitname);
+        if (kitcolor.containsKey(kitname)) return kitcolor.get(kitname);
+        if (kitcolor.containsKey(getKitName(kitname))) return kitcolor.get(getKitName(kitname));
+        return ChatColor.GRAY;
     }
+
+    // Method to return kit description
     public static String description(String kitname) {
-        return descrptions.get(kitname);
+        if (descrptions.containsKey(kitname)) return descrptions.get(kitname);
+        if (descrptions.containsKey(getKitName(kitname))) return descrptions.get(getKitName(kitname));
+        return "Description not available, sorry!";
+    }
+
+    // Method for converting lowercase kitname to uppercase kitname
+    private static HashMap<String, String> kitName = new HashMap<>();
+    public static String getKitName(String lowername) {
+        if (kitName.containsKey(lowername)) return kitName.get(lowername);
+        for (String kit : kitcolor.keySet()) {
+            kitName.put(kit.toLowerCase(), kit);
+            if (kit.toLowerCase().equals(lowername)) return kit;
+        } return "None";
     }
 }

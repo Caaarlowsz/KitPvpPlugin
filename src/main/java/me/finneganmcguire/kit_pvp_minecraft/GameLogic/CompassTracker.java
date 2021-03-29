@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;

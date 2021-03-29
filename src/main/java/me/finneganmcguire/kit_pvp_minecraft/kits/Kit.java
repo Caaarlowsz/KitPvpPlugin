@@ -1,8 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import me.finneganmcguire.kit_pvp_minecraft.kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -31,12 +31,13 @@ public class Kit implements CommandExecutor, Listener {
                 player.removePotionEffect(effect.getType());
             }
 
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
                 Inventory inv = player.getInventory();
                 inv.clear();
-                PlayerStorage.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
+                PlayerData.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
+                player.setDisplayName(GameVariables.getPrefix(player) + player.getName());
                 GameVariables.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
-                GameVariables.SGPvPMessage(player, Kit_PvP_Minecraft.kitDescriptionColor + KitDescriptions.description(kitName));
+                GameVariables.SGPvPMessage(player, GameVariables.kitDescriptionColor + KitDescriptions.description(kitName));
             } else
                 GameVariables.SGPvPMessage(player, ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
         }

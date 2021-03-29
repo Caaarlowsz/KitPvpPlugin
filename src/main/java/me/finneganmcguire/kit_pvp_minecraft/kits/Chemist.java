@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -23,7 +24,7 @@ public class Chemist extends Kit{
         if(sender instanceof Player){
             Player player = (Player) sender;
 
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
                 Inventory inv = player.getInventory();
                 inv.clear();
 

@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
@@ -35,7 +35,7 @@ public class Chameleon extends Kit {
     public void ChangeToEntity(PlayerInteractEntityEvent e){
         Player player = e.getPlayer();
 
-        if(PlayerStorage.playerHasKitActive(player, "chameleon")){
+        if(PlayerData.playerHasKitActive(player, "chameleon")){
             EntityType playerRightClickEntity = e.getRightClicked().getType();
             DisguiseType mobType = DisguiseType.getType(playerRightClickEntity);
             MobDisguise mobDisguise = new MobDisguise(mobType, true);
@@ -50,7 +50,7 @@ public class Chameleon extends Kit {
     public void IfHit(EntityDamageEvent e){
         if(e.getEntity().getType() == EntityType.PLAYER){
             Player playerhit = (Player) e.getEntity();
-            if(PlayerStorage.playerHasKitActive(playerhit, "chameleon")){
+            if(PlayerData.playerHasKitActive(playerhit, "chameleon")){
                 if(DisguiseAPI.isDisguised(e.getEntity())){
                     ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
                     console.getServer().dispatchCommand(console, "undisguiseplayer " + playerhit.getName());

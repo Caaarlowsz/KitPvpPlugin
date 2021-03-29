@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,8 +18,8 @@ public class EndGameKickPlayer extends BukkitRunnable {
     @Override
     public void run() {
         // Kick All Players
-        for (int i = 0; i < Kit_PvP_Minecraft.world.getPlayers().size(); i++) {
-            Player player = Kit_PvP_Minecraft.world.getPlayers().get(i);
+        for (int i = 0; i < GameVariables.world.getPlayers().size(); i++) {
+            Player player = GameVariables.world.getPlayers().get(i);
             player.kickPlayer(ChatColor.GOLD + "Thank You For Playing :)");
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
             Bukkit.getServer().dispatchCommand(console, "restart");

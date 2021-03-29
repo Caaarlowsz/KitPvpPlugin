@@ -1,8 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -40,7 +40,7 @@ public class Milkman extends Kit{
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
 
                 Inventory inv = player.getInventory();
                 inv.addItem(milk_bucket);
@@ -65,7 +65,7 @@ public class Milkman extends Kit{
 
         // Currently Effects All Milk Buckets
         try{
-            if (p.getItem().getType().equals(Material.MILK_BUCKET) && PlayerStorage.playerHasKitActive(p.getPlayer(), "milkman")) {
+            if (p.getItem().getType().equals(Material.MILK_BUCKET) && PlayerData.playerHasKitActive(p.getPlayer(), "milkman")) {
 
                 p.setItem(bucket_normal);
                 GameVariables.SGPvPMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");

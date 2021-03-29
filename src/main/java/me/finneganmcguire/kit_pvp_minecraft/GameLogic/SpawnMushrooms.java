@@ -1,5 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;

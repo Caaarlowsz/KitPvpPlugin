@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,7 +27,7 @@ public class SoupEvent implements Listener {
                 .getAction() == Action.PHYSICAL) && player.getHealth() != 20.0D && player.getHealth() != 0.0D) {
             player.setHealth((player.getHealth() + 7.0D > player.getMaxHealth() ) ? player.getMaxHealth(): (player.getHealth() + 7.0D));
             player.getInventory().getItemInMainHand().setType(Material.BOWL);
-            if (PlayerStorage.playerHasKitActive(player, "recycler"))
+            if (PlayerData.playerHasKitActive(player, "recycler"))
                 Recycle(player);
             return;
         }
@@ -35,7 +35,7 @@ public class SoupEvent implements Listener {
     private void Recycle(Player player) {
         player.sendMessage("Recycling bowl");
         player.getInventory().setItemInMainHand(null); //removes bowl
-        if (PlayerStorage.recycleBowl(player)) {
+        if (PlayerData.recycleBowl(player)) {
             player.sendMessage("have a free soup bruv");
             player.getInventory().addItem(new ItemStack(Material.MUSHROOM_STEW, 1));
         }

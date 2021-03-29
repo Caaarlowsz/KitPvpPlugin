@@ -1,6 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
-import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -62,19 +62,19 @@ public class FeastLogic {
             new ItemStack(Material.DIAMOND_HOE, 64)
     };
     static Random rng = new Random();
-    static final int spawnX = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockX();
-    static final int spawnZ = Kit_PvP_Minecraft.world.getSpawnLocation().getBlockZ();
+    static final int spawnX = GameVariables.world.getSpawnLocation().getBlockX();
+    static final int spawnZ = GameVariables.world.getSpawnLocation().getBlockZ();
 
-    static int min_x = spawnX - Kit_PvP_Minecraft.WORLDSIZE/2 + 100;
-    static int max_x = spawnX + Kit_PvP_Minecraft.WORLDSIZE/2 - 100;
-    static int min_z = spawnZ - Kit_PvP_Minecraft.WORLDSIZE/2 + 100;
-    static int max_z = spawnZ + Kit_PvP_Minecraft.WORLDSIZE/2 - 100;
+    static int min_x = spawnX - GameVariables.WORLDSIZE/2 + 100;
+    static int max_x = spawnX + GameVariables.WORLDSIZE/2 - 100;
+    static int min_z = spawnZ - GameVariables.WORLDSIZE/2 + 100;
+    static int max_z = spawnZ + GameVariables.WORLDSIZE/2 - 100;
 
     public static int feast_center_x = min_x + rng.nextInt(Math.abs(min_x - max_x));
     public static int feast_center_z = min_z + rng.nextInt(Math.abs(min_z - max_z));
-    public static int feast_center_y = Kit_PvP_Minecraft.world.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
+    public static int feast_center_y = GameVariables.world.getHighestBlockYAt(feast_center_x, feast_center_z) + 1;
 
-    static World w = Kit_PvP_Minecraft.world;
+    static World w = GameVariables.world;
     static int r = 15;
 
     public static void SpawnFeast() {

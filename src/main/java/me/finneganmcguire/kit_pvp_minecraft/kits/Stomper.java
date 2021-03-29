@@ -1,6 +1,6 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -29,7 +29,7 @@ public class Stomper extends Kit{
         Player p = (Player) e.getEntity();
         double dist = p.getFallDistance();
         if (dist < 4) return;
-        if (!PlayerStorage.playerHasKitActive(p, kitName.toLowerCase())) return;
+        if (!PlayerData.playerHasKitActive(p, kitName.toLowerCase())) return;
         if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
             List<Entity> nearby = e.getEntity().getNearbyEntities(stomperRange, stomperRange, stomperRange);
             for (Entity ent: nearby)

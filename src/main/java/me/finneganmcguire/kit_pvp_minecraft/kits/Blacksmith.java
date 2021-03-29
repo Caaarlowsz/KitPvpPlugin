@@ -1,7 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -31,7 +32,7 @@ public class Blacksmith extends Kit implements Listener {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
 
                 ItemStack anvil = new ItemStack(Material.DAMAGED_ANVIL);
                 ItemMeta anvil_meta = anvil.getItemMeta();
@@ -61,7 +62,7 @@ public class Blacksmith extends Kit implements Listener {
 
         if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
             if(event.getClickedBlock().getType().equals(damaged_anvil)){
-                if(PlayerStorage.playerHasKitActive(event.getPlayer(), "blacksmith")){
+                if(PlayerData.playerHasKitActive(event.getPlayer(), "blacksmith")){
 
                     // AXE UPGRADES
                     if(itemToUpgrade.getType().equals(Material.WOODEN_AXE)){

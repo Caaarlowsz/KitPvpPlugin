@@ -1,10 +1,10 @@
-package me.finneganmcguire.kit_pvp_minecraft.Player_Data;
+package me.finneganmcguire.kit_pvp_minecraft.GameData;
 
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
-public class PlayerStorage {
+public class PlayerData {
     public static HashMap<String, String> playerData = new HashMap<String, String>();
     public static HashMap<String, Integer> bowls = new HashMap<>();
 
@@ -17,6 +17,14 @@ public class PlayerStorage {
 
     public static void setPlayerNewKit(Player player, String kitname){
         playerData.put(player.getName(), kitname);
+    }
+    public static String getPlayerKit(Player player){
+        return playerData.get(player.getName());
+    }
+    public static boolean playerHasKit(Player player){
+        if (playerData.containsKey(player.getName())) return !playerHasKitActive(player,"None");
+        playerData.put(player.getName(), "None");
+        return false;
     }
 
     public static void remove(Player player) {

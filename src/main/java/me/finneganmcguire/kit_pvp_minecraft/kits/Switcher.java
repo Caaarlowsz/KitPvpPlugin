@@ -1,7 +1,7 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -45,7 +45,7 @@ public class Switcher extends Kit{
         Player player = (Player) event.getEntity().getShooter();
         PlayerInventory inventory = player.getInventory();
 
-        if (!PlayerStorage.playerHasKitActive(player, kitName.toLowerCase())) return; // No access to kit
+        if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return; // No access to kit
         if (!isSwitcherBall(inventory.getItemInMainHand()) &&
                 !isSwitcherBall(inventory.getItemInOffHand())) return; // Not holding switcher ball
 

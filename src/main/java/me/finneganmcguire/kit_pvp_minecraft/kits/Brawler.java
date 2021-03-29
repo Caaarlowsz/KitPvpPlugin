@@ -1,7 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
+import me.finneganmcguire.kit_pvp_minecraft.GameData.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
+import me.finneganmcguire.kit_pvp_minecraft.GameData.PlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -31,7 +32,7 @@ public class Brawler extends Kit {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (Kit_PvP_Minecraft.canChangeKit) {
+            if (GameVariables.canChangeKit) {
                 brawlerExtraHealth.apply(player);
                 player.setHealth(player.getHealth() + 2);
 
@@ -52,7 +53,7 @@ public class Brawler extends Kit {
         Inventory inv = e.getPlayer().getInventory();
 
         // If Player Isnt holding an Item, give more damage per punch
-        if(!e.hasItem() && PlayerStorage.playerHasKitActive(e.getPlayer(), "brawler")){
+        if(!e.hasItem() && PlayerData.playerHasKitActive(e.getPlayer(), "brawler")){
             brawlerDamage.apply(player);
         }
     }
