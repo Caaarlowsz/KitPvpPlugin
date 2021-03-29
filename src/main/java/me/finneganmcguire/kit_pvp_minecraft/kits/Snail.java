@@ -12,8 +12,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Random;
-
 public class Snail extends Kit implements Listener {
     private Kit_PvP_Minecraft main;
 

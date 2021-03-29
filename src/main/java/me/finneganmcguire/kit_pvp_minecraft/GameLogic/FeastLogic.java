@@ -1,15 +1,13 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionEffectType;
-
-import java.lang.Math;
 
 import java.util.Random;
 

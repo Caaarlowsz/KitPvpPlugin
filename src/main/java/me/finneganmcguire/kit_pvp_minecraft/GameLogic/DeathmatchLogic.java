@@ -1,14 +1,12 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
-import com.google.common.util.concurrent.Service;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.world.WorldEvent;
 
 import static java.lang.Math.*;
 

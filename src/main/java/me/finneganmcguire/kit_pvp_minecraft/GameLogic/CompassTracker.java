@@ -1,9 +1,10 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import org.bukkit.*;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

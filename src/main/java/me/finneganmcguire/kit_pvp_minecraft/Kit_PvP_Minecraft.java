@@ -1,21 +1,12 @@
 package me.finneganmcguire.kit_pvp_minecraft;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.*;
-
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameCommands;
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SoupEvent;
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.SpawnMushrooms;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.GameState;
 import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import me.finneganmcguire.kit_pvp_minecraft.kits.*;
-import me.finneganmcguire.kit_pvp_minecraft.kits.Chameleon;
-import me.finneganmcguire.kit_pvp_minecraft.kits.TimeWizard;
 import me.finneganmcguire.kit_pvp_minecraft.tasks.*;
 import org.bukkit.*;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -27,6 +18,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitTask;
+
 import java.io.File;
 import java.util.HashMap;
 

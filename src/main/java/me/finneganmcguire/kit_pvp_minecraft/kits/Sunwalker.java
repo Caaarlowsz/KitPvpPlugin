@@ -1,10 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 public class Sunwalker extends Kit {
     private Kit_PvP_Minecraft main;

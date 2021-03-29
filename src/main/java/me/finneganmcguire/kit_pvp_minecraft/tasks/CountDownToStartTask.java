@@ -2,7 +2,6 @@ package me.finneganmcguire.kit_pvp_minecraft.tasks;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 

@@ -5,9 +5,7 @@ import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
 
 public class GameStartLogic {
 

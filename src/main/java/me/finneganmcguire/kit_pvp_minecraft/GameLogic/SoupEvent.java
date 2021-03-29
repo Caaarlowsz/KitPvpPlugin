@@ -2,7 +2,6 @@ package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
-import me.finneganmcguire.kit_pvp_minecraft.kits.Recycler;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

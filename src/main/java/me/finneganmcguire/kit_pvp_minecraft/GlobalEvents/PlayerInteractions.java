@@ -1,14 +1,13 @@
 package me.finneganmcguire.kit_pvp_minecraft.GlobalEvents;
 
-import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerInteractions implements Listener {
 

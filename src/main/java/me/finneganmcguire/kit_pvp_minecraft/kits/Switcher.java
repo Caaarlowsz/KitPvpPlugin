@@ -2,7 +2,6 @@ package me.finneganmcguire.kit_pvp_minecraft.kits;
 
 import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

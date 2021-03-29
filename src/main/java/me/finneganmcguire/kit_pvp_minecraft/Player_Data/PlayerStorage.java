@@ -1,10 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.Player_Data;
-import me.finneganmcguire.kit_pvp_minecraft.GameLogic.GameVariables;
+
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class PlayerStorage {
     public static HashMap<String, String> playerData = new HashMap<String, String>();

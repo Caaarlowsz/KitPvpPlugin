@@ -1,12 +1,8 @@
 package me.finneganmcguire.kit_pvp_minecraft.GameLogic;
 
-import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
-import org.bukkit.*;
-import org.bukkit.block.Chest;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-
-import java.lang.Math;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 
 import java.util.Random;
 

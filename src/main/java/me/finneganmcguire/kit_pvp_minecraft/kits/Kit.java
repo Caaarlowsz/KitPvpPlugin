@@ -12,9 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
-import org.jetbrains.annotations.NotNull;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class Kit implements CommandExecutor, Listener {
     public String kitName = "Kit";

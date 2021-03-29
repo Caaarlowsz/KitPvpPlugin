@@ -1,29 +1,22 @@
 package me.finneganmcguire.kit_pvp_minecraft.kits;
 
-import me.finneganmcguire.kit_pvp_minecraft.GlobalEvents.PlayerInteractions;
 import me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft;
 import me.finneganmcguire.kit_pvp_minecraft.Player_Data.PlayerStorage;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityPotionEffectEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.awt.event.ActionEvent;
 import java.util.Arrays;
-import java.util.List;
 
 public class Blacksmith extends Kit implements Listener {
     private Kit_PvP_Minecraft main;
