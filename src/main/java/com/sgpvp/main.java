@@ -90,7 +90,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Glider", new Glider());
             //put("Groundhog", new Groundhog()); not working
             //put("Cultivator", new Cultivator()); not working
-            //put("Sunwalker", new Sunwalker()); not working
+            put("Sunwalker", new Sunwalker());
             put("Blacksmith", new Blacksmith());
             put("Viper", new Viper());
             put("Snail", new Snail());
