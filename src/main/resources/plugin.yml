@@ -1,10 +1,10 @@
-name: KitPvp
+name: SGPvP
 version: ${project.version}
-main: me.finneganmcguire.kit_pvp_minecraft.Kit_PvP_Minecraft
+main: com.sgpvp.main
 api-version: 1.16
-authors: [FinneganMcGuire]
-description: All custom kit pvp plugins for server
-website: finneganmcguire.com
+authors: [FinneganMcGuire, vscala]
+description: SGPvP Plugin
+website: sgpvp.com
 commands:
   timewizard:
     description: Gives Clock, Clock can stop timearound you stoping all players from moving!
@@ -70,4 +70,4 @@ commands:
     usage: /<command>
   game:
     description: commands to modify the current game
-    usage: /<command> <args>
+    usage: /<command> [kits|deathmatch|start|give]
