@@ -8,66 +8,47 @@ website: sgpvp.com
 commands:
   timewizard:
     description: Gives Clock, Clock can stop timearound you stoping all players from moving!
-    usage: /<command>
   werewolf:
     description: Become A Wolf!
-    usage: /<command>
   brawler:
     description: Punch with fist, your stronger
-    usage: /<command>
   chameleon:
     description: Turn into animals
-    usage: /<command>
   lumberjack:
     description: Cut Trees Faster
-    usage: /<command>
   grandpa:
     description: Old man stick hits enemies far
-    usage: /<command>
   turtle:
     description: Holding shift makes you stronger
-    usage: /<command>
   milkman:
     description: Milk gives you buffs
-    usage: /<command>
   fireman:
     description: Gives water bucket and fire resistance
-    usage: /<command>
   beastmaster:
     description: Instant Wolf Tameing
-    usage: /<command>
   pyromancer:
     description: Fire stuff
-    usage: /<command>
   recycler:
     description: Recycler bowls after souping
   glider:
     description: fly
-    usage: /<command>
   groundhog:
     description: groundhog
-    usage: /<command>
   cultivator:
     description: seed place = grow fast!
-    usage: /<command>
   sunwalker:
     description: Buffs during the day
-    usage: /<command>
   blacksmith:
     description: Upgrade your items
-    usage: /<command>
   viper:
     description: Chance to apply poision
-    usage: /<command>
   snail:
     description: Chance to apply slow
-    usage: /<command>
   Stomper:
     description: Stomp on enemies damaging them
-    usage: /<command>
   Switcher:
     description: Switch places with another entity
-    usage: /<command>
+  Chemist:
+    description: Null
   game:
     description: commands to modify the current game
-    usage: /<command> [kits|deathmatch|start|give]

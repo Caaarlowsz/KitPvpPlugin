@@ -80,35 +80,4 @@ public class GameVariables {
         public static int MINZ = 0;
         public static int MAXZ = 0;
     }
-    public static class CustomItems {
-        //GameItems.put("GlassBow", new GlassBow);
-
-        public static class GlassBow {
-            public static ItemStack getGlassBow() {
-                ItemStack glassBow = new ItemStack(Material.BOW, 1);
-                ItemMeta bowMeta = glassBow.getItemMeta();
-                bowMeta.setDisplayName(ChatColor.WHITE + "Glass Bow");
-                bowMeta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
-                if (bowMeta instanceof Damageable)
-                    ((Damageable) bowMeta).damage(1);
-                glassBow.setItemMeta(bowMeta);
-                return glassBow;
-            }
-            @EventHandler
-            public void onRightClick (PlayerInteractEvent event) {
-                Player p = event.getPlayer();
-                if (event.getAction() == Action.RIGHT_CLICK_AIR) {
-                    if (event.getItem().getType() == Material.BOW) {
-                        // insert logic
-                        p.sendMessage("Your bow shatters into pieces");
-                        p.getInventory().setItemInMainHand(null);
-                    }
-                }
-            }
-        }
-        public static ItemStack GlassSword;
-        public static ItemStack FeastSoup;
-
-
-    }
 }

@@ -1,16 +1,18 @@
 package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class Chemist extends Kit{
     public String kitName = "Chemist";
     private com.sgpvp.main main;
 
-    public void Brawler(com.sgpvp.main main){
+    public void Chemist(com.sgpvp.main main){
         this.main = main;
     }
 
@@ -25,8 +27,8 @@ public class Chemist extends Kit{
 
             if (GameVariables.canChangeKit) {
                 Inventory inv = player.getInventory();
-                inv.clear();
-
+                for (ItemStack item : GameItems.getChemistPotions())
+                    inv.addItem(item);
             }
 
         }

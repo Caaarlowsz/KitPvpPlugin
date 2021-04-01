@@ -3,13 +3,17 @@ import com.sgpvp.GameData.GameVariables;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-public class AdminCommands implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class AdminCommands implements CommandExecutor, TabCompleter {
 
     private com.sgpvp.main main;
 
-    public void GameCommands(com.sgpvp.main main){
+    public void AdminCommands(com.sgpvp.main main){
         this.main = main;
     }
 
@@ -32,9 +36,20 @@ public class AdminCommands implements CommandExecutor {
                 else for (int i = 0; i < Integer.parseInt(args[1]); i++) FeastLogic.SpawnFeast();
             }
             if (args[0].equals("give")) {
-                player.getInventory().addItem(GameVariables.CustomItems.GlassBow.getGlassBow());
+                player.getInventory().addItem(GameItems.getGlassBow());
             }
         }
         return false;
+    }
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> out = new ArrayList<>();
+        out.add("kits");
+        if (sender instanceof Player && !sender.isOp()) return out;
+        out.add("deathmatch");
+        out.add("start");
+        out.add("feast");
+        out.add("give");
+        return out;
     }
 }

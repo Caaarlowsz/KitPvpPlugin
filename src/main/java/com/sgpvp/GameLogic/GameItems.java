@@ -1,0 +1,65 @@
+package com.sgpvp.GameLogic;
+
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Damageable;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameItems {
+    public static List<ItemStack> getChemistPotions() {
+        List<ItemStack> potions = new ArrayList<ItemStack>();
+        potions.add(getSplashDamagePotion(true));
+        potions.add(getSplashPoisonPotion(true));
+        potions.add(getSplashWeaknessPotion());
+        return potions;
+    }
+    public static ItemStack getSplashDamagePotion(boolean upgraded) {
+        ItemStack potion = new ItemStack(Material.SPLASH_POTION);
+        PotionMeta pm = (PotionMeta) potion.getItemMeta();
+        PotionData pd = new PotionData(PotionType.INSTANT_DAMAGE, false, upgraded);
+        pm.setBasePotionData(pd);
+        potion.setItemMeta(pm);
+        return potion;
+    }
+    public static ItemStack getSplashPoisonPotion(boolean upgraded) {
+        ItemStack potion = new ItemStack(Material.SPLASH_POTION);
+        PotionMeta pm = (PotionMeta) potion.getItemMeta();
+        PotionData pd = new PotionData(PotionType.POISON, false, upgraded);
+        pm.setBasePotionData(pd);
+        potion.setItemMeta(pm);
+        return potion;
+    }
+    public static ItemStack getSplashWeaknessPotion() {
+        ItemStack potion = new ItemStack(Material.SPLASH_POTION);
+        PotionMeta pm = (PotionMeta) potion.getItemMeta();
+        PotionData pd = new PotionData(PotionType.WEAKNESS, false, false);
+        pm.setBasePotionData(pd);
+        potion.setItemMeta(pm);
+        return potion;
+    }
+    public static ItemStack getGlassBow() {
+        ItemStack glassBow = new ItemStack(Material.BOW, 1);
+        ItemMeta bowMeta = glassBow.getItemMeta();
+        bowMeta.setDisplayName(ChatColor.WHITE + "Glass Bow");
+        bowMeta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+        if (bowMeta instanceof Damageable)
+            ((Damageable) bowMeta).damage(100);
+        glassBow.setItemMeta(bowMeta);
+        glassBow.setDurability((short) 0);
+        return glassBow;
+    }
+
+
+}

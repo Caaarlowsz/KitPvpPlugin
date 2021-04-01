@@ -90,6 +90,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Glider", new Glider());
             //put("Groundhog", new Groundhog()); not working
             //put("Cultivator", new Cultivator()); not working
+            put("Chemist", new Chemist());
             put("Sunwalker", new Sunwalker());
             put("Blacksmith", new Blacksmith());
             put("Viper", new Viper());
@@ -104,6 +105,7 @@ public final class main extends JavaPlugin implements Listener {
             pluginManager.registerEvents(kit, this);
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
+        getCommand("game").setTabCompleter(new AdminCommands());
 
         for(Player p : this.getServer().getOnlinePlayers()) {
             p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
