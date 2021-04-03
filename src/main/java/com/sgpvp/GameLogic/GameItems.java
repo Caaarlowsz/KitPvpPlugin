@@ -81,4 +81,12 @@ public class GameItems {
         kangarooFoot.setItemMeta(kangarooMeta);
         return kangarooFoot;
     }
+    public static ItemStack getThorAxe() {
+        ItemStack thorAxe = new ItemStack(Material.WOODEN_AXE, 1);
+        ItemMeta thorAxeMeta = thorAxe.getItemMeta();
+        thorAxeMeta.setDisplayName(ChatColor.BOLD + "Thor's Hammer");
+        thorAxeMeta.setLore(Arrays.asList("Smite your foes"));
+        thorAxe.setItemMeta(thorAxeMeta);
+        return thorAxe;
+    }
 }
