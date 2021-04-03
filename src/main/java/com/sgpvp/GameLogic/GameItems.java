@@ -73,4 +73,12 @@ public class GameItems {
         milk_bucket.setItemMeta(milk_bucket_data);
         return milk_bucket;
     }
+    public static ItemStack getKangarooFoot() {
+        ItemStack kangarooFoot = new ItemStack(Material.RABBIT_FOOT, 1);
+        ItemMeta kangarooMeta = kangarooFoot.getItemMeta();
+        kangarooMeta.setDisplayName(ChatColor.BOLD + "Kangaroo Foot");
+        kangarooMeta.setLore(Arrays.asList("Launch yourself into the air!"));
+        kangarooFoot.setItemMeta(kangarooMeta);
+        return kangarooFoot;
+    }
 }

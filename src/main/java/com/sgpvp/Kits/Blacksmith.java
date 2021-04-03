@@ -61,37 +61,37 @@ public class Blacksmith extends Kit implements Listener {
 
                     // AXE UPGRADES
                     if(itemToUpgrade.getType().equals(Material.WOODEN_AXE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.STONE_AXE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                         event.getPlayer().spawnParticle(particle, event.getClickedBlock().getLocation(), 50);
                     }
                     else if(itemToUpgrade.getType().equals(Material.STONE_AXE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_AXE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_AXE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Cannot Upgrade Axes To Diamond!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Cannot Upgrade Axes To Diamond!");
                     }
 
                     // PICK UPGRADES
                     if(itemToUpgrade.getType().equals(Material.WOODEN_PICKAXE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.STONE_PICKAXE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.STONE_PICKAXE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_PICKAXE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_PICKAXE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.DIAMOND_PICKAXE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
@@ -99,36 +99,36 @@ public class Blacksmith extends Kit implements Listener {
 
                     // SWORD UPGRADES
                     if(itemToUpgrade.getType().equals(Material.WOODEN_SWORD)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.STONE_SWORD);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.STONE_SWORD)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_SWORD);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_SWORD)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Cannot Upgrade Swords To Diamond!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Cannot Upgrade Swords To Diamond!");
                     }
 
                     // HOE UPGRADES
                     if(itemToUpgrade.getType().equals(Material.WOODEN_HOE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.STONE_HOE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.STONE_HOE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_HOE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_HOE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.DIAMOND_HOE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
@@ -138,13 +138,13 @@ public class Blacksmith extends Kit implements Listener {
 
                     // Helmets
                     if(itemToUpgrade.getType().equals(Material.LEATHER_HELMET)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_HELMET);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_HELMET)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.DIAMOND_HELMET);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
@@ -152,13 +152,13 @@ public class Blacksmith extends Kit implements Listener {
 
                     // CHESTPLATE UPGRADES
                     if(itemToUpgrade.getType().equals(Material.LEATHER_CHESTPLATE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_CHESTPLATE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_CHESTPLATE)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.DIAMOND_CHESTPLATE);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
@@ -166,13 +166,13 @@ public class Blacksmith extends Kit implements Listener {
 
                     // Leggings
                     if(itemToUpgrade.getType().equals(Material.LEATHER_LEGGINGS)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_LEGGINGS);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_LEGGINGS)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.DIAMOND_LEGGINGS);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
@@ -180,13 +180,13 @@ public class Blacksmith extends Kit implements Listener {
 
                     // Boots
                     if(itemToUpgrade.getType().equals(Material.LEATHER_BOOTS)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.IRON_BOOTS);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);
                     }
                     else if(itemToUpgrade.getType().equals(Material.IRON_BOOTS)){
-                        event.getPlayer().sendMessage(ChatColor.GOLD + "Item Has Been Upgraded!");
+                        GameVariables.SGPvPMessage(event.getPlayer(), ChatColor.GOLD + "Item Has Been Upgraded!");
                         itemToUpgrade.setType(Material.DIAMOND_BOOTS);
                         event.getClickedBlock().setType(Material.AIR);
                         event.getPlayer().playSound(event.getPlayer().getLocation(), anvil_Sound, anvil_Sound_Volume, anvil_Sound_Pitch);

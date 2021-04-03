@@ -7,6 +7,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AdminCommands implements CommandExecutor, TabCompleter {
@@ -38,6 +39,9 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
             if (args[0].equals("give")) {
                 player.getInventory().addItem(GameItems.getGlassBow());
             }
+            if (args[0].equals("say"))
+                GameVariables.SGPvPMessage(String.join(" ", Arrays.copyOfRange(args, 1, args.length)));
+            if (args[0].equals("kittoggle")) GameVariables.canChangeKit = !GameVariables.canChangeKit;
         }
         return false;
     }
@@ -50,6 +54,8 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
         out.add("start");
         out.add("feast");
         out.add("give");
+        out.add("say");
+        out.add("kittoggle");
         return out;
     }
 }

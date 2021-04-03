@@ -52,5 +52,7 @@ commands:
     description: Start the game with potions
   Phantom:
     description: Fly for brief periods of time
+  Kangaroo:
+    description: Jump high on command!
   game:
     description: commands to modify the current game
