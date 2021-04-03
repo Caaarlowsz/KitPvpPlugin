@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class Phantom extends Kit{
     public String kitName = "Phantom";
-    public int phantomCooldown = 7000;
+    public int phantomCooldown = 120 * 1000;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
