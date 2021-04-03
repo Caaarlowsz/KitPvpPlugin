@@ -54,5 +54,7 @@ commands:
     description: Fly for brief periods of time
   Kangaroo:
     description: Jump high on command!
+  Bomber:
+    description: Players blow up on death!
   game:
     description: commands to modify the current game

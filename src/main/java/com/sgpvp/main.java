@@ -99,6 +99,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Switcher", new Switcher());
             put("Phantom", new Phantom());
             put("Kangaroo", new Kangaroo());
+            put("Bomber", new Bomber());
 
         }};
         for (String kit : GameVariables.kits.keySet())
