@@ -49,6 +49,6 @@ commands:
   Switcher:
     description: Switch places with another entity
   Chemist:
-    description: Null
+    description: Start the game with potions
   game:
     description: commands to modify the current game
