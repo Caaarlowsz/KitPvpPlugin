@@ -32,7 +32,7 @@ public class KitTemplate extends Kit{
     }
     /* Kit event handlers start here */
     // Used in some kits to add additional functionality
-    // if (!PlayerStorage.playerHasKitActive(p, kitName.toLowerCase())) return; // Critical line
+    // if (!PlayerData.playerHasKitActive(p, kitName.toLowerCase())) return; // Critical line
 
     /* Kit event handlers end here */
 }

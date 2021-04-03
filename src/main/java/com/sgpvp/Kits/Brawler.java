@@ -6,19 +6,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Brawler extends Kit {
     public String kitName = "Brawler";
-    private com.sgpvp.main main;
-
-    public void Brawler(com.sgpvp.main main){
-        this.main = main;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -47,11 +40,9 @@ public class Brawler extends Kit {
 
         PotionEffect brawlerDamage = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, damageBoostTime, damageBoost);
 
-        Action action = e.getAction();
         Player player = e.getPlayer();
-        Inventory inv = e.getPlayer().getInventory();
 
-        // If Player Isnt holding an Item, give more damage per punch
+        // If Player isn't holding an Item, give more damage per punch
         if(!e.hasItem() && PlayerData.playerHasKitActive(e.getPlayer(), "brawler")){
             brawlerDamage.apply(player);
         }

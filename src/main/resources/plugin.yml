@@ -50,5 +50,7 @@ commands:
     description: Switch places with another entity
   Chemist:
     description: Start the game with potions
+  Phantom:
+    description: Fly for brief periods of time
   game:
     description: commands to modify the current game

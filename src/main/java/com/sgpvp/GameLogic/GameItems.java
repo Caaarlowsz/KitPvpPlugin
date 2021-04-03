@@ -4,10 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Damageable;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -15,6 +11,7 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameItems {
@@ -60,6 +57,20 @@ public class GameItems {
         glassBow.setDurability((short) 0);
         return glassBow;
     }
+    public static ItemStack getPhantomFeather() {
+        ItemStack phantomFeather = new ItemStack(Material.FEATHER, 1);
+        ItemMeta phantomMeta = phantomFeather.getItemMeta();
+        phantomMeta.setDisplayName(ChatColor.WHITE + "Phantom Feather");
+        phantomFeather.setItemMeta(phantomMeta);
+        return phantomFeather;
+    }
 
-
+    public static ItemStack getMilkmanBucket() {
+        ItemStack milk_bucket = new ItemStack(Material.MILK_BUCKET, 1);
+        ItemMeta milk_bucket_data = milk_bucket.getItemMeta();
+        milk_bucket_data.setDisplayName(ChatColor.BOLD + "The Milkman's Bucket Of Milk");
+        milk_bucket_data.setLore(Arrays.asList("Gives Speed 1", "Gives Regeneration 1", "Gives Fire Resistants 1"));
+        milk_bucket.setItemMeta(milk_bucket_data);
+        return milk_bucket;
+    }
 }

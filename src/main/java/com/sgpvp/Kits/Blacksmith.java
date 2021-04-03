@@ -19,11 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Arrays;
 
 public class Blacksmith extends Kit implements Listener {
-    private com.sgpvp.main main;
     public String kitName = "Blacksmith";
-    public void Blacksmith(com.sgpvp.main main) {
-        this.main = main;
-    }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
@@ -54,8 +50,8 @@ public class Blacksmith extends Kit implements Listener {
         Sound anvil_Sound = Sound.BLOCK_ANVIL_USE;
         Particle particle = Particle.ASH;
 
-        Float anvil_Sound_Pitch = 2f;
-        Float anvil_Sound_Volume = 15f;
+        float anvil_Sound_Pitch = 2f;
+        float anvil_Sound_Volume = 15f;
 
 
 
