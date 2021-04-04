@@ -60,5 +60,7 @@ commands:
     description: Smite down your foes
   Vampire:
     description: Steal health from your opponents
+  Assassin:
+    description: Sneak attack
   game:
     description: commands to modify the current game
