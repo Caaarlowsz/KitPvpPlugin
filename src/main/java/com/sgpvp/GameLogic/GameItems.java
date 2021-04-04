@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Damageable;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -88,5 +89,15 @@ public class GameItems {
         thorAxeMeta.setLore(Arrays.asList("Smite your foes"));
         thorAxe.setItemMeta(thorAxeMeta);
         return thorAxe;
+    }
+    public static ItemStack getTimeClock() {
+        ItemStack timeClock = new ItemStack(Material.CLOCK);
+        ItemMeta timeClockMeta = timeClock.getItemMeta();
+        timeClockMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Wizard Clock");
+        timeClockMeta.addEnchant(Enchantment.CHANNELING, 10, true);
+        timeClockMeta.setLore(Arrays.asList(ChatColor.DARK_PURPLE + "This used to belong to one of the greatest wizards of all time...\n",ChatColor.WHITE + "Current Owner: ^$%#&"));
+        timeClockMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        timeClock.setItemMeta(timeClockMeta);
+        return timeClock;
     }
 }
