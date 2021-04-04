@@ -101,6 +101,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Kangaroo", new Kangaroo());
             put("Bomber", new Bomber());
             put("Thor", new Thor());
+            put("Vampire", new Vampire());
 
         }};
         for (String kit : GameVariables.kits.keySet())

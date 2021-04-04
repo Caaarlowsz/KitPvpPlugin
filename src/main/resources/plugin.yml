@@ -58,5 +58,7 @@ commands:
     description: Players blow up on death!
   Thor:
     description: Smite down your foes
+  Vampire:
+    description: Steal health from your opponents
   game:
     description: commands to modify the current game
