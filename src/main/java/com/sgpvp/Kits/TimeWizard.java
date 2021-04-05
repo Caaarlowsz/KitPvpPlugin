@@ -46,6 +46,7 @@ public class TimeWizard extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
 
         if (sender instanceof Player) {
             Player player = (Player) sender;

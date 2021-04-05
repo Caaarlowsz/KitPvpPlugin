@@ -15,6 +15,7 @@ public class Chemist extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         //int extraHealthBoost = 0;
 
         if(sender instanceof Player){

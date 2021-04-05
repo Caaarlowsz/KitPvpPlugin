@@ -1,5 +1,6 @@
 package com.sgpvp.Kits;
 
+import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
@@ -27,6 +28,7 @@ public class Chameleon extends Kit {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         return false;
     }
 

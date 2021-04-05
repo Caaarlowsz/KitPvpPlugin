@@ -34,6 +34,7 @@ public class Phantom extends Kit{
         // Pass kit name and sender data to parent.
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
 
         /* Kit functionality starts here */
         if (sender instanceof Player && GameVariables.canChangeKit) {

@@ -31,6 +31,7 @@ public class Vampire extends Kit{
         // Pass kit name and sender data to parent.
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         return false;
     }
     /* Kit event handlers start here */

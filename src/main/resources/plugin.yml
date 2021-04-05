@@ -66,3 +66,6 @@ commands:
     description: Knock items out of another players hand
   game:
     description: commands to modify the current game
+  kit:
+    description: open kit gui
+    aliases: [kits, kitgui, gui, ui]
