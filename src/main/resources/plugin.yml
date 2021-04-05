@@ -62,5 +62,7 @@ commands:
     description: Steal health from your opponents
   Assassin:
     description: Sneak attack
+  Monk:
+    description: Knock items out of another players hand
   game:
     description: commands to modify the current game

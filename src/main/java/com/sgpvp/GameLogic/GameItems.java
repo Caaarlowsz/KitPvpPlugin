@@ -100,4 +100,12 @@ public class GameItems {
         timeClock.setItemMeta(timeClockMeta);
         return timeClock;
     }
+    public static ItemStack getMonkStaff() {
+        ItemStack monkStaff = new ItemStack(Material.BLAZE_ROD);
+        ItemMeta monkStaffMeta = monkStaff.getItemMeta();
+        monkStaffMeta.setDisplayName(ChatColor.RED + "Monk Staff");
+        monkStaffMeta.setLore(Arrays.asList(ChatColor.RED + "Khakkhara"));
+        monkStaff.setItemMeta(monkStaffMeta);
+        return monkStaff;
+    }
 }

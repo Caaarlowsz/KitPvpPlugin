@@ -103,6 +103,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Thor", new Thor());
             put("Vampire", new Vampire());
             put("Assassin", new Assassin());
+            put("Monk", new Monk());
 
         }};
         for (String kit : GameVariables.kits.keySet())
