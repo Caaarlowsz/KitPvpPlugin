@@ -1,0 +1,81 @@
+Kits:
+-
+  Kit: TimeWizard
+  Color: ChatColor.DARK_PURPLE
+  Description: The time wizard is a very unique kit and is good when used at the right time\n - The Time wizard starts with a special clock that stops time for players around you temporarily
+-
+  Kit: Werewolf
+  Color: ChatColor.DARK_RED
+  Description: Werewolf is best when it is night time.\n - Other players see a glowing outline of you in the world\n- You get Nightvision, Speed & Extra Health At Night
+-
+  Kit: Brawler
+  Color: ChatColor.YELLOW
+  Description: The brawler kit is a great aggressive kit\n - The brawler kit has extra damage when punching with your fist
+-
+  Kit: Chameleon
+  Color: ChatColor.GREEN
+  Description: The chameleon kit is great for more passive players\n - You can disguise yourself as any mob\n - Upon taking damage you will be revealed
+-
+  Kit: Lumberjack
+  Color: ChatColor.DARK_GREEN
+  Description: The lumberjack kit is great for players that like to use block to get height advantages or create structures\n - The lumberjack kit starts with a Efficiency 10 Wooden Axe that is unbreakable
+-
+  Kit: Grandpa
+  Color: ChatColor.GRAY
+  Description: The grandpa kit is great at keeping enemies away from you and works well against aggressive players\n - The grandpa kit starts with a knockback 2 stick
+-
+  Kit: Turtle
+  Color: ChatColor.GREEN
+  Description: The turtle kit is great at players who like more defensive gameplay.\n - Holding Sneak/Shift Gives You Resistance 2 & Weakness 2
+-
+  Kit: Milkman
+  Color: ChatColor.AQUA
+  Description: The milk man is good for having a good source of buffs \n - You start with a milk bucket\n - Drinking milk gives you Speed 1, Regeneration 1, and Fire Resistance for 8 seconds
+-
+  Kit: Fireman
+  Color: ChatColor.RED
+  Description: The fireman kit is great when it comes to dealing with lava or fire\n - The fireman kit has immunity to fire and starts with a water bucket
+-
+  Kit: Pyromancer
+  Color: ChatColor.RED
+  Description: The pyromancer is a very lethal and can be useful in many different situations\n - The Pyromancer start with a lava bucket as well as flint and steel
+-
+  Kit: Recycler
+  Color: ChatColor.GREEN
+  Description: After 3 uses of soup, you get a free soup! :)
+-
+  Kit: Beastmaster
+  Color: ChatColor.BLUE
+  Description: The beast master is a very lethal kit and for people that can control wolves wisely\n - Your bones instantly tame wolves\n - The beastmaster starts with 2 Wolf Eggs and 3 Bones
+-
+  Kit: Glider
+  Color: ChatColor.DARK_GRAY
+  Description: Glide around the map in an elytra.
+-
+  Kit: Groundhog
+  Color: ChatColor.DARK_GRAY
+  Description: None
+-
+  Kit: Hades
+  Color: ChatColor.DARK_RED
+  Description: None
+-
+  Kit: Demonking
+  Color: ChatColor.DARK_RED
+  Description: None
+-
+  Kit: Blacksmith
+  Color: ChatColor.BLACK
+  Description: Upgrade your items to the next tier for free! \n You have an anvil that can upgrade an any item \n One time use"
+-
+  Kit: Snail
+  Color: ChatColor.DARK_AQUA
+  Description: None
+-
+  Kit: Viper
+  Color: ChatColor.DARK_GREEN
+  Description: The viper kit is an aggressive kit \n The viper kit has a 20% chance to apply poison 1 on every hit
+-
+  Kit: Vampire
+  Color: ChatColor.DARK_BLUE
+  Description: Attacks heal you for half a heart \n Player kills fully heal you

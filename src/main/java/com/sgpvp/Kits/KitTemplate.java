@@ -9,8 +9,6 @@ import org.bukkit.command.CommandSender;
         - The command for this kit must be added to the plugin.yml
         - A reference to this kit must be added to the kits table
           in the Kit_PvP_Minecraft class.
-        - If the kit contains event handlers then the kit must be
-          registered in Kit_PvP_Minecraft (pluginManager.registerEvents)
         - A kit description and color must also be added in the
           KitConfig.KitDescriptions class
  */
@@ -34,7 +32,7 @@ public class KitTemplate extends Kit{
     }
     /* Kit event handlers start here */
     // Used in some kits to add additional functionality
-    // if (!PlayerStorage.playerHasKitActive(p, kitName.toLowerCase())) return; // Critical line
+    // if (!PlayerData.playerHasKitActive(p, kitName.toLowerCase())) return; // Critical line
 
     /* Kit event handlers end here */
 }

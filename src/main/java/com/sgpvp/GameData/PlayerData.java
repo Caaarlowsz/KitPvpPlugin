@@ -35,7 +35,7 @@ public class PlayerData {
         if (!bowls.containsKey(player.getName()))
             bowls.put(player.getName(), 0);
         bowls.put(player.getName(), bowls.get(player.getName()) + 1);
-        player.sendMessage("You have recycled " + bowls.get(player.getName()) + " bowls");
+        GameVariables.SGPvPMessage(player, "You have recycled " + bowls.get(player.getName()) + " bowls");
         return bowls.get(player.getName()) % 3 == 0;
 
     }

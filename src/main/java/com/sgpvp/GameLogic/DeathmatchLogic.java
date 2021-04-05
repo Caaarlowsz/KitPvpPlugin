@@ -34,6 +34,27 @@ public class DeathmatchLogic{
                 for (int k = 1; k < 100; k++ ) {
                     Location air = new Location(GameVariables.world, i, deathMatchCenterY+k, j);
                     air.getBlock().setType(Material.AIR); //spawn grass
+
+                    if (deathMatchCenterX - r == i) {
+                        Location wall = new Location(GameVariables.world, i-1, deathMatchCenterY+k, j);
+                        if ((j+k) % 3 != 0) wall.getBlock().setType(Material.BLACK_TERRACOTTA);
+                        else wall.getBlock().setType(Material.WHITE_TERRACOTTA);
+                    }
+                    if (deathMatchCenterX + r == i){
+                        Location wall = new Location(GameVariables.world, i+1, deathMatchCenterY+k, j);
+                        if ((j+k) % 3 != 0) wall.getBlock().setType(Material.BLACK_TERRACOTTA);
+                        else wall.getBlock().setType(Material.WHITE_TERRACOTTA);
+                    }
+                    if (deathMatchCenterZ - r == j){
+                        Location wall = new Location(GameVariables.world, i, deathMatchCenterY+k, j-1);
+                        if ((i+k) % 3 != 0) wall.getBlock().setType(Material.BLACK_TERRACOTTA);
+                        else wall.getBlock().setType(Material.WHITE_TERRACOTTA);
+                    }
+                    if (deathMatchCenterZ + r == j){
+                        Location wall = new Location(GameVariables.world, i, deathMatchCenterY+k, j+1);
+                        if ((i+k) % 3 != 0) wall.getBlock().setType(Material.BLACK_TERRACOTTA);
+                        else wall.getBlock().setType(Material.WHITE_TERRACOTTA);
+                    }
                 }
             }
         }

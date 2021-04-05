@@ -75,7 +75,7 @@ public final class main extends JavaPlugin implements Listener {
 
         //COMMANDS & KITS
         GameVariables.kits = new HashMap<String,Kit>(){{
-            //put("TimeWizard", new TimeWizard()); not working
+            put("TimeWizard", new TimeWizard());
             put("Werewolf", new Werewolf());
             put("Brawler", new Brawler());
             put("Chameleon", new Chameleon());
@@ -90,12 +90,20 @@ public final class main extends JavaPlugin implements Listener {
             put("Glider", new Glider());
             //put("Groundhog", new Groundhog()); not working
             //put("Cultivator", new Cultivator()); not working
-            //put("Sunwalker", new Sunwalker()); not working
+            put("Chemist", new Chemist());
+            put("Sunwalker", new Sunwalker());
             put("Blacksmith", new Blacksmith());
             put("Viper", new Viper());
             put("Snail", new Snail());
             put("Stomper", new Stomper());
             put("Switcher", new Switcher());
+            put("Phantom", new Phantom());
+            put("Kangaroo", new Kangaroo());
+            put("Bomber", new Bomber());
+            put("Thor", new Thor());
+            put("Vampire", new Vampire());
+            put("Assassin", new Assassin());
+            put("Monk", new Monk());
 
         }};
         for (String kit : GameVariables.kits.keySet())
@@ -104,6 +112,7 @@ public final class main extends JavaPlugin implements Listener {
             pluginManager.registerEvents(kit, this);
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
+        getCommand("game").setTabCompleter(new AdminCommands());
 
         for(Player p : this.getServer().getOnlinePlayers()) {
             p.setDisplayName(GameVariables.getPrefix(p) + p.getName());

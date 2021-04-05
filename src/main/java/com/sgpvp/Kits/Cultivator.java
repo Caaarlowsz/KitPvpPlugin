@@ -19,12 +19,6 @@ import java.util.List;
 public class Cultivator extends Kit {
     public String kitName = "Cultivator";
 
-    private com.sgpvp.main main;
-
-    public void Cultivator(com.sgpvp.main main) {
-        this.main = main;
-    }
-
     public List<Material> seeds;
 
 

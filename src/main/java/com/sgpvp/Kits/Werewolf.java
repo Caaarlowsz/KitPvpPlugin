@@ -3,7 +3,7 @@ package com.sgpvp.Kits;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-public class Werewolf extends Kit{
+public class  Werewolf extends Kit{
 
     private com.sgpvp.main main;
 
