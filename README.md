@@ -10,35 +10,37 @@ Deathmatch \
 Server close
 
 ### Game kits
-Assassin \
-Beastmaster	boring af \
-Blacksmith	meh \
-Bomber		too op? \
-Brawler		 \
-Chameleon \
-Chemist		needs potion replenishing \
-Cultivator	not working	 \
-Fireman		boring af \
-Glider		meh \
-Grandpa		troll \
-Groundhog	not working \
-Hades		not working \
-Kangaroo	 \
-Lumberjack \
-Milkman \
-Phantom	 \
-Pyromancer	boring \
-Recycler \
-Snail		boring \
-Stomper		 \
-Sunwalker	boring \
-Switcher	 \
-Thor		needs improvements \
-TimeWizard	needs ingame cooldown indicators \
-Turtle		? \
-Vampire		weak? boring? \
-Viper		? \
-Werewolf	? \
+| **Kit**     | **Current State** |
+| ----------- | ----------------- |
+| Assassin    |                   |
+| Beastmaster | boring            |
+| Blacksmith  | meh               |
+| Bomber      | untested          |
+| Brawler     |                   |
+| Chameleon   |                   |
+| Chemist     | unfinished        |
+| Cultivator  | unfinished        |
+| Fireman     | boring            |
+| Glider      | meh               |
+| Grandpa     | troll             |
+| Groundhog   | unfinished        |
+| Hades       | unfinished        |
+| Kangaroo    |                   |
+| Lumberjack  |                   |
+| Milkman     |                   |
+| Phantom     |                   |
+| Pyromancer  | boring            |
+| Recycler    |                   |
+| Snail       | boring            |
+| Stomper     |                   |
+| Sunwalker   | boring            |
+| Switcher    |                   |
+| Thor        | unfinished        |
+| TimeWizard  | unfinished        |
+| Turtle      | ?                 |
+| Vampire     | weak?             |
+| Viper       | ?                 |
+| Werewolf    | ?                 |
 
 ### Game logic
 Soup PvP \
