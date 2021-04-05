@@ -37,6 +37,7 @@ public class TimeWizard extends Kit{
     public String kitName = "TimeWizard";
     public int duration = 7 * 1000;
     public int freezeRadius = 7;
+    public int cooldown = 45 * 1000;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -53,7 +54,7 @@ public class TimeWizard extends Kit{
         return false;
     }
     HashMap<Player, Boolean> cooldowns = new HashMap<>();
-    HashMap<Player, Boolean> frozen = new HashMap<>();
+    HashMap<Entity, Boolean> frozen = new HashMap<>();
     @EventHandler
     public void ClockActivated(PlayerInteractEvent e){
         Player player = e.getPlayer();
@@ -94,6 +95,13 @@ public class TimeWizard extends Kit{
             }
             //player.setAllowFlight(false); unfreeze self
             //frozen.put(player, false);
+            for (int i = 0; i < cooldown; i++) {
+                try {
+                    Thread.sleep(cooldown);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             cooldowns.put(player, false);
         }
     }

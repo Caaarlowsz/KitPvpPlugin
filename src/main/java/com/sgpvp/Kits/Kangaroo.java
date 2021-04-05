@@ -6,9 +6,12 @@ import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
@@ -23,6 +26,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Kangaroo extends Kit{
     public String kitName = "Kangaroo";
+    public int height = 4;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -45,14 +49,23 @@ public class Kangaroo extends Kit{
     public void onKangarooFoot(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
-        GameVariables.SGPvPMessage(player, "You leap through the air!");
+        //GameVariables.SGPvPMessage(player, "You leap through the air!");
         boolean holdingFoot = player.getInventory().getItemInMainHand().getType() == Material.RABBIT_FOOT;
         if (holdingFoot && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK || event
                 .getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK || event
                 .getAction() == Action.PHYSICAL)) {
-            PotionEffect jumpboost = new PotionEffect(PotionEffectType.JUMP, 10, 1);
+            PotionEffect jumpboost = new PotionEffect(PotionEffectType.JUMP, 10, height);
             jumpboost.apply(player);
         }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onPlayerDamage(final EntityDamageEvent e){
+        if (!(e.getEntityType().equals(EntityType.PLAYER))) return;
+        if (!PlayerData.playerHasKitActive((Player) e.getEntity(), kitName.toLowerCase())) return;
+        Player player = (Player) e.getEntity();
+        boolean holdingFoot = player.getInventory().getItemInMainHand().getType() == Material.RABBIT_FOOT;
+        if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL) && holdingFoot)
+            e.setCancelled(true);
     }
     /* Kit event handlers end here */
 }

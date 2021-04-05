@@ -25,6 +25,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class Bomber extends Kit{
     public String kitName = "Bomber"; // Try to keep this the same as the class name <3
+    public int explosionStrength = 3;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -51,7 +52,7 @@ public class Bomber extends Kit{
         //GameVariables.SGPvPMessage(killer, "you exploded " + e.getEntity().getName());
         if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
         Location explosionLocation = e.getEntity().getLocation();
-        GameVariables.world.createExplosion(explosionLocation,10, false, true, killer);
+        GameVariables.world.createExplosion(explosionLocation,explosionStrength, false, true, killer);
     }
     /* Kit event handlers end here */
 }

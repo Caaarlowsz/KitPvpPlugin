@@ -34,23 +34,13 @@ public class Vampire extends Kit{
         return false;
     }
     /* Kit event handlers start here */
-    public void onHit(EntityDamageByEntityEvent e) {
-        //GameVariables.SGPvPMessage("A");
-        if (!(e.getDamager().getType().equals(EntityType.PLAYER))) return; // Entity not a player, exiting...
-        //GameVariables.SGPvPMessage("B");
-        Player damager = (Player) e.getDamager();
-        if (!PlayerData.playerHasKitActive(damager, kitName.toLowerCase())) return; // Kit not owned, exiting...
-        //GameVariables.SGPvPMessage("B");
-        if (damager.getHealth() != 20.0D && damager.getHealth() != 0.0D)
-            damager.setHealth(damager.getHealth() + 1.0D);
-    }
-
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onKill(final EntityDeathEvent e){
         if (!(e.getEntity().getKiller().getType().equals(EntityType.PLAYER))) return;
         if (!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
         Player killer = e.getEntity().getKiller();
         if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
+        GameVariables.SGPvPMessage(killer, "A kill replenished your health.");
         if (killer.getHealth() != 20.0D && killer.getHealth() != 0.0D)
             killer.setHealth(20.0D);
     }
