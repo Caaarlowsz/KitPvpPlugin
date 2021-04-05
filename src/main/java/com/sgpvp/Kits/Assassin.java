@@ -2,6 +2,7 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -59,13 +60,11 @@ public class Assassin extends Kit{
         Player player;
         Sneaking(Player p) { this.player = p; }
         public void run() {
-            BossBar progress = Bukkit.createBossBar("Attack charging: ", BarColor.BLUE, BarStyle.SOLID);
-            progress.addPlayer(player);
-            progress.setProgress(0/50d);
+            ProgressBar progress = new ProgressBar(player, "Attack charging: ", BarColor.BLUE, BarStyle.SOLID, 50);
             try {
                 Thread.sleep(100);
                 for (int s = 0; s < 50; s++) {
-                    progress.setProgress(s/50d);
+                    progress.increment();
                     if (!player.isSneaking()) {
                         progress.removeAll();
                         return;
@@ -76,7 +75,7 @@ public class Assassin extends Kit{
                 e.printStackTrace();
             }
             cooldowns.put(player, true);
-            progress.removeAll();
+            progress.removePlayer(player);
             GameVariables.SGPvPMessage(player, "Your attack is now charged!");
             powerAttack.put(player, true);
             try {

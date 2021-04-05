@@ -3,8 +3,11 @@ package com.sgpvp.Kits;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.GameItems;
+import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -34,7 +37,8 @@ import java.util.HashMap;
 
 public class Thor extends Kit{
     public String kitName = "Thor"; // Try to keep this the same as the class name <3
-    public int axeCooldown = 5000;
+    public int axeCooldown = 5 * 1000;
+    public int maxDistance = 20;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -61,7 +65,7 @@ public class Thor extends Kit{
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_AXE)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) return;
         cooldowns.put(player, true);
-        Location ligtningLocation = player.getLocation();
+        Location ligtningLocation = player.getTargetBlockExact(maxDistance).getLocation();
         GameVariables.world.strikeLightning(ligtningLocation);
         Thread axeSwung = new Thread(new AxeSwing(player));
         axeSwung.start();
@@ -70,11 +74,14 @@ public class Thor extends Kit{
         Player player;
         AxeSwing(Player p) { this.player = p; }
         public void run(){
-            try {
-                Thread.sleep(axeCooldown);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            ProgressBar cooldownBar = new ProgressBar(player, "Cooldown", BarColor.RED, BarStyle.SOLID, axeCooldown);
+            for (int i = 0; i < axeCooldown; i++) {
+                try { Thread.sleep(1);
+                    cooldownBar.increment();
+                } catch (InterruptedException e) {
+                    e.printStackTrace(); }
             }
+            cooldownBar.removePlayer(player);
             cooldowns.put(player, false);
         }
     }

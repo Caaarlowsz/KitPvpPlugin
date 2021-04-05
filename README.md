@@ -35,8 +35,8 @@ Server close
 | Stomper     |                   |
 | Sunwalker   | boring            |
 | Switcher    |                   |
-| Thor        | unfinished        |
-| TimeWizard  | unfinished        |
+| Thor        |                   |
+| TimeWizard  |                   |
 | Turtle      | ?                 |
 | Vampire     | weak?             |
 | Viper       | ?                 |

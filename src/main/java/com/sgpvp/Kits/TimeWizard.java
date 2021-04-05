@@ -3,9 +3,12 @@ package com.sgpvp.Kits;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.GameItems;
+import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
@@ -61,6 +64,7 @@ public class TimeWizard extends Kit{
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.CLOCK)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) return;
+        GameVariables.SGPvPMessage(player, "&5Time freeze activated!");
         List<Entity> nearby = player.getNearbyEntities(freezeRadius, freezeRadius, freezeRadius);
         Thread freeze = new Thread(new Freeze(player, nearby));
         freeze.start();
@@ -71,8 +75,6 @@ public class TimeWizard extends Kit{
         Freeze(Player p, List<Entity> nearby) { this.player = p; this.nearby = nearby; }
         public void run(){
             cooldowns.put(player, true);
-            //frozen.put(player, true); freeze self
-            //player.setAllowFlight(true);
             for (Entity e : nearby) {
                 if (e.getType().equals(EntityType.PLAYER)) {
                     GameVariables.SGPvPMessage(player, "You froze " + e.getName());
@@ -81,11 +83,18 @@ public class TimeWizard extends Kit{
                     p.setAllowFlight(true);
                 }
             }
-            try {
-                Thread.sleep(duration);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            ProgressBar freezeProgress = new ProgressBar(player, "Freeze duration: ", BarColor.BLUE, BarStyle.SOLID, duration);
+            ProgressBar cooldownProgress = new ProgressBar(player, "Cooldown: ", BarColor.GREEN, BarStyle.SOLID, cooldown);
+            for (int i = 0; i < duration; i++) {
+                try {
+                    Thread.sleep(1);
+                    freezeProgress.increment();
+                    cooldownProgress.increment();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            freezeProgress.removePlayer(player);
             for (Entity e : nearby) {
                 if (e.getType().equals(EntityType.PLAYER)) {
                     Player p = (Player) e;
@@ -93,15 +102,15 @@ public class TimeWizard extends Kit{
                     p.setAllowFlight(false);
                 }
             }
-            //player.setAllowFlight(false); unfreeze self
-            //frozen.put(player, false);
-            for (int i = 0; i < cooldown; i++) {
+            for (int i = 0; i < cooldown - duration; i++) {
                 try {
-                    Thread.sleep(cooldown);
+                    Thread.sleep(1);
+                    cooldownProgress.increment();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            cooldownProgress.removePlayer(player);
             cooldowns.put(player, false);
         }
     }

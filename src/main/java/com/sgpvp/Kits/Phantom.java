@@ -3,7 +3,11 @@ package com.sgpvp.Kits;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.GameItems;
+import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.Material;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -23,6 +27,7 @@ import java.util.HashMap;
 public class Phantom extends Kit{
     public String kitName = "Phantom";
     public int phantomCooldown = 120 * 1000;
+    public int flightDuration = 7 * 1000;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -60,17 +65,23 @@ public class Phantom extends Kit{
         public void run(){
             player.setAllowFlight(true);
             cooldowns.put(player, true);
+            ProgressBar cooldownProgress = new ProgressBar(player, "Cooldown: ", BarColor.RED, BarStyle.SOLID, phantomCooldown);
+            ProgressBar flightProgress = new ProgressBar(player, "Flight: ", BarColor.WHITE, BarStyle.SOLID, flightDuration);
             try {
-                for (int s = 0; s < 7; s++) {
-                    GameVariables.SGPvPMessage(player, "Flight remaining " + (7-s) + " seconds.");
-                    Thread.sleep(1000);
+                for (int s = 0; s < flightDuration; s++) {
+                    Thread.sleep(1);
+                    cooldownProgress.increment();
+                    flightProgress.increment();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             player.setAllowFlight(false);
             try {
-                Thread.sleep(phantomCooldown);
+                for (int i = 0; i < phantomCooldown - flightDuration; i++) {
+                    Thread.sleep(1);
+                    cooldownProgress.increment();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

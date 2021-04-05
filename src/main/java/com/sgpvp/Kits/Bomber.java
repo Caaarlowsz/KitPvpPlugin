@@ -25,7 +25,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class Bomber extends Kit{
     public String kitName = "Bomber"; // Try to keep this the same as the class name <3
-    public int explosionStrength = 3;
+    public int explosionStrength = 2; // 3 is about a tnt blast
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
