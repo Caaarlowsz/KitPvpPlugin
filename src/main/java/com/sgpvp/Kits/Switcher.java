@@ -29,6 +29,7 @@ public class Switcher extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         ItemStack switcherBalls = new ItemStack(Material.SNOWBALL, 10);
         ItemMeta meta = switcherBalls.getItemMeta();
         meta.setDisplayName(switcherBallName);

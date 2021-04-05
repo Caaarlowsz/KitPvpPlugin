@@ -30,6 +30,7 @@ public class Groundhog extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         ItemStack slime_ball = new ItemStack(Material.SLIME_BALL, 2);
         ItemMeta slime_ball_data = slime_ball.getItemMeta();
         assert slime_ball_data != null;

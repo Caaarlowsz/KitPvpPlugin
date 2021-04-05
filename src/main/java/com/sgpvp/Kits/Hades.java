@@ -23,6 +23,7 @@ public class Hades extends Kit{
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
 
         if (sender instanceof Player) {
             Player player = (Player) sender;

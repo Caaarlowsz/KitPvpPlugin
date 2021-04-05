@@ -25,6 +25,7 @@ public class Grandpa extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
 
         ItemStack grandpaStick = new ItemStack(Material.STICK);
         ItemMeta stickData = grandpaStick.getItemMeta();

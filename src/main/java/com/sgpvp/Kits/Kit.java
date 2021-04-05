@@ -4,6 +4,7 @@ import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.Kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,6 +16,7 @@ import org.bukkit.potion.PotionEffect;
 public class Kit implements CommandExecutor, Listener {
     public String kitName = "Kit";
     private com.sgpvp.main main;
+    public static Material kitItem = Material.GRASS_BLOCK;
 
     public void Kit(com.sgpvp.main main){
         this.main = main;
@@ -47,5 +49,8 @@ public class Kit implements CommandExecutor, Listener {
     }
     public void passName(String name) {
         this.kitName = name;
+    }
+    public void passItem(Material item) {
+        this.kitItem = item;
     }
 }

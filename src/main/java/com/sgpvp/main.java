@@ -63,13 +63,6 @@ public final class main extends JavaPlugin implements Listener {
         // Spawn Mushrooms In World
         SpawnMushrooms.spawnMushrooms(GameVariables.world);
 
-        //CUSTOM EVENTS
-        pluginManager.registerEvents(new GUI(), this);
-        pluginManager.registerEvents(new SoupEvent(), this);
-        pluginManager.registerEvents(new CompassTracker(), this);
-        pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
-        pluginManager.registerEvents(this, this);
-
         // Global Events
         pluginManager.registerEvents(new PlayerInteractions(), this);
 
@@ -88,8 +81,8 @@ public final class main extends JavaPlugin implements Listener {
             put("Recycler", new Recycler());
             put("Beastmaster", new Beastmaster());
             put("Glider", new Glider());
-            //put("Groundhog", new Groundhog()); not working
-            //put("Cultivator", new Cultivator()); not working
+            //put("Groundhog", new Groundhog()); //not working
+            put("Cultivator", new Cultivator()); //not working
             put("Chemist", new Chemist());
             put("Sunwalker", new Sunwalker());
             put("Blacksmith", new Blacksmith());
@@ -113,6 +106,15 @@ public final class main extends JavaPlugin implements Listener {
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
         getCommand("game").setTabCompleter(new AdminCommands());
+
+        getServer().getPluginCommand("kit").setExecutor(new GUI());
+
+        //CUSTOM EVENTS
+        pluginManager.registerEvents(new GUI(), this);
+        pluginManager.registerEvents(new SoupEvent(), this);
+        pluginManager.registerEvents(new CompassTracker(), this);
+        pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
+        pluginManager.registerEvents(this, this);
 
         for(Player p : this.getServer().getOnlinePlayers()) {
             p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
@@ -144,7 +146,7 @@ public final class main extends JavaPlugin implements Listener {
             }
 
             e.getPlayer().teleport(GameVariables.world.getSpawnLocation());
-            GameVariables.SGPvPMessage(ChatColor.RED + "Welcome " + e.getPlayer().getName() + " To KIT PVP!");
+            GameVariables.SGPvPMessage(e.getPlayer(), ChatColor.RED + "Welcome " + e.getPlayer().getName() + " to SGPvP! Type /kits and select a kit.");
         }
 
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)

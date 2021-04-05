@@ -26,6 +26,7 @@ public class Cultivator extends Kit {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
         ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
         stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");

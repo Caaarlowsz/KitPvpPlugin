@@ -26,6 +26,7 @@ public class Stomper extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         return false;
     }
 

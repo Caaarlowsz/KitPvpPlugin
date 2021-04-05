@@ -24,6 +24,7 @@ public class Lumberjack extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
         int axeEfficiencyLevel = 10;
 
         Enchantment axeEnchant = Enchantment.DIG_SPEED;

@@ -40,9 +40,10 @@ public class Monk extends Kit{
         // Pass kit name and sender data to parent.
         super.passName(kitName);
         super.onCommand(sender, command, label, args);
+        if (!GameVariables.canChangeKit) return false;
 
         /* Kit functionality starts here */
-        if (sender instanceof Player && GameVariables.canChangeKit) {
+        if (sender instanceof Player) {
             Player player = (Player) sender;
             Inventory inv = player.getInventory();
             inv.addItem(GameItems.getMonkStaff());
@@ -74,7 +75,7 @@ public class Monk extends Kit{
         inventory.setItemInMainHand(other);
         inventory.setItem(index, main);
 
-
+        cooldowns.put(player, true);
         Thread staffCooldown = new Thread(new StaffCooldown(player));
         staffCooldown.start();
 
@@ -84,7 +85,6 @@ public class Monk extends Kit{
         Player player;
         StaffCooldown(Player p) { this.player = p; }
         public void run(){
-            cooldowns.put(player, true);
             ProgressBar cooldownProgress = new ProgressBar(player, "Cooldown: ", BarColor.RED, BarStyle.SOLID, staffCooldown);
             try {
                 for (int i = 0; i < staffCooldown; i++) {

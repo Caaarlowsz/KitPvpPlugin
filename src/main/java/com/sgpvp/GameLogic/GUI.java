@@ -1,63 +1,87 @@
 package com.sgpvp.GameLogic;
 
+import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.Kits.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class GUI implements Listener {
-    /*
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class GUI implements Listener, CommandExecutor {
     private Inventory startmenu_gui;
     private Inventory kits_gui;
+    private Kit[] kits = new Kit[27];
 
-    public void openNewGUI(Player p){
-        startmenu_gui = Bukkit.createInventory(null, InventoryType.HOPPER, ChatColor.BLACK + "MENU");
+    public void openNewGUI(Player p) {
+        startmenu_gui = Bukkit.createInventory(null, InventoryType.CHEST, ChatColor.BLACK + "MENU");
 
-        ItemStack kits_item = new ItemStack(Material.BLUE_CONCRETE, 1);
-        ItemMeta kits_meta = kits_item.getItemMeta();
-
-        // Item Data
-        kits_meta.setDisplayName(ChatColor.GREEN + "MENU");
-        kits_item.setItemMeta(kits_meta);
-
-        startmenu_gui.setItem(3, kits_item);
+        int i = 0;
+        for (String kitName : GameVariables.kits.keySet()) {
+            Kit kit = GameVariables.kits.get(kitName);
+            startmenu_gui.addItem(createGuiItem(kit.kitItem, kitName, "Select this kit!"));
+            kits[i] = kit;
+            i += 1;
+            if (i == 27) break;
+        }
 
         p.openInventory(startmenu_gui);
     }
 
-    public void KitWindowGUI(Player p){
-        kits_gui = Bukkit.createInventory(null, InventoryType.CHEST, ChatColor.AQUA + "KITS");
+    // Nice little method to create a gui item with a custom name, and description
+    protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {
+        final ItemStack item = new ItemStack(material, 1);
+        final ItemMeta meta = item.getItemMeta();
 
-        // Brawler Gui Data
-        ItemStack brawler = new ItemStack(Material.LINGERING_POTION, 1);
-        ItemMeta brawlerMeta = brawler.getItemMeta();
-        brawlerMeta.setDisplayName(ChatColor.RED + "BRAWLER");
-        brawler.setItemMeta(brawlerMeta);
-        kits_gui.setItem(0, brawler);
+        // Set the name of the item
+        meta.setDisplayName(name);
 
-        // Granpa Gui Data
-        ItemStack grandpa = new ItemStack(Material.STICK, 1);
-        ItemMeta grandpaStickMeta = brawler.getItemMeta();
-        brawlerMeta.setDisplayName(ChatColor.RED + "BRAWLER");
-        brawler.setItemMeta(brawlerMeta);
-        kits_gui.setItem(0, brawler);
+        // Set the lore of the item
+        meta.setLore(Arrays.asList(lore));
 
+        item.setItemMeta(meta);
 
-        p.openInventory(kits_gui);
+        return item;
     }
 
+    // Check for clicks on items
     @EventHandler
-    public void guiClickHandler(InventoryClickEvent e){
+    public void onInventoryClick(final InventoryClickEvent e) {
+        if (e.getInventory() != startmenu_gui) return;
 
+        e.setCancelled(true);
+
+        final ItemStack clickedItem = e.getCurrentItem();
+
+        // verify current item is not null
+        if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
+
+        final Player p = (Player) e.getWhoClicked();
+        kits[e.getRawSlot()].onCommand(p, null, null, null);
+
+    }
+
+    // Cancel dragging in our inventory
+    @EventHandler
+    public void onInventoryClick(final InventoryDragEvent e) {
+        if (e.getInventory() == startmenu_gui) {
+            e.setCancelled(true);
+        }
     }
 
     @EventHandler
@@ -66,13 +90,16 @@ public class GUI implements Listener {
         Action action = event.getAction();
         ItemStack item = event.getItem();
 
-        if ( action.equals( Action.RIGHT_CLICK_AIR ) || action.equals( Action.RIGHT_CLICK_BLOCK ) ) {
-            if ( item != null && item.getType() == Material.SLIME_BALL ) {
+        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)) {
+            if (item != null && item.getType() == Material.SLIME_BALL) {
                 openNewGUI(event.getPlayer());
             }
         }
     }
 
-     */
-
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        this.openNewGUI((Player) sender);
+        return true;
+    }
 }
