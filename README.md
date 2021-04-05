@@ -42,6 +42,14 @@ Server close
 | Viper       | ?                 |
 | Werewolf    | ?                 |
 
+#### Colors
+|          |            |              |           |
+| -------- | ---------- | ------------ | --------- |
+| Dark Red | Dark Green | Dark Blue    | White     |
+| Red      | Green      | Blue         | Gray      |
+| Gold     | Aqua       | Light Purple | Dark Gray |
+| Yellow   | Dark Aqua  | Dark Purple  | Black     |
+
 ### Game logic
 Soup PvP \
 Custom chat messages \
