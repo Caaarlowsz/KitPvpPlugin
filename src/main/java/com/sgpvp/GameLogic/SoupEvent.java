@@ -25,7 +25,7 @@ public class SoupEvent implements Listener {
         if (holdingSoup && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK || event
                 .getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK || event
                 .getAction() == Action.PHYSICAL) && player.getHealth() != 20.0D && player.getHealth() != 0.0D) {
-            player.setHealth((player.getHealth() + 7.0D > player.getMaxHealth() ) ? player.getMaxHealth(): (player.getHealth() + 7.0D));
+            player.setHealth((player.getHealth() + 7.0D > 20.0D ) ? 20.0D : (player.getHealth() + 7.0D));
             player.getInventory().getItemInMainHand().setType(Material.BOWL);
             if (PlayerData.playerHasKitActive(player, "recycler"))
                 Recycle(player);

@@ -88,7 +88,7 @@ public class KitDescriptions {
         put("Monk", Material.BLAZE_ROD);
         put("Recycler", Material.MUSHROOM_STEW);
         put("Snail", Material.NAUTILUS_SHELL);
-        put("Viper", Material.POTTED_OXEYE_DAISY);
+        put("Viper", Material.ENDER_EYE);
         put("Kangaroo", Material.RABBIT_FOOT);
         put("Switcher", Material.SNOWBALL);
         put("Chemist", Material.DRAGON_BREATH);
