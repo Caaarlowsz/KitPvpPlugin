@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.potion.PotionEffect;
 
-public class Kit implements CommandExecutor, Listener {
+public abstract class Kit implements CommandExecutor, Listener {
     public String kitName = "Kit";
     private com.sgpvp.main main;
     public static Material kitItem = Material.GRASS_BLOCK;
@@ -39,6 +39,7 @@ public class Kit implements CommandExecutor, Listener {
                 player.setDisplayName(GameVariables.getPrefix(player) + player.getName());
                 GameVariables.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
                 GameVariables.SGPvPMessage(player, GameVariables.kitDescriptionColor + KitDescriptions.description(kitName));
+                initializeKit(player);
             } else
                 GameVariables.SGPvPMessage(player, ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
         }
@@ -47,10 +48,6 @@ public class Kit implements CommandExecutor, Listener {
         }
         return false;
     }
-    public void passName(String name) {
-        this.kitName = name;
-    }
-    public void passItem(Material item) {
-        this.kitItem = item;
-    }
+    public void passName(String name) { this.kitName = name; }
+    abstract void initializeKit(Player player);
 }

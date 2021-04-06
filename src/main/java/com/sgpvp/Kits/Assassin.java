@@ -4,6 +4,7 @@ import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -35,16 +36,14 @@ public class Assassin extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Pass kit name and sender data to parent.
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
         /* Kit functionality starts here */
 
 
 
         /* Kit functionality ends here */
-
-        return false;
     }
     /* Kit event handlers start here */
     @EventHandler

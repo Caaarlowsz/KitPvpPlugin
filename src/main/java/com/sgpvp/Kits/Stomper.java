@@ -2,6 +2,7 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Damageable;
@@ -25,9 +26,14 @@ public class Stomper extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+
+
+
+        /* Kit functionality ends here */
     }
 
     HashMap<Player, Float> fallingDistance = new HashMap<Player, Float>();
@@ -47,7 +53,7 @@ public class Stomper extends Kit{
         if (!(e.getEntityType().equals(EntityType.PLAYER))) return;
         if (!PlayerData.playerHasKitActive((Player) e.getEntity(), kitName.toLowerCase())) return;
         if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
-            e.setCancelled(true);
+            e.setDamage(Math.min(4.0, e.getDamage()));
     }
 
     public void stomp(Player p, float dist) {

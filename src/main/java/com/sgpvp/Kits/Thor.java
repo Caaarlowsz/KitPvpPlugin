@@ -38,24 +38,19 @@ import java.util.HashMap;
 public class Thor extends Kit{
     public String kitName = "Thor"; // Try to keep this the same as the class name <3
     public int axeCooldown = 5 * 1000;
-    public int maxDistance = 20;
+    public int maxDistance = 5;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Pass kit name and sender data to parent.
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
         /* Kit functionality starts here */
-        if (sender instanceof Player && GameVariables.canChangeKit) {
-            Player player = (Player) sender;
-            Inventory inv = player.getInventory();
-            inv.addItem(GameItems.getThorAxe());
-        }
+        Inventory inv = player.getInventory();
+        inv.addItem(GameItems.getThorAxe());
         /* Kit functionality ends here */
-
-        return false;
     }
     /* Kit event handlers start here */
     HashMap<Player, Boolean> cooldowns = new HashMap<>();

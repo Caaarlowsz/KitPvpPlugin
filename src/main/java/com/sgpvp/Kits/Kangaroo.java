@@ -32,18 +32,16 @@ public class Kangaroo extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Pass kit name and sender data to parent.
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
         /* Kit functionality starts here */
-        if (sender instanceof Player && GameVariables.canChangeKit) {
-            Player player = (Player) sender;
-            Inventory inv = player.getInventory();
-            inv.addItem(GameItems.getKangarooFoot());
-        }
-        /* Kit functionality ends here */
 
-        return false;
+
+        Inventory inv = player.getInventory();
+        inv.addItem(GameItems.getKangarooFoot());
+
+        /* Kit functionality ends here */
     }
     /* Kit event handlers start here */
     @EventHandler

@@ -2,6 +2,7 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,22 +17,17 @@ public class Brawler extends Kit {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
         int extraHealthBoost = 0;
 
         PotionEffect brawlerExtraHealth = new PotionEffect(PotionEffectType.HEALTH_BOOST, 10000000, extraHealthBoost);
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-
-            if (GameVariables.canChangeKit) {
-                brawlerExtraHealth.apply(player);
-                player.setHealth(player.getHealth() + 2);
-
-            }
-        }
-        return false;
+        brawlerExtraHealth.apply(player);
+        player.setHealth(player.getHealth() + 2);
+        /* Kit functionality ends here */
     }
 
     @EventHandler

@@ -22,29 +22,27 @@ public class Fireman extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
 
-            if (GameVariables.canChangeKit) {
-                Inventory inv = player.getInventory();
+        Inventory inv = player.getInventory();
 
-                //Fireman Item Stuff
-                ItemStack firemanWater = new ItemStack(Material.WATER_BUCKET);
-                ItemMeta firemanWater_Data = firemanWater.getItemMeta();
-                firemanWater.setItemMeta(firemanWater_Data);
+        //Fireman Item Stuff
+        ItemStack firemanWater = new ItemStack(Material.WATER_BUCKET);
+        ItemMeta firemanWater_Data = firemanWater.getItemMeta();
+        firemanWater.setItemMeta(firemanWater_Data);
 
-                // Potion Effects
-                int lengthOfResistance = 1000000;
-                int strengthOfResistance = 0;
-                PotionEffect firemanResistance = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, lengthOfResistance, strengthOfResistance);
+        // Potion Effects
+        int lengthOfResistance = 1000000;
+        int strengthOfResistance = 0;
+        PotionEffect firemanResistance = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, lengthOfResistance, strengthOfResistance);
 
-                player.getInventory().addItem(firemanWater);
-                firemanResistance.apply(player);
+        player.getInventory().addItem(firemanWater);
+        firemanResistance.apply(player);
 
-            }
-        }
-        return false;
+
+        /* Kit functionality ends here */
     }
 }

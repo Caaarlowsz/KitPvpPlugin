@@ -39,18 +39,13 @@ public class Monk extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Pass kit name and sender data to parent.
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
         /* Kit functionality starts here */
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            Inventory inv = player.getInventory();
-            inv.addItem(GameItems.getMonkStaff());
-        }
+        Inventory inv = player.getInventory();
+        inv.addItem(GameItems.getMonkStaff());
         /* Kit functionality ends here */
-
-        return false;
     }
     /* Kit event handlers start here */
     // Used in some kits to add additional functionality

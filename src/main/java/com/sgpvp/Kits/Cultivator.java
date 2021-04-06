@@ -25,25 +25,21 @@ public class Cultivator extends Kit {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+
+        ItemStack stone_hoe = new ItemStack(Material.NETHERITE_SWORD, 1);
         ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
         stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
         stone_hoe_data.setLore(Arrays.asList("Instantly grows any crop or sapling"));
         stone_hoe.setItemMeta(stone_hoe_data);
+        Inventory inv = player.getInventory();
+        inv.addItem(stone_hoe);
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
 
-            if (GameVariables.canChangeKit) {
-
-                Inventory inv = player.getInventory();
-                inv.addItem(stone_hoe);
-
-            }
-        }
-        return false;
+        /* Kit functionality ends here */
     }
 
 

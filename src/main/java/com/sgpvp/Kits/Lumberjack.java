@@ -13,41 +13,26 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Lumberjack extends Kit{
     public String kitName = "Lumberjack";
-    private com.sgpvp.main main;
-
-    public void Lumberjack(com.sgpvp.main main){
-        this.main = main;
-    }
+    public int axeEfficiencyLevel = 10;
 
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        int axeEfficiencyLevel = 10;
-
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
         Enchantment axeEnchant = Enchantment.DIG_SPEED;
         Material lumberjackAxe = Material.WOODEN_AXE;
-
         ItemStack axe = new ItemStack(lumberjackAxe, 1);
         ItemMeta axeMeta = axe.getItemMeta();
         axeMeta.setDisplayName(ChatColor.DARK_GREEN + "Lumberjack Axe");
         axeMeta.addEnchant(axeEnchant, axeEfficiencyLevel, true);
         axeMeta.setUnbreakable(true);
         axe.setItemMeta(axeMeta);
-
-        if(sender instanceof Player){
-            Player player = (Player) sender;
-            if(GameVariables.canChangeKit){
-
-
-                // Give Axe To Player
-                Inventory inv = player.getInventory();
-                inv.addItem(axe);
-            }
-
-        }
-        return false;
+        Inventory inv = player.getInventory();
+        inv.addItem(axe);
+        /* Kit functionality ends here */
     }
 }

@@ -4,6 +4,7 @@ import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -24,6 +25,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
  */
 
 public class Bomber extends Kit{
+    public Material kitItem = Material.TNT;
     public String kitName = "Bomber"; // Try to keep this the same as the class name <3
     public int explosionStrength = 2; // 3 is about a tnt blast
 
@@ -31,11 +33,14 @@ public class Bomber extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Pass kit name and sender data to parent.
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
         /* Kit functionality starts here */
+
+
+
         /* Kit functionality ends here */
-        return false;
     }
     /* Kit event handlers start here */
     @EventHandler(priority = EventPriority.HIGHEST)
