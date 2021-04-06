@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class GameVariables {
 
     // BORDER SIZE - PLAY AREA
-    public static final int WORLDSIZE = 2000;
+    public static final int WORLDSIZE = 700;
     public static Location WorldSpawn;
 
     public static HashMap<String, Object> GameItems = new HashMap<>();
