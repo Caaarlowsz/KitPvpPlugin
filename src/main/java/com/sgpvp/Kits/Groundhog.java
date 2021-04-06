@@ -29,26 +29,14 @@ public class Groundhog extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        ItemStack slime_ball = new ItemStack(Material.SLIME_BALL, 2);
-        ItemMeta slime_ball_data = slime_ball.getItemMeta();
-        assert slime_ball_data != null;
-        slime_ball_data.setDisplayName(ChatColor.BOLD + "The Groundhog's Grounding Gifts");
-        slime_ball_data.setLore(Collections.singletonList("Teleports 20 blocks below current level into a box"));
-        slime_ball.setItemMeta(slime_ball_data);
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
 
-            if (GameVariables.canChangeKit) {
 
-                Inventory inv = player.getInventory();
-
-                inv.addItem(slime_ball);
-            }
-        }
-        return false;
+        /* Kit functionality ends here */
     }
 
     @EventHandler

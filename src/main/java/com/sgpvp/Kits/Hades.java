@@ -1,6 +1,7 @@
 package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Mob;
@@ -22,33 +23,28 @@ public class Hades extends Kit{
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        /*
+        //Hades' Ingot
+        Material hadesIngot = Material.IRON_INGOT;
+        ItemStack hadesIngot = new ItemStack(iron_ingot);
+        ItemMeta iron_ingot_meta = iron_ingot_meta.getItemMeta();
 
-            if (GameVariables.canChangeKit) {
+        //Ingot Meta Data
+        iron_ingot_meta.setDisplayName(ChatColor.RED + "Hades' Reckoning");
+        iron_ingot_meta.setLore(Arrays.asList(ChatColor.RED + "This ingot is used to control the minds and hearts of the world.\n"));
+        iron_ingot.setItemMeta(iron_ingot_meta);
+        */
 
-                /*
-                //Hades' Ingot
-                Material hadesIngot = Material.IRON_INGOT;
-                ItemStack hadesIngot = new ItemStack(iron_ingot);
-                ItemMeta iron_ingot_meta = iron_ingot_meta.getItemMeta();
+        //Inventory
+        Inventory inv = player.getInventory();
+        //inv.addItem(iron_ingot);
 
-                //Ingot Meta Data
-                iron_ingot_meta.setDisplayName(ChatColor.RED + "Hades' Reckoning");
-                iron_ingot_meta.setLore(Arrays.asList(ChatColor.RED + "This ingot is used to control the minds and hearts of the world.\n"));
-                iron_ingot.setItemMeta(iron_ingot_meta);
-                */
-
-                //Inventory
-                Inventory inv = player.getInventory();
-                //inv.addItem(iron_ingot);
-            }
-        }
-
-        return false;
+        /* Kit functionality ends here */
     }
 
     @EventHandler(ignoreCancelled = true)

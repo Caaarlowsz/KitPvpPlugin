@@ -28,15 +28,20 @@ public class Switcher extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+
         ItemStack switcherBalls = new ItemStack(Material.SNOWBALL, 10);
         ItemMeta meta = switcherBalls.getItemMeta();
         meta.setDisplayName(switcherBallName);
         switcherBalls.setItemMeta(meta);
 
-        ((Player)sender).getInventory().addItem(switcherBalls);
-        return false;
+        player.getInventory().addItem(switcherBalls);
+
+
+        /* Kit functionality ends here */
     }
 
     List<UUID> switcherBalls = new ArrayList<>();

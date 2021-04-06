@@ -1,6 +1,7 @@
 package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,13 +23,9 @@ public class KitTemplate extends Kit{
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // Pass kit name and sender data to parent.
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        if (!(sender instanceof Player)) return false;
-        initializeKit((Player) sender);
-        return true;
+        return super.onCommand(sender, command, label, args);
     }
-    private void initializeKit(Player player) {
+    void initializeKit(Player player) {
         /* Kit functionality starts here */
 
 

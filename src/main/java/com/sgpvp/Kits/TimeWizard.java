@@ -45,17 +45,13 @@ public class TimeWizard extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            if (GameVariables.canChangeKit) {
-                Inventory inv = player.getInventory();
-                inv.addItem(GameItems.getTimeClock());
-            }
-        }
-        return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+        Inventory inv = player.getInventory();
+        inv.addItem(GameItems.getTimeClock());
+        /* Kit functionality ends here */
     }
     HashMap<Player, Boolean> cooldowns = new HashMap<>();
     HashMap<Entity, Boolean> frozen = new HashMap<>();

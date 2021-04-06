@@ -1,6 +1,7 @@
 package com.sgpvp.Kits.KitConfig;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 
 import java.util.HashMap;
 
@@ -69,6 +70,34 @@ public class KitDescriptions {
             White: RESERVED FOR DELIMITERS []
      */
 
+    private static final HashMap<String, Material> kitItem = new HashMap<String, Material>(){{
+        put("Bomber", Material.TNT);
+        put("Stomper", Material.NETHERITE_BOOTS);
+        put("Fireman", Material.WATER_BUCKET);
+        put("Milkman", Material.MILK_BUCKET);
+        put("Pyromancer", Material.FLINT_AND_STEEL);
+        put("Grandpa", Material.STICK);
+        put("Chameleon", Material.LEATHER_HORSE_ARMOR);
+        put("Brawler", Material.STONE_SWORD);
+        put("Lumberjack", Material.OAK_LOG);
+        put("Turtle", Material.TURTLE_HELMET);
+        put("Glider", Material.ELYTRA);
+        put("Phantom", Material.FEATHER);
+        put("Assassin", Material.NETHERITE_SWORD);
+        put("Sunwalker", Material.MAGMA_CREAM);
+        put("Monk", Material.BLAZE_ROD);
+        put("Recycler", Material.MUSHROOM_STEW);
+        put("Snail", Material.NAUTILUS_SHELL);
+        put("Viper", Material.POTTED_OXEYE_DAISY);
+        put("Kangaroo", Material.RABBIT_FOOT);
+        put("Switcher", Material.SNOWBALL);
+        put("Chemist", Material.DRAGON_BREATH);
+        put("Blacksmith", Material.ANVIL);
+        put("TimeWizard", Material.CLOCK);
+        put("Thor", Material.WOODEN_AXE);
+        put("Vampire", Material.FERMENTED_SPIDER_EYE);
+        put("Werewolf", Material.BAT_SPAWN_EGG);
+    }};
     // Method to return kit color
     public static ChatColor color(String kitname) {
         if (kitcolor.containsKey(kitname)) return kitcolor.get(kitname);
@@ -81,6 +110,12 @@ public class KitDescriptions {
         if (descrptions.containsKey(kitname)) return descrptions.get(kitname);
         if (descrptions.containsKey(getKitName(kitname))) return descrptions.get(getKitName(kitname));
         return "Description not available, sorry!";
+    }
+    // Method to return kit description
+    public static Material material(String kitname) {
+        if (kitItem.containsKey(kitname)) return kitItem.get(kitname);
+        if (kitItem.containsKey(getKitName(kitname))) return kitItem.get(getKitName(kitname));
+        return Material.GRASS_BLOCK;
     }
 
     // Method for converting lowercase kitname to uppercase kitname

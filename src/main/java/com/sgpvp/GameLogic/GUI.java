@@ -2,6 +2,7 @@ package com.sgpvp.GameLogic;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.Kits.*;
+import com.sgpvp.Kits.KitConfig.KitDescriptions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,7 +35,7 @@ public class GUI implements Listener, CommandExecutor {
         int i = 0;
         for (String kitName : GameVariables.kits.keySet()) {
             Kit kit = GameVariables.kits.get(kitName);
-            startmenu_gui.addItem(createGuiItem(kit.kitItem, kitName, "Select this kit!"));
+            startmenu_gui.addItem(createGuiItem(KitDescriptions.material(kitName), kitName, "Select this kit!"));
             kits[i] = kit;
             i += 1;
             if (i == 27) break;

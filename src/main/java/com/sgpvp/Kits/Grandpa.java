@@ -24,8 +24,11 @@ public class Grandpa extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+
 
         ItemStack grandpaStick = new ItemStack(Material.STICK);
         ItemMeta stickData = grandpaStick.getItemMeta();
@@ -36,15 +39,9 @@ public class Grandpa extends Kit{
 
         grandpaStick.setItemMeta(stickData);
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        Inventory inv = player.getInventory();
+        inv.addItem(grandpaStick);
 
-            if (GameVariables.canChangeKit) {
-                Inventory inv = player.getInventory();
-                inv.addItem(grandpaStick);
-
-            }
-        }
-        return false;
+        /* Kit functionality ends here */
     }
 }

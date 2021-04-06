@@ -23,24 +23,19 @@ public class Blacksmith extends Kit implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+        ItemStack anvil = new ItemStack(Material.DAMAGED_ANVIL);
+        ItemMeta anvil_meta = anvil.getItemMeta();
 
-            if (GameVariables.canChangeKit) {
+        anvil_meta.setDisplayName(ChatColor.RED + "The Blacksmiths Anvil");
+        anvil_meta.setLore(Arrays.asList("This can upgrade any item to its next tier for free", "Right click the anvil with the item you want to be upgraded","One time use!"));
+        anvil.setItemMeta(anvil_meta);
 
-                ItemStack anvil = new ItemStack(Material.DAMAGED_ANVIL);
-                ItemMeta anvil_meta = anvil.getItemMeta();
-
-                anvil_meta.setDisplayName(ChatColor.RED + "The Blacksmiths Anvil");
-                anvil_meta.setLore(Arrays.asList("This can upgrade any item to its next tier for free", "Right click the anvil with the item you want to be upgraded","One time use!"));
-                anvil.setItemMeta(anvil_meta);
-
-                player.getInventory().addItem(anvil);
-            }
-        }
-        return false;
+        player.getInventory().addItem(anvil);
+        /* Kit functionality ends here */
     }
 
     @EventHandler

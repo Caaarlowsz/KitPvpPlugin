@@ -21,27 +21,15 @@ public class Glider extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        if(sender instanceof Player){
-            Player player = (Player) sender;
-
-            if(GameVariables.canChangeKit){
-                Inventory inv = player.getInventory();
-
-                //Give Elytra
-                ItemStack glider = new ItemStack(Material.ELYTRA);
-                ItemMeta glider_Data = glider.getItemMeta();
-                glider_Data.setDisplayName(ChatColor.BLACK + "Glider");
-                glider.setItemMeta(glider_Data);
-                //glider.setDisplayName(ChatColor.BLACK + "Glider");
-
-                //glider.addEnchantment(enchantment.unbreaking, 10, true);
-              
-                player.getInventory().addItem(glider);
-
-            }
-        }
-        return false;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+        ItemStack glider = new ItemStack(Material.ELYTRA);
+        ItemMeta glider_Data = glider.getItemMeta();
+        glider_Data.setDisplayName(ChatColor.BLACK + "Glider");
+        glider.setItemMeta(glider_Data);
+        player.getInventory().addItem(glider);
+        /* Kit functionality ends here */
     }
 }

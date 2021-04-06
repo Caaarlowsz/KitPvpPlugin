@@ -19,22 +19,18 @@ public class Pyromancer extends Kit{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
 
-            if(GameVariables.canChangeKit){
-                // Class Items
-                ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
-                ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);
+        ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
+        ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);
 
-                Inventory inv = player.getInventory();
-                inv.addItem(lavabucket, flintandsteel);
+        Inventory inv = player.getInventory();
+        inv.addItem(lavabucket, flintandsteel);
 
-            }
-        }
-        return false;
+        /* Kit functionality ends here */
     }
 }
 

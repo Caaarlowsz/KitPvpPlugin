@@ -19,20 +19,17 @@ public class Beastmaster extends Kit {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         super.passName(kitName);
-        super.onCommand(sender, command, label, args);
-        if (!GameVariables.canChangeKit) return false;
-        if(sender instanceof Player){
-            Player player = (Player) sender;
-            if (GameVariables.canChangeKit) {
-                //Beastmaster Items
-                ItemStack bones = new ItemStack(Material.BONE, 4);
-                ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
+        return super.onCommand(sender, command, label, args);
+    }
+    void initializeKit(Player player) {
+        /* Kit functionality starts here */
+        //Beastmaster Items
+        ItemStack bones = new ItemStack(Material.BONE, 4);
+        ItemStack wolfSpawnEggs = new ItemStack(Material.WOLF_SPAWN_EGG, 2);
 
-                Inventory inv = player.getInventory();
-                inv.addItem(bones, wolfSpawnEggs);
-            }
-        }
-        return false;
+        Inventory inv = player.getInventory();
+        inv.addItem(bones, wolfSpawnEggs);
+        /* Kit functionality ends here */
     }
 
     @EventHandler
