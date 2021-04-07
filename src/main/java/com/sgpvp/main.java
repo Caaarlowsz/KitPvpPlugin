@@ -128,7 +128,6 @@ public final class main extends JavaPlugin implements Listener {
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
         e.getPlayer().setDisplayName(GameVariables.getPrefix(e.getPlayer()) + e.getPlayer().getName());
-        e.getPlayer().getInventory().addItem(new ItemStack(Material.SLIME_BALL, 1));
 
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
         if(!GameVariables.gameState.equals(GameVariables.gamestate_lobby)){
@@ -141,6 +140,7 @@ public final class main extends JavaPlugin implements Listener {
 
             e.getPlayer().setGameMode(GameMode.ADVENTURE);
             e.getPlayer().getInventory().clear();
+            e.getPlayer().getInventory().addItem(new ItemStack(Material.SLIME_BALL, 1));
 
             for(PotionEffect effect : e.getPlayer().getActivePotionEffects()){
                 e.getPlayer().removePotionEffect(effect.getType());

