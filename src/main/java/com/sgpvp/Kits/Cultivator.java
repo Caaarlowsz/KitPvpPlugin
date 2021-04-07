@@ -30,7 +30,7 @@ public class Cultivator extends Kit {
     void initializeKit(Player player) {
         /* Kit functionality starts here */
 
-        ItemStack stone_hoe = new ItemStack(Material.NETHERITE_SWORD, 1);
+        ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
         ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
         stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
         stone_hoe_data.setLore(Arrays.asList("Instantly grows any crop or sapling"));
