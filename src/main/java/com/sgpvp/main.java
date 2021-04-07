@@ -123,14 +123,11 @@ public final class main extends JavaPlugin implements Listener {
 
     // WHEN PLUGIN IS TURNED OFF (SERVER SHUTDOWN)
     @Override
-    public void onDisable() {
-
-    }
+    public void onDisable() { }
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
         e.getPlayer().setDisplayName(GameVariables.getPrefix(e.getPlayer()) + e.getPlayer().getName());
-        e.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.SLIME_BALL, 1));
 
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
         if(!GameVariables.gameState.equals(GameVariables.gamestate_lobby)){
@@ -143,6 +140,7 @@ public final class main extends JavaPlugin implements Listener {
 
             e.getPlayer().setGameMode(GameMode.ADVENTURE);
             e.getPlayer().getInventory().clear();
+            e.getPlayer().getInventory().addItem(new ItemStack(Material.SLIME_BALL, 1));
 
             for(PotionEffect effect : e.getPlayer().getActivePotionEffects()){
                 e.getPlayer().removePotionEffect(effect.getType());
@@ -177,7 +175,6 @@ public final class main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerLeave(PlayerQuitEvent e){
-
         if(e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)){
             GameVariables.currentAmountOfPlayers--;
         }
@@ -198,7 +195,6 @@ public final class main extends JavaPlugin implements Listener {
                 GameVariables.SGPvPMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
             }
 
-
             GameVariables.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
             BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
         }
@@ -216,34 +212,12 @@ public final class main extends JavaPlugin implements Listener {
     }
 
     public void WORLD_DATA(){
-        //WorldCreator wc = new WorldCreator("KIT_PVP_WORLD2");
-        //wc.type(WorldType.NORMAL);
-        //wc.generateStructures(false);
         GameVariables.world = Bukkit.getWorld("KIT_PVP_WORLD2"); //wc.createWorld();
     }
 
     //Deletes Old World then creates new world
     public void CreateNewWorld(){
-        // DELETE PREVIOUS WORLD.
         WORLD_DATA();
 
-        /*
-        String filepath = "KIT_PVP_WORLD2";
-        File worldDir = new File(filepath);
-        boolean result = deleteDirectory(worldDir);
-
-        // AFTER DELETE - CREATE NEW WORLD.
-        if (result){
-            WORLD_DATA();
-            System.out.println(ChatColor.BLUE + "New World Generated");
-        }
-
-        // IF WORLD GETS SOME HOW DELETED BEFORE HAND, THIS WILL CREATE A NEW WORLD.
-        else {
-            WORLD_DATA();
-            System.out.println(ChatColor.RED + "Didnt Find Previous World To Delete, Making New World...");
-        }
-
-         */
     }
 }

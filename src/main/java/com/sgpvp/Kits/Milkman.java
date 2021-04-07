@@ -41,7 +41,7 @@ public class Milkman extends Kit{
         // Milkman Effects
         PotionEffect speedBuff = new PotionEffect(PotionEffectType.SPEED, timer_effects, 0);
         PotionEffect regenBuff = new PotionEffect(PotionEffectType.REGENERATION, timer_effects, 0);
-        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 400, 0);
+        PotionEffect fireResistBuff = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 200, 0);
 
         // Currently Effects All Milk Buckets
         if (p.getItem().getType().equals(Material.MILK_BUCKET) && PlayerData.playerHasKitActive(p.getPlayer(), "milkman")) {

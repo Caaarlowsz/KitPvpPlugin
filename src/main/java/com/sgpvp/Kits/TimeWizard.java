@@ -59,6 +59,7 @@ public class TimeWizard extends Kit{
     public void ClockActivated(PlayerInteractEvent e){
         Player player = e.getPlayer();
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
+        if(!GameVariables.gameState.equals(GameVariables.gamestate_graceperiod)) return;
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.CLOCK)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) return;
         GameVariables.SGPvPMessage(player, "&5Time freeze activated!");
