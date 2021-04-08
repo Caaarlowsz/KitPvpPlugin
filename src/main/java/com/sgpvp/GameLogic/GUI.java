@@ -25,11 +25,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class GUI implements Listener, CommandExecutor {
-    private Inventory startmenu_gui;
+    private HashMap<Player, Inventory> inventories = new HashMap<>();
     private Inventory kits_gui;
     private Kit[] kits = new Kit[27];
 
     public void openNewGUI(Player p) {
+        Inventory startmenu_gui;
         startmenu_gui = Bukkit.createInventory(null, InventoryType.CHEST, ChatColor.BLACK + "MENU");
 
         int i = 0;
@@ -42,10 +43,11 @@ public class GUI implements Listener, CommandExecutor {
         }
 
         p.openInventory(startmenu_gui);
+        inventories.put(p, startmenu_gui);
     }
 
     // Nice little method to create a gui item with a custom name, and description
-    protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {
+    protected ItemStack createGuiItem(Material material, String name, String... lore) {
         final ItemStack item = new ItemStack(material, 1);
         final ItemMeta meta = item.getItemMeta();
 
@@ -62,8 +64,9 @@ public class GUI implements Listener, CommandExecutor {
 
     // Check for clicks on items
     @EventHandler
-    public void onInventoryClick(final InventoryClickEvent e) {
-        if (e.getInventory() != startmenu_gui) return;
+    public void onInventoryClick(InventoryClickEvent e) {
+        Player player = (Player) e.getWhoClicked();
+        if (e.getInventory() != inventories.get(player)) return;
 
         e.setCancelled(true);
 
@@ -79,8 +82,9 @@ public class GUI implements Listener, CommandExecutor {
 
     // Cancel dragging in our inventory
     @EventHandler
-    public void onInventoryClick(final InventoryDragEvent e) {
-        if (e.getInventory() == startmenu_gui) {
+    public void onInventoryClick(InventoryDragEvent e) {
+        Player player = (Player) e.getWhoClicked();
+        if (e.getInventory() == inventories.get(player)) {
             e.setCancelled(true);
         }
     }

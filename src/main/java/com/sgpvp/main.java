@@ -68,7 +68,7 @@ public final class main extends JavaPlugin implements Listener {
 
         //COMMANDS & KITS
         GameVariables.kits = new HashMap<String,Kit>(){{
-            put("TimeWizard", new TimeWizard());
+            put("TimeWizard", new TimeWizard());    // Sometime doesn't work
             put("Werewolf", new Werewolf());
             put("Brawler", new Brawler());
             put("Chameleon", new Chameleon());
@@ -93,7 +93,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Phantom", new Phantom());
             put("Kangaroo", new Kangaroo());
             put("Bomber", new Bomber());
-            put("Thor", new Thor());
+            put("Thor", new Thor());    // Sometime doesn't work
             put("Vampire", new Vampire());
             put("Assassin", new Assassin());
             put("Monk", new Monk());
