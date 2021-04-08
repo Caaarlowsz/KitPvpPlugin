@@ -40,7 +40,7 @@ public class Snail extends Kit implements Listener {
         if (!(event.getDamager() instanceof Player)) return; // Not a player hitting
         Player playerWKit = (Player) event.getEntity();
         Player playerBeingDamaged = (Player) event.getDamager();
-        PotionEffect snailSlow = new PotionEffect(PotionEffectType.SLOW, 80, 0);
+        PotionEffect snailSlow = new PotionEffect(PotionEffectType.SLOW, 90, 0);
 
         if(event.getEntity().getType().equals(EntityType.PLAYER)){
             if(PlayerData.playerHasKitActive(playerBeingDamaged, "snail")){

@@ -26,10 +26,10 @@ import java.util.HashMap;
 public final class main extends JavaPlugin implements Listener {
 
     // Timers For Events - [TIMERS START WHEN MINIMUM AMOUNT OF PLAYERS HAVE BEEN FOUND]
-    public long GracePeriodDelayTimer = 2 * 1000; // Time Before Grace Period Ends (2min)
-    public long GameStartDelayTimer = 1000; // Time Before Game Starts (1 min)
-    public long ChestCircleDelayTimer = 13 * 1000; // Time Before Chest Circle Spawns (13 min)
-    public long DeathmatchDelayTimer = 18 * 1000; // Time Before Deathmatch Starts (18 min)
+    public long GracePeriodDelayTimer = 8 * 1000; // Time Before Grace Period Ends (2min)
+    public long GameStartDelayTimer = 6 * 1000; // Time Before Game Starts
+    public long ChestCircleDelayTimer = 20 * 1000; // Time Before Chest Circle Spawns
+    public long DeathmatchDelayTimer = 32 * 1000; // Time Before Deathmatch Starts
 
     // ON PLUGIN ENABLED
     @Override
@@ -68,7 +68,7 @@ public final class main extends JavaPlugin implements Listener {
 
         //COMMANDS & KITS
         GameVariables.kits = new HashMap<String,Kit>(){{
-            put("TimeWizard", new TimeWizard());    // Sometime doesn't work
+            put("TimeWizard", new TimeWizard());
             put("Werewolf", new Werewolf());
             put("Brawler", new Brawler());
             put("Chameleon", new Chameleon());
@@ -93,7 +93,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Phantom", new Phantom());
             put("Kangaroo", new Kangaroo());
             put("Bomber", new Bomber());
-            put("Thor", new Thor());    // Sometime doesn't work
+            //put("Thor", new Thor());
             put("Vampire", new Vampire());
             put("Assassin", new Assassin());
             put("Monk", new Monk());

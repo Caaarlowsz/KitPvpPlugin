@@ -70,12 +70,12 @@ public class GUI implements Listener, CommandExecutor {
 
         e.setCancelled(true);
 
-        final ItemStack clickedItem = e.getCurrentItem();
+        ItemStack clickedItem = e.getCurrentItem();
 
         // verify current item is not null
         if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
 
-        final Player p = (Player) e.getWhoClicked();
+        Player p = (Player) e.getWhoClicked();
         kits[e.getRawSlot()].onCommand(p, null, null, null);
 
     }
