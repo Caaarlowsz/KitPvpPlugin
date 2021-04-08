@@ -100,7 +100,9 @@ public class GUI implements Listener, CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        this.openNewGUI((Player) sender);
+        //this.openNewGUI((Player) sender);
+
+        ((Player)sender).getInventory().addItem(new ItemStack(Material.SLIME_BALL, 1));
         return true;
     }
 }

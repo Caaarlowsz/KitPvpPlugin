@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 public abstract class Kit implements CommandExecutor, Listener {
@@ -35,16 +36,17 @@ public abstract class Kit implements CommandExecutor, Listener {
             if (GameVariables.canChangeKit) {
                 Inventory inv = player.getInventory();
                 inv.clear();
+                inv.addItem(new ItemStack(Material.SLIME_BALL, 1));
                 PlayerData.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
                 player.setDisplayName(GameVariables.getPrefix(player) + player.getName());
                 GameVariables.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
                 GameVariables.SGPvPMessage(player, GameVariables.kitDescriptionColor + KitDescriptions.description(kitName));
                 initializeKit(player);
             } else
-                GameVariables.SGPvPMessage(player, ChatColor.RED + "Sorry You Cannot Change Kits During The Match");
+                GameVariables.SGPvPMessage(player, ChatColor.RED + "Sorry you can not change kits during the match");
         }
         else {
-            main.getLogger().info("You Have To Be Player To Get Kit");
+            main.getLogger().info("You have to be player to get kit");
         }
         return false;
     }
