@@ -49,8 +49,6 @@ public class Blacksmith extends Kit implements Listener {
         float anvil_Sound_Pitch = 2f;
         float anvil_Sound_Volume = 15f;
 
-
-
         if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
             if(event.getClickedBlock().getType().equals(damaged_anvil)){
                 if(PlayerData.playerHasKitActive(event.getPlayer(), "blacksmith")){

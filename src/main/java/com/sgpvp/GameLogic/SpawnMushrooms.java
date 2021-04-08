@@ -4,10 +4,12 @@ import com.sgpvp.GameData.GameVariables;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkLoadEvent;
 
 import java.util.Random;
 
-public class SpawnMushrooms {
+public class SpawnMushrooms implements Listener {
     static Random rng = new Random();
 
     public static void spawnMushrooms(World w) {
@@ -33,4 +35,12 @@ public class SpawnMushrooms {
             }
         }
     }
+    /*
+    @Override
+    public void onChunkLoad(ChunkLoadEvent e) {
+        if (!e.isNewChunk()) return;
+        int chunkX = e.getChunk().getX();
+        int chunkZ = e.getChunk().getZ();
+        e.getChunk().
+    }*/
 }
