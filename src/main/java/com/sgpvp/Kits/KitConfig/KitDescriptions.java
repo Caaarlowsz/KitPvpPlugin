@@ -20,12 +20,18 @@ public class KitDescriptions {
         put("Recycler", "After 3 uses of soup, you get a free soup! :)");
         put("Beastmaster", "The beast master is a very lethal kit and for people that can control wolves wisely\n - Your bones instantly tame wolves\n - The beastmaster starts with 2 Wolf Eggs and 3 Bones ");
         put("Glider", "Glide around the map in an elytra. ");
-        put("Groundhog", "");
-        put("Hades", "");
-        put("Demonking", "");
-        put("Blacksmith", "Upgrade your items to the next tier for free! \n You have an anvil that can upgrade an any item \n One time use");
+        put("Blacksmith", "Upgrade your items to the next tier for free! \n You have an anvil that can upgrade an any item \n Axes or Swords cannot be upgraded to diamond tier \n One time use");
         put("Viper", "The viper kit is an aggressive kit \n The viper kit has a 20% chance to apply poison 1 on every hit");
         put("Vampire", "Attacks heal you for half a heart \n Player kills fully heal you");
+        put("Snail", "You have a chance of giving a player slowness on every hit");
+        put("Monk", "You start with a monk staff that upon hitting an enemy puts the item they are holding back into there inventory.");
+        put("Assassin", "Holding shift charges an attack, after you are charged hitting a player will do massive amounts of damage.");
+        put("Kangaroo", "Recieve a 'Kangaroo Foot' and upon right clicking the item, you are able to jump really high \n a cooldown takes place after it is used");
+        put("Bomber", "Killing anything will create an explosion on the thing you killed after death \n You are completely resistant to explosions");
+        put("Sunwalker", "Gain a speed buff during the day");
+        put("Phantom", "Start with a feather that allows you to fly for 7 seconds when right clicking it \n It starts a cooldown after use");
+        put("Stomper", "Instead of taking fall damage, you deal your fall damage to the players around the spot where you hit the ground");
+        put("Switcher", "Receive 10 snowballs, upon hitting an enemy with one you swap positions with them");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);

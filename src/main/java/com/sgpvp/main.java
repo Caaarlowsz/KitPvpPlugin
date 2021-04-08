@@ -147,7 +147,7 @@ public final class main extends JavaPlugin implements Listener {
             }
 
             e.getPlayer().teleport(GameVariables.world.getSpawnLocation());
-            GameVariables.SGPvPMessage(e.getPlayer(), ChatColor.RED + "Welcome " + e.getPlayer().getName() + " to SGPvP! Type /kits and select a kit.");
+            GameVariables.SGPvPMessage(e.getPlayer(), ChatColor.RED + "Welcome " + e.getPlayer().getName() + " to SGPvP!");
         }
 
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
@@ -170,7 +170,6 @@ public final class main extends JavaPlugin implements Listener {
         //player_data.put(e.getPlayer().getName(), null);
 
         // Add Player To Global Hash Database
-
     }
 
     @EventHandler
