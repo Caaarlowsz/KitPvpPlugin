@@ -19,11 +19,10 @@ public class None extends Kit{
     void initializeKit(Player player) {
         /* Kit functionality starts here */
 
-
-
         /* Kit functionality ends here */
     }
     /* Kit event handlers start here */
+
     // Used in some kits to add additional functionality
     // if (!PlayerStorage.playerHasKitActive(p, kitName.toLowerCase())) return; // Critical line
 
