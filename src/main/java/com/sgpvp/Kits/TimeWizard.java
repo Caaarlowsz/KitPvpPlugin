@@ -39,7 +39,7 @@ public class TimeWizard extends Kit{
         this.main = main;
     }
     public String kitName = "TimeWizard";
-    public int duration = 7 * 1000;
+    public int duration = 4 * 1000;
     public int freezeRadius = 7;
     public int cooldown = 45 * 1000;
 
