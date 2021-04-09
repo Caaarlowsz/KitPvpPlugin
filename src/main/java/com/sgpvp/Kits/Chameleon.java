@@ -43,16 +43,12 @@ public class Chameleon extends Kit {
         Player player = e.getPlayer();
 
         if(PlayerData.playerHasKitActive(player, "chameleon")){
-            if(GameVariables.gameState.equals(GameVariables.gamestate_main) || GameVariables.gameState.equals(GameVariables.gamestate_deathmatch)){
-                EntityType playerRightClickEntity = e.getRightClicked().getType();
-                DisguiseType mobType = DisguiseType.getType(playerRightClickEntity);
-                MobDisguise mobDisguise = new MobDisguise(mobType, true);
+            EntityType playerRightClickEntity = e.getRightClicked().getType();
+            DisguiseType mobType = DisguiseType.getType(playerRightClickEntity);
+            MobDisguise mobDisguise = new MobDisguise(mobType, true);
 
-                DisguiseAPI.disguiseEntity(e.getPlayer(), mobDisguise);
-                e.getPlayer().sendMessage("You are now disguised as a " + ChatColor.BOLD + playerRightClickEntity.getName());
-            } else {
-                e.getPlayer().sendMessage(ChatColor.RED + "You cannot disguise until the game starts");
-            }
+            DisguiseAPI.disguiseEntity(e.getPlayer(), mobDisguise);
+            e.getPlayer().sendMessage("You are now disguised as a " + ChatColor.BOLD + playerRightClickEntity.getName());
         }
     }
 
