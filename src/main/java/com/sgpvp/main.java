@@ -28,8 +28,8 @@ import static org.bukkit.Bukkit.getServer;
 public final class main extends JavaPlugin implements Listener {
 
     // Timers For Events - [TIMERS START WHEN MINIMUM AMOUNT OF PLAYERS HAVE BEEN FOUND]
-    public long GracePeriodDelayTimer = 7 * 1000; // Time Before Grace Period Ends (2min)
-    public long GameStartDelayTimer = 6 * 1000; // Time Before Game Starts
+    public long GracePeriodDelayTimer = 11 * 1000; // Time Before Grace Period Ends (2min)
+    public long GameStartDelayTimer = 10 * 1000; // Time Before Game Starts
     public long ChestCircleDelayTimer = 20 * 1000; // Time Before Chest Circle Spawns
     public long DeathmatchDelayTimer = 32 * 1000; // Time Before Deathmatch Starts
 
