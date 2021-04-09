@@ -1,7 +1,7 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -66,11 +66,11 @@ public class Switcher extends Kit{
         Player shooter = (Player) snowball.getShooter();
         Entity hit = event.getHitEntity();
         if (hit == null) {
-            GameVariables.SGPvPMessage(shooter, "You missed.");
+            Chat.SGPvPMessage(shooter, "You missed.");
             switcherBalls.remove(snowball.getUniqueId());
             return;
         }
-        GameVariables.SGPvPMessage(shooter, "You hit something!");
+        Chat.SGPvPMessage(shooter, "You hit something!");
 
         Location shooterLocation = shooter.getLocation();
         Location hitLocation = hit.getLocation();
@@ -79,9 +79,9 @@ public class Switcher extends Kit{
         switcherBalls.remove(snowball.getUniqueId());
 
         if (!(hit instanceof Player)) return; // You didn't hit a player exit function
-        GameVariables.SGPvPMessage(shooter, "&aYou switched locations with " +
+        Chat.SGPvPMessage(shooter, "&aYou switched locations with " +
                 ((Player)hit).getDisplayName() + ".");
-        GameVariables.SGPvPMessage((Player) hit, "&aYou switched locations with " +
+        Chat.SGPvPMessage((Player) hit, "&aYou switched locations with " +
                 shooter.getDisplayName() + ".");
     }
     private boolean isSwitcherBall(ItemStack item) {

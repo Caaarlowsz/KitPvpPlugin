@@ -1,18 +1,14 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
-import org.bukkit.Material;
+import com.sgpvp.GameLogic.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 /*
     IMPORTANT!
@@ -47,7 +43,7 @@ public class Vampire extends Kit{
         if (!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
         Player killer = e.getEntity().getKiller();
         if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
-        GameVariables.SGPvPMessage(killer, "A kill replenished your health.");
+        Chat.SGPvPMessage(killer, "A kill replenished your health.");
         if (killer.getHealth() != 20.0D && killer.getHealth() != 0.0D)
             killer.setHealth(20.0D);
     }

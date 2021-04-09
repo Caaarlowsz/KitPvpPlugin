@@ -1,6 +1,7 @@
 package com.sgpvp.Tasks;
 
 import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameStartLogic;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.main;
@@ -17,7 +18,7 @@ public class GameStartTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        GameVariables.SGPvPMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
+        Chat.SGPvPMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
         GameStartLogic.GameStart(GameVariables.world);
 
         PlayerInteractions.playerCanDropLava = false;

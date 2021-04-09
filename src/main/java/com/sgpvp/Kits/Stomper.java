@@ -1,8 +1,7 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
-import org.bukkit.Material;
+import com.sgpvp.GameLogic.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Damageable;
@@ -60,7 +59,7 @@ public class Stomper extends Kit{
         List<Entity> nearby = p.getNearbyEntities(stomperRange, stomperRange, stomperRange);
         for (Entity ent: nearby) {
             if (ent instanceof Damageable) {
-                GameVariables.SGPvPMessage(p, "You stomped on " + ent.getName());
+                Chat.SGPvPMessage(p, "You stomped on " + ent.getName());
                 ent.sendMessage(p.getName() + " just stomped on you!");
                 ((org.bukkit.entity.LivingEntity) ent).damage(dist);
             }

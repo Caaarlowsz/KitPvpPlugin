@@ -1,6 +1,6 @@
 package com.sgpvp.Tasks;
 
-import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.main;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -19,12 +19,12 @@ public class CountDownToStartTask extends BukkitRunnable {
 
         //15 seconds till start
         if(timerCurrent == 15){
-            GameVariables.SGPvPMessage(ChatColor.DARK_GREEN + "Game Starting In 15 Seconds");
+            Chat.SGPvPMessage(ChatColor.DARK_GREEN + "Game Starting In 15 Seconds");
         }
 
         // When 4 seconds left
         if(timerCurrent > 0 && timerCurrent <= 4){
-            GameVariables.SGPvPMessage(ChatColor.GREEN + "Game Starting in... " + timerCurrent);
+            Chat.SGPvPMessage(ChatColor.GREEN + "Game Starting in... " + timerCurrent);
         }
         timerCurrent -= 1;
     }

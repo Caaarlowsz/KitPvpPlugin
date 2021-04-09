@@ -1,13 +1,12 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -51,7 +50,7 @@ public class Phantom extends Kit{
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.FEATHER)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) {
-            GameVariables.SGPvPMessage(player, "Your flight is on cooldown");
+            Chat.SGPvPMessage(player, "Your flight is on cooldown");
             return;
         }
         Thread flying = new Thread(new Flying(player));

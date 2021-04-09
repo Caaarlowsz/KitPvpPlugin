@@ -19,6 +19,7 @@ public class GameVariables {
     // BORDER SIZE - PLAY AREA
     public static final int WORLDSIZE = 700;
     public static Location WorldSpawn;
+    public static boolean DEBUG = false;
 
     public static HashMap<String, Object> GameItems = new HashMap<>();
 
@@ -48,17 +49,6 @@ public class GameVariables {
     public static int currentAmountOfPlayers;
     public static int minimumPlayersToStart = 1;
     public static HashMap<String, Kit> kits;
-
-    public static void SGPvPMessage(Player p, String message) {
-        String prefix = "&f[&6SG&4PvP&f] &r";
-        message = ChatColor.translateAlternateColorCodes('&', prefix + message);
-        p.sendMessage(message);
-    }
-    public static void SGPvPMessage(String message) {
-        String prefix = "&f[&6SG&4PvP&f] &r";
-        message = ChatColor.translateAlternateColorCodes('&', prefix + message);
-        Bukkit.broadcastMessage(message);
-    }
 
     public static String getPrefix(Player p) {
         String prefix = "";

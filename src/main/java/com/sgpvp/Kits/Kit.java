@@ -2,6 +2,7 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.Kits.KitConfig.KitDescriptions;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -27,6 +28,7 @@ public abstract class Kit implements CommandExecutor, Listener {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             Player player = (Player) sender;
+            Chat.DebugMessage(player.getDisplayName() + " selected kit " + kitName);
 
             // REMOVE POTION EFFECTS
             for (PotionEffect effect : player.getActivePotionEffects()) {
@@ -39,11 +41,11 @@ public abstract class Kit implements CommandExecutor, Listener {
                 inv.addItem(new ItemStack(Material.SLIME_BALL, 1));
                 PlayerData.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
                 player.setDisplayName(GameVariables.getPrefix(player) + player.getName());
-                GameVariables.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
-                GameVariables.SGPvPMessage(player, GameVariables.kitDescriptionColor + KitDescriptions.description(kitName));
+                Chat.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);
+                Chat.SGPvPMessage(player, GameVariables.kitDescriptionColor + KitDescriptions.description(kitName));
                 initializeKit(player);
             } else
-                GameVariables.SGPvPMessage(player, ChatColor.RED + "Sorry you can not change kits during the match");
+                Chat.SGPvPMessage(player, ChatColor.RED + "Sorry you can not change kits during the match");
         }
         else {
             main.getLogger().info("You have to be player to get kit");

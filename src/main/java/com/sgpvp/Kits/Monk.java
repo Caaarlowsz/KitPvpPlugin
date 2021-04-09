@@ -1,13 +1,9 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import com.sgpvp.GameLogic.ProgressBar;
-import me.libraryaddict.disguise.DisguiseAPI;
-import me.libraryaddict.disguise.disguisetypes.DisguiseType;
-import me.libraryaddict.disguise.disguisetypes.MobDisguise;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -57,7 +53,7 @@ public class Monk extends Kit{
         if (!e.getRightClicked().getType().equals(EntityType.PLAYER)) return;
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.BLAZE_ROD)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) {
-            GameVariables.SGPvPMessage(player, "Your staff is on cooldown");
+            Chat.SGPvPMessage(player, "Your staff is on cooldown");
             return;
         }
         Player victim = (Player) e.getRightClicked();

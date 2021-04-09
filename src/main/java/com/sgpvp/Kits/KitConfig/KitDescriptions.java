@@ -81,6 +81,7 @@ public class KitDescriptions {
     private static final HashMap<String, Material> kitItem = new HashMap<String, Material>(){{
         put("Bomber", Material.TNT);
         put("Stomper", Material.NETHERITE_BOOTS);
+        put("Beastmaster", Material.WOLF_SPAWN_EGG);
         put("Fireman", Material.WATER_BUCKET);
         put("Milkman", Material.MILK_BUCKET);
         put("Pyromancer", Material.FLINT_AND_STEEL);

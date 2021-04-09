@@ -36,8 +36,12 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
                 player.getInventory().addItem(GameItems.getGlassBow());
             }
             if (args[0].equals("say"))
-                GameVariables.SGPvPMessage(String.join(" ", Arrays.copyOfRange(args, 1, args.length)));
+                Chat.SGPvPMessage(String.join(" ", Arrays.copyOfRange(args, 1, args.length)));
             if (args[0].equals("kittoggle")) GameVariables.canChangeKit = !GameVariables.canChangeKit;
+            if (args[0].equals("debug")) {
+                GameVariables.DEBUG = !GameVariables.DEBUG;
+                Chat.SGPvPMessage(player, "Debug toggled: " + GameVariables.DEBUG);
+            }
         }
         return false;
     }
@@ -52,6 +56,7 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
         out.add("give");
         out.add("say");
         out.add("kittoggle");
+        out.add("debug");
         return out;
     }
 }
