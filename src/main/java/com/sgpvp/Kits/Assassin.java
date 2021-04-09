@@ -14,16 +14,6 @@ import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import java.util.HashMap;
 
-/*
-    IMPORTANT!
-    For the game to register this new kit the following must be done:
-        - The command for this kit must be added to the plugin.yml
-        - A reference to this kit must be added to the kits table
-          in the Kit_PvP_Minecraft class.
-        - A kit description and color must also be added in the
-          KitConfig.KitDescriptions class
- */
-
 public class Assassin extends Kit{
     public String kitName = "Assassin";
     public int attackCooldown = 10 * 1000;

@@ -13,11 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class Hades extends Kit{
     public String kitName = "Hades";
-    private com.sgpvp.main main;
-
-    public Hades(com.sgpvp.main main) {
-        this.main = main;
-    }
 
 
     @Override

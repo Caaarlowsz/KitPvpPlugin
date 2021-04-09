@@ -70,10 +70,10 @@ public class Thor extends Kit{
             GameVariables.world.strikeLightning(ligtningLocation);
             cooldowns.put(player, true);
             Chat.SGPvPMessage(player, "You summon a bolt of thunder from above!");
-            Thread axeSwung = new Thread(new AxeSwung(player)); // Problem with lightning event
+            Thread axeSwung = new Thread(new AxeSwung(player));
             axeSwung.start();
 
-        } catch (Exception exception) {
+        } catch (Exception exception) { //Null pointer when no block in range
             Chat.DebugMessage("Thor axe error: " + exception.getMessage());
         }
     }

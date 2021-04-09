@@ -2,9 +2,7 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -25,7 +23,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
  */
 
 public class Bomber extends Kit{
-    public Material kitItem = Material.TNT;
     public String kitName = "Bomber"; // Try to keep this the same as the class name <3
     public int explosionStrength = 2; // 3 is about a tnt blast
 

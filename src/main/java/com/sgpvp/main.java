@@ -23,6 +23,8 @@ import org.bukkit.scheduler.BukkitTask;
 import java.io.File;
 import java.util.HashMap;
 
+import static org.bukkit.Bukkit.getServer;
+
 public final class main extends JavaPlugin implements Listener {
 
     // Timers For Events - [TIMERS START WHEN MINIMUM AMOUNT OF PLAYERS HAVE BEEN FOUND]
@@ -101,8 +103,6 @@ public final class main extends JavaPlugin implements Listener {
         }};
         for (String kit : GameVariables.kits.keySet())
             getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
-        for (Kit kit : GameVariables.kits.values())
-            pluginManager.registerEvents(kit, this);
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
         getCommand("game").setTabCompleter(new AdminCommands());
@@ -119,6 +119,12 @@ public final class main extends JavaPlugin implements Listener {
         for(Player p : this.getServer().getOnlinePlayers()) {
             p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
         }
+        //enableKitEvents();
+    }
+
+    public void enableKitEvents() {
+        for (Kit kit : GameVariables.kits.values())
+            getServer().getPluginManager().registerEvents(kit, this);
     }
 
     // WHEN PLUGIN IS TURNED OFF (SERVER SHUTDOWN)

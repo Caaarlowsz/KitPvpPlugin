@@ -1,6 +1,5 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.Material;
@@ -53,8 +52,8 @@ public class Kangaroo extends Kit{
         if (holdingFoot && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK || event
                 .getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK || event
                 .getAction() == Action.PHYSICAL)) {
-            PotionEffect jumpboost = new PotionEffect(PotionEffectType.JUMP, 10, height);
-            jumpboost.apply(player);
+            PotionEffect jumpBoost = new PotionEffect(PotionEffectType.JUMP, 10, height);
+            jumpBoost.apply(player);
         }
     }
     @EventHandler(priority = EventPriority.HIGHEST)

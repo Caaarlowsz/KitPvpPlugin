@@ -1,6 +1,5 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import org.bukkit.ChatColor;
 import org.bukkit.CropState;

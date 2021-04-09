@@ -1,6 +1,5 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,11 +12,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Fireman extends Kit{
     public String kitName = "Fireman";
-    private com.sgpvp.main main;
-
-    public void Fireman(com.sgpvp.main main){
-        this.main = main;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -39,7 +33,7 @@ public class Fireman extends Kit{
         int strengthOfResistance = 0;
         PotionEffect firemanResistance = new PotionEffect(PotionEffectType.FIRE_RESISTANCE, lengthOfResistance, strengthOfResistance);
 
-        player.getInventory().addItem(firemanWater);
+        inv.addItem(firemanWater);
         firemanResistance.apply(player);
 
 

