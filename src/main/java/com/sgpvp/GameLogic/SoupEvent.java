@@ -1,6 +1,5 @@
 package com.sgpvp.GameLogic;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -33,10 +32,10 @@ public class SoupEvent implements Listener {
         }
     }
     private void Recycle(Player player) {
-        GameVariables.SGPvPMessage(player,"Recycling bowl");
+        Chat.SGPvPMessage(player,"Recycling bowl");
         player.getInventory().setItemInMainHand(null); //removes bowl
         if (PlayerData.recycleBowl(player)) {
-            GameVariables.SGPvPMessage(player, "have a free soup bruv");
+            Chat.SGPvPMessage(player, "have a free soup bruv");
             player.getInventory().addItem(new ItemStack(Material.MUSHROOM_STEW, 1));
         }
     }

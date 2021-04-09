@@ -1,6 +1,7 @@
 package com.sgpvp.Tasks;
 
 import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GracePeriodLogic;
 import com.sgpvp.main;
 import org.bukkit.ChatColor;
@@ -16,7 +17,7 @@ public class GracePeriodEndTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        GameVariables.SGPvPMessage(ChatColor.BOLD+ "GRACE PERIOD HAS ENDED");
+        Chat.SGPvPMessage(ChatColor.BOLD+ "GRACE PERIOD HAS ENDED");
         GracePeriodLogic.GracePeriodEnd(GameVariables.world);
 
         GameVariables.gameState = GameVariables.gamestate_main;

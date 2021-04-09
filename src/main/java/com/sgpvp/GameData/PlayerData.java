@@ -1,5 +1,6 @@
 package com.sgpvp.GameData;
 
+import com.sgpvp.GameLogic.Chat;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class PlayerData {
         if (!bowls.containsKey(player.getName()))
             bowls.put(player.getName(), 0);
         bowls.put(player.getName(), bowls.get(player.getName()) + 1);
-        GameVariables.SGPvPMessage(player, "You have recycled " + bowls.get(player.getName()) + " bowls");
+        Chat.SGPvPMessage(player, "You have recycled " + bowls.get(player.getName()) + " bowls");
         return bowls.get(player.getName()) % 3 == 0;
 
     }

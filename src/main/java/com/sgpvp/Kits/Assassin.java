@@ -1,13 +1,10 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.ProgressBar;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -76,7 +73,7 @@ public class Assassin extends Kit{
             }
             cooldowns.put(player, true);
             progress.removePlayer(player);
-            GameVariables.SGPvPMessage(player, "Your attack is now charged!");
+            Chat.SGPvPMessage(player, "Your attack is now charged!");
             powerAttack.put(player, true);
             try {
                 Thread.sleep(attackCooldown);
@@ -97,7 +94,7 @@ public class Assassin extends Kit{
         damage += damageBuff;
         event.setDamage(damage);
         powerAttack.put(attacker, false);
-        GameVariables.SGPvPMessage(attacker, "Your hit dealt massive damage.");
+        Chat.SGPvPMessage(attacker, "Your hit dealt massive damage.");
     }
     /* Kit event handlers end here */
 }

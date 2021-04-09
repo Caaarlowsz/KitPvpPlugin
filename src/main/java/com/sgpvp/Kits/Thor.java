@@ -2,14 +2,18 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import com.sgpvp.GameLogic.ProgressBar;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -38,7 +42,7 @@ import java.util.HashMap;
 public class Thor extends Kit{
     public String kitName = "Thor"; // Try to keep this the same as the class name <3
     public int axeCooldown = 5 * 1000;
-    public int maxDistance = 5;
+    public int maxDistance = 10;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -60,15 +64,22 @@ public class Thor extends Kit{
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_AXE)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) return;
-        cooldowns.put(player, true);
-        Location ligtningLocation = player.getTargetBlockExact(maxDistance).getLocation();
-        GameVariables.world.strikeLightning(ligtningLocation);
-        Thread axeSwung = new Thread(new AxeSwing(player));
-        axeSwung.start();
+        try {
+            ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+            Location ligtningLocation = player.getTargetBlockExact(maxDistance).getLocation();
+            GameVariables.world.strikeLightning(ligtningLocation);
+            cooldowns.put(player, true);
+            Chat.SGPvPMessage(player, "You summon a bolt of thunder from above!");
+            Thread axeSwung = new Thread(new AxeSwung(player)); // Problem with lightning event
+            axeSwung.start();
+
+        } catch (Exception exception) {
+            Chat.DebugMessage("Thor axe error: " + exception.getMessage());
+        }
     }
-    private class AxeSwing extends Thread {
+    private class AxeSwung extends Thread {
         Player player;
-        AxeSwing(Player p) { this.player = p; }
+        AxeSwung(Player p) { this.player = p; }
         public void run(){
             ProgressBar cooldownBar = new ProgressBar(player, "Cooldown", BarColor.RED, BarStyle.SOLID, axeCooldown);
             for (int i = 0; i < axeCooldown; i++) {

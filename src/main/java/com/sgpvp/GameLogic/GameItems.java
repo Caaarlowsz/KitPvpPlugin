@@ -70,7 +70,7 @@ public class GameItems {
         ItemStack milk_bucket = new ItemStack(Material.MILK_BUCKET, 1);
         ItemMeta milk_bucket_data = milk_bucket.getItemMeta();
         milk_bucket_data.setDisplayName(ChatColor.BOLD + "The Milkman's Bucket Of Milk");
-        milk_bucket_data.setLore(Arrays.asList("Gives Speed 1", "Gives Regeneration 1", "Gives Fire Resistants 1"));
+        milk_bucket_data.setLore(Arrays.asList("Gives Speed 1", "Gives Regeneration 1", "Gives Fire Resistant 1"));
         milk_bucket.setItemMeta(milk_bucket_data);
         return milk_bucket;
     }

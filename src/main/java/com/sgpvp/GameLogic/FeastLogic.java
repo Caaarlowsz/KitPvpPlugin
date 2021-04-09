@@ -78,7 +78,7 @@ public class FeastLogic {
     static int r = 15;
 
     public static void SpawnFeast() {
-        GameVariables.SGPvPMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "FEAST HAS SPAWNED AT: X:%d Y:%d Z:%d", feast_center_x, feast_center_y, feast_center_z));
+        Chat.SGPvPMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "FEAST HAS SPAWNED AT: X:%d Y:%d Z:%d", feast_center_x, feast_center_y, feast_center_z));
         boolean flag = false;
         SpawnFeastPlatform();
 

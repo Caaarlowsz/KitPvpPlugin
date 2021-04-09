@@ -93,7 +93,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Phantom", new Phantom());
             put("Kangaroo", new Kangaroo());
             put("Bomber", new Bomber());
-            //put("Thor", new Thor());
+            put("Thor", new Thor());
             put("Vampire", new Vampire());
             put("Assassin", new Assassin());
             put("Monk", new Monk());
@@ -132,7 +132,7 @@ public final class main extends JavaPlugin implements Listener {
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
         if(!GameVariables.gameState.equals(GameVariables.gamestate_lobby)){
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
-            GameVariables.SGPvPMessage(e.getPlayer(), "GAME ALREADY IN PROGRESS...");
+            Chat.SGPvPMessage(e.getPlayer(), "GAME ALREADY IN PROGRESS...");
         } else {
 
             GameVariables.currentAmountOfPlayers++;
@@ -147,7 +147,7 @@ public final class main extends JavaPlugin implements Listener {
             }
 
             e.getPlayer().teleport(GameVariables.world.getSpawnLocation());
-            GameVariables.SGPvPMessage(e.getPlayer(), ChatColor.RED + "Welcome " + e.getPlayer().getName() + " to SGPvP!");
+            Chat.SGPvPMessage(e.getPlayer(), ChatColor.RED + "Welcome " + e.getPlayer().getName() + " to SGPvP!");
         }
 
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
@@ -189,12 +189,12 @@ public final class main extends JavaPlugin implements Listener {
         if(GameVariables.currentAmountOfPlayers <= 1){
 
             try{
-                GameVariables.SGPvPMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
+                Chat.SGPvPMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
             } catch (Exception exception){
-                GameVariables.SGPvPMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
+                Chat.SGPvPMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
             }
 
-            GameVariables.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
+            Chat.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
             BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
         }
     }

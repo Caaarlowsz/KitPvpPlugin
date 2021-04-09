@@ -56,6 +56,6 @@ public class PlayerInteractions implements Listener {
         } catch (Exception exception){
             return;
         }
-
     }
+
 }

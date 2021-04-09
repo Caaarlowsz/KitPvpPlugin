@@ -1,7 +1,7 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
+import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -46,7 +46,7 @@ public class Milkman extends Kit{
         // Currently Effects All Milk Buckets
         if (p.getItem().getType().equals(Material.MILK_BUCKET) && PlayerData.playerHasKitActive(p.getPlayer(), "milkman")) {
             p.setItem(bucket_normal);
-            GameVariables.SGPvPMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
+            Chat.SGPvPMessage(player.getName() + ":" + ChatColor.BOLD + " I am the Milkman and my milk is delicious!");
             speedBuff.apply(player);
             regenBuff.apply(player);
             fireResistBuff.apply(player);

@@ -25,7 +25,7 @@ public class DeathmatchLogic{
         GameVariables.gameState = GameVariables.gamestate_deathmatch;
         System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
 
-        GameVariables.SGPvPMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
+        Chat.SGPvPMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
         //Remove blocks above chests
         for (int i = deathMatchCenterX - r; i <= deathMatchCenterX + r; i++) {
             for (int j = deathMatchCenterZ - r; j <= deathMatchCenterZ + r; j++) {
