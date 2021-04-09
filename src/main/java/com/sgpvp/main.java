@@ -119,7 +119,6 @@ public final class main extends JavaPlugin implements Listener {
         for(Player p : this.getServer().getOnlinePlayers()) {
             p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
         }
-        //enableKitEvents();
     }
 
     public void enableKitEvents() {

@@ -52,6 +52,12 @@ public class Groundhog extends Kit{
             //Enable console
             ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
+            //Example code
+            Location playerLocation = event.getPlayer().getLocation();
+            Location someBlockLocation = new Location(GameVariables.world,
+                    playerLocation.getBlockX(), playerLocation.getBlockY(), playerLocation.getBlockZ());
+            someBlockLocation.getBlock().setType(Material.GRASS_BLOCK);
+
             //Clearing blocks
             for (int clearY = -22; clearY < -19; clearY++) {
                 for (int clearX = -1; clearX < 1; clearX++) {
