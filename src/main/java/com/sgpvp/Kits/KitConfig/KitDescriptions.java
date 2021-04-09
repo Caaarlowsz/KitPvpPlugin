@@ -26,12 +26,13 @@ public class KitDescriptions {
         put("Snail", "You have a chance of giving a player slowness on every hit");
         put("Monk", "You start with a monk staff that upon hitting an enemy puts the item they are holding back into their inventory.");
         put("Assassin", "Holding shift charges an attack, after you are charged hitting a player will do massive amounts of damage.");
-        put("Kangaroo", "Start with a Kangaroo Foot and upon right clicking the item, you are able to jump really high \n - A cooldown takes place after it is used");
+        put("Kangaroo", "Start with a Kangaroo Foot and upon right clicking the item, you are able to jump really high");
         put("Bomber", "Killing anything will create an explosion on the thing you killed after death \n You are completely resistant to explosions");
         put("Sunwalker", "Gain a speed buff during the day");
         put("Phantom", "Start with a feather that allows you to fly for 7 seconds when right clicking it \n It starts a cooldown after use");
         put("Stomper", "Instead of taking fall damage, you deal your fall damage to the players around the spot where you hit the ground");
         put("Switcher", "Receive 10 snowballs, upon hitting an enemy with one you swap positions with them");
+        put("Thor", "Receive the hammer of zeus \n Upon right clicking the axe you strike down lighting within a close range of you");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);
@@ -56,6 +57,7 @@ public class KitDescriptions {
         put("Vampire", ChatColor.DARK_BLUE);
         put("Monk", ChatColor.YELLOW);
         put("Assassin", ChatColor.GRAY);
+        put("Thor", ChatColor.YELLOW);
     }};
 
     /*
