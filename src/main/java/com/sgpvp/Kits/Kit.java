@@ -17,12 +17,6 @@ import org.bukkit.potion.PotionEffect;
 
 public abstract class Kit implements CommandExecutor, Listener {
     public String kitName = "Kit";
-    private com.sgpvp.main main;
-    public static Material kitItem = Material.GRASS_BLOCK;
-
-    public void Kit(com.sgpvp.main main){
-        this.main = main;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -46,9 +40,6 @@ public abstract class Kit implements CommandExecutor, Listener {
                 initializeKit(player);
             } else
                 Chat.SGPvPMessage(player, ChatColor.RED + "Sorry you can not change kits during the match");
-        }
-        else {
-            main.getLogger().info("You have to be player to get kit");
         }
         return false;
     }

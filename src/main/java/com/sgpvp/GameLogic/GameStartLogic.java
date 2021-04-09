@@ -12,7 +12,7 @@ public class GameStartLogic {
     static final int spawnZ = GameVariables.world.getSpawnLocation().getBlockZ();
 
     // When Game Starts
-    public static void GameStart(World w){
+    public static void GameStart(World w, com.sgpvp.main main){
 
         GameVariables.gameState = GameVariables.gamestate_graceperiod;
         System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
@@ -36,5 +36,6 @@ public class GameStartLogic {
 
         GameVariables.world.setTime(GameVariables.WorldTimeWhenGameStarts);
         GameVariables.world.setDifficulty(Difficulty.NORMAL);
+        main.enableKitEvents();
     }
 }

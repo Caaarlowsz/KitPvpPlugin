@@ -1,6 +1,5 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,11 +14,6 @@ import java.util.Arrays;
 
 public class Grandpa extends Kit{
     public String kitName = "Grandpa";
-    private com.sgpvp.main main;
-
-    public void Grandpa(com.sgpvp.main main){
-        this.main = main;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
