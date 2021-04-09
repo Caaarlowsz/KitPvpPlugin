@@ -99,6 +99,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Vampire", new Vampire());
             put("Assassin", new Assassin());
             put("Monk", new Monk());
+            put("Explorer", new Explorer());
 
         }};
         for (String kit : GameVariables.kits.keySet())
@@ -190,7 +191,7 @@ public final class main extends JavaPlugin implements Listener {
         GameVariables.currentAmountOfPlayers--;
         System.out.println(GameVariables.currentAmountOfPlayers);
         e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
-
+        /*
         if(GameVariables.currentAmountOfPlayers <= 1){
 
             try{
@@ -201,7 +202,7 @@ public final class main extends JavaPlugin implements Listener {
 
             Chat.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
             BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
-        }
+        }*/
     }
 
     // Delete Files Functionality

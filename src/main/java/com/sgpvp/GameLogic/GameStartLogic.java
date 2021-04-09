@@ -35,7 +35,7 @@ public class GameStartLogic {
         PlayerInteractions.playerCanTakeDamage = true;
 
         GameVariables.world.setTime(GameVariables.WorldTimeWhenGameStarts);
-        GameVariables.world.setDifficulty(Difficulty.NORMAL);
+        GameVariables.world.setDifficulty(Difficulty.EASY);
         main.enableKitEvents();
     }
 }

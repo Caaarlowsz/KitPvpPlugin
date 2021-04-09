@@ -6,6 +6,11 @@ authors: [FinneganMcGuire, vscala]
 description: SGPvP Plugin
 website: sgpvp.com
 commands:
+  game:
+    description: commands to modify the current game
+  kit:
+    description: open kit gui
+    aliases: [kits, kitgui, gui, ui]
   timewizard:
     description: Gives Clock, Clock can stop timearound you stoping all players from moving!
   werewolf:
@@ -64,8 +69,5 @@ commands:
     description: Sneak attack
   Monk:
     description: Knock items out of another players hand
-  game:
-    description: commands to modify the current game
-  kit:
-    description: open kit gui
-    aliases: [kits, kitgui, gui, ui]
+  Explorer:
+    description: Explore far and wide

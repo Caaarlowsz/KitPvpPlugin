@@ -34,7 +34,7 @@ import java.util.List;
 public class TimeWizard extends Kit{
 
     public String kitName = "TimeWizard";
-    public int duration = 4 * 1000;
+    public int duration = 3 * 1000;
     public int freezeRadius = 7;
     public int cooldown = 45 * 1000;
 
