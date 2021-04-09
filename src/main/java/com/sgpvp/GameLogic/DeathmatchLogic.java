@@ -72,7 +72,7 @@ public class DeathmatchLogic{
             double tX = deathMatchCenterX + r*cos(2*PI*i/playerCount);
             double tZ = deathMatchCenterZ + r*sin(2*PI*i/playerCount);
             double tY = deathMatchCenterY;
-            Location tLocation = new Location(GameVariables.world, tX, tY, tZ);
+            Location tLocation = new Location(GameVariables.world, tX, tY+2, tZ);
             GameVariables.world.getPlayers().get(i).teleport(tLocation);
         }
     }

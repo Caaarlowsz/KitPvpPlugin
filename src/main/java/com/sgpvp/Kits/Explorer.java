@@ -19,6 +19,9 @@ public class Explorer extends Kit {
         /* Kit functionality starts here */
         player.getInventory().addItem(new ItemStack(Material.SADDLE, 1));
         player.getInventory().addItem(new ItemStack(Material.STRIDER_SPAWN_EGG, 1));
+        player.getInventory().addItem(new ItemStack(Material.PIG_SPAWN_EGG, 1));
+        player.getInventory().addItem(new ItemStack(Material.WARPED_FUNGUS_ON_A_STICK, 1));
+        player.getInventory().addItem(new ItemStack(Material.CARROT_ON_A_STICK, 1));
         /* Kit functionality ends here */
     }
     /* Kit event handlers start here */
