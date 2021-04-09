@@ -9,12 +9,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Pyromancer extends Kit{
-
-    private com.sgpvp.main main;
-
-    public void Pyromancer(com.sgpvp.main main) {
-        this.main = main;
-    }
     public String kitName = "Pyromancer";
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

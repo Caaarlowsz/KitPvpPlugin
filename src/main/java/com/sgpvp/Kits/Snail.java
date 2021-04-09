@@ -14,11 +14,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Snail extends Kit implements Listener {
-    private com.sgpvp.main main;
 
-    public void Snail(com.sgpvp.main main){
-        this.main = main;
-    }
     public String kitName = "Snail";
 
     @Override

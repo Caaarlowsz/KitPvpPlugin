@@ -8,12 +8,6 @@ import org.bukkit.entity.Player;
 
 public class  Werewolf extends Kit{
 
-    private com.sgpvp.main main;
-
-    public void Werewolf(com.sgpvp.main main){
-        this.main = main;
-    }
-
     public String kitName = "Werewolf";
 
 

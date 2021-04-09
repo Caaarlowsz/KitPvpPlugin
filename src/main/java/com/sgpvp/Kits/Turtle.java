@@ -13,11 +13,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Turtle extends Kit {
 
-    private com.sgpvp.main main;
-
-    public void Turtle(com.sgpvp.main main){
-        this.main = main;
-    }
     public String kitName = "Turtle";
 
     @Override

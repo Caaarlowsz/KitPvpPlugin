@@ -14,11 +14,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Viper extends Kit implements Listener {
-    private com.sgpvp.main main;
 
-    public void Viper(com.sgpvp.main main){
-        this.main = main;
-    }
     public String kitName = "Viper";
 
     @Override

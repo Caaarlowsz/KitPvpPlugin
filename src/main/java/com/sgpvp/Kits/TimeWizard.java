@@ -33,11 +33,6 @@ import java.util.List;
 
 public class TimeWizard extends Kit{
 
-    private com.sgpvp.main main;
-
-    public void TimeWizardKit(com.sgpvp.main main){
-        this.main = main;
-    }
     public String kitName = "TimeWizard";
     public int duration = 4 * 1000;
     public int freezeRadius = 7;
