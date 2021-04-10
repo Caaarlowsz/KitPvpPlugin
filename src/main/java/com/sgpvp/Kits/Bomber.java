@@ -5,6 +5,7 @@ import com.sgpvp.GameData.PlayerData;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -50,12 +51,12 @@ public class Bomber extends Kit{
     }
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDeath(final EntityDeathEvent e){
-        if (!(e.getEntity().getKiller().getType().equals(EntityType.PLAYER))) return;
+        if (!(e.getEntity().getKiller() instanceof Player)) return;
         Player killer = e.getEntity().getKiller();
-        //GameVariables.SGPvPMessage(killer, "you exploded " + e.getEntity().getName());
         if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
         Location explosionLocation = e.getEntity().getLocation();
-        GameVariables.world.createExplosion(explosionLocation,explosionStrength, false, true, killer);
+        GameVariables.world.createExplosion(explosionLocation, explosionStrength, false, true, killer);
+
     }
     /* Kit event handlers end here */
 }

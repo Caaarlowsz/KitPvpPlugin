@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class GameVariables {
 
     // BORDER SIZE - PLAY AREA
-    public static final int WORLDSIZE = 1000;
+    public static final int WORLDSIZE = 300;
     public static Location WorldSpawn;
     public static boolean DEBUG = false;
 
@@ -47,7 +47,7 @@ public class GameVariables {
 
     // Keeps Track of current players and min players to start game
     public static int currentAmountOfPlayers;
-    public static int minimumPlayersToStart = 8;
+    public static int minimumPlayersToStart = 0;
     public static HashMap<String, Kit> kits;
 
     public static String getPrefix(Player p) {

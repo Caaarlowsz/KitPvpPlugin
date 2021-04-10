@@ -4,7 +4,6 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,16 +38,12 @@ public class Vampire extends Kit{
     /* Kit event handlers start here */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onKill(final EntityDeathEvent e){
-        try {
-            if (!(e.getEntity().getKiller().getType().equals(EntityType.PLAYER))) return;
-            Player killer = e.getEntity().getKiller();
-            if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
-            Chat.SGPvPMessage(killer, "A kill replenished your health.");
-            if (killer.getHealth() != 20.0D && killer.getHealth() != 0.0D)
-                killer.setHealth(20.0D);
-        } catch (NullPointerException eNull) {
-            // not killed by player
-        }
+        if (e.getEntity().getKiller() == null) return;
+        Player killer = e.getEntity().getKiller();
+        if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
+        Chat.SGPvPMessage(killer, "A kill replenished your health.");
+        if (killer.getHealth() != 20.0D && killer.getHealth() != 0.0D)
+            killer.setHealth(20.0D);
     }
     /* Kit event handlers end here */
 }
