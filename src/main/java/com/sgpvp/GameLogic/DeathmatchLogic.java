@@ -1,11 +1,11 @@
 package com.sgpvp.GameLogic;
 
 import com.sgpvp.GameData.GameVariables;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.List;
 
 import static java.lang.Math.*;
 
@@ -14,10 +14,10 @@ public class DeathmatchLogic{
     private static int r = 30;
 
 
-    private static Location deathmatchLocation = GameVariables.world.getSpawnLocation(); //Change to somewhere else???
+    private static final Location deathmatchLocation = GameVariables.world.getSpawnLocation(); //Change to somewhere else???
     static int deathMatchCenterX = deathmatchLocation.getBlockX();
     static int deathMatchCenterZ = deathmatchLocation.getBlockZ();
-    static int deathMatchCenterY = GameVariables.world.getHighestBlockYAt((int) round(deathMatchCenterX), (int) round(deathMatchCenterZ)) - 1;
+    static int deathMatchCenterY = GameVariables.world.getHighestBlockYAt(deathMatchCenterX, deathMatchCenterZ) - 1;
 
     // When deathmatch begins
     public static void DeathmatchBegin(){
@@ -66,14 +66,22 @@ public class DeathmatchLogic{
     }
     public static void hold() {
         r -= 10;
-        int playerCount = GameVariables.world.getPlayers().size();
+        List<Player> alive = GameVariables.world.getPlayers();
+        int i = 0;
+        while (i < alive.size()) {
+            if (alive.get(i).getGameMode().equals(GameMode.SURVIVAL)) {
+                i++;
+            } else {
+                alive.remove(i);
+            }
+        }
         // Finds all players left and teleports them to spawn
-        for (int i = 0; i < playerCount; i++) {
-            double tX = deathMatchCenterX + r*cos(2*PI*i/playerCount);
-            double tZ = deathMatchCenterZ + r*sin(2*PI*i/playerCount);
+        for (i = 0; i < alive.size(); i++) {
+            double tX = deathMatchCenterX + r*cos(2*PI*i/alive.size());
+            double tZ = deathMatchCenterZ + r*sin(2*PI*i/alive.size());
             double tY = deathMatchCenterY;
             Location tLocation = new Location(GameVariables.world, tX, tY+2, tZ);
-            GameVariables.world.getPlayers().get(i).teleport(tLocation);
+            alive.get(i).teleport(tLocation);
         }
     }
 }
