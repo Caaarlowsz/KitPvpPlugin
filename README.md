@@ -1,5 +1,13 @@
 # SGPvP Plugin
 
+## TODO
+Spectator- teleport to players by clicking on them in chat \
+Spectator- teleport to feast by clicking on it in chat \
+Kill counter \
+Better game timers
+
+
+
 ## Features
 
 ### Game timers
