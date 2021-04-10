@@ -11,6 +11,9 @@ commands:
   kit:
     description: open kit gui
     aliases: [kits, kitgui, gui, ui]
+  spectate:
+    description: Become a spectator
+    aliases: [spec, spectator]
   timewizard:
     description: Gives Clock, Clock can stop timearound you stoping all players from moving!
   werewolf:

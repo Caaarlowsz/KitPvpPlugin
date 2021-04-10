@@ -1,5 +1,7 @@
 package com.sgpvp;
 
+import com.sgpvp.Commands.AdminCommands;
+import com.sgpvp.Commands.Spectate;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
@@ -22,8 +24,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.util.HashMap;
-
-import static org.bukkit.Bukkit.getServer;
 
 public final class main extends JavaPlugin implements Listener {
 
@@ -114,6 +114,8 @@ public final class main extends JavaPlugin implements Listener {
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
         getCommand("game").setTabCompleter(new AdminCommands());
+
+        getServer().getPluginCommand("spectate").setExecutor(new Spectate());
 
         getServer().getPluginCommand("kit").setExecutor(new GUI());
 

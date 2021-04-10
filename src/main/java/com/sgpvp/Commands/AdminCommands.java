@@ -1,5 +1,9 @@
-package com.sgpvp.GameLogic;
+package com.sgpvp.Commands;
 import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.GameLogic.Chat;
+import com.sgpvp.GameLogic.DeathmatchLogic;
+import com.sgpvp.GameLogic.FeastLogic;
+import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,14 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AdminCommands implements CommandExecutor, TabCompleter {
-
-    private com.sgpvp.main main;
-
-    public void AdminCommands(com.sgpvp.main main){
-        this.main = main;
-    }
-
-    // This method is called, when somebody uses our command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
