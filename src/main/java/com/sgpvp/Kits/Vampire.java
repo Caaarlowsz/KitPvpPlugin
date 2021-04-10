@@ -39,13 +39,16 @@ public class Vampire extends Kit{
     /* Kit event handlers start here */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onKill(final EntityDeathEvent e){
-        if (!(e.getEntity().getKiller().getType().equals(EntityType.PLAYER))) return;
-        if (!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
-        Player killer = e.getEntity().getKiller();
-        if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
-        Chat.SGPvPMessage(killer, "A kill replenished your health.");
-        if (killer.getHealth() != 20.0D && killer.getHealth() != 0.0D)
-            killer.setHealth(20.0D);
+        try {
+            if (!(e.getEntity().getKiller().getType().equals(EntityType.PLAYER))) return;
+            Player killer = e.getEntity().getKiller();
+            if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
+            Chat.SGPvPMessage(killer, "A kill replenished your health.");
+            if (killer.getHealth() != 20.0D && killer.getHealth() != 0.0D)
+                killer.setHealth(20.0D);
+        } catch (NullPointerException eNull) {
+            // not killed by player
+        }
     }
     /* Kit event handlers end here */
 }
