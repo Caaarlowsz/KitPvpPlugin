@@ -6,6 +6,7 @@ import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import com.sgpvp.GameLogic.ProgressBar;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.boss.BarColor;
@@ -73,8 +74,9 @@ public class TimeWizard extends Kit{
             cooldowns.put(player, true);
             for (Entity e : nearby) {
                 if (e.getType().equals(EntityType.PLAYER)) {
-                    Chat.SGPvPMessage(player, "You froze " + e.getName());
                     Player p = (Player) e;
+                    if (!p.getGameMode().equals(GameMode.SURVIVAL)) continue;
+                    Chat.SGPvPMessage(player, "You froze " + e.getName());
                     frozen.put(p, true);
                     p.setAllowFlight(true);
                 }

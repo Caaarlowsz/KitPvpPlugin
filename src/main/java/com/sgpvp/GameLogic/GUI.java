@@ -27,11 +27,11 @@ import java.util.HashMap;
 public class GUI implements Listener, CommandExecutor {
     private HashMap<Player, Inventory> inventories = new HashMap<>();
     private Inventory kits_gui;
-    private Kit[] kits = new Kit[27];
+    private Kit[] kits = new Kit[54];
 
     public void openNewGUI(Player p) {
         Inventory startmenu_gui;
-        startmenu_gui = Bukkit.createInventory(null, InventoryType.CHEST, ChatColor.BLACK + "MENU");
+        startmenu_gui = Bukkit.createInventory(null, 54, ChatColor.BLACK + "MENU");
 
         int i = 0;
         for (String kitName : GameVariables.kits.keySet()) {
@@ -39,7 +39,7 @@ public class GUI implements Listener, CommandExecutor {
             startmenu_gui.addItem(createGuiItem(KitDescriptions.material(kitName), kitName, "Select this kit!"));
             kits[i] = kit;
             i += 1;
-            if (i == 27) break;
+            if (i == GameVariables.kits.size()) break;
         }
 
         p.openInventory(startmenu_gui);

@@ -50,6 +50,13 @@ public final class main extends JavaPlugin implements Listener {
         recipe.addIngredient(1, Material.BOWL);
         Bukkit.addRecipe(recipe);
 
+        // coco SOUP Crafting Addition
+        NamespacedKey key2 = new NamespacedKey(this, "cocoa_stew");
+        ShapelessRecipe recipe2 = new ShapelessRecipe(key2, soup_item);
+        recipe2.addIngredient(2, Material.COCOA_BEANS);
+        recipe2.addIngredient(1, Material.BOWL);
+        Bukkit.addRecipe(recipe2);
+
         GameVariables.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         // Current problem:
         // Variables that are static, effect all players. FIX IT!
