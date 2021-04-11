@@ -2,20 +2,21 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
+import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,6 @@ import java.util.UUID;
 
 public class Switcher extends Kit{
     public String kitName = "Switcher";
-    public String switcherBallName = ChatColor.translateAlternateColorCodes ('&', "&b&lSwitcher Balls");
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -32,15 +32,8 @@ public class Switcher extends Kit{
     }
     void initializeKit(Player player) {
         /* Kit functionality starts here */
-
-        ItemStack switcherBalls = new ItemStack(Material.SNOWBALL, 10);
-        ItemMeta meta = switcherBalls.getItemMeta();
-        meta.setDisplayName(switcherBallName);
-        switcherBalls.setItemMeta(meta);
-
+        ItemStack switcherBalls = GameItems.getSwitcherBalls(10);
         player.getInventory().addItem(switcherBalls);
-
-
         /* Kit functionality ends here */
     }
 
@@ -49,6 +42,7 @@ public class Switcher extends Kit{
     @EventHandler
     public void markSnowball(ProjectileLaunchEvent event) {
         Player player = (Player) event.getEntity().getShooter();
+        if (player == null) return;
         PlayerInventory inventory = player.getInventory();
 
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return; // No access to kit
@@ -64,6 +58,7 @@ public class Switcher extends Kit{
         if (!switcherBalls.contains(event.getEntity().getUniqueId())) return;
         Snowball snowball = (Snowball) event.getEntity();
         Player shooter = (Player) snowball.getShooter();
+        if (shooter == null) return;
         Entity hit = event.getHitEntity();
         if (hit == null) {
             Chat.SGPvPMessage(shooter, "You missed.");
@@ -85,7 +80,18 @@ public class Switcher extends Kit{
                 shooter.getDisplayName() + ".");
     }
     private boolean isSwitcherBall(ItemStack item) {
+        if (item.getItemMeta() == null) return false;
         if (!item.getItemMeta().hasDisplayName()) return false;
+        String switcherBallName = ChatColor.translateAlternateColorCodes ('&', "&b&lSwitcher Balls");
         return item.getItemMeta().getDisplayName().equals(switcherBallName);
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onKill(final EntityDeathEvent e){
+        if (e.getEntity().getKiller() == null) return;
+        Player killer = e.getEntity().getKiller();
+        if (!PlayerData.playerHasKitActive(killer, kitName.toLowerCase())) return;
+        //Chat.SGPvPMessage(killer, "");
+        ItemStack switcherBalls = GameItems.getSwitcherBalls(2);
+        killer.getInventory().addItem(switcherBalls);
     }
 }

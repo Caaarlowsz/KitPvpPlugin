@@ -1,6 +1,5 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,11 +17,11 @@ public class Pyromancer extends Kit{
     void initializeKit(Player player) {
         /* Kit functionality starts here */
 
-        ItemStack lavabucket = new ItemStack(Material.LAVA_BUCKET);
-        ItemStack flintandsteel = new ItemStack(Material.FLINT_AND_STEEL);
+        ItemStack lavaBucket = new ItemStack(Material.LAVA_BUCKET);
+        ItemStack flintAndSteel = new ItemStack(Material.FLINT_AND_STEEL);
 
         Inventory inv = player.getInventory();
-        inv.addItem(lavabucket, flintandsteel);
+        inv.addItem(lavaBucket, flintAndSteel);
 
         /* Kit functionality ends here */
     }

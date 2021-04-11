@@ -5,27 +5,19 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import com.sgpvp.GameLogic.ProgressBar;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 
@@ -65,9 +57,9 @@ public class Thor extends Kit{
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.WOODEN_AXE)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) return;
         try {
-            ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-            Location ligtningLocation = player.getTargetBlockExact(maxDistance).getLocation();
-            GameVariables.world.strikeLightning(ligtningLocation);
+            if (player.getTargetBlockExact(maxDistance) == null) return;
+            Location lightningLocation = player.getTargetBlockExact(maxDistance).getLocation();
+            GameVariables.world.strikeLightning(lightningLocation);
             cooldowns.put(player, true);
             Chat.SGPvPMessage(player, "You summon a bolt of thunder from above!");
             Thread axeSwung = new Thread(new AxeSwung(player));

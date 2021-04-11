@@ -26,6 +26,7 @@ public class Lumberjack extends Kit{
         Material lumberjackAxe = Material.WOODEN_AXE;
         ItemStack axe = new ItemStack(lumberjackAxe, 1);
         ItemMeta axeMeta = axe.getItemMeta();
+        if (axeMeta == null) return;
         axeMeta.setDisplayName(ChatColor.DARK_GREEN + "Lumberjack Axe");
         axeMeta.addEnchant(axeEnchant, axeEfficiencyLevel, true);
         axeMeta.setUnbreakable(true);

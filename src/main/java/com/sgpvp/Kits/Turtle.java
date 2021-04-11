@@ -1,8 +1,6 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -35,13 +33,13 @@ public class Turtle extends Kit {
         int damageBoostTime = 1000000000;
 
         PotionEffect turtleShield = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, damageBoostTime, damageBoost);
-        PotionEffect turtleDebuf = new PotionEffect(PotionEffectType.WEAKNESS, 100000000, 0);
+        PotionEffect turtleDebuff = new PotionEffect(PotionEffectType.WEAKNESS, 100000000, 0);
 
 
         // WHEN PLAYER PRESSES SHIFT
         if(!p.getPlayer().isSneaking() && PlayerData.playerHasKitActive(p.getPlayer(), "turtle")){
             turtleShield.apply(p.getPlayer());
-            turtleDebuf.apply(p.getPlayer());
+            turtleDebuff.apply(p.getPlayer());
         }
 
         // WHEN PLAYER RELEASES SHIFT

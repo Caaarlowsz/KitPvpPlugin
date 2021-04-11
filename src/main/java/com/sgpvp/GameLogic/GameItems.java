@@ -108,4 +108,12 @@ public class GameItems {
         monkStaff.setItemMeta(monkStaffMeta);
         return monkStaff;
     }
+    public static ItemStack getSwitcherBalls(int n) {
+        String switcherBallName = ChatColor.translateAlternateColorCodes ('&', "&b&lSwitcher Balls");
+        ItemStack switcherBalls = new ItemStack(Material.SNOWBALL, n);
+        ItemMeta meta = switcherBalls.getItemMeta();
+        meta.setDisplayName(switcherBallName);
+        switcherBalls.setItemMeta(meta);
+        return switcherBalls;
+    }
 }

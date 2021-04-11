@@ -1,8 +1,6 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -37,18 +35,14 @@ public class Viper extends Kit implements Listener {
 
         Player playerWKit = (Player) event.getEntity();
         Player playerBeingDamaged = (Player) event.getDamager();
-        PotionEffect viperPoision = new PotionEffect(PotionEffectType.POISON, 60, 1);
+        PotionEffect viperPoison = new PotionEffect(PotionEffectType.POISON, 60, 1);
 
         if(event.getEntity().getType().equals(EntityType.PLAYER)){
             if(PlayerData.playerHasKitActive(playerBeingDamaged, "viper")){
 
                 double randomNumber = Math.random() * 10;
 
-                if(randomNumber < 7){
-                    return;
-                } else {
-                    viperPoision.apply(playerWKit);
-                }
+                if(randomNumber >= 7) viperPoison.apply(playerWKit);
             }
         }
     }

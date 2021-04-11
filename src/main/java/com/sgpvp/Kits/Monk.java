@@ -58,7 +58,7 @@ public class Monk extends Kit{
         }
         Player victim = (Player) e.getRightClicked();
         PlayerInventory inventory = victim.getInventory();
-        if (inventory.getItemInMainHand().equals(null)) return;
+        if (inventory.getItemInMainHand().getType().equals(Material.AIR)) return;
         Random rng = new Random();
         int index = rng.nextInt(35-9) + 9;
         ItemStack main = inventory.getItemInMainHand();
@@ -79,8 +79,8 @@ public class Monk extends Kit{
             ProgressBar cooldownProgress = new ProgressBar(player, "Cooldown: ", BarColor.RED, BarStyle.SOLID, staffCooldown);
             try {
                 for (int i = 0; i < staffCooldown; i++) {
-                    Thread.sleep(1);
                     cooldownProgress.increment();
+                    Thread.sleep(1);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

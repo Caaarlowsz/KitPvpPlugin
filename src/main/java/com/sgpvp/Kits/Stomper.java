@@ -18,9 +18,8 @@ import java.util.List;
 
 public class Stomper extends Kit{
     public String kitName = "Stomper";
-    public double stomperDamage = 3.0;
     public double stomperRange = 3.0;
-    public double mimimumFallDistance = 4.0;
+    public double minimumFallDistance = 4.0;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -35,14 +34,14 @@ public class Stomper extends Kit{
         /* Kit functionality ends here */
     }
 
-    HashMap<Player, Float> fallingDistance = new HashMap<Player, Float>();
+    HashMap<Player, Float> fallingDistance = new HashMap<>();
     @EventHandler
     public void onFall(PlayerMoveEvent e) {
         Player player = e.getPlayer();
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
         float distance = player.getFallDistance();
         if (distance == 0.0 && fallingDistance.containsKey(player)
-            && fallingDistance.get(player) > mimimumFallDistance)
+            && fallingDistance.get(player) > minimumFallDistance)
             stomp(player, fallingDistance.get(player));
         fallingDistance.put(player, distance);
     }
@@ -52,7 +51,7 @@ public class Stomper extends Kit{
         if (!(e.getEntityType().equals(EntityType.PLAYER))) return;
         if (!PlayerData.playerHasKitActive((Player) e.getEntity(), kitName.toLowerCase())) return;
         if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL))
-            e.setDamage(Math.min(4.0, e.getDamage()));
+            e.setDamage(Math.min(minimumFallDistance, e.getDamage()));
     }
 
     public void stomp(Player p, float dist) {

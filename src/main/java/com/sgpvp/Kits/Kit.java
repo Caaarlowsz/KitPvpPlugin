@@ -33,6 +33,7 @@ public abstract class Kit implements CommandExecutor, Listener {
                 Inventory inv = player.getInventory();
                 inv.clear();
                 inv.addItem(new ItemStack(Material.SLIME_BALL, 1));
+                if (player.getPlayer() == null) return false;
                 PlayerData.setPlayerNewKit(player.getPlayer(), kitName.toLowerCase());
                 player.setDisplayName(GameVariables.getPrefix(player) + player.getName());
                 Chat.SGPvPMessage(player, "You Have Chosen: " + KitDescriptions.color(kitName) + kitName);

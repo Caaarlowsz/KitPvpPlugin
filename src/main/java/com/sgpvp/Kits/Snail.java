@@ -1,8 +1,6 @@
 package com.sgpvp.Kits;
 
-import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
@@ -43,11 +41,7 @@ public class Snail extends Kit implements Listener {
 
                 double randomNumber = Math.random() * 10;
 
-                if(randomNumber < 7){
-                    return;
-                } else {
-                    snailSlow.apply(playerWKit);
-                }
+                if(randomNumber >= 7) snailSlow.apply(playerWKit);
             }
         }
     }
