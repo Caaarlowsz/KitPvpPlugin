@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class GameItems {
@@ -116,4 +117,21 @@ public class GameItems {
         switcherBalls.setItemMeta(meta);
         return switcherBalls;
     }
+    public static ItemStack getCultivatorHoe() {
+        ItemStack cultivatorHoe = new ItemStack(Material.STONE_HOE, 1);
+        ItemMeta cultivatorHoeMeta = cultivatorHoe.getItemMeta();
+        cultivatorHoeMeta.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
+        cultivatorHoeMeta.setLore(Collections.singletonList("Instantly grows any crop or sapling"));
+        cultivatorHoe.setItemMeta(cultivatorHoeMeta);
+        return cultivatorHoe;
+    }
+    public static ItemStack getGroundhogShovel() {
+        ItemStack groundhogShovel = new ItemStack(Material.STONE_SHOVEL, 1);
+        ItemMeta groundhogShovelMeta = groundhogShovel.getItemMeta();
+        groundhogShovelMeta.setDisplayName(ChatColor.translateAlternateColorCodes ('&', "&a&lGroundhog's Spade"));
+        groundhogShovelMeta.setLore(Collections.singletonList("Burrow your way underground"));
+        groundhogShovel.setItemMeta(groundhogShovelMeta);
+        return groundhogShovel;
+    }
+
 }

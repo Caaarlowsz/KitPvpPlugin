@@ -2,8 +2,7 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.command.Command;
@@ -13,9 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.Collections;
 
 public class Cultivator extends Kit {
     public String kitName = "Cultivator";
@@ -27,16 +23,9 @@ public class Cultivator extends Kit {
     }
     void initializeKit(Player player) {
         /* Kit functionality starts here */
-
-        ItemStack stone_hoe = new ItemStack(Material.STONE_HOE, 1);
-        ItemMeta stone_hoe_data = stone_hoe.getItemMeta();
-        if (stone_hoe_data == null) return;
-        stone_hoe_data.setDisplayName(ChatColor.BOLD + "The Cultivator's Powerful Plow");
-        stone_hoe_data.setLore(Collections.singletonList("Instantly grows any crop or sapling"));
-        stone_hoe.setItemMeta(stone_hoe_data);
+        ItemStack cultivatorHoe = GameItems.getCultivatorHoe();
         Inventory inv = player.getInventory();
-        inv.addItem(stone_hoe);
-
+        inv.addItem(cultivatorHoe);
         /* Kit functionality ends here */
     }
 
