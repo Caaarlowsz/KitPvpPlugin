@@ -74,3 +74,5 @@ commands:
     description: Knock items out of another players hand
   Explorer:
     description: Explore far and wide
+  Adventurer:
+    description: Obtain quests and complete them for rewards!
