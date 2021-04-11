@@ -16,8 +16,8 @@ import java.util.HashMap;
 
 public class Assassin extends Kit{
     public String kitName = "Assassin";
-    public int attackCooldown = 10 * 1000;
-    public int damageBuff = 3;
+    public int attackCooldown = 3 * 1000;
+    public int damageBuff = 6;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

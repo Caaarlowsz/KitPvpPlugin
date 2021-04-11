@@ -21,6 +21,7 @@ public class Glider extends Kit{
         /* Kit functionality starts here */
         ItemStack glider = new ItemStack(Material.ELYTRA);
         ItemMeta glider_Data = glider.getItemMeta();
+        if (glider_Data == null) return;
         glider_Data.setDisplayName(ChatColor.BLACK + "Glider");
         glider_Data.addEnchant(Enchantment.VANISHING_CURSE, 1, false);
         glider.setItemMeta(glider_Data);

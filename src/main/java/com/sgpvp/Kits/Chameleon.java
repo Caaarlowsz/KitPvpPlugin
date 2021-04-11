@@ -41,7 +41,7 @@ public class Chameleon extends Kit {
             MobDisguise mobDisguise = new MobDisguise(mobType, true);
 
             DisguiseAPI.disguiseEntity(e.getPlayer(), mobDisguise);
-            e.getPlayer().sendMessage("You are now disguised as a " + ChatColor.BOLD + playerRightClickEntity.getName());
+            e.getPlayer().sendMessage("You are now disguised as a " + ChatColor.BOLD + e.getRightClicked().getName());
         }
     }
 
@@ -49,11 +49,11 @@ public class Chameleon extends Kit {
     @EventHandler
     public void IfHit(EntityDamageEvent e){
         if(e.getEntity().getType() == EntityType.PLAYER){
-            Player playerhit = (Player) e.getEntity();
-            if(PlayerData.playerHasKitActive(playerhit, "chameleon")){
+            Player playerHit = (Player) e.getEntity();
+            if(PlayerData.playerHasKitActive(playerHit, "chameleon")){
                 if(DisguiseAPI.isDisguised(e.getEntity())){
                     ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-                    console.getServer().dispatchCommand(console, "undisguiseplayer " + playerhit.getName());
+                    console.getServer().dispatchCommand(console, "undisguise player " + playerHit.getName());
                 }
             }
         }

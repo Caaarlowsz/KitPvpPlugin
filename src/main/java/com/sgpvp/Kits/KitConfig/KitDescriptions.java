@@ -111,6 +111,7 @@ public class KitDescriptions {
         put("Vampire", Material.FERMENTED_SPIDER_EYE);
         put("Werewolf", Material.BAT_SPAWN_EGG);
         put("Explorer", Material.MAP);
+        put("Cultivator", Material.WHEAT_SEEDS);
     }};
     // Method to return kit color
     public static ChatColor color(String kitname) {

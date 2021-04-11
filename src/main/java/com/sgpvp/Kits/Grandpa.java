@@ -10,7 +10,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 public class Grandpa extends Kit{
     public String kitName = "Grandpa";
@@ -27,8 +27,9 @@ public class Grandpa extends Kit{
         ItemStack grandpaStick = new ItemStack(Material.STICK);
         ItemMeta stickData = grandpaStick.getItemMeta();
 
+        if (stickData == null) return;
         stickData.setDisplayName(ChatColor.BOLD + "Uncle Joe's Stick");
-        stickData.setLore(Arrays.asList("This stick belongs to uncle joe"));
+        stickData.setLore(Collections.singletonList("This stick belongs to uncle joe"));
         stickData.addEnchant(Enchantment.KNOCKBACK, 2, true);
 
         grandpaStick.setItemMeta(stickData);
