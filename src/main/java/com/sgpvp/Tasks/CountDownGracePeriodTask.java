@@ -19,20 +19,20 @@ public class CountDownGracePeriodTask extends BukkitRunnable {
 
         //15 seconds till start
         if(timerCurrent == 60){
-            Chat.SGPvPMessage(ChatColor.BOLD + "Grace Period Ends In 1 Minute");
+            Chat.SGPVPGlobalTitle("Grace Period", "Ends In 1 Minute", "", "");
         }
 
         if(timerCurrent == 30){
-            Chat.SGPvPMessage(ChatColor.BOLD + "Grace Period Ends In 30 Seconds");
+            Chat.SGPVPGlobalTitle("Grace Period", "Ends In 30 Seconds", "", "");
         }
 
         if(timerCurrent == 15){
-            Chat.SGPvPMessage(ChatColor.BOLD + "Grace Period Ends In 15 Seconds");
+            Chat.SGPVPGlobalTitle("Grace Period", "Ends In 15 Seconds", "", "");
         }
 
         // When 4 seconds left
         if(timerCurrent > 0 && timerCurrent <= 5){
-            Chat.SGPvPMessage(ChatColor.WHITE + "Grace Period Ends In... " + timerCurrent);
+            Chat.SGPVPGlobalTitle("Grace Period Ends In ", "Ends In " + timerCurrent, "", "");
         }
 
         timerCurrent -= 1;

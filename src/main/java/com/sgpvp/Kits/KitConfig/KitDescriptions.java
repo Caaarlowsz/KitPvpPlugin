@@ -34,6 +34,7 @@ public class KitDescriptions {
         put("Switcher", "Receive 10 snowballs, upon hitting an enemy with one you swap positions with them");
         put("Thor", "Receive the hammer of zeus \n Upon right clicking the axe you strike down lighting within a close range of you");
         put("Explorer", "Explore far and wide!");
+        put("Adventurer", "Receive Quests and gain Fame and Glory!");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);
@@ -60,6 +61,7 @@ public class KitDescriptions {
         put("Assassin", ChatColor.GRAY);
         put("Thor", ChatColor.YELLOW);
         put("Explorer", ChatColor.DARK_RED);
+        put("Adventurer", ChatColor.BLUE);
     }};
 
     /*
@@ -113,6 +115,7 @@ public class KitDescriptions {
         put("Explorer", Material.MAP);
         put("Cultivator", Material.WHEAT_SEEDS);
         put("Groundhog", Material.STONE_SHOVEL);
+        put("Adventurer", Material.MAP);
     }};
     // Method to return kit color
     public static ChatColor color(String kitname) {

@@ -18,7 +18,7 @@ public class GameStartTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        Chat.SGPvPMessage(ChatColor.YELLOW + "GAME HAS STARTED!");
+        Chat.SGPVPGlobalTitle("Game Has Started!", " ", "#FF3933", "");
         GameStartLogic.GameStart(GameVariables.world, plugin);
 
         PlayerInteractions.playerCanDropLava = false;

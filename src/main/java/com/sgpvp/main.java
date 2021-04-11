@@ -58,8 +58,7 @@ public final class main extends JavaPlugin implements Listener {
         Bukkit.addRecipe(recipe2);
 
         GameVariables.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-        // Current problem:
-        // Variables that are static, effect all players. FIX IT!
+
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Setting static game variables
@@ -107,8 +106,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Assassin", new Assassin());
             put("Monk", new Monk());
             put("Explorer", new Explorer());
-            put("Adventurer", new Adventurer());
-
+            //put("Adventurer", new Adventurer());
         }};
         for (String kit : GameVariables.kits.keySet())
             getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));

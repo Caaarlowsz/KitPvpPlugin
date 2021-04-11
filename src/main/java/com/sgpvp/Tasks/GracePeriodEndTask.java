@@ -17,7 +17,7 @@ public class GracePeriodEndTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        Chat.SGPvPMessage(ChatColor.BOLD+ "GRACE PERIOD HAS ENDED");
+        Chat.SGPVPGlobalTitle("Grace Period Has Ended", " ", "", "");
         GracePeriodLogic.GracePeriodEnd(GameVariables.world);
 
         GameVariables.gameState = GameVariables.gamestate_main;
