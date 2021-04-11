@@ -47,7 +47,7 @@ public class GameVariables {
 
     // Keeps Track of current players and min players to start game
     public static int currentAmountOfPlayers;
-    public static int minimumPlayersToStart = 0;
+    public static int minimumPlayersToStart = 1;
     public static HashMap<String, Kit> kits;
 
     public static String getPrefix(Player p) {

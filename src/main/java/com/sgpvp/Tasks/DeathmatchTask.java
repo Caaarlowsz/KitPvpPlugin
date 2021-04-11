@@ -20,32 +20,30 @@ public class DeathmatchTask extends BukkitRunnable {
     @Override
     public void run() {
 
+        String deathmatchTitle_Color = "#A0322E";
+        String deathmatchSubTitle_Color = "#901612";
+
         if(timer == 180){
-            Chat.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 3 MINUTES");
-
-        }
-
-        else if(timer == 120){
-            Chat.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 2 MINUTES");
+            Chat.SGPVPGlobalTitle("DEATHMATCH", "STARTING IN 3 MINUTES", deathmatchTitle_Color, deathmatchSubTitle_Color);
         }
 
         else if(timer == 60){
-            Chat.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 1 MINUTE");
+            Chat.SGPVPGlobalTitle("DEATHMATCH", "STARTING IN 1 MINUTE", deathmatchTitle_Color, deathmatchSubTitle_Color);
         }
 
         else if(timer == 30){
-            Chat.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 30 SECONDS!");
+            Chat.SGPVPGlobalTitle("DEATHMATCH", "STARTING IN 30 SECONDS", deathmatchTitle_Color, deathmatchSubTitle_Color);
         }
 
         else if(timer == 10){
-            Chat.SGPvPMessage(ChatColor.DARK_RED + "DEATHMATCH STARTING IN 10 SECONDS!");
+            Chat.SGPVPGlobalTitle("DEATHMATCH", "STARTING IN 10 SECONDS", deathmatchTitle_Color, deathmatchSubTitle_Color);
         }
 
-        else if(timer <= 5 && timer > 1){
-            Chat.SGPvPMessage(ChatColor.RED + "DEATHMATCH STARTING IN " + timer + "!");
+        else if(timer <= 5 && timer >= 1){
+            Chat.SGPVPGlobalTitle("DEATHMATCH", "STARTING IN " + timer + " SECONDS", "", "");
         }
 
-        else if (timer == 1){
+        else if (timer == 0){
             DeathmatchLogic.DeathmatchBegin();
         }
 

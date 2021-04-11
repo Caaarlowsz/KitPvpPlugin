@@ -29,7 +29,6 @@ public class Chat {
 
     public static void SGPVPGlobalTitle(String title, String subtitle, String color, String subcolor){
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-
         Bukkit.getServer().dispatchCommand(console, String.format("title @a title {\"text\":\"%s\",\"color\":\"%s\"}", title, color));
         Bukkit.getServer().dispatchCommand(console, String.format("title @a subtitle {\"text\":\"%s\",\"color\":\"%s\"}", subtitle, subcolor));
     }

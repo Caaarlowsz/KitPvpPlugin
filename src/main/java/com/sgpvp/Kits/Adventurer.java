@@ -50,10 +50,8 @@ public class Adventurer extends Kit{
 
         if(holdingMap && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)){
             player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 10, 10);
-            player.sendTitle("A Quest Has Been Added!", "Quest: test", 1 , 20, 1);
             Chat.DebugMessage("Map Event activated");
         }
-
     }
     /* Kit event handlers end here */
 }

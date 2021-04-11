@@ -22,7 +22,7 @@ public class KitDescriptions {
         put("Glider", "Glide around the map in an elytra. ");
         put("Blacksmith", "Upgrade your items to the next tier for free! \n - You have an anvil that can upgrade an any item \n - Axes or Swords cannot be upgraded to diamond tier \n - One time use");
         put("Viper", "The viper kit is an aggressive kit \n - The viper kit has a chance to apply poison on every hit");
-        put("Vampire", "Attacks heal you for half a heart \n - Player kills fully heal you");
+        put("Vampire", "Player kills fully heal you");
         put("Snail", "You have a chance of giving a player slowness on every hit");
         put("Monk", "You start with a monk staff that upon hitting an enemy puts the item they are holding back into their inventory.");
         put("Assassin", "Holding shift charges an attack, after you are charged hitting a player will do massive amounts of damage.");
@@ -32,7 +32,7 @@ public class KitDescriptions {
         put("Phantom", "Start with a feather that allows you to fly for 7 seconds when right clicking it \n It starts a cooldown after use");
         put("Stomper", "Instead of taking fall damage, you deal your fall damage to the players around the spot where you hit the ground");
         put("Switcher", "Receive 10 snowballs, upon hitting an enemy with one you swap positions with them");
-        put("Thor", "Receive the hammer of zeus \n Upon right clicking the axe you strike down lighting within a close range of you");
+        put("Thor", "Receive the hammer of Thor! \n Upon right clicking the axe you strike down lighting within a close range of you");
         put("Explorer", "Explore far and wide!");
         put("Adventurer", "Receive Quests and gain Fame and Glory!");
     }};
