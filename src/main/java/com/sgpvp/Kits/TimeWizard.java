@@ -66,10 +66,11 @@ public class TimeWizard extends Kit{
             for (Entity e : nearby) {
                 if (e.getType().equals(EntityType.PLAYER)) {
                     Player p = (Player) e;
-                    if (!p.getGameMode().equals(GameMode.SURVIVAL)) continue;
-                    Chat.SGPvPMessage(player, "You froze " + e.getName());
-                    frozen.put(p, true);
-                    p.setAllowFlight(true);
+                    if (p.getGameMode().equals(GameMode.SURVIVAL)) {
+                        Chat.SGPvPMessage(player, "You froze " + e.getName());
+                        frozen.put(p, true);
+                        p.setAllowFlight(true);
+                    }
                 }
             }
             ProgressBar freezeProgress = new ProgressBar(player, "Freeze duration: ", BarColor.BLUE, BarStyle.SOLID, duration);
