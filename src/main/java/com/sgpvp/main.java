@@ -90,8 +90,8 @@ public final class main extends JavaPlugin implements Listener {
             put("Recycler", new Recycler());
             put("Beastmaster", new Beastmaster());
             put("Glider", new Glider());
-            //put("Groundhog", new Groundhog()); //not working
-            put("Cultivator", new Cultivator()); //not working
+            put("Groundhog", new Groundhog());
+            put("Cultivator", new Cultivator());
             put("Chemist", new Chemist());
             put("Sunwalker", new Sunwalker());
             put("Blacksmith", new Blacksmith());

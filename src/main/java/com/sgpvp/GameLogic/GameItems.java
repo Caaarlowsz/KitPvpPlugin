@@ -126,7 +126,7 @@ public class GameItems {
         return cultivatorHoe;
     }
     public static ItemStack getGroundhogShovel() {
-        ItemStack groundhogShovel = new ItemStack(Material.STONE_SHOVEL, 1);
+        ItemStack groundhogShovel = new ItemStack(Material.STONE_SHOVEL, 3);
         ItemMeta groundhogShovelMeta = groundhogShovel.getItemMeta();
         groundhogShovelMeta.setDisplayName(ChatColor.translateAlternateColorCodes ('&', "&a&lGroundhog's Spade"));
         groundhogShovelMeta.setLore(Collections.singletonList("Burrow your way underground"));
