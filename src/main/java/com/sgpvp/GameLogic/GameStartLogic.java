@@ -31,6 +31,8 @@ public class GameStartLogic {
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder center %d %d", spawnX, spawnZ));
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", GameVariables.WORLDSIZE));
         Bukkit.getServer().dispatchCommand(console, "effect give @a minecraft:saturation 5 5");
+        Bukkit.getServer().dispatchCommand(console, String.format("spreadplayers %d %d %d %d %b %s", spawnX, spawnZ, 2, 20, false, "@a"));
+
 
         PlayerInteractions.playersCanDropItems = true;
         PlayerInteractions.playerCanTakeDamage = true;
