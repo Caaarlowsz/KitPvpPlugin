@@ -1,5 +1,6 @@
 package com.sgpvp.Kits;
 
+import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.*;
@@ -40,6 +41,7 @@ public class Groundhog extends Kit{
         Player player = event.getPlayer();
         Location playerLocation = player.getLocation();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
+        if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
         if (!isGroundhogShovel(heldItem)) return;
         if (playerLocation.getBlockY() < 30) return;
         World world = player.getWorld();
