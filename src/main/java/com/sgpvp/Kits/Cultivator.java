@@ -35,7 +35,7 @@ public class Cultivator extends Kit {
         if(!PlayerData.playerHasKitActive(event.getPlayer(), "cultivator")) return;
         try {
             Block block = event.getBlockPlaced();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 20; i++)
                 block.applyBoneMeal(BlockFace.DOWN);
         } catch (Exception e) {
             Chat.DebugMessage(e.getMessage());
