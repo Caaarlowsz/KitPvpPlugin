@@ -19,7 +19,7 @@ public class GameStartLogic {
 
         // Finds all players and teleports them to spawn
         for (int i = 0; i < w.getPlayers().size(); i++) {
-            w.getPlayers().get(i).teleport(w.getSpawnLocation());
+            //w.getPlayers().get(i).teleport(w.getSpawnLocation());
             w.getPlayers().get(i).setGameMode(GameMode.SURVIVAL);
             //remove potion effects
            // for(PotionEffect effect : w.getPlayers().get(i).getActivePotionEffects())
