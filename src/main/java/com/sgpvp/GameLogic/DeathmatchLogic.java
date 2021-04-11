@@ -61,6 +61,8 @@ public class DeathmatchLogic{
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder center %d %d", deathMatchCenterX, deathMatchCenterZ));
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", r*2));
+        Bukkit.getServer().dispatchCommand(console, String.format("difficulty peaceful"));
+        Bukkit.getServer().dispatchCommand(console, String.format("time set day"));
         hold();
 
     }
