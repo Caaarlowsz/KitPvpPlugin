@@ -25,8 +25,8 @@ import java.util.HashMap;
 
 public class Phantom extends Kit{
     public String kitName = "Phantom";
-    public int phantomCooldown = 120 * 1000;
-    public int flightDuration = 5 * 1000;
+    public int phantomCooldown = 30 * 1000;
+    public int flightDuration = 3 * 1000;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
