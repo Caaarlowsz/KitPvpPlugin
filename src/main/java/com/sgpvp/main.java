@@ -8,6 +8,7 @@ import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.Kits.*;
 import com.sgpvp.Tasks.*;
+import com.sgpvp.GlobalEvents.SpawnMushrooms;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -69,7 +70,7 @@ public final class main extends JavaPlugin implements Listener {
         GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + GameVariables.WORLDSIZE/2;
 
         // Spawn Mushrooms In World
-        SpawnMushrooms.spawnMushrooms(GameVariables.world);
+        SpawnMushrooms.spawnInitialMushrooms();
 
         // Global Events
         pluginManager.registerEvents(new PlayerInteractions(), this);
@@ -123,6 +124,7 @@ public final class main extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(new CompassTracker(), this);
         pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
+        pluginManager.registerEvents(new SpawnMushrooms(), this);
         pluginManager.registerEvents(this, this);
 
         for(Player p : this.getServer().getOnlinePlayers()) {
