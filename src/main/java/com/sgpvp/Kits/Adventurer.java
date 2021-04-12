@@ -44,14 +44,15 @@ public class Adventurer extends Kit{
     @EventHandler
     public void OnMapRightClick(PlayerInteractEvent e){
         Player player = e.getPlayer();
+        Sound questComplete = Sound.ENTITY_PLAYER_LEVELUP;
+
         if (!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
-
-        boolean holdingMap = player.getInventory().getItemInMainHand().getType() == Material.MAP;
-
-        if(holdingMap && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)){
-            player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 10, 10);
-            Chat.DebugMessage("Map Event activated");
+        boolean holdingMap = player.getInventory().getItemInMainHand().getType().equals(Material.MAP);
+        if(!(holdingMap && (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)))){
+            player.playSound(player.getLocation(), questComplete, 1, 1);
+            player.sendTitle("Quest Started!", "");
         }
+
     }
     /* Kit event handlers end here */
 }
