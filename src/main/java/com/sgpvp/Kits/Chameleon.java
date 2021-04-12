@@ -1,26 +1,17 @@
 package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.PlayerData;
-import com.sgpvp.GameLogic.Chat;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class Chameleon extends Kit {
     public String kitName = "Chameleon";
@@ -49,6 +40,7 @@ public class Chameleon extends Kit {
     //When hit undisguise the hit player
     @EventHandler
     public void IfHit(EntityDamageEvent e) {
+        if (!(e.getEntity() instanceof Player)) return;
         Player player = (Player) e.getEntity();
         if (!(PlayerData.playerHasKitActive(player, "chameleon"))) return;
         DisguiseAPI.undisguiseToAll(player);
@@ -56,6 +48,7 @@ public class Chameleon extends Kit {
 
     @EventHandler
     public void IfAttack(EntityDamageByEntityEvent e){
+        if (!(e.getEntity() instanceof Player)) return;
         Player player = (Player) e.getEntity();
         if (!(PlayerData.playerHasKitActive(player, "chameleon"))) return;
         DisguiseAPI.undisguiseToAll(e.getDamager());
