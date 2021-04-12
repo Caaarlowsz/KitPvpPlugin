@@ -32,4 +32,9 @@ public class Chat {
         Bukkit.getServer().dispatchCommand(console, String.format("title @a title {\"text\":\"%s\",\"color\":\"%s\"}", title, color));
         Bukkit.getServer().dispatchCommand(console, String.format("title @a subtitle {\"text\":\"%s\",\"color\":\"%s\"}", subtitle, subcolor));
     }
+
+    public static void SGPVPPersonalTitle(String player,String title, String subtitle, String color, String subcolor){
+        ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+        Bukkit.getServer().dispatchCommand(console, String.format("title %s title {\"text\":\"%s\",\"color\":\"%s\"}", player, title, color));
+    }
 }
