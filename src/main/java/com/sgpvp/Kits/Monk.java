@@ -69,7 +69,6 @@ public class Monk extends Kit{
         cooldowns.put(player, true);
         Thread staffCooldown = new Thread(new StaffCooldown(player));
         staffCooldown.start();
-
     }
     HashMap<Player, Boolean> cooldowns = new HashMap<>();
     private class StaffCooldown extends Thread {
