@@ -3,9 +3,13 @@ package com.sgpvp.Kits;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
+import com.sgpvp.GameLogic.ProgressBar;
 import com.sgpvp.Kits.KitConfig.KitDescriptions;
+import com.sgpvp.Kits.KitConfig.Quest;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,6 +34,9 @@ public abstract class Kit implements CommandExecutor, Listener {
             }
 
             if (GameVariables.canChangeKit) {
+                if(PlayerData.playerHasKitActive(player, "Adventurer")){
+                    Adventurer.playerQuests.get(player).questVisible(false);
+                }
                 Inventory inv = player.getInventory();
                 inv.clear();
                 inv.addItem(new ItemStack(Material.SLIME_BALL, 1));

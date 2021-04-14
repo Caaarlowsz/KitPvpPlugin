@@ -4,6 +4,7 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.ProgressBar;
 import com.sgpvp.Kits.KitConfig.Quest;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.bukkit.*;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
@@ -39,16 +40,10 @@ import java.util.Random;
 public class Adventurer extends Kit{
 
     public String kitName = "Adventurer";
-    Quest currentQuest;
-    boolean bossBarCreated = true;
-    int questCooldown = 45 * 1000;
 
     Sound questCompleteSound = Sound.UI_TOAST_CHALLENGE_COMPLETE;
 
-    public String questActive;
-
-    boolean easyQuestComplete;
-    boolean mediumQuestComplete;
+    public static HashMap<Player, Quest> playerQuests = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -62,23 +57,21 @@ public class Adventurer extends Kit{
         ItemStack map = new ItemStack(Material.MAP);
         ItemMeta map_meta = map.getItemMeta();
         map_meta.setDisplayName(ChatColor.YELLOW + "The Adventurers Map");
-
         map.setItemMeta(map_meta);
 
         player.getInventory().addItem(new ItemStack(map));
 
-
-        if(bossBarCreated){
+        Quest hasQuest = playerQuests.get(player);
+        if(hasQuest == null) {
             Random random = new Random();
             int totalAmountOfQuests = 3;
             int random_int = random.nextInt(totalAmountOfQuests);
-            if (random_int == 0){currentQuest = new Quest(player, ChatColor.GREEN + "Easy Quest: Kill 10 Mobs", BarColor.GREEN, BarStyle.SEGMENTED_10, "MobQuest"); }
-            if (random_int == 1){currentQuest = new Quest(player, ChatColor.GREEN + "Easy Quest: Mine 10 Coal Ore", BarColor.GREEN, BarStyle.SEGMENTED_10, "CoalQuest"); }
-            if (random_int == 2){currentQuest = new Quest(player, ChatColor.GREEN + "Easy Quest: Craft 10 Bowls", BarColor.GREEN, BarStyle.SEGMENTED_10, "BowlQuest"); }
-
-            bossBarCreated = false;
+            if (random_int == 0) { playerQuests.put(player, new Quest(player, ChatColor.GREEN + "Easy Quest: Kill 10 Mobs", BarColor.GREEN, BarStyle.SEGMENTED_10, "MobQuest")); }
+            if (random_int == 1) { playerQuests.put(player, new Quest(player, ChatColor.GREEN + "Easy Quest: Mine 10 Coal Ore", BarColor.GREEN, BarStyle.SEGMENTED_10, "CoalQuest")); }
+            if (random_int == 2) { playerQuests.put(player, new Quest(player, ChatColor.GREEN + "Easy Quest: Craft 20 Bowls", BarColor.GREEN, BarStyle.SEGMENTED_20, "BowlQuest")); }
+        } else {
+            hasQuest.questVisible(true);
         }
-
         /* Kit functionality ends here */
     }
 
@@ -87,21 +80,23 @@ public class Adventurer extends Kit{
         Random random = new Random();
         int totalAmountOfQuests = 1;
         int random_int = random.nextInt(totalAmountOfQuests);
-        if(random_int == 0){ current.setTitle(ChatColor.BOLD + "Medium Quest: Smelt 10 Pieces Of Iron Ore"); current.setProgress(0); current.setTag("SmeltIronQuest"); current.setBarColor(BarColor.WHITE);}
+        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.BOLD + "Medium Quest: Smelt 10 Pieces Of Iron Ore"); current.setProgress(0); current.setTag("SmeltIronQuest"); current.setBarColor(BarColor.WHITE);}
     }
+
     // Hard Quests
     public void newRandomHardQuest(Player player, Quest current){
         Random random = new Random();
         int totalAmountOfQuests = 1;
         int random_int = random.nextInt(totalAmountOfQuests);
-        if(random_int == 0){ current.setTitle(ChatColor.RED + "Hard Quest: Kill 4 Players"); current.setProgress(0); current.setTag("KillQuest"); current.setBarColor(BarColor.RED); current.setBarStyle(BarStyle.SOLID);}
+        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.RED + "Hard Quest: Kill 2 Players"); current.setProgress(0); current.setTag("KillQuest"); current.setBarColor(BarColor.RED); current.setBarStyle(BarStyle.SOLID);}
     }
+
     // Exotic Quests
     public void newRandomExoticQuest(Player player, Quest current){
         Random random = new Random();
         int totalAmountOfQuests = 1;
         int random_int = random.nextInt(totalAmountOfQuests);
-        if(random_int == 0){ current.setTitle(ChatColor.LIGHT_PURPLE + "Exotic Quest: Kill 10 Players"); current.setProgress(0); current.setTag("ExoticKillQuest"); current.setBarColor(BarColor.PURPLE); current.setBarStyle(BarStyle.SEGMENTED_10);}
+        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.LIGHT_PURPLE + "Exotic Quest: Kill 10 Players"); current.setProgress(0); current.setTag("ExoticKillQuest"); current.setBarColor(BarColor.PURPLE); current.setBarStyle(BarStyle.SEGMENTED_10);}
     }
 
     // Hard Quests
@@ -113,34 +108,34 @@ public class Adventurer extends Kit{
 
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
 
-        if(currentQuest.getActiveTag().equals("MobQuest")){
-            currentQuest.increment(0.1);
+        if(playerQuests.get(player).getActiveTag().equals("MobQuest")){
+            playerQuests.get(player).increment(0.1);
 
-            if(currentQuest.getProgress() > 0.9){
+            if(playerQuests.get(player).getProgress() > 0.9){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 2);
                 player.getInventory().addItem(Quest.mobQuestReward());
 
-                newRandomMediumQuest(player, currentQuest);
+                newRandomMediumQuest(player, playerQuests.get(player));
             }
         }
 
-        if(currentQuest.getActiveTag().equals("KillQuest")){
+        if(playerQuests.get(player).getActiveTag().equals("KillQuest")){
             if(!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
-            currentQuest.increment(0.2);
+            playerQuests.get(player).increment(0.5);
 
-            if(currentQuest.getProgress() > 0.8){
+            if(playerQuests.get(player).getProgress() > 0.8){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
                 player.getInventory().addItem(Quest.killPlayersQuestReward());
 
-                newRandomExoticQuest(player, currentQuest);
+                newRandomExoticQuest(player, playerQuests.get(player));
             }
         }
 
-        if(currentQuest.getActiveTag().equals("ExoticKillQuest")){
+        if(playerQuests.get(player).getActiveTag().equals("ExoticKillQuest")){
             if(!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
-            currentQuest.increment(0.1);
+            playerQuests.get(player).increment(0.1);
 
-            if(currentQuest.getProgress() > 0.9){
+            if(playerQuests.get(player).getProgress() > 0.9){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
                 player.getInventory().addItem(Quest.exoticKillPlayersQuestReward());
             }
@@ -153,15 +148,15 @@ public class Adventurer extends Kit{
 
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
 
-        if(currentQuest.getActiveTag().equals("CoalQuest")){
+        if(playerQuests.get(player).getActiveTag().equals("CoalQuest")){
             if(!(e.getBlock().getType().equals(Material.COAL_ORE))) return;
-            currentQuest.increment(0.1);
+            playerQuests.get(player).increment(0.1);
 
-            if(currentQuest.getProgress() > 0.9){
+            if(playerQuests.get(player).getProgress() > 0.9){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
                 player.getInventory().addItem(Quest.coalQuestReward());
 
-                newRandomMediumQuest(player, currentQuest);
+                newRandomMediumQuest(player, playerQuests.get(player));
             }
         }
 
@@ -172,15 +167,15 @@ public class Adventurer extends Kit{
         Player player = e.getPlayer();
 
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
-        if(!(currentQuest.getActiveTag().equals("SmeltIronQuest"))) return;
+        if(!(playerQuests.get(player).getActiveTag().equals("SmeltIronQuest"))) return;
         if(e.getItemType().equals(Material.IRON_INGOT)){
-            currentQuest.increment(e.getItemAmount() * 0.1);
+            playerQuests.get(player).increment(e.getItemAmount() * 0.1);
 
-            if(currentQuest.getProgress() > 0.9){
+            if(playerQuests.get(player).getProgress() > 0.9){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
                 player.getInventory().addItem(Quest.smeltIronQuestReward());
 
-                newRandomHardQuest(e.getPlayer(), currentQuest);
+                newRandomHardQuest(e.getPlayer(), playerQuests.get(player));
             }
         }
     }
@@ -190,13 +185,15 @@ public class Adventurer extends Kit{
         Player player = (Player) e.getWhoClicked();
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
 
-        if(currentQuest.getActiveTag().equals("BowlQuest")){
+        if(playerQuests.get(player).getActiveTag().equals("BowlQuest")){
             if(!(e.getInventory().getResult().getType().equals(Material.BOWL))) return;
 
-            currentQuest.increment(0.1);
-            if(currentQuest.getProgress() > 0.9){
+            playerQuests.get(player).increment(0.1);
+            if(playerQuests.get(player).getProgress() > 0.9){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
                 player.getInventory().addItem(Quest.bowlQuestReward());
+
+                newRandomMediumQuest(player, playerQuests.get(player));
             }
         }
 
