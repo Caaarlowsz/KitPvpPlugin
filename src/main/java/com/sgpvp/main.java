@@ -1,6 +1,7 @@
 package com.sgpvp;
 
 import com.sgpvp.Commands.AdminCommands;
+import com.sgpvp.Commands.Kills;
 import com.sgpvp.Commands.Spectate;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
@@ -123,6 +124,8 @@ public final class main extends JavaPlugin implements Listener {
         getServer().getPluginCommand("kit").setExecutor(new GUI());
 
         getServer().getPluginCommand("stp").setExecutor(new TeleportToPlayer());
+
+        getServer().getPluginCommand("kills").setExecutor(new Kills());
 
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);

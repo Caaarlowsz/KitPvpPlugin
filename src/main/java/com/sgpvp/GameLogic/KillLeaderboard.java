@@ -44,4 +44,11 @@ public class KillLeaderboard implements Listener {
         return topKillNums[i];
     }
 
+    public int getKills(Player player) {
+        return getKills(player.getName());
+    }
+    public int getKills(String name) {
+        return leaderboard.containsKey(name) ? leaderboard.get(name) : 0;
+    }
+
 }

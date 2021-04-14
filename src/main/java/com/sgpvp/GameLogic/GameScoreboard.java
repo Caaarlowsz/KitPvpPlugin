@@ -56,9 +56,13 @@ public class GameScoreboard extends BukkitRunnable {
 
         board.getTeam("gameStateString").setPrefix(ChatColor.GREEN + GameVariables.gameEvents.getGameStateString());
         board.getTeam("timeRemaining").setPrefix(ChatColor.AQUA + "" + GameVariables.gameEvents.getTimeRemaining());
-        //board.getTeam("topKills1").setPrefix(ChatColor.GOLD + "1. " + GameVariables.killLeaderboard.topKillNames[0] + GameVariables.killLeaderboard.topKillNums[0]);
-        //board.getTeam("topKills2").setPrefix(ChatColor.GRAY + "2. " + GameVariables.killLeaderboard.topKillNames[1] + GameVariables.killLeaderboard.topKillNums[1]);
-        //board.getTeam("topKills3").setPrefix(ChatColor.GRAY + "3. " + GameVariables.killLeaderboard.topKillNames[2] + GameVariables.killLeaderboard.topKillNums[2]);
+
+        //int topKills = GameVariables.killLeaderboard.getTopKillNum(0);
+        //String strTopKills = GameVariables.killLeaderboard.getTopKillName(0);
+
+        //board.getTeam("topKills1").setPrefix(ChatColor.GOLD + "1. " + GameVariables.killLeaderboard.getTopKillName(0) + ": " + GameVariables.killLeaderboard.getTopKillNum(0));
+        //board.getTeam("topKills2").setPrefix(ChatColor.GRAY + "2. " + GameVariables.killLeaderboard.getTopKillName(1) + ": " + GameVariables.killLeaderboard.getTopKillNum(1));
+        //board.getTeam("topKills3").setPrefix(ChatColor.GRAY + "3. " + GameVariables.killLeaderboard.getTopKillName(2) + ": " + GameVariables.killLeaderboard.getTopKillNum(2));
 
     }
 }

@@ -17,6 +17,9 @@ commands:
   spectatetp:
     description: Teleport to player as spectator
     aliases: [stp, spectp, spectateteleport, spectatortp, spectatorteleport]
+  kills:
+    description: Get number of kills
+    aliases: [killcount]
   timewizard:
     description: Gives Clock, Clock can stop timearound you stoping all players from moving!
   werewolf:
