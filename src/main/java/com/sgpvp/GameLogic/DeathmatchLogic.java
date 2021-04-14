@@ -22,9 +22,6 @@ public class DeathmatchLogic{
     // When deathmatch begins
     public static void DeathmatchBegin(){
 
-        GameVariables.gameState = GameVariables.gamestate_deathmatch;
-        System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
-
         Chat.SGPvPMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
         //Remove blocks above chests
         for (int i = deathMatchCenterX - r; i <= deathMatchCenterX + r; i++) {

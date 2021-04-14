@@ -36,6 +36,7 @@ public class KitDescriptions {
         put("Explorer", "Explore far and wide!");
         put("Adventurer", "Receive Quests and gain Fame and Glory!");
         put("Spirit", "Turn invisible for short periods of time");
+        put("Endermage", "Teleport players above and below your to your portal");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);
@@ -64,6 +65,7 @@ public class KitDescriptions {
         put("Explorer", ChatColor.DARK_RED);
         put("Adventurer", ChatColor.BLUE);
         put("Spirit", ChatColor.GRAY);
+        put("Endermage", ChatColor.DARK_PURPLE);
     }};
 
     /*
@@ -119,6 +121,7 @@ public class KitDescriptions {
         put("Groundhog", Material.STONE_SHOVEL);
         put("Adventurer", Material.MAP);
         put("Spirit", Material.GHAST_TEAR);
+        put("Endermage", Material.END_PORTAL_FRAME);
     }};
     // Method to return kit color
     public static ChatColor color(String kitname) {

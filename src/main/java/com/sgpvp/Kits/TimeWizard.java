@@ -49,13 +49,10 @@ public class TimeWizard extends Kit{
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
         if (!player.getInventory().getItemInMainHand().getType().equals(Material.CLOCK)) return;
         if (cooldowns.containsKey(player) && cooldowns.get(player)) return;
-        if(GameVariables.gameState.equals(GameVariables.gamestate_main) || GameVariables.gameState.equals(GameVariables.gamestate_deathmatch)){
-            Chat.SGPvPMessage(player, "&5Time freeze activated!");
-            List<Entity> nearby = player.getNearbyEntities(freezeRadius, freezeRadius, freezeRadius);
-            Thread freeze = new Thread(new Freeze(player, nearby));
-            freeze.start();
-        }
-
+        Chat.SGPvPMessage(player, "&5Time freeze activated!");
+        List<Entity> nearby = player.getNearbyEntities(freezeRadius, freezeRadius, freezeRadius);
+        Thread freeze = new Thread(new Freeze(player, nearby));
+        freeze.start();
     }
     private class Freeze extends Thread {
         Player player;

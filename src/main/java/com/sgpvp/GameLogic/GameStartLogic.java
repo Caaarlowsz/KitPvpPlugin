@@ -14,8 +14,6 @@ public class GameStartLogic {
     // When Game Starts
     public static void GameStart(World w, com.sgpvp.main main){
 
-        GameVariables.gameState = GameVariables.gamestate_graceperiod;
-        System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
 
         // Finds all players and teleports them to spawn
         for (int i = 0; i < w.getPlayers().size(); i++) {
@@ -29,7 +27,7 @@ public class GameStartLogic {
         GameVariables.canChangeKit = false;
         ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder center %d %d", spawnX, spawnZ));
-        Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", GameVariables.WORLDSIZE));
+        Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", GameVariables.WORLD_SIZE));
         Bukkit.getServer().dispatchCommand(console, "effect give @a minecraft:saturation 5 5");
         Bukkit.getServer().dispatchCommand(console, String.format("spreadplayers %d %d %d %d %b %s", spawnX, spawnZ, 2, 20, false, "@a"));
 
