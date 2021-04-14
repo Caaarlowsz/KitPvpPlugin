@@ -14,6 +14,9 @@ commands:
   spectate:
     description: Become a spectator
     aliases: [spec, spectator]
+  spectatetp:
+    description: Teleport to player as spectator
+    aliases: [stp, spectp, spectateteleport, spectatortp, spectatorteleport]
   timewizard:
     description: Gives Clock, Clock can stop timearound you stoping all players from moving!
   werewolf:
