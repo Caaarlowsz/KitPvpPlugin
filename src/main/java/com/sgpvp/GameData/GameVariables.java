@@ -50,15 +50,6 @@ public class GameVariables {
     public static int minimumPlayersToStart = 1;
     public static HashMap<String, Kit> kits;
 
-    public static String getPrefix(Player p) {
-        String prefix = "";
-        if (p.isOp()) prefix += ChatColor.translateAlternateColorCodes('&', "&f[&6★&f]&r");
-        prefix += ChatColor.translateAlternateColorCodes('&', "&f[");
-        prefix += KitDescriptions.color(PlayerData.getPlayerKit(p)) + KitDescriptions.getKitName(PlayerData.getPlayerKit(p));
-        prefix += ChatColor.translateAlternateColorCodes('&', "&f] &r");
-        return prefix;
-    }
-
     // Returns The Current Game State
     public static String getCurrentGameState(){ return gameState; }
 

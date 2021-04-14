@@ -7,6 +7,7 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.Kits.*;
+import com.sgpvp.Spectator.TeleportToPlayer;
 import com.sgpvp.Tasks.*;
 import com.sgpvp.GlobalEvents.SpawnMushrooms;
 import org.bukkit.*;
@@ -126,17 +127,17 @@ public final class main extends JavaPlugin implements Listener {
 
         getServer().getPluginCommand("kit").setExecutor(new GUI());
 
+        getServer().getPluginCommand("stp").setExecutor(new TeleportToPlayer());
+
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(new CompassTracker(), this);
         pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
         pluginManager.registerEvents(new SpawnMushrooms(), this);
+        pluginManager.registerEvents(new Chat(), this);
         pluginManager.registerEvents(this, this);
 
-        for(Player p : this.getServer().getOnlinePlayers()) {
-            p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
-        }
     }
 
     public void enableKitEvents() {
@@ -150,8 +151,6 @@ public final class main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
-        e.getPlayer().setDisplayName(GameVariables.getPrefix(e.getPlayer()) + e.getPlayer().getName());
-
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
         if(!GameVariables.gameState.equals(GameVariables.gamestate_lobby)){
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
