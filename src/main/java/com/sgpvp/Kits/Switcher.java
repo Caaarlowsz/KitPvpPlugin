@@ -41,6 +41,7 @@ public class Switcher extends Kit{
 
     @EventHandler
     public void markSnowball(ProjectileLaunchEvent event) {
+        if (!(event.getEntity().getShooter() instanceof Player)) return;
         Player player = (Player) event.getEntity().getShooter();
         if (player == null) return;
         PlayerInventory inventory = player.getInventory();
