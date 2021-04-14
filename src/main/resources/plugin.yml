@@ -76,3 +76,5 @@ commands:
     description: Explore far and wide
   Adventurer:
     description: Obtain quests and complete them for rewards!
+  Spirirt:
+    description: Turn invisible

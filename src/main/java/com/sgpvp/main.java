@@ -107,10 +107,16 @@ public final class main extends JavaPlugin implements Listener {
             put("Assassin", new Assassin());
             put("Monk", new Monk());
             put("Explorer", new Explorer());
+            put("Spirit", new Spirit());
             //put("Adventurer", new Adventurer());
         }};
-        for (String kit : GameVariables.kits.keySet())
-            getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
+        for (String kit : GameVariables.kits.keySet()) {
+            try {
+                getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
+            } catch (NullPointerException nullp) {
+                System.out.println(nullp.getMessage());
+            }
+        }
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
         getCommand("game").setTabCompleter(new AdminCommands());
