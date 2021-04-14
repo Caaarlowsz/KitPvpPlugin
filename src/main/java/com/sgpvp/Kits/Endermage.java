@@ -35,7 +35,7 @@ public class Endermage extends Kit{
     void initializeKit(Player player) {
         /* Kit functionality starts here */
         Inventory inv = player.getInventory();
-        inv.addItem(new ItemStack(Material.END_PORTAL,1));
+        inv.addItem(new ItemStack(Material.END_PORTAL_FRAME,1));
         /* Kit functionality ends here */
     }
     /* Kit event handlers start here */
@@ -44,7 +44,7 @@ public class Endermage extends Kit{
         Player player = e.getPlayer();
         Block block = e.getBlock();
         if (!PlayerData.playerHasKitActive(player, kitName.toLowerCase())) return;
-        if (!block.getType().equals(Material.END_PORTAL)) return;
+        if (!block.getType().equals(Material.END_PORTAL_FRAME)) return;
         List<Entity> nearby = player.getNearbyEntities(5, 256, 5);
         Location location = block.getLocation();
         for (Entity ent : nearby) {
@@ -76,7 +76,7 @@ public class Endermage extends Kit{
                 }
             }
             Inventory inv = player.getInventory();
-            inv.addItem(new ItemStack(Material.END_PORTAL,1));
+            inv.addItem(new ItemStack(Material.END_PORTAL_FRAME,1));
             cooldownProgress.removePlayer(player);
         }
     }
