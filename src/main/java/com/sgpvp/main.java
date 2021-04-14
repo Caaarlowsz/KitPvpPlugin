@@ -105,6 +105,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Monk", new Monk());
             put("Explorer", new Explorer());
             put("Spirit", new Spirit());
+            put("Adventurer", new Adventurer());
             put("Endermage", new Endermage());
             //put("Adventurer", new Adventurer());
         }};
