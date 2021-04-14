@@ -36,7 +36,7 @@ public class Quest {
     // Quest (Easy) Rewards
     public static ItemStack mobQuestReward(){ return new ItemStack(Material.IRON_INGOT, 8); }
     public static ItemStack coalQuestReward(){ return new ItemStack(Material.IRON_INGOT, 8); }
-    public static ItemStack bowlQuestReward(){ return new ItemStack(Material.OAK_LOG, 12); }
+    public static ItemStack bowlQuestReward(){ return new ItemStack(Material.IRON_INGOT, 4); }
 
     // Quest (Medium) Rewards
     public static ItemStack smeltIronQuestReward(){
