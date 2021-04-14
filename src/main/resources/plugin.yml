@@ -78,3 +78,5 @@ commands:
     description: Obtain quests and complete them for rewards!
   Spirirt:
     description: Turn invisible
+  Endermage:
+    description: Telport players above and below you to your portal

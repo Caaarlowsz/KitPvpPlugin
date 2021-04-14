@@ -108,13 +108,14 @@ public final class main extends JavaPlugin implements Listener {
             put("Monk", new Monk());
             put("Explorer", new Explorer());
             put("Spirit", new Spirit());
+            put("Endermage", new Endermage());
             //put("Adventurer", new Adventurer());
         }};
         for (String kit : GameVariables.kits.keySet()) {
             try {
                 getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
             } catch (NullPointerException nullp) {
-                System.out.println(nullp.getMessage());
+                System.out.println(nullp.getMessage() + "@ kit: " + kit);
             }
         }
 
