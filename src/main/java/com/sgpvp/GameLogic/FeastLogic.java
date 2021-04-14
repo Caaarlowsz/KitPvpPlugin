@@ -65,10 +65,10 @@ public class FeastLogic {
     static final int spawnX = GameVariables.world.getSpawnLocation().getBlockX();
     static final int spawnZ = GameVariables.world.getSpawnLocation().getBlockZ();
 
-    static int min_x = spawnX - GameVariables.WORLDSIZE/2 + 100;
-    static int max_x = spawnX + GameVariables.WORLDSIZE/2 - 100;
-    static int min_z = spawnZ - GameVariables.WORLDSIZE/2 + 100;
-    static int max_z = spawnZ + GameVariables.WORLDSIZE/2 - 100;
+    static int min_x = spawnX - GameVariables.WORLD_SIZE /2 + 100;
+    static int max_x = spawnX + GameVariables.WORLD_SIZE /2 - 100;
+    static int min_z = spawnZ - GameVariables.WORLD_SIZE /2 + 100;
+    static int max_z = spawnZ + GameVariables.WORLD_SIZE /2 - 100;
 
     public static int feast_center_x = min_x + rng.nextInt(Math.abs(min_x - max_x));
     public static int feast_center_z = min_z + rng.nextInt(Math.abs(min_z - max_z));

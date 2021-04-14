@@ -68,6 +68,18 @@ public class GameEvents extends BukkitRunnable {
     public void spawnFeast() { gameStateID = 2; timer = spawnFeastTime - 5; }
     public void startDeathmatch() { gameStateID = 3; timer = startDeathmatchTime - 5; }
 
+    public int getGameStateID() { return gameStateID; }
+    public String getGameStateString() {
+        switch (gameStateID) {
+            case 0: return "Pre-game";
+            case 1: return "Grace period";
+            case 2: return "Pre-feast";
+            case 3: return "Pre-deathmatch";
+            case 4: return "Deathmatch";
+        }
+        return "Unknown";
+    }
+
     private void gameStartCountdown() {
         int sectionTime = startGameTime - timer;
         if (countdownIntervals.contains(sectionTime)) {
@@ -90,18 +102,18 @@ public class GameEvents extends BukkitRunnable {
         int sectionTime = endGracePeriodTime - timer;
         if (countdownIntervals.contains(sectionTime)) {
             if (sectionTime < 60)
-                Chat.SGPVPGlobalTitle("Grace period", String.format("in %d seconds", sectionTime), "", "");
+                Chat.SGPVPGlobalTitle("Grace period ends", String.format("in %d seconds", sectionTime), "", "");
             else
-                Chat.SGPVPGlobalTitle("Grace period", String.format("in %d minutes", sectionTime/60), "", "");
+                Chat.SGPVPGlobalTitle("Grace period ends", String.format("in %d minutes", sectionTime/60), "", "");
         }
         if (sectionTime == 0) gracePeriodEnded();
 
     }
     private void gracePeriodEnded() {
         Chat.SGPVPGlobalTitle("Grace period has ended", " ", "", "");
-        GracePeriodLogic.GracePeriodEnd(GameVariables.world);
+        GameVariables.world.setPVP(true);
+        PlayerInteractions.playerCanDropLava = true;
 
-        GameVariables.gameState = GameVariables.gamestate_main;
         gameStateID++;
     }
     private void feastSpawnCountdown() {
