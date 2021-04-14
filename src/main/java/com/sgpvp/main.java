@@ -69,6 +69,7 @@ public final class main extends JavaPlugin implements Listener {
         GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + GameVariables.WORLDSIZE/2;
         GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - GameVariables.WORLDSIZE/2;
         GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + GameVariables.WORLDSIZE/2;
+        GameVariables.gameEvents = new GameEvents(this);
 
         // Spawn Mushrooms In World
         SpawnMushrooms.spawnInitialMushrooms();
@@ -175,13 +176,8 @@ public final class main extends JavaPlugin implements Listener {
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
         if(GameVariables.currentAmountOfPlayers >= GameVariables.minimumPlayersToStart){
             if(GameVariables.EventsFired){
-                BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskTimer(this, ChestCircleDelayTimer, 20);
-                BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskTimer(this, DeathmatchDelayTimer, 20);
-                BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
-                BukkitTask countDownToGameStartTask = new CountDownToStartTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
-                BukkitTask countDownGracePeriodTask = new CountDownGracePeriodTask(this).runTaskTimer(this, GracePeriodDelayTimer - 999, 20);
-                BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer + 200);
-                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, GameStartDelayTimer, 20);
+                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, 0, 20);
+                BukkitTask gameEvents = GameVariables.gameEvents.runTaskTimer(this, 0, 20);
 
                 GameVariables.EventsFired = false;
             }

