@@ -7,10 +7,10 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.Kits.*;
+import com.sgpvp.Spectator.TeleportToPlayer;
 import com.sgpvp.Tasks.*;
 import com.sgpvp.GlobalEvents.SpawnMushrooms;
 import org.bukkit.*;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -28,20 +28,12 @@ import java.util.HashMap;
 
 public final class main extends JavaPlugin implements Listener {
 
-    // Timers For Events - [TIMERS START WHEN MINIMUM AMOUNT OF PLAYERS HAVE BEEN FOUND]
-    public long GracePeriodDelayTimer = 2 * 1000; // Time Before Grace Period Ends (2min)
-    public long GameStartDelayTimer = 1 * 1000; // Time Before Game Starts
-    public long ChestCircleDelayTimer = 5 * 1000; // Time Before Chest Circle Spawns
-    public long DeathmatchDelayTimer = 10 * 1000; // Time Before Deathmatch Starts
-
     // ON PLUGIN ENABLED
     @Override
     public void onEnable() {
         // Creates New World When Game Is Complete For Next Game
         CreateNewWorld();
 
-        GameVariables.gameState = GameVariables.gamestate_lobby;
-        System.out.println("GAME STATE IS NOW: " + GameVariables.gameState);
 
         // CACTI SOUP Crafting Addition
         ItemStack soup_item = new ItemStack(Material.MUSHROOM_STEW);
@@ -64,10 +56,14 @@ public final class main extends JavaPlugin implements Listener {
 
         // Setting static game variables
         GameVariables.WorldSpawn = GameVariables.world.getSpawnLocation();
-        GameVariables.WorldBounds.MINX = GameVariables.WorldSpawn.getBlockX() - GameVariables.WORLDSIZE/2;
-        GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + GameVariables.WORLDSIZE/2;
-        GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - GameVariables.WORLDSIZE/2;
-        GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + GameVariables.WORLDSIZE/2;
+        GameVariables.WorldBounds.MINX = GameVariables.WorldSpawn.getBlockX() - GameVariables.WORLD_SIZE /2;
+        GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + GameVariables.WORLD_SIZE /2;
+        GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - GameVariables.WORLD_SIZE /2;
+        GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + GameVariables.WORLD_SIZE /2;
+        GameVariables.gameEvents = new GameEvents(this);
+
+        // Scoreboard
+        BukkitTask gameEvents = (new GameScoreboard()).runTaskTimer(this, 0, 20);
 
         // Spawn Mushrooms In World
         SpawnMushrooms.spawnInitialMushrooms();
@@ -109,12 +105,14 @@ public final class main extends JavaPlugin implements Listener {
             put("Explorer", new Explorer());
             put("Spirit", new Spirit());
             put("Adventurer", new Adventurer());
+            put("Endermage", new Endermage());
+            //put("Adventurer", new Adventurer());
         }};
         for (String kit : GameVariables.kits.keySet()) {
             try {
                 getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
             } catch (NullPointerException nullp) {
-                System.out.println(nullp.getMessage());
+                System.out.println(nullp.getMessage() + "@ kit: " + kit);
             }
         }
 
@@ -125,17 +123,17 @@ public final class main extends JavaPlugin implements Listener {
 
         getServer().getPluginCommand("kit").setExecutor(new GUI());
 
+        getServer().getPluginCommand("stp").setExecutor(new TeleportToPlayer());
+
         //CUSTOM EVENTS
         pluginManager.registerEvents(new GUI(), this);
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(new CompassTracker(), this);
         pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
         pluginManager.registerEvents(new SpawnMushrooms(), this);
+        pluginManager.registerEvents(new Chat(), this);
         pluginManager.registerEvents(this, this);
 
-        for(Player p : this.getServer().getOnlinePlayers()) {
-            p.setDisplayName(GameVariables.getPrefix(p) + p.getName());
-        }
     }
 
     public void enableKitEvents() {
@@ -149,10 +147,9 @@ public final class main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void OnPlayerJoin(PlayerJoinEvent e){
-        e.getPlayer().setDisplayName(GameVariables.getPrefix(e.getPlayer()) + e.getPlayer().getName());
-
         // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
-        if(!GameVariables.gameState.equals(GameVariables.gamestate_lobby)){
+        e.getPlayer().setScoreboard(GameScoreboard.board);
+        if (GameVariables.gameEvents.getGameStateID() > 0) {
             e.getPlayer().setGameMode(GameMode.SPECTATOR);
             Chat.SGPvPMessage(e.getPlayer(), "GAME ALREADY IN PROGRESS...");
         } else {
@@ -175,23 +172,12 @@ public final class main extends JavaPlugin implements Listener {
         // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
         if(GameVariables.currentAmountOfPlayers >= GameVariables.minimumPlayersToStart){
             if(GameVariables.EventsFired){
-                BukkitTask chestsTask = new ChestCircleSpawnTask(this).runTaskTimer(this, ChestCircleDelayTimer, 20);
-                BukkitTask deathmatchTask = new DeathmatchTask(this).runTaskTimer(this, DeathmatchDelayTimer, 20);
-                BukkitTask gamestartTask = new GameStartTask(this).runTaskLater(this, GameStartDelayTimer);
-                BukkitTask countDownToGameStartTask = new CountDownToStartTask(this).runTaskTimer(this, GameStartDelayTimer - 300, 20);
-                BukkitTask countDownGracePeriodTask = new CountDownGracePeriodTask(this).runTaskTimer(this, GracePeriodDelayTimer - 999, 20);
-                BukkitTask graceperiodTask = new GracePeriodEndTask(this).runTaskLater(this, GracePeriodDelayTimer + 200);
-                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, GameStartDelayTimer, 20);
+                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, 0, 20);
+                BukkitTask gameEvents = GameVariables.gameEvents.runTaskTimer(this, 0, 20);
 
                 GameVariables.EventsFired = false;
             }
         }
-
-        // Create Player Hash Data
-        //HashMap<String, String> player_data = new HashMap<String, String>();
-        //player_data.put(e.getPlayer().getName(), null);
-
-        // Add Player To Global Hash Database
     }
 
     @EventHandler

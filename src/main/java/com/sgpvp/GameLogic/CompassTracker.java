@@ -15,12 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompassTracker implements Listener {
-
-    private com.sgpvp.main main;
-
-    public void CompassTracker(com.sgpvp.main main){
-        this.main = main;
-    }
+    private int teamingRadius = 20;
 
     public Location getNearestPlayertoSelf(Player p){
         List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
@@ -30,6 +25,8 @@ public class CompassTracker implements Listener {
                 players.remove(a);
             }
             else if (players.get(a).getGameMode() == GameMode.SPECTATOR) {
+                players.remove(a);
+            } else if (distance(p.getLocation(), players.get(a).getLocation()) < teamingRadius) {
                 players.remove(a);
             } else {
                 a++;
