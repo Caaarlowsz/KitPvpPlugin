@@ -80,6 +80,19 @@ public class GameEvents extends BukkitRunnable {
         return "Unknown";
     }
 
+    public int getTimeRemaining() {
+        switch (gameStateID) {
+            case 0: return startGameTime - timer;
+            case 1: return endGracePeriodTime - timer;
+            case 2: return spawnFeastTime - timer;
+            case 3: return startDeathmatchTime - timer;
+            case 4: return 0;
+        }
+        return 0;
+    }
+
+    public void extendTime(int amount) { timer -= amount; }
+
     private void gameStartCountdown() {
         int sectionTime = startGameTime - timer;
         if (countdownIntervals.contains(sectionTime)) {

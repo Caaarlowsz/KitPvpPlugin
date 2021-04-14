@@ -1,5 +1,6 @@
 package com.sgpvp.GameData;
 
+import com.sgpvp.GameLogic.KillLeaderboard;
 import com.sgpvp.Kits.Kit;
 import com.sgpvp.Tasks.GameEvents;
 import org.bukkit.*;
@@ -30,6 +31,9 @@ public class GameVariables {
     // World Reference and Keeps Track Of If Events Have Started Or Not
     public static World world;
     public static boolean EventsFired = true;
+
+    // Kill leaderboard
+    public static KillLeaderboard killLeaderboard;
 
     // This is in all .kits classes and checks if kits can be changed (turns false when game starts)
     public static boolean canChangeKit = true;

@@ -34,6 +34,9 @@ public class AdminCommands implements CommandExecutor, TabCompleter {
                 GameVariables.DEBUG = !GameVariables.DEBUG;
                 Chat.SGPvPMessage(player, "Debug toggled: " + GameVariables.DEBUG);
             }
+            if (args[0].equals("extend")) {
+                GameVariables.gameEvents.extendTime(Integer.parseInt(args[1]));
+            }
         }
         return false;
     }
