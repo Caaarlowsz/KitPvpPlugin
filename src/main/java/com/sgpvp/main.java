@@ -196,6 +196,9 @@ public final class main extends JavaPlugin implements Listener {
         GameVariables.currentAmountOfPlayers--;
         System.out.println(GameVariables.currentAmountOfPlayers);
         e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
+        if(PlayerData.playerHasKitActive(e.getEntity().getPlayer(), "Adventurer")){
+            Adventurer.playerQuests.get(e.getEntity().getPlayer()).questVisible(false);
+        }
         /*
         if(GameVariables.currentAmountOfPlayers <= 1){
 

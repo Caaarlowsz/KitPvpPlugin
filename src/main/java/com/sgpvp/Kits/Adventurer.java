@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class Adventurer extends Kit{
             Random random = new Random();
             int totalAmountOfQuests = 2;
             int random_int = random.nextInt(totalAmountOfQuests);
-            if (random_int == 0) { playerQuests.put(player, new Quest(player, ChatColor.GREEN + "Simple Fighter: Kill 10 Mobs", BarColor.GREEN, BarStyle.SEGMENTED_10, "MobQuest", 10)); }
+            if (random_int == 0) { playerQuests.put(player, new Quest(player, ChatColor.GREEN + "Novice Hunter: Kill 10 Mobs", BarColor.GREEN, BarStyle.SEGMENTED_10, "MobQuest", 10)); }
             if (random_int == 1) { playerQuests.put(player, new Quest(player, ChatColor.GREEN + "Novice Miner: Mine 10 Coal Ore", BarColor.GREEN, BarStyle.SEGMENTED_10, "CoalQuest", 10)); }
         } else {
             hasQuest.questVisible(true);
@@ -65,7 +66,7 @@ public class Adventurer extends Kit{
         int totalAmountOfQuests = 2;
         int random_int = random.nextInt(totalAmountOfQuests);
         if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.BOLD + "King Of The Furnace: Smelt 10 Pieces Of Iron Ore"); current.setProgress(0d); current.setTag("SmeltIronQuest"); current.setBarColor(BarColor.WHITE); current.setMax(10);}
-        if(random_int == 1){ playerQuests.get(player).setTitle(ChatColor.BOLD + "Slayer: Kill 20 Mobs"); current.setProgress(0d); current.setTag("MobQuestMediumQuest"); current.setBarColor(BarColor.WHITE); current.setBarStyle(BarStyle.SEGMENTED_20); current.setMax(20);}
+        if(random_int == 1){ playerQuests.get(player).setTitle(ChatColor.BOLD + "Well Trained Hunter: Kill 20 Mobs"); current.setProgress(0d); current.setTag("MediumMobQuest"); current.setBarColor(BarColor.WHITE); current.setBarStyle(BarStyle.SEGMENTED_20); current.setMax(20);}
 
     }
 
@@ -75,69 +76,39 @@ public class Adventurer extends Kit{
         Random random = new Random();
         int totalAmountOfQuests = 2;
         int random_int = random.nextInt(totalAmountOfQuests);
-        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.RED + "" + ChatColor.BOLD + "Warrior: Kill 3 Players"); current.setProgress(0d); current.setTag("KillQuest"); current.setBarColor(BarColor.RED); current.setBarStyle(BarStyle.SOLID); current.setMax(3);}
+        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.RED + "" + ChatColor.BOLD + "Expert Hunter: Kill 30 Mobs"); current.setProgress(0d); current.setTag("HardMobQuest"); current.setBarColor(BarColor.RED); current.setBarStyle(BarStyle.SOLID); current.setMax(30);}
         if(random_int == 1){ playerQuests.get(player).setTitle(ChatColor.RED + "" + ChatColor.BOLD + "Expert Smelter: Smelt 20 Pieces Of Iron Ore"); current.setProgress(0d); current.setTag("SmeltIronHardQuest"); current.setBarColor(BarColor.RED); current.setBarStyle(BarStyle.SOLID); current.setBarStyle(BarStyle.SEGMENTED_20); current.setMax(20);}
     }
 
     // Exotic Quests
     public void newRandomExoticQuest(Player player, Quest current){
         Random random = new Random();
-        int totalAmountOfQuests = 1;
+        int totalAmountOfQuests = 2;
         int random_int = random.nextInt(totalAmountOfQuests);
-        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "God Of War: Kill 10 Players"); current.setProgress(0d); current.setTag("ExoticKillQuest"); current.setBarColor(BarColor.PURPLE); current.setBarStyle(BarStyle.SEGMENTED_10); current.setMax(10);}
+        if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "God Of The Hunt: Kill 40 Mobs"); current.setProgress(0d); current.setTag("ExoticMobQuest"); current.setBarColor(BarColor.PURPLE); current.setBarStyle(BarStyle.SEGMENTED_10); current.setMax(40);}
+        if(random_int == 1){ playerQuests.get(player).setTitle(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "God Of The Forge: Smelt 40 Iron Ore"); current.setProgress(0d); current.setTag("SmeltIronExoticQuest"); current.setBarColor(BarColor.PURPLE); current.setBarStyle(BarStyle.SEGMENTED_20); current.setMax(40);}
     }
 
     /* Kit event handlers start here */
     @EventHandler
     public void AnimalQuest(EntityDeathEvent e){
         Player player =  e.getEntity().getKiller();
+        Inventory playerInventory = player.getInventory();
 
-        try {
-            if (!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
-        }
-        catch (Exception exception){
+        if (!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
+        String currentTag = playerQuests.get(player).getActiveTag();
 
-        }
-        if(playerQuests.get(player).getActiveTag().equals("MobQuest")){
+        if(currentTag.equals("MobQuest") || currentTag.equals("MediumMobQuest") || currentTag.equals("ExoticMobQuest") || currentTag.equals("HardMobQuest")){
             playerQuests.get(player).increment(1);
 
             if(playerQuests.get(player).getProgress() >= questBarComplete){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                player.getInventory().addItem(Quest.easyRandomQuestReward(player));
 
-                newRandomMediumQuest(player, playerQuests.get(player));
-            }
-        }
-        if(playerQuests.get(player).getActiveTag().equals("MobQuestMediumQuest")){
-            playerQuests.get(player).increment(1);
 
-            if(playerQuests.get(player).getProgress() > questBarComplete){
-                player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                player.getInventory().addItem(Quest.easyRandomQuestReward(player));
-
-                newRandomMediumQuest(player, playerQuests.get(player));
-            }
-        }
-
-        if(playerQuests.get(player).getActiveTag().equals("KillQuest")){
-            if(!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
-            playerQuests.get(player).increment(1);
-
-            if(playerQuests.get(player).getProgress() > questBarComplete){
-                player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                player.getInventory().addItem(Quest.hardRandomQuestReward(player));
-
-                newRandomExoticQuest(player, playerQuests.get(player));
-            }
-        }
-
-        if(playerQuests.get(player).getActiveTag().equals("ExoticKillQuest")){
-            if(!(e.getEntity().getType().equals(EntityType.PLAYER))) return;
-            playerQuests.get(player).increment(1);
-
-            if(playerQuests.get(player).getProgress() > questBarComplete){
-                player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                player.getInventory().addItem(Quest.exoticKillPlayersQuestReward());
+                if(currentTag.equals("MobQuest")){ newRandomMediumQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.easyRandomQuestReward(player));}
+                if(currentTag.equals("MediumMobQuest")){ newRandomHardQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.mediumRandomQuestReward(player));}
+                if(currentTag.equals("HardMobQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.hardRandomQuestReward(player));}
+                if(currentTag.equals("ExoticMobQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.exoticRandomQuestReward(player));}
             }
         }
     }
@@ -165,27 +136,10 @@ public class Adventurer extends Kit{
     @EventHandler
     public void SmeltIronQuest(FurnaceExtractEvent e){
         Player player = e.getPlayer();
+        String currentTag = playerQuests.get(player).getActiveTag();
 
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
-        if(playerQuests.get(player).getActiveTag().equals("SmeltIronQuest")){
-            if(e.getItemType().equals(Material.IRON_INGOT)){
-
-                try{
-                    playerQuests.get(player).increment(e.getItemAmount());
-                } catch (Exception exception){
-                    playerQuests.get(player).setProgress(1);
-                }
-
-                if(playerQuests.get(player).getProgress() > questBarComplete){
-                    player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                    player.getInventory().addItem(Quest.mediumRandomQuestReward(player));
-
-                    newRandomHardQuest(e.getPlayer(), playerQuests.get(player));
-                }
-            }
-        }
-
-        if(playerQuests.get(player).getActiveTag().equals("SmeltIronMediumQuest")){
+        if(currentTag.equals("SmeltIronQuest") || currentTag.equals("SmeltIronHardQuest") || currentTag.equals("SmeltIronExoticQuest") ){
             if(e.getItemType().equals(Material.IRON_INGOT)){
                 playerQuests.get(player).increment(e.getItemAmount());
 
@@ -197,58 +151,13 @@ public class Adventurer extends Kit{
 
                 if(playerQuests.get(player).getProgress() > questBarComplete){
                     player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                    player.getInventory().addItem(Quest.mediumRandomQuestReward(player));
 
-                    newRandomHardQuest(e.getPlayer(), playerQuests.get(player));
+                    if(currentTag.equals("SmeltIronQuest")){ newRandomHardQuest(player, playerQuests.get(player)); player.getInventory().addItem(Quest.mediumRandomQuestReward(player));}
+                    if(currentTag.equals("SmeltIronHardQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); player.getInventory().addItem(Quest.hardRandomQuestReward(player));}
+                    if(currentTag.equals("SmeltIronExoticQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); player.getInventory().addItem(Quest.exoticRandomQuestReward(player));}
                 }
             }
         }
-
-        if(playerQuests.get(player).getActiveTag().equals("SmeltIronHardQuest")){
-            if(e.getItemType().equals(Material.IRON_INGOT)){
-                playerQuests.get(player).increment(e.getItemAmount());
-
-                try{
-                    playerQuests.get(player).increment(e.getItemAmount());
-                } catch (Exception exception){
-                    playerQuests.get(player).setProgress(1);
-                }
-
-                if(playerQuests.get(player).getProgress() > questBarComplete){
-                    player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                    player.getInventory().addItem(Quest.mediumRandomQuestReward(player));
-
-                    newRandomHardQuest(e.getPlayer(), playerQuests.get(player));
-                }
-            }
-        }
-
-    }
-
-    @EventHandler
-    public void OnCraft(CraftItemEvent e){
-        Player player = (Player) e.getWhoClicked();
-        if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
-
-        if(playerQuests.get(player).getActiveTag().equals("BowlQuest")){
-            if(!(e.getInventory().getResult().getType().equals(Material.BOWL))) return;
-            int amountofbowlsmade = e.getRecipe().getResult().getAmount();
-
-            try{
-                playerQuests.get(player).increment(e.getRecipe().getResult().getAmount());
-            } catch (Exception exception){
-                playerQuests.get(player).setProgress(1);
-            }
-
-            if(playerQuests.get(player).getProgress() > questBarComplete){
-                player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                player.getInventory().addItem(Quest.easyRandomQuestReward(player));
-
-                newRandomMediumQuest(player, playerQuests.get(player));
-            }
-        }
-
-
     }
     /* Kit event handlers end here */
 }
