@@ -16,6 +16,7 @@ public class KillLeaderboard implements Listener {
         if (e.getEntity().getKiller() == null) return;
         Player killer = e.getEntity().getKiller();
         String name = killer.getName();
+        Chat.SGPvPMessage(name + ": " + topKillNames[0] + ", " + topKillNames[1] + ", " + topKillNames[2]);
         if (leaderboard.containsKey(name))
             leaderboard.put(name, leaderboard.get(name));
         else
