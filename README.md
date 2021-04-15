@@ -1,10 +1,5 @@
 # SGPvP Plugin
 
-## TODO
-Spectator- teleport to feast by clicking on it in chat 
-
-
-
 ## Features
 
 ### Game timers

@@ -2,16 +2,18 @@ package com.sgpvp.Kits;
 
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.Chat;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -34,6 +36,8 @@ public class Blacksmith extends Kit implements Listener {
 
         anvil_meta.setLore(Arrays.asList("This can upgrade any item to its next tier for free", "Right click the anvil with the item you want to be upgraded","One time use!"));
         anvil.setItemMeta(anvil_meta);
+
+
 
         player.getInventory().addItem(anvil);
         /* Kit functionality ends here */
