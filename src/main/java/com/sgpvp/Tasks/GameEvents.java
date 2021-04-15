@@ -7,6 +7,8 @@ import com.sgpvp.main;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -89,6 +91,11 @@ public class GameEvents extends BukkitRunnable {
             case 4: return 0;
         }
         return 0;
+    }
+    public String getTimeRemainingString() {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        Date d = new Date(getTimeRemaining() * 1000L);
+        return df.format(d);
     }
 
     public void extendTime(int amount) { timer -= amount; }
