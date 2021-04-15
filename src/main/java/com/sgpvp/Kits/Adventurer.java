@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
@@ -65,7 +66,7 @@ public class Adventurer extends Kit{
         int totalAmountOfQuests = 2;
         int random_int = random.nextInt(totalAmountOfQuests);
         if(random_int == 0){ playerQuests.get(player).setTitle(ChatColor.BOLD + "King Of The Furnace: Smelt 10 Pieces Of Iron Ore"); current.setProgress(0d); current.setTag("SmeltIronQuest"); current.setBarColor(BarColor.WHITE); current.setMax(10);}
-        if(random_int == 1){ playerQuests.get(player).setTitle(ChatColor.BOLD + "Well Trained Hunter: Kill 20 Mobs"); current.setProgress(0d); current.setTag("MobQuestMediumQuest"); current.setBarColor(BarColor.WHITE); current.setBarStyle(BarStyle.SEGMENTED_20); current.setMax(20);}
+        if(random_int == 1){ playerQuests.get(player).setTitle(ChatColor.BOLD + "Well Trained Hunter: Kill 20 Mobs"); current.setProgress(0d); current.setTag("MediumMobQuest"); current.setBarColor(BarColor.WHITE); current.setBarStyle(BarStyle.SEGMENTED_20); current.setMax(20);}
 
     }
 
@@ -92,20 +93,22 @@ public class Adventurer extends Kit{
     @EventHandler
     public void AnimalQuest(EntityDeathEvent e){
         Player player =  e.getEntity().getKiller();
+        Inventory playerInventory = player.getInventory();
 
         if (!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
         String currentTag = playerQuests.get(player).getActiveTag();
 
-        if(currentTag.equals("MobQuest") || currentTag.equals("MobQuestMediumQuest") || currentTag.equals("ExoticMobQuest") || currentTag.equals("HardMobQuest")){
+        if(currentTag.equals("MobQuest") || currentTag.equals("MediumMobQuest") || currentTag.equals("ExoticMobQuest") || currentTag.equals("HardMobQuest")){
             playerQuests.get(player).increment(1);
 
             if(playerQuests.get(player).getProgress() >= questBarComplete){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                player.getInventory().addItem(Quest.easyRandomQuestReward(player));
 
-                if(currentTag.equals("MobQuest")){ newRandomMediumQuest(player, playerQuests.get(player));}
-                if(currentTag.equals("MobQuestMediumQuest")){ newRandomHardQuest(player, playerQuests.get(player));}
-                if(currentTag.equals("HardMobQuest")){ newRandomExoticQuest(player, playerQuests.get(player));}
+
+                if(currentTag.equals("MobQuest")){ newRandomMediumQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.easyRandomQuestReward(player));}
+                if(currentTag.equals("MediumMobQuest")){ newRandomHardQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.mediumRandomQuestReward(player));}
+                if(currentTag.equals("HardMobQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.hardRandomQuestReward(player));}
+                if(currentTag.equals("ExoticMobQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); playerInventory.addItem(Quest.exoticRandomQuestReward(player));}
             }
         }
     }
@@ -136,7 +139,7 @@ public class Adventurer extends Kit{
         String currentTag = playerQuests.get(player).getActiveTag();
 
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
-        if(currentTag.equals("SmeltIronMediumQuest") || currentTag.equals("SmeltIronHardQuest") || currentTag.equals("SmeltIronExoticQuest") ){
+        if(currentTag.equals("SmeltIronQuest") || currentTag.equals("SmeltIronHardQuest") || currentTag.equals("SmeltIronExoticQuest") ){
             if(e.getItemType().equals(Material.IRON_INGOT)){
                 playerQuests.get(player).increment(e.getItemAmount());
 
@@ -148,11 +151,10 @@ public class Adventurer extends Kit{
 
                 if(playerQuests.get(player).getProgress() > questBarComplete){
                     player.playSound(player.getLocation(), questCompleteSound, 1, 1);
-                    player.getInventory().addItem(Quest.mediumRandomQuestReward(player));
 
-
-                    if(currentTag.equals("SmeltIronMediumQuest")){ newRandomHardQuest(player, playerQuests.get(player));}
-                    if(currentTag.equals("SmeltIronHardQuest")){ newRandomExoticQuest(player, playerQuests.get(player));}
+                    if(currentTag.equals("SmeltIronQuest")){ newRandomHardQuest(player, playerQuests.get(player)); player.getInventory().addItem(Quest.mediumRandomQuestReward(player));}
+                    if(currentTag.equals("SmeltIronHardQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); player.getInventory().addItem(Quest.hardRandomQuestReward(player));}
+                    if(currentTag.equals("SmeltIronExoticQuest")){ newRandomExoticQuest(player, playerQuests.get(player)); player.getInventory().addItem(Quest.exoticRandomQuestReward(player));}
                 }
             }
         }

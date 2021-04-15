@@ -62,7 +62,7 @@ public class Quest {
         String rewardMessage;
         ItemStack item = new ItemStack(new ItemStack(Material.AIR));
         Random random = new Random();
-        int rewardItems = 1;
+        int rewardItems = 4;
         int rng = random.nextInt(rewardItems);
 
         if(rng == 0) {
@@ -74,10 +74,38 @@ public class Quest {
             rewardMessage = ChatColor.BOLD + "QUEST REWARD: Iron Chest Plate (Enchanted)";
             Chat.SGPvPMessage(player, rewardMessage);
         }
+        if(rng == 1) {
+            item = new ItemStack(Material.IRON_LEGGINGS, 1);
+            ItemMeta item_Meta = item.getItemMeta();
+            item_Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_Meta);
+            rewardMessage = ChatColor.BOLD + "QUEST REWARD: Iron Leggings (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+        if(rng == 2) {
+            item = new ItemStack(Material.IRON_HELMET, 1);
+            ItemMeta item_Meta = item.getItemMeta();
+            item_Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_Meta);
+            rewardMessage = ChatColor.BOLD + "QUEST REWARD: Iron Helmet (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+        if(rng == 3) {
+            item = new ItemStack(Material.IRON_BOOTS, 1);
+            ItemMeta item_Meta = item.getItemMeta();
+            item_Meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_Meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_Meta);
+            rewardMessage = ChatColor.BOLD + "QUEST REWARD: Iron Boots (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
 
         return new ItemStack(item);
     }
 
+    // Quest (Hard) Rewards
     public static ItemStack hardRandomQuestReward(Player player){
 
         ItemStack item = new ItemStack(Material.AIR);
@@ -129,18 +157,61 @@ public class Quest {
 
     }
 
-    public static ItemStack exoticKillPlayersQuestReward(){
+    // Quest (Exotic) Rewards
+    public static ItemStack exoticRandomQuestReward(Player player){
 
-        ItemStack netherite_chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
-        ItemMeta netherite_chestplate_meta = netherite_chestplate.getItemMeta();
-        netherite_chestplate_meta.addEnchant(Enchantment.DURABILITY, 0, true);
-        netherite_chestplate_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 0, true);
-        netherite_chestplate.setItemMeta(netherite_chestplate_meta);
-        return new ItemStack(netherite_chestplate);
+        ItemStack item = new ItemStack(Material.AIR);
+        String rewardMessage;
+
+        Random random = new Random();
+        int rewardItems = 5;
+        int rng = random.nextInt(rewardItems);
+        if(rng == 0){
+            item = new ItemStack(Material.NETHERITE_CHESTPLATE, 1);
+            ItemMeta item_meta = item.getItemMeta();
+            item_meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_meta);
+            rewardMessage = ChatColor.LIGHT_PURPLE + "QUEST REWARD: Netherite Chest Plate (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+        if(rng == 1){
+            item = new ItemStack(Material.NETHERITE_LEGGINGS, 1);
+            ItemMeta item_meta = item.getItemMeta();
+            item_meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_meta);
+            rewardMessage = ChatColor.LIGHT_PURPLE + "QUEST REWARD: Netherite Leggings (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+        if(rng == 2){
+            item = new ItemStack(Material.NETHERITE_HELMET, 1);
+            ItemMeta item_meta = item.getItemMeta();
+            item_meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_meta);
+            rewardMessage = ChatColor.LIGHT_PURPLE + "QUEST REWARD: Netherite Helmet (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+        if(rng == 3){
+            item = new ItemStack(Material.NETHERITE_BOOTS, 1);
+            ItemMeta item_meta = item.getItemMeta();
+            item_meta.addEnchant(Enchantment.DURABILITY, 1, true);
+            item_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            item.setItemMeta(item_meta);
+            rewardMessage = ChatColor.LIGHT_PURPLE + "QUEST REWARD: Netherite Boots (Enchanted)";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+        if(rng == 4){
+            item = new ItemStack(Material.NETHERITE_SWORD, 1);
+            ItemMeta item_meta = item.getItemMeta();
+            item.setItemMeta(item_meta);
+            rewardMessage = ChatColor.LIGHT_PURPLE + "QUEST REWARD: Netherite Sword";
+            Chat.SGPvPMessage(player, rewardMessage);
+        }
+
+        return new ItemStack(item);
     }
-
-    // Quest (Hard) Rewards
-    public static ItemStack diamondsQuestReward(){ return new ItemStack(Material.DIAMOND_SWORD, 1); }
 
     //Getters
     public double getProgress(){ return questBar.getProgress(); }
