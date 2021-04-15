@@ -55,7 +55,7 @@ public class GameScoreboard extends BukkitRunnable {
         else board.getTeam("onlineCounter").setPrefix(ChatColor.DARK_RED + "" + Bukkit.getOnlinePlayers().size() + ChatColor.RED + "/" + ChatColor.DARK_RED + Bukkit.getMaxPlayers());
 
         board.getTeam("gameStateString").setPrefix(ChatColor.GREEN + GameVariables.gameEvents.getGameStateString());
-        board.getTeam("timeRemaining").setPrefix(ChatColor.AQUA + "" + GameVariables.gameEvents.getTimeRemaining());
+        board.getTeam("timeRemaining").setPrefix(ChatColor.AQUA + "" + GameVariables.gameEvents.getTimeRemainingString());
 
         //int topKills = GameVariables.killLeaderboard.getTopKillNum(0);
         //String strTopKills = GameVariables.killLeaderboard.getTopKillName(0);
