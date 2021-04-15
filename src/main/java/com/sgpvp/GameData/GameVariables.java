@@ -22,7 +22,7 @@ public class GameVariables {
     public static Location feastLocation;
     public static final int pregameTime = 1 * 60;       // Time between minimum amount of players reached and game start
     public static final int gracePeriodTime = 1 * 60;   // Time between game start and pvp start
-    public static final int preFeastTime = 1 * 60;      // Time between pvp start and feast spawn
+    public static final int preFeastTime = 100 * 60;      // Time between pvp start and feast spawn
     public static final int postFeastTime = 1 * 60;     // Time between feast spawn and deathmatch
 
     //KIT SETTINGS

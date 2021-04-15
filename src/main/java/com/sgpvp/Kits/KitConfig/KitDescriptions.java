@@ -34,7 +34,7 @@ public class KitDescriptions {
         put("Switcher", "Receive 10 snowballs, upon hitting an enemy with one you swap positions with them");
         put("Thor", "Receive the hammer of Thor! \n Upon right clicking the axe you strike down lighting within a close range of you");
         put("Explorer", "Explore far and wide!");
-        put("Adventurer", "Receive Quests and gain Fame and Glory!");
+        put("Adventurer", "Receive Quests And Complete Them For Rewards!");
         put("Spirit", "Turn invisible for short periods of time");
         put("Endermage", "Teleport players above and below your to your portal");
     }};
