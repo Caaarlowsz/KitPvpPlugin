@@ -25,7 +25,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class Kangaroo extends Kit{
     public String kitName = "Kangaroo";
-    public int height = 3;
+    public int height = 2;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

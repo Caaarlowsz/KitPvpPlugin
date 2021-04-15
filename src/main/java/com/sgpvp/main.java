@@ -134,6 +134,7 @@ public final class main extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new KeepPlayersInsideBorder(), this);
         pluginManager.registerEvents(new SpawnMushrooms(), this);
         pluginManager.registerEvents(new Chat(), this);
+        pluginManager.registerEvents(new FreezePlayers(), this);
         pluginManager.registerEvents(this, this);
 
     }

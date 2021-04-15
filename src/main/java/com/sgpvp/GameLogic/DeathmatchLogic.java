@@ -5,6 +5,7 @@ import org.bukkit.*;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
@@ -60,17 +61,19 @@ public class DeathmatchLogic{
         Bukkit.getServer().dispatchCommand(console, String.format("worldborder set %d", r*2));
         Bukkit.getServer().dispatchCommand(console, String.format("difficulty peaceful"));
         Bukkit.getServer().dispatchCommand(console, String.format("time set day"));
-        hold();
+        teleportPlayers();
 
     }
-    public static void hold() {
+    public static void teleportPlayers() {
         r -= 10;
         List<Player> alive = GameVariables.world.getPlayers();
+        List<Player> spectator = new ArrayList<>();
         int i = 0;
         while (i < alive.size()) {
             if (alive.get(i).getGameMode().equals(GameMode.SURVIVAL)) {
                 i++;
             } else {
+                spectator.add(alive.get(i));
                 alive.remove(i);
             }
         }
@@ -82,5 +85,6 @@ public class DeathmatchLogic{
             Location tLocation = new Location(GameVariables.world, tX, tY+2, tZ);
             alive.get(i).teleport(tLocation);
         }
+        FreezePlayers.toggleGlobalFreeze(5*1000);
     }
 }
