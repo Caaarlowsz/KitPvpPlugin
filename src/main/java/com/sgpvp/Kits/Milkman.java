@@ -34,7 +34,7 @@ public class Milkman extends Kit{
     public void MilkBucketDrink(PlayerItemConsumeEvent p) {
         Player player = p.getPlayer();
 
-        int timer_effects = 250;
+        int timer_effects = 320;
 
         ItemStack bucket_normal = new ItemStack(Material.BUCKET, 1);
 
