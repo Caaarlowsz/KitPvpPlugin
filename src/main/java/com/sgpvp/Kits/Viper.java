@@ -34,7 +34,7 @@ public class Viper extends Kit {
 
         Player playerWKit = (Player) event.getEntity();
         Player playerBeingDamaged = (Player) event.getDamager();
-        PotionEffect viperPoison = new PotionEffect(PotionEffectType.POISON, 60, 1);
+        PotionEffect viperPoison = new PotionEffect(PotionEffectType.POISON, 120, 1);
 
         if(event.getEntity().getType().equals(EntityType.PLAYER)){
             if(PlayerData.playerHasKitActive(playerBeingDamaged, "viper")){
