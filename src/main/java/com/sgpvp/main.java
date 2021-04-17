@@ -3,6 +3,7 @@ package com.sgpvp;
 import com.sgpvp.Commands.AdminCommands;
 import com.sgpvp.Commands.Kills;
 import com.sgpvp.Commands.Spectate;
+import com.sgpvp.GameData.GameLog;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
@@ -12,6 +13,7 @@ import com.sgpvp.Spectator.TeleportToPlayer;
 import com.sgpvp.Tasks.*;
 import com.sgpvp.GlobalEvents.SpawnMushrooms;
 import org.bukkit.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -22,7 +24,6 @@ import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.util.HashMap;
@@ -32,47 +33,104 @@ public final class main extends JavaPlugin implements Listener {
     // ON PLUGIN ENABLED
     @Override
     public void onEnable() {
-        // Creates New World When Game Is Complete For Next Game
-        CreateNewWorld();
+        // Setup world
+        createNewWorld();
 
+        GameVariables.plugin = this;
 
-        // CACTI SOUP Crafting Addition
-        ItemStack soup_item = new ItemStack(Material.MUSHROOM_STEW);
-        NamespacedKey key = new NamespacedKey(this, "Cacti_Stew");
-        ShapelessRecipe recipe = new ShapelessRecipe(key, soup_item);
-        recipe.addIngredient(2, Material.CACTUS);
-        recipe.addIngredient(1, Material.BOWL);
-        Bukkit.addRecipe(recipe);
-
-        // coco SOUP Crafting Addition
-        NamespacedKey key2 = new NamespacedKey(this, "cocoa_stew");
-        ShapelessRecipe recipe2 = new ShapelessRecipe(key2, soup_item);
-        recipe2.addIngredient(2, Material.COCOA_BEANS);
-        recipe2.addIngredient(1, Material.BOWL);
-        Bukkit.addRecipe(recipe2);
-
+        GameVariables.gameEvents = new GameEvents();
         GameVariables.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-
-        PluginManager pluginManager = getServer().getPluginManager();
-
-        // Setting static game variables
-        GameVariables.WorldSpawn = GameVariables.world.getSpawnLocation();
-        GameVariables.WorldBounds.MINX = GameVariables.WorldSpawn.getBlockX() - GameVariables.WORLD_SIZE /2;
-        GameVariables.WorldBounds.MAXX = GameVariables.WorldSpawn.getBlockX() + GameVariables.WORLD_SIZE /2;
-        GameVariables.WorldBounds.MINZ = GameVariables.WorldSpawn.getBlockZ() - GameVariables.WORLD_SIZE /2;
-        GameVariables.WorldBounds.MAXZ = GameVariables.WorldSpawn.getBlockZ() + GameVariables.WORLD_SIZE /2;
-        GameVariables.gameEvents = new GameEvents(this);
-
-        // Scoreboard
-        BukkitTask gameEvents = (new GameScoreboard()).runTaskTimer(this, 0, 20);
-
-        // Spawn Mushrooms In World
+        GameVariables.world.setGameRule(GameRule.MAX_ENTITY_CRAMMING, 0);
+        GameVariables.setupWorldSpawn();
+        GameScoreboard scoreboard = new GameScoreboard();
+        scoreboard.runTaskTimer(this, 0, 20);
         SpawnMushrooms.spawnInitialMushrooms();
+        addRecipes();
 
-        // Global Events
-        pluginManager.registerEvents(new PlayerInteractions(), this);
+        // Kits, commands, and events
+        initializeKits();
+        registerCommands();
+        registerEvents();
 
-        //COMMANDS & KITS
+    }
+
+    // WHEN PLUGIN IS TURNED OFF (SERVER SHUTDOWN)
+    @Override
+    public void onDisable() {
+        GameLog.saveEvent("\n --- Game Ended --- \n");
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e){
+        // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
+        Player player = e.getPlayer();
+        player.setScoreboard(GameScoreboard.board);
+        if (GameVariables.gameEvents.getGameStateID() > 0) {
+            playerJoinDuringGame(player);
+        } else {
+            playerJoinBeforeGame(player);
+        }
+
+        // Start the game when the minimum number of players have joined
+        attemptGameStart();
+    }
+
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent e){
+        if(e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)){
+            GameVariables.currentAmountOfPlayers--;
+        }
+        PlayerData.remove(e.getPlayer());
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent e){
+        GameVariables.currentAmountOfPlayers--;
+        System.out.println(GameVariables.currentAmountOfPlayers);
+        e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
+        if(PlayerData.playerHasKitActive(e.getEntity().getPlayer(), "Adventurer")){
+            Adventurer.playerQuests.get(e.getEntity().getPlayer()).questVisible(false);
+        }
+        /*
+        if(GameVariables.currentAmountOfPlayers <= 1){
+
+            try{
+                Chat.SGPvPMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
+            } catch (Exception exception){
+                Chat.SGPvPMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
+            }
+
+            Chat.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
+            BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
+        }*/
+    }
+
+    // Delete Files Functionality
+    boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
+    }
+
+    public void WORLD_DATA(){
+        try {
+            GameVariables.world = Bukkit.getWorlds().get(0); //wc.createWorld();
+        } catch (Exception exception) {
+            Chat.DebugMessage("World not found.");
+        }
+    }
+
+    //Deletes Old World then creates new world
+    public void createNewWorld(){
+        WORLD_DATA();
+
+    }
+    // Initializes and stores all kits in GameVariables.kits hashmap
+    private void initializeKits() {
         GameVariables.kits = new HashMap<String,Kit>(){{
             put("TimeWizard", new TimeWizard());
             put("Werewolf", new Werewolf());
@@ -108,26 +166,33 @@ public final class main extends JavaPlugin implements Listener {
             put("Adventurer", new Adventurer());
             put("Endermage", new Endermage());
         }};
+    }
+    // Enables all kit events (called on game start)
+    public void enableKitEvents() {
+        for (Kit kit : GameVariables.kits.values())
+            getServer().getPluginManager().registerEvents(kit, this);
+    }
+    // Register all commands
+    private void registerCommands() {
         for (String kit : GameVariables.kits.keySet()) {
             try {
                 getServer().getPluginCommand(kit).setExecutor(GameVariables.kits.get(kit));
-            } catch (NullPointerException nullp) {
-                System.out.println(nullp.getMessage() + "@ kit: " + kit);
+            } catch (NullPointerException nullPointerException) {
+                System.out.println(nullPointerException.getMessage() + "@ kit: " + kit);
             }
         }
 
         getServer().getPluginCommand("game").setExecutor(new AdminCommands());
         getCommand("game").setTabCompleter(new AdminCommands());
-
         getServer().getPluginCommand("spectate").setExecutor(new Spectate());
-
         getServer().getPluginCommand("kit").setExecutor(new GUI());
-
         getServer().getPluginCommand("stp").setExecutor(new TeleportToPlayer());
-
         getServer().getPluginCommand("kills").setExecutor(new Kills());
-
-        //CUSTOM EVENTS
+    }
+    // Register all event listeners
+    private void registerEvents() {
+        PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new PlayerInteractions(), this);
         pluginManager.registerEvents(new GUI(), this);
         pluginManager.registerEvents(new SoupEvent(), this);
         pluginManager.registerEvents(new CompassTracker(), this);
@@ -136,101 +201,53 @@ public final class main extends JavaPlugin implements Listener {
         pluginManager.registerEvents(new Chat(), this);
         pluginManager.registerEvents(new FreezePlayers(), this);
         pluginManager.registerEvents(this, this);
-
     }
+    // Add recipes
+    private void addRecipes() {
+        // Cacti stew
+        ItemStack soup_item = new ItemStack(Material.MUSHROOM_STEW);
+        NamespacedKey key = new NamespacedKey(this, "cacti_Stew");
+        ShapelessRecipe recipe = new ShapelessRecipe(key, soup_item);
+        recipe.addIngredient(2, Material.CACTUS);
+        recipe.addIngredient(1, Material.BOWL);
+        Bukkit.addRecipe(recipe);
 
-    public void enableKitEvents() {
-        for (Kit kit : GameVariables.kits.values())
-            getServer().getPluginManager().registerEvents(kit, this);
+        // Cocoa stew
+        NamespacedKey key2 = new NamespacedKey(this, "cocoa_stew");
+        ShapelessRecipe recipe2 = new ShapelessRecipe(key2, soup_item);
+        recipe2.addIngredient(2, Material.COCOA_BEANS);
+        recipe2.addIngredient(1, Material.BOWL);
+        Bukkit.addRecipe(recipe2);
     }
+    // Called when a player joins after the game has started
+    private void playerJoinDuringGame(Player player) {
+        player.setGameMode(GameMode.SPECTATOR);
+        Chat.SGPvPMessage(player, "GAME ALREADY IN PROGRESS...");
+    }
+    // Called when a player joins before the game has started
+    private void playerJoinBeforeGame(Player player) {
+        GameVariables.currentAmountOfPlayers++;
+        PlayerData.setPlayerNewKit(player, null);
 
-    // WHEN PLUGIN IS TURNED OFF (SERVER SHUTDOWN)
-    @Override
-    public void onDisable() { }
+        player.setGameMode(GameMode.ADVENTURE);
+        player.getInventory().clear();
+        player.getInventory().addItem(new ItemStack(Material.SLIME_BALL, 1));
 
-    @EventHandler
-    public void OnPlayerJoin(PlayerJoinEvent e){
-        // IF GAME IN PROGRESS - TURN PLAYER JOINED INTO SPECTATOR
-        e.getPlayer().setScoreboard(GameScoreboard.board);
-        if (GameVariables.gameEvents.getGameStateID() > 0) {
-            e.getPlayer().setGameMode(GameMode.SPECTATOR);
-            Chat.SGPvPMessage(e.getPlayer(), "GAME ALREADY IN PROGRESS...");
-        } else {
+        for(PotionEffect effect : player.getActivePotionEffects())
+            player.removePotionEffect(effect.getType());
 
-            GameVariables.currentAmountOfPlayers++;
-            PlayerData.setPlayerNewKit(e.getPlayer(), null);
-
-            e.getPlayer().setGameMode(GameMode.ADVENTURE);
-            e.getPlayer().getInventory().clear();
-            e.getPlayer().getInventory().addItem(new ItemStack(Material.SLIME_BALL, 1));
-
-            for(PotionEffect effect : e.getPlayer().getActivePotionEffects()){
-                e.getPlayer().removePotionEffect(effect.getType());
-            }
-
-            e.getPlayer().teleport(GameVariables.world.getSpawnLocation());
-            Chat.SGPvPMessage(e.getPlayer(), ChatColor.RED + "Welcome " + e.getPlayer().getName() + " to SGPvP!");
-        }
-
-        // START EVENT TIMERS (MINIMUM AMOUNT OF PLAYERS FOUND)
+        player.teleport(GameVariables.world.getSpawnLocation());
+        Chat.SGPvPMessage(player, ChatColor.RED + "Welcome " + player.getName() + " to SGPvP!");
+    }
+    // Attempts to start the game when a player joins
+    private void attemptGameStart() {
         if(GameVariables.currentAmountOfPlayers >= GameVariables.minimumPlayersToStart){
             if(GameVariables.EventsFired){
-                BukkitTask nighttimechecker = new NightTimeChecker(this).runTaskTimer(this, 0, 20);
-                BukkitTask gameEvents = GameVariables.gameEvents.runTaskTimer(this, 0, 20);
+                (new NightTimeChecker(this)).runTaskTimer(this, 0, 20);
+                GameVariables.gameEvents.runTaskTimer(this, 0, 20);
 
                 GameVariables.EventsFired = false;
             }
         }
-    }
-
-    @EventHandler
-    public void OnPlayerLeave(PlayerQuitEvent e){
-        if(e.getPlayer().getGameMode().equals(GameMode.SURVIVAL)){
-            GameVariables.currentAmountOfPlayers--;
-        }
-        PlayerData.remove(e.getPlayer());
-    }
-
-    @EventHandler
-    public void OnPlayerDie(PlayerDeathEvent e){
-        GameVariables.currentAmountOfPlayers--;
-        System.out.println(GameVariables.currentAmountOfPlayers);
-        e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
-        if(PlayerData.playerHasKitActive(e.getEntity().getPlayer(), "Adventurer")){
-            Adventurer.playerQuests.get(e.getEntity().getPlayer()).questVisible(false);
-        }
-        /*
-        if(GameVariables.currentAmountOfPlayers <= 1){
-
-            try{
-                Chat.SGPvPMessage(ChatColor.GOLD + "CONGRATS " + e.getEntity().getKiller().getName() + " YOU WON!");
-            } catch (Exception exception){
-                Chat.SGPvPMessage(ChatColor.GOLD + "CONGRATS YOU WON!");
-            }
-
-            Chat.SGPvPMessage(ChatColor.DARK_RED + "Server Restarting In 15 Seconds, Thanks For Playing :)");
-            BukkitTask countDownToGameStartTask = new EndGameKickPlayer(this).runTaskLater(this, 500); // Kick Player In 30 Sec
-        }*/
-    }
-
-    // Delete Files Functionality
-    boolean deleteDirectory(File directoryToBeDeleted) {
-        File[] allContents = directoryToBeDeleted.listFiles();
-        if (allContents != null) {
-            for (File file : allContents) {
-                deleteDirectory(file);
-            }
-        }
-        return directoryToBeDeleted.delete();
-    }
-
-    public void WORLD_DATA(){
-        GameVariables.world = Bukkit.getWorld("KIT_PVP_WORLD2"); //wc.createWorld();
-    }
-
-    //Deletes Old World then creates new world
-    public void CreateNewWorld(){
-        WORLD_DATA();
-
     }
 }

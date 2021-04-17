@@ -1,17 +1,27 @@
 package com.sgpvp.GameData;
 
+import com.sgpvp.GameLogic.GameScoreboard;
 import com.sgpvp.GameLogic.KillLeaderboard;
 import com.sgpvp.Kits.Kit;
 import com.sgpvp.Tasks.GameEvents;
+import com.sgpvp.main;
 import org.bukkit.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class GameVariables {
+    // main class (plugin)
+    public static main plugin;
+
+    // Game identification
+    public static final long gameID = generateID();
 
     // BORDER SIZE - PLAY AREA
     public static final int WORLD_SIZE = 1000;
     public static Location WorldSpawn;
+
     public static boolean DEBUG = false;
 
     public static HashMap<String, Object> GameItems = new HashMap<>();
@@ -32,7 +42,8 @@ public class GameVariables {
     public static World world;
     public static boolean EventsFired = true;
 
-    // Kill leaderboard
+    // Scoreboard and leaderboards
+    public static GameScoreboard gameScoreboard;
     public static KillLeaderboard killLeaderboard;
 
     // This is in all .kits classes and checks if kits can be changed (turns false when game starts)
@@ -53,5 +64,18 @@ public class GameVariables {
         public static int MAXY = 256;
         public static int MINZ = 0;
         public static int MAXZ = 0;
+    }
+
+    public static void setupWorldSpawn() {
+        WorldSpawn = world.getSpawnLocation();
+        WorldBounds.MINX = WorldSpawn.getBlockX() - WORLD_SIZE /2;
+        WorldBounds.MAXX = WorldSpawn.getBlockX() + WORLD_SIZE /2;
+        WorldBounds.MINZ = WorldSpawn.getBlockZ() - WORLD_SIZE /2;
+        WorldBounds.MAXZ = WorldSpawn.getBlockZ() + WORLD_SIZE /2;
+    }
+    private static long generateID() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime now = LocalDateTime.now();
+        return Long.parseLong(dtf.format(now));
     }
 }

@@ -1,5 +1,6 @@
 package com.sgpvp.Tasks;
 
+import com.sgpvp.GameData.GameLog;
 import com.sgpvp.GameData.GameVariables;
 import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
@@ -36,8 +37,8 @@ public class GameEvents extends BukkitRunnable {
         add(1);
     }};
 
-    public GameEvents(main plugin) {
-        this.plugin = plugin;
+    public GameEvents() {
+        this.plugin = GameVariables.plugin;
         this.timer = 0;
         this.gameStateID = 0;
         this.startGameTime = GameVariables.pregameTime;
@@ -92,13 +93,17 @@ public class GameEvents extends BukkitRunnable {
         }
         return 0;
     }
-    public String getTimeRemainingString() {
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        Date d = new Date(getTimeRemaining() * 1000L);
+    public String getTimeRemainingString() { return secondsToString(getTimeRemaining()); }
+
+    public String secondsToString(int seconds) {
+        SimpleDateFormat df = new SimpleDateFormat("mm:ss");
+        Date d = new Date(seconds * 1000L);
         return df.format(d);
     }
 
     public void extendTime(int amount) { timer -= amount; }
+    public int getElapsedTime() { return timer; }
+    public String getElapsedTimeString() { return secondsToString(getElapsedTime()); }
 
     private void gameStartCountdown() {
         int sectionTime = startGameTime - timer;
@@ -114,6 +119,7 @@ public class GameEvents extends BukkitRunnable {
     private void gameStart() {
         Chat.SGPVPGlobalTitle("Game Has Started!", " ", "#FF3933", "");
         GameStartLogic.GameStart(GameVariables.world, plugin);
+        GameLog.saveEvent("\n --- Game Started --- \n");
 
         PlayerInteractions.playerCanDropLava = false;
         gameStateID++;
@@ -133,6 +139,7 @@ public class GameEvents extends BukkitRunnable {
         Chat.SGPVPGlobalTitle("Grace period has ended", " ", "", "");
         GameVariables.world.setPVP(true);
         PlayerInteractions.playerCanDropLava = true;
+        GameLog.saveEvent("Game event: Grace period ended");
 
         gameStateID++;
     }
