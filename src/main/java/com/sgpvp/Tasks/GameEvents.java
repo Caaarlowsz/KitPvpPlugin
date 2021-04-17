@@ -6,11 +6,14 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.main;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -102,10 +105,18 @@ public class GameEvents extends BukkitRunnable {
         Date d = new Date(seconds * 1000L);
         return df.format(d);
     }
+    public String secondsToString(int seconds, boolean hours) {
+        if (!hours) return secondsToString(seconds);
+        int hrs = seconds / 60;
+        seconds -= hrs*60;
+        SimpleDateFormat df = new SimpleDateFormat("mm:ss");
+        Date d = new Date(seconds * 1000L);
+        return hrs + ":" + df.format(d);
+    }
 
     public void extendTime(int amount) { timer -= amount; }
     public int getElapsedTime() { return timer; }
-    public String getElapsedTimeString() { return secondsToString(getElapsedTime()); }
+    public String getElapsedTimeString() { return secondsToString(getElapsedTime(), true); }
 
     private void gameStartCountdown() {
         int sectionTime = startGameTime - timer;
@@ -121,6 +132,19 @@ public class GameEvents extends BukkitRunnable {
     private void gameStart() {
         Chat.SGPVPGlobalTitle("Game Has Started!", " ", "#FF3933", "");
         GameStartLogic.GameStart(GameVariables.world, plugin);
+
+        GameLog.saveEvent("Game ID: " + GameVariables.gameID);
+        GameLog.saveEvent("World size: " + GameVariables.WORLD_SIZE);
+        GameLog.saveEvent("Player count: " + Bukkit.getOnlinePlayers().size());
+        GameLog.saveEvent("Pregame time: " + GameVariables.pregameTime);
+        GameLog.saveEvent("Graceperiod time: " + GameVariables.gracePeriodTime);
+        GameLog.saveEvent("Pre-feast time: " + GameVariables.preFeastTime);
+        GameLog.saveEvent("Post-feast time: " + GameVariables.postFeastTime);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        GameLog.saveEvent("Game start time: " + dtf.format(now));
+
         GameLog.saveEvent("\n --- Kits --- \n");
         for (String player : PlayerData.playerData.keySet()) {
             String kit = PlayerData.playerData.get(player);

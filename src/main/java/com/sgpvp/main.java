@@ -59,6 +59,7 @@ public final class main extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         GameLog.saveEvent("\n --- Game Ended --- \n");
+        GameLog.saveEvent("Game length: " + GameVariables.gameEvents.getElapsedTime());
     }
 
     @EventHandler

@@ -32,7 +32,7 @@ public class Chat implements Listener {
     }
 
     public static void DebugMessage(String message) {
-        GameLog.saveError(new Exception(message));
+        //GameLog.saveError(new Exception(message));
         String prefix = "&f[&6DEBUG&f] &r";
         message = ChatColor.translateAlternateColorCodes('&', prefix + message);
         if (GameVariables.DEBUG) Bukkit.broadcastMessage(message);
