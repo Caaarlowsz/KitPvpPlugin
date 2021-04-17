@@ -82,7 +82,7 @@ public class FeastLogic {
         Chat.SGPvPMessage(String.format(ChatColor.GOLD + "" + ChatColor.BOLD + "FEAST HAS SPAWNED AT: X:%d Y:%d Z:%d", feast_center_x, feast_center_y, feast_center_z));
         boolean flag = false;
         SpawnFeastPlatform();
-        GameLog.saveEvent("Game event: Feast spawned");
+        GameLog.saveEvent("\tGame event: Feast spawned");
 
         //Place chests
         for (int i = feast_center_x - 2; i <= feast_center_x + 2; i++) {

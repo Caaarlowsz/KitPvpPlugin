@@ -171,7 +171,7 @@ public class GameEvents extends BukkitRunnable {
         Chat.SGPVPGlobalTitle("Grace period has ended", " ", "", "");
         GameVariables.world.setPVP(true);
         PlayerInteractions.playerCanDropLava = true;
-        GameLog.saveEvent("Game event: Grace period ended");
+        GameLog.saveEvent("\tGame event: Grace period ended");
 
         gameStateID++;
     }

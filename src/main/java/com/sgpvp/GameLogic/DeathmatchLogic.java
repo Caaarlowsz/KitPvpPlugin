@@ -25,7 +25,7 @@ public class DeathmatchLogic{
     public static void DeathmatchBegin(){
 
         Chat.SGPvPMessage(ChatColor.DARK_RED + "THE DEATHMATCH BEGINS NOW! FIGHT TO THE DEATH!");
-        GameLog.saveEvent("Game event: Deathmatch started");
+        GameLog.saveEvent("\tGame event: Deathmatch started");
         //Remove blocks above chests
         for (int i = deathMatchCenterX - r; i <= deathMatchCenterX + r; i++) {
             for (int j = deathMatchCenterZ - r; j <= deathMatchCenterZ + r; j++) {

@@ -60,6 +60,9 @@ public final class main extends JavaPlugin implements Listener {
     public void onDisable() {
         GameLog.saveEvent("\n --- Game Ended --- \n");
         GameLog.saveEvent("Game length: " + GameVariables.gameEvents.getElapsedTime());
+        GameLog.saveEvent("Remaining: ");
+        for (Player player : PlayerData.getAlive())
+            GameLog.saveEvent("\t" + player.getName());
     }
 
     @EventHandler
@@ -90,7 +93,7 @@ public final class main extends JavaPlugin implements Listener {
         GameVariables.currentAmountOfPlayers--;
         System.out.println(GameVariables.currentAmountOfPlayers);
         e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
-        GameLog.saveEvent("Death: " + e.getDeathMessage());
+        GameLog.saveEvent("\tDeath: " + e.getDeathMessage());
         if(PlayerData.playerHasKitActive(e.getEntity().getPlayer(), "Adventurer")){
             Adventurer.playerQuests.get(e.getEntity().getPlayer()).questVisible(false);
         }
