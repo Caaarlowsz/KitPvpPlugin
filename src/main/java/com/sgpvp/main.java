@@ -35,9 +35,9 @@ public final class main extends JavaPlugin implements Listener {
     public void onEnable() {
         // Setup world
         createNewWorld();
-        GameLog.setupLogFolder();
 
         GameVariables.plugin = this;
+        GameLog.setupLogFolder();
 
         GameVariables.gameEvents = new GameEvents();
         GameVariables.world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
@@ -89,6 +89,7 @@ public final class main extends JavaPlugin implements Listener {
         GameVariables.currentAmountOfPlayers--;
         System.out.println(GameVariables.currentAmountOfPlayers);
         e.getEntity().getPlayer().setGameMode(GameMode.SPECTATOR);
+        GameLog.saveEvent("Death: " + e.getDeathMessage());
         if(PlayerData.playerHasKitActive(e.getEntity().getPlayer(), "Adventurer")){
             Adventurer.playerQuests.get(e.getEntity().getPlayer()).questVisible(false);
         }

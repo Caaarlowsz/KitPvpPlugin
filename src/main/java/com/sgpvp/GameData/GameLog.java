@@ -1,6 +1,7 @@
 package com.sgpvp.GameData;
 
 import com.sgpvp.main;
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.bukkit.ChatColor;
 
 import java.io.*;
@@ -12,8 +13,12 @@ public class GameLog {
     public static File logsFolder; // Create File
 
     public static void setupLogFolder() {
+        try {
         if (!plugin.getDataFolder().exists())
             plugin.getDataFolder().mkdir();
+        } catch (Exception e) {
+
+        }
 
         logsFolder = new File(plugin.getDataFolder(), "logs");
 
