@@ -1,5 +1,6 @@
 package com.sgpvp.GameLogic;
 
+import com.sgpvp.GameData.GameLog;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

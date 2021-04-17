@@ -35,6 +35,7 @@ public final class main extends JavaPlugin implements Listener {
     public void onEnable() {
         // Setup world
         createNewWorld();
+        GameLog.setupLogFolder();
 
         GameVariables.plugin = this;
 

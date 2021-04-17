@@ -2,10 +2,12 @@ package com.sgpvp.Tasks;
 
 import com.sgpvp.GameData.GameLog;
 import com.sgpvp.GameData.GameVariables;
+import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.main;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.text.SimpleDateFormat;
@@ -119,6 +121,12 @@ public class GameEvents extends BukkitRunnable {
     private void gameStart() {
         Chat.SGPVPGlobalTitle("Game Has Started!", " ", "#FF3933", "");
         GameStartLogic.GameStart(GameVariables.world, plugin);
+        GameLog.saveEvent("\n --- Kits --- \n");
+        for (String player : PlayerData.playerData.keySet()) {
+            String kit = PlayerData.playerData.get(player);
+            GameLog.saveEvent(player + " is using kit " + kit);
+        }
+
         GameLog.saveEvent("\n --- Game Started --- \n");
 
         PlayerInteractions.playerCanDropLava = false;
