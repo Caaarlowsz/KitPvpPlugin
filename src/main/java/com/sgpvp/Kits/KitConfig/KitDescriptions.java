@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import java.util.HashMap;
 
 public class KitDescriptions {
-    private static final HashMap<String, String>descrptions = new HashMap<String, String>(){{
+    private static final HashMap<String, String> descriptions = new HashMap<String, String>(){{
         put("TimeWizard", "The time wizard is a very unique kit and is good when used at the right time\n - Start with a clock, upon right click you freeze all players around you within 7 blocks");
         put("Werewolf", "Werewolf is best when it is night time.\n - You get Nightvision, Speed & Extra Health At Night");
         put("Brawler", "The brawler kit is a great aggressive kit\n - The brawler kit has extra damage when punching with your fist");
@@ -37,6 +37,9 @@ public class KitDescriptions {
         put("Adventurer", "Receive Quests And Complete Them For Rewards!");
         put("Spirit", "Turn invisible for short periods of time");
         put("Endermage", "Teleport players above and below your to your portal");
+        put("Groundhog", "Burrow under ground and leave a trap for your foes.");
+        put("Chemist", "Receive potions to help you in battle");
+        put("Cultivator", "Instantly grow plants");
     }};
     private static final HashMap<String, ChatColor> kitcolor = new HashMap<String, ChatColor>(){{
         put("TimeWizard", ChatColor.DARK_PURPLE);
@@ -67,25 +70,32 @@ public class KitDescriptions {
         put("Spirit", ChatColor.GRAY);
         put("Endermage", ChatColor.DARK_PURPLE);
         put("Bomber", ChatColor.BLACK);
+        put("Kangaroo", ChatColor.GOLD);
+        put("Sunwalker", ChatColor.GOLD);
+        put("Switcher", ChatColor.GRAY);
+        put("Chemist", ChatColor.DARK_BLUE);
+        put("Phantom", ChatColor.LIGHT_PURPLE);
+        put("Cultivator", ChatColor.DARK_GREEN);
+        put("Stomper", ChatColor.AQUA);
     }};
 
     /*
         List of colors / kits using:
             Black: Blacksmith Bomber
-            Dark Green: Lumberjack Snail
+            Dark Green: Lumberjack Snail Cultivator
             Dark Red: Werewolf Hades Demonking
             Dark Gray: Glider Groundhog
-            Dark Blue:
+            Dark Blue: Chemist
             Dark Aqua: Viper
             Dark Purple: TimeWizard
-            Gold:
+            Gold: Kangaroo Sunwalker
             Green: Chameleon Turtle Recycler
             Yellow: Brawler
             Red: Fireman Pyromancer
-            Gray: Grandpa Spirit
+            Gray: Grandpa Spirit Switcher
             Blue: Beastmaster
-            Aqua: Milkman
-            Light Purple:
+            Aqua: Milkman Stomper
+            Light Purple: Phantom
             White: RESERVED FOR DELIMITERS []
      */
 
@@ -133,8 +143,8 @@ public class KitDescriptions {
 
     // Method to return kit description
     public static String description(String kitname) {
-        if (descrptions.containsKey(kitname)) return descrptions.get(kitname);
-        if (descrptions.containsKey(getKitName(kitname))) return descrptions.get(getKitName(kitname));
+        if (descriptions.containsKey(kitname)) return descriptions.get(kitname);
+        if (descriptions.containsKey(getKitName(kitname))) return descriptions.get(getKitName(kitname));
         return "Description not available, sorry!";
     }
     // Method to return kit description
@@ -145,7 +155,7 @@ public class KitDescriptions {
     }
 
     // Method for converting lowercase kitname to uppercase kitname
-    private static HashMap<String, String> kitName = new HashMap<>();
+    private static final HashMap<String, String> kitName = new HashMap<>();
     public static String getKitName(String lowername) {
         if (kitName.containsKey(lowername)) return kitName.get(lowername);
         for (String kit : kitcolor.keySet()) {
@@ -155,8 +165,8 @@ public class KitDescriptions {
     }
 
     public static boolean[] verifyKit(String name) {
-        boolean out[] = new boolean[3];
-        out[0] = descrptions.containsKey(name);
+        boolean[] out = new boolean[3];
+        out[0] = descriptions.containsKey(name);
         out[1] = kitcolor.containsKey(name);
         out[2] = kitItem.containsKey(name);
         return out;
