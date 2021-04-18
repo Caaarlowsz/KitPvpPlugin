@@ -66,11 +66,12 @@ public class KitDescriptions {
         put("Adventurer", ChatColor.BLUE);
         put("Spirit", ChatColor.GRAY);
         put("Endermage", ChatColor.DARK_PURPLE);
+        put("Bomber", ChatColor.BLACK);
     }};
 
     /*
         List of colors / kits using:
-            Black: Blacksmith
+            Black: Blacksmith Bomber
             Dark Green: Lumberjack Snail
             Dark Red: Werewolf Hades Demonking
             Dark Gray: Glider Groundhog
