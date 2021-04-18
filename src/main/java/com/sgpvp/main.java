@@ -126,7 +126,7 @@ public final class main extends JavaPlugin implements Listener {
 
     public void WORLD_DATA(){
         try {
-            GameVariables.world = Bukkit.getWorlds().get(0); //wc.createWorld();
+            GameVariables.world = Bukkit.getWorlds().get(0);
         } catch (Exception exception) {
             Chat.DebugMessage("World not found.");
         }
@@ -171,7 +171,7 @@ public final class main extends JavaPlugin implements Listener {
             put("Monk", new Monk());
             put("Explorer", new Explorer());
             put("Spirit", new Spirit());
-            put("Adventurer", new Adventurer());
+            //put("Adventurer", new Adventurer());
             put("Endermage", new Endermage());
         }};
     }

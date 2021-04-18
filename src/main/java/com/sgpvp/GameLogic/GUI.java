@@ -55,7 +55,7 @@ public class GUI implements Listener, CommandExecutor {
         meta.setDisplayName(name);
 
         // Set the lore of the item
-        meta.setLore(Arrays.asList(lore));
+        meta.setLore(Arrays.asList("Select This Kit!"));
 
         item.setItemMeta(meta);
 

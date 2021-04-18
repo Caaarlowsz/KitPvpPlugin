@@ -14,8 +14,6 @@ public class Sunwalker extends Kit {
     void initializeKit(Player player) {
         /* Kit functionality starts here */
 
-
-
         /* Kit functionality ends here */
     }
 }

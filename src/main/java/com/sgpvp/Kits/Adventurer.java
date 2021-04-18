@@ -70,7 +70,6 @@ public class Adventurer extends Kit{
 
     }
 
-
     // Hard Quests
     public void newRandomHardQuest(Player player, Quest current){
         Random random = new Random();
@@ -98,15 +97,14 @@ public class Adventurer extends Kit{
 
         if (!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
 
-
         if(currentTag.equals("MobQuest")){
             playerQuests.get(player).increment(1);
 
-            if(playerQuests.get(player).getProgress() >= questBarComplete){
-                player.playSound(player.getLocation(), questCompleteSound, 1, 1);
+               if (playerQuests.get(player).getProgress() >= questBarComplete) {
+                   player.playSound(player.getLocation(), questCompleteSound, 1, 1);
 
-                playerInventory.addItem(Quest.easyRandomQuestReward(player));
-            }
+                   playerInventory.addItem(Quest.easyRandomQuestReward(player));
+               }
         }
         else if(currentTag.equals("MediumMobQuest")){
             playerQuests.get(player).increment(1);
@@ -167,7 +165,7 @@ public class Adventurer extends Kit{
 
         if(!(PlayerData.playerHasKitActive(player, kitName.toLowerCase()))) return;
         if(currentTag.equals("SmeltIronQuest")){
-            playerQuests.get(player).increment(1);
+            playerQuests.get(player).increment(e.getItemAmount());
 
             if(playerQuests.get(player).getProgress() >= questBarComplete){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
@@ -176,7 +174,7 @@ public class Adventurer extends Kit{
             }
         }
         else if(currentTag.equals("SmeltIronHardQuest")){
-            playerQuests.get(player).increment(1);
+            playerQuests.get(player).increment(e.getItemAmount());
 
             if(playerQuests.get(player).getProgress() >= questBarComplete){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);
@@ -184,8 +182,8 @@ public class Adventurer extends Kit{
                 inventory.addItem(Quest.hardRandomQuestReward(player));
             }
         }
-        else if(currentTag.equals("ExoticMobHardQuest")){
-            playerQuests.get(player).increment(1);
+        else if(currentTag.equals("SmeltIronExoticQuest")){
+            playerQuests.get(player).increment(e.getItemAmount());
 
             if(playerQuests.get(player).getProgress() >= questBarComplete){
                 player.playSound(player.getLocation(), questCompleteSound, 1, 1);

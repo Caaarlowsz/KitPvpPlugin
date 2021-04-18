@@ -15,7 +15,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /*
@@ -36,7 +38,11 @@ public class Spirit extends Kit{
     }
     void initializeKit(Player player) {
         /* Kit functionality starts here */
-        player.getInventory().addItem(new ItemStack(Material.GHAST_TEAR, 1));
+        ItemStack GhastTear = new ItemStack(Material.GHAST_TEAR, 1);
+        ItemMeta GhastTear_Meta = GhastTear.getItemMeta();
+        GhastTear_Meta.setLore(Arrays.asList("Usage: Left OR Right Click To Go Invisible"));
+        GhastTear.setItemMeta(GhastTear_Meta);
+        player.getInventory().addItem(GhastTear);
         /* Kit functionality ends here */
     }
     /* Kit event handlers start here */

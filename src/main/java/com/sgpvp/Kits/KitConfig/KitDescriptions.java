@@ -127,7 +127,7 @@ public class KitDescriptions {
         put("Thor", Material.WOODEN_AXE);
         put("Vampire", Material.FERMENTED_SPIDER_EYE);
         put("Werewolf", Material.BAT_SPAWN_EGG);
-        put("Explorer", Material.MAP);
+        put("Explorer", Material.SADDLE);
         put("Cultivator", Material.WHEAT_SEEDS);
         put("Groundhog", Material.STONE_SHOVEL);
         put("Adventurer", Material.MAP);

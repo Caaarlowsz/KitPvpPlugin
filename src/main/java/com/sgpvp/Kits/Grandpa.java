@@ -28,8 +28,8 @@ public class Grandpa extends Kit{
         ItemMeta stickData = grandpaStick.getItemMeta();
 
         if (stickData == null) return;
-        stickData.setDisplayName(ChatColor.BOLD + "Uncle Joe's Stick");
-        stickData.setLore(Collections.singletonList("This stick belongs to uncle joe"));
+        stickData.setDisplayName(ChatColor.BOLD + "Grandpa Joe's Stick");
+        stickData.setLore(Collections.singletonList("This stick belongs to grandpa joe"));
         stickData.addEnchant(Enchantment.KNOCKBACK, 2, true);
 
         grandpaStick.setItemMeta(stickData);

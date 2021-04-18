@@ -5,6 +5,7 @@ import com.sgpvp.GameLogic.Chat;
 import com.sgpvp.GameLogic.GameItems;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
@@ -72,6 +73,7 @@ public class Switcher extends Kit{
         Location hitLocation = hit.getLocation();
         shooter.teleport(hitLocation);
         hit.teleport(shooterLocation);
+        shooter.playSound(shooterLocation,Sound.BLOCK_ANCIENT_DEBRIS_HIT, 1, 2);
         switcherBalls.remove(snowball.getUniqueId());
 
         if (!(hit instanceof Player)) return; // You didn't hit a player exit function
