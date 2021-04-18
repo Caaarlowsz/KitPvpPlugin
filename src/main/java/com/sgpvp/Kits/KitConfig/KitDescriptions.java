@@ -152,4 +152,12 @@ public class KitDescriptions {
             if (kit.toLowerCase().equals(lowername)) return kit;
         } return "None";
     }
+
+    public static boolean[] verifyKit(String name) {
+        boolean out[] = new boolean[3];
+        out[0] = descrptions.containsKey(name);
+        out[1] = kitcolor.containsKey(name);
+        out[2] = kitItem.containsKey(name);
+        return out;
+    }
 }

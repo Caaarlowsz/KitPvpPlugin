@@ -51,9 +51,18 @@ public class GameLog {
         String fullStackTrace = sw.toString(); // Create a String
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss"); // Set the Time Format
         LocalDateTime now = LocalDateTime.now(); // Get the time
-        logToFile(dtf.format(now).toString(), fullStackTrace); // Now we finally get to save the file!
+        logToFile(dtf.format(now), fullStackTrace); // Now we finally get to save the file!
         plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Error saved to log"); // Also send a message to console saying there was an error saved
     }
+
+    public static void saveError(String message) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        logToFile(dtf.format(now), message);
+        plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Error saved to log");
+    }
+
+
     public static void saveEvent(String event) {
         logToFile("GameLog#" + GameVariables.gameID, event);
     }

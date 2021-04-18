@@ -9,6 +9,7 @@ import com.sgpvp.GameData.PlayerData;
 import com.sgpvp.GameLogic.*;
 import com.sgpvp.GlobalEvents.PlayerInteractions;
 import com.sgpvp.Kits.*;
+import com.sgpvp.Kits.KitConfig.KitDescriptions;
 import com.sgpvp.Spectator.TeleportToPlayer;
 import com.sgpvp.Tasks.*;
 import com.sgpvp.GlobalEvents.SpawnMushrooms;
@@ -50,6 +51,7 @@ public final class main extends JavaPlugin implements Listener {
 
         // Kits, commands, and events
         initializeKits();
+        verifyKits();
         registerCommands();
         registerEvents();
 
@@ -172,6 +174,15 @@ public final class main extends JavaPlugin implements Listener {
             put("Adventurer", new Adventurer());
             put("Endermage", new Endermage());
         }};
+    }
+    // Verifies each kit has a description, color, and gui item
+    private void verifyKits() {
+        for (String name : GameVariables.kits.keySet()) {
+            boolean verified[] = KitDescriptions.verifyKit(name);
+            if (!verified[0]) GameLog.saveError("Kit: " + name + " does not have a defined description.");
+            if (!verified[1]) GameLog.saveError("Kit: " + name + " does not have a defined color.");
+            if (!verified[2]) GameLog.saveError("Kit: " + name + " does not have a defined item.");
+        }
     }
     // Enables all kit events (called on game start)
     public void enableKitEvents() {
