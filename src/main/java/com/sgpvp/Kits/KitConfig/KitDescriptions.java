@@ -7,18 +7,18 @@ import java.util.HashMap;
 
 public class KitDescriptions {
     private static final HashMap<String, String> descriptions = new HashMap<String, String>(){{
-        put("TimeWizard", "The time wizard is a very unique kit and is good when used at the right time\n - Start with a clock, upon right click you freeze all players around you within 7 blocks");
+        put("TimeWizard", "The time wizard is a very unique kit and is good when used at the right time\n - Start with a clock, upon right click you freeze all players around you");
         put("Werewolf", "Werewolf is best when it is night time.\n - You get Nightvision, Speed & Extra Health At Night");
         put("Brawler", "The brawler kit is a great aggressive kit\n - The brawler kit has extra damage when punching with your fist");
         put("Chameleon", "The chameleon kit is great for more passive players\n - You can disguise yourself as any mob\n - Upon taking damage you will be revealed");
         put("Lumberjack", "The lumberjack kit is great for players that like to use block to get height advantages or create structures\n - The lumberjack kit starts with a Efficiency 10 Wooden Axe that is unbreakable");
         put("Grandpa", "The grandpa kit is great at keeping enemies away from you and works well against aggressive players\n - The grandpa kit starts with a knockback 2 stick");
-        put("Turtle", "The turtle kit is great at players who like more defensive gameplay.\n - Holding Sneak/Shift Gives You Resistance 2 & Weakness 2");
-        put("Milkman", "The milk man is good for having a good source of buffs \n - You start with a milk bucket\n - Drinking milk gives you Speed 1, Regeneration 1, and Fire Resistance \n - Speed ()");
+        put("Turtle", "The turtle kit is great at players who like more defensive gameplay.\n - Sneaking will make you take less damage but also deal less damage");
+        put("Milkman", "The milk man is good for having a good source of buffs \n - You start with a milk bucket\n - Drinking milk gives you many good potion effects");
         put("Fireman", "The fireman kit is great when it comes to dealing with lava or fire\n - The fireman kit has immunity to fire and starts with a water bucket");
         put("Pyromancer", "The pyromancer is a very lethal and can be useful in many different situations\n - The Pyromancer starts with a lava bucket as well as flint and steel");
-        put("Recycler", "After 3 uses of soup, you get a free soup! :)");
-        put("Beastmaster", "The beast master is a very lethal kit and for people that can control wolves wisely\n - Your bones instantly tame wolves\n - The beastmaster starts with 2 Wolf Eggs and 3 Bones ");
+        put("Recycler", "Bowls disappear after you drink a soup, drink three soup and get one free");
+        put("Beastmaster", "The beastmaster is a very lethal kit and for people that can control wolves wisely\n - Your bones instantly tame wolves\n - The beastmaster starts with wolf spawn eggs and bones ");
         put("Glider", "Glide around the map in an elytra. ");
         put("Blacksmith", "Upgrade your items to the next tier for free! \n - You have an anvil that can upgrade an any item \n - Axes or Swords cannot be upgraded to diamond tier \n - One time use");
         put("Viper", "The viper kit is an aggressive kit \n - The viper kit has a chance to apply poison on every hit");
@@ -26,17 +26,17 @@ public class KitDescriptions {
         put("Snail", "You have a chance of giving a player slowness on every hit");
         put("Monk", "You start with a monk staff that upon hitting an enemy puts the item they are holding back into their inventory.");
         put("Assassin", "Holding shift charges an attack, after you are charged hitting a player will do massive amounts of damage.");
-        put("Kangaroo", "Start with a Kangaroo Foot and upon right clicking the item, you are able to jump really high");
+        put("Kangaroo", "Start with a Kangaroo Foot and while holding right click with the item you receive a jump boost");
         put("Bomber", "Killing anything will create an explosion on the thing you killed after death \n You are completely resistant to explosions");
         put("Sunwalker", "Gain a speed buff during the day");
-        put("Phantom", "Start with a feather that allows you to fly for 7 seconds when right clicking it \n It starts a cooldown after use");
+        put("Phantom", "Start with a feather that allows you to fly for a short period of time on use");
         put("Stomper", "Instead of taking fall damage, you deal your fall damage to the players around the spot where you hit the ground");
-        put("Switcher", "Receive 10 snowballs, upon hitting an enemy with one you swap positions with them");
+        put("Switcher", "Receive switcherballs, upon hitting an enemy with one you swap positions with them, kills give you more switcherballs");
         put("Thor", "Receive the hammer of Thor! \n Upon right clicking the axe you strike down lighting within a close range of you");
         put("Explorer", "Explore far and wide!");
         put("Adventurer", "Receive Quests And Complete Them For Rewards!");
         put("Spirit", "Turn invisible for short periods of time");
-        put("Endermage", "Teleport players above and below your to your portal");
+        put("Endermage", "Teleport players above and below you to your portal");
         put("Groundhog", "Burrow under ground and leave a trap for your foes.");
         put("Chemist", "Receive potions to help you in battle");
         put("Cultivator", "Instantly grow plants");
