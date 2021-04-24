@@ -31,7 +31,7 @@ public class DeathmatchLogic{
             for (int j = deathMatchCenterZ - r; j <= deathMatchCenterZ + r; j++) {
                 Location grass = new Location(GameVariables.world, i, deathMatchCenterY, j);
                 grass.getBlock().setType(Material.GRASS_BLOCK); //spawn grass
-                for (int k = 1; k < 100; k++ ) {
+                for (int k = 1; k < 10; k++ ) {
                     Location air = new Location(GameVariables.world, i, deathMatchCenterY+k, j);
                     air.getBlock().setType(Material.AIR); //spawn grass
 
