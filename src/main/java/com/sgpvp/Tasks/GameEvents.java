@@ -26,6 +26,7 @@ public class GameEvents extends BukkitRunnable {
     private final int endGracePeriodTime;
     private final int spawnFeastTime;
     private final int startDeathmatchTime;
+    private boolean feastPlatformSpawned = false;
 
     // Intervals for each countdown
     private final Set<Integer> countdownIntervals = new HashSet<Integer>(){{
@@ -177,14 +178,18 @@ public class GameEvents extends BukkitRunnable {
     }
     private void feastSpawnCountdown() {
         int sectionTime = spawnFeastTime - timer;
+
+        if (!feastPlatformSpawned) {
+            FeastLogic.SpawnFeastPlatform();
+            feastPlatformSpawned = true;
+        }
+
         if (countdownIntervals.contains(sectionTime)) {
             if (sectionTime < 60)
                 Chat.SGPvPMessage(ChatColor.LIGHT_PURPLE + String.format("Feast will spawn in %d seconds at (%d, %d)!", sectionTime, FeastLogic.feast_center_x, FeastLogic.feast_center_z));
             else
                 Chat.SGPvPMessage(ChatColor.LIGHT_PURPLE + String.format("Feast will spawn in %d minutes at (%d, %d)!", sectionTime/60, FeastLogic.feast_center_x, FeastLogic.feast_center_z));
         }
-
-        if (sectionTime == 120) FeastLogic.SpawnFeastPlatform();
 
         else if (sectionTime == 0) {
             FeastLogic.SpawnFeast();
