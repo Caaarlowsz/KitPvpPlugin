@@ -30,10 +30,10 @@ public class GameVariables {
     public static GameEvents gameEvents;
     public static boolean feastPlatformSpawned = false;
     public static Location feastLocation;
-    public static final int pregameTime = 6 * 60;       // Time between minimum amount of players reached and game start (Normal Game: 5 minutes)
-    public static final int gracePeriodTime = 60;   // Time between game start and pvp start (Normal Game: 1 minute)
-    public static final int preFeastTime = 13 * 60;      // Time between pvp start and feast spawn (Normal Game: 13 minutes)
-    public static final int postFeastTime = 20 * 60;     // Time between feast spawn and deathmatch (Normal Game: 20 minutes)
+    public static final int pregameTime = 6 * 60;      // Time between minimum amount of players reached and game start (Normal Game: 5 minutes)
+    public static final int gracePeriodTime = 60;  // Time between game start and pvp start (Normal Game: 1 minute)
+    public static final int preFeastTime = 12 * 60;     // Time between pvp start and feast spawn (Normal Game: 13 minutes)
+    public static final int postFeastTime = 20 * 60;    // Time between feast spawn and deathmatch (Normal Game: 20 minutes)
 
     //KIT SETTINGS
     public static ChatColor kitDescriptionColor = ChatColor.GRAY; //All Of The Kit Description Chat Colors
