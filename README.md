@@ -1,8 +1,14 @@
 # SGPvP Plugin
 
-## Features
+### Features
+Soup PvP \
+Custom messages \
+Game events (grace period, feast, deathmatch) \
+25+ kits \
+Spectate on death \
+Kit UI
 
-### Game timers
+### Game states
 Game start \
 Grace period \
 Feast spawn \
@@ -21,26 +27,26 @@ Server close
 | Chemist     |                   |
 | Cultivator  |                   |
 | Fireman     |                   |
-| Glider      |                |
-| Grandpa     |              |
-| Groundhog   |         |
-| Hades       |         |
+| Glider      |                   |
+| Grandpa     |                   |
+| Groundhog   |                   |
+| Hades       |                   |
 | Kangaroo    |                   |
 | Lumberjack  |                   |
 | Milkman     |                   |
 | Phantom     |                   |
-| Pyromancer  |             |
+| Pyromancer  |                   |
 | Recycler    |                   |
-| Snail       |             |
+| Snail       |                   |
 | Stomper     |                   |
-| Sunwalker   |             |
+| Sunwalker   |                   |
 | Switcher    |                   |
 | Thor        |                   |
 | TimeWizard  |                   |
-| Turtle      |                  |
-| Vampire     |              |
-| Viper       |                  |
-| Werewolf    |                  |
+| Turtle      |                   |
+| Vampire     |                   |
+| Viper       |                   |
+| Werewolf    |                   |
 
 #### Colors
 |          |            |              |           |
@@ -50,11 +56,4 @@ Server close
 | Gold     | Aqua       | Light Purple | Dark Gray |
 | Yellow   | Dark Aqua  | Dark Purple  | Black     |
 
-### Game logic
-Soup PvP \
-Custom chat messages \
-etc
-
-### Permissions TODO
-Buy kits with ingame currency
 
