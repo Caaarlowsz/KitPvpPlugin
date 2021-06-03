@@ -18,35 +18,35 @@ Server close
 ### Game kits
 | **Kit**     | **Current State** |
 | ----------- | ----------------- |
-| Assassin    |                   |
-| Beastmaster |                   |
-| Blacksmith  |                   |
-| Bomber      |                   |
-| Brawler     |                   |
-| Chameleon   |                   |
-| Chemist     |                   |
-| Cultivator  |                   |
-| Fireman     |                   |
-| Glider      |                   |
-| Grandpa     |                   |
-| Groundhog   |                   |
-| Hades       |                   |
-| Kangaroo    |                   |
-| Lumberjack  |                   |
-| Milkman     |                   |
-| Phantom     |                   |
-| Pyromancer  |                   |
-| Recycler    |                   |
-| Snail       |                   |
-| Stomper     |                   |
-| Sunwalker   |                   |
-| Switcher    |                   |
-| Thor        |                   |
-| TimeWizard  |                   |
-| Turtle      |                   |
-| Vampire     |                   |
-| Viper       |                   |
-| Werewolf    |                   |
+| Assassin    |  Working          |
+| Beastmaster |  Working          |
+| Blacksmith  |  Working          |
+| Bomber      |  Working          |
+| Brawler     |  Working          |
+| Chameleon   |  Working          |
+| Chemist     |  Working          |
+| Cultivator  |  Working          |
+| Fireman     |  Working          |
+| Glider      |  Working          |
+| Grandpa     |  Working          |
+| Groundhog   |  Working          |
+| Hades       |  Working          |
+| Kangaroo    |  Working          |
+| Lumberjack  |  Working          |
+| Milkman     |  Working          |
+| Phantom     |  Working          |
+| Pyromancer  |  Working          |
+| Recycler    |  Working          |
+| Snail       |  Working          |
+| Stomper     |  Working          |
+| Sunwalker   |  Working          |
+| Switcher    |  Working          |
+| Thor        |  Working          |
+| TimeWizard  |  Working          |
+| Turtle      |  Working          |
+| Vampire     |  Working          |
+| Viper       |  Working          |
+| Werewolf    |  Working          |
 
 #### Colors
 |          |            |              |           |
