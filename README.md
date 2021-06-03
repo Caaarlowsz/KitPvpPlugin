@@ -13,34 +13,34 @@ Server close
 | **Kit**     | **Current State** |
 | ----------- | ----------------- |
 | Assassin    |                   |
-| Beastmaster | boring            |
-| Blacksmith  | meh               |
-| Bomber      | untested          |
+| Beastmaster |                   |
+| Blacksmith  |                   |
+| Bomber      |                   |
 | Brawler     |                   |
 | Chameleon   |                   |
-| Chemist     | unfinished        |
-| Cultivator  | unfinished        |
-| Fireman     | boring            |
-| Glider      | meh               |
-| Grandpa     | troll             |
-| Groundhog   | unfinished        |
-| Hades       | unfinished        |
+| Chemist     |                   |
+| Cultivator  |                   |
+| Fireman     |                   |
+| Glider      |                |
+| Grandpa     |              |
+| Groundhog   |         |
+| Hades       |         |
 | Kangaroo    |                   |
 | Lumberjack  |                   |
 | Milkman     |                   |
 | Phantom     |                   |
-| Pyromancer  | boring            |
+| Pyromancer  |             |
 | Recycler    |                   |
-| Snail       | boring            |
+| Snail       |             |
 | Stomper     |                   |
-| Sunwalker   | boring            |
+| Sunwalker   |             |
 | Switcher    |                   |
 | Thor        |                   |
 | TimeWizard  |                   |
-| Turtle      | ?                 |
-| Vampire     | weak?             |
-| Viper       | ?                 |
-| Werewolf    | ?                 |
+| Turtle      |                  |
+| Vampire     |              |
+| Viper       |                  |
+| Werewolf    |                  |
 
 #### Colors
 |          |            |              |           |
