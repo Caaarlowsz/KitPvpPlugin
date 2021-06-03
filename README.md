@@ -30,7 +30,7 @@ Server close
 | Glider      |  Working          |
 | Grandpa     |  Working          |
 | Groundhog   |  Working          |
-| Hades       |  Working          |
+| Hades       |  Not Working      |
 | Kangaroo    |  Working          |
 | Lumberjack  |  Working          |
 | Milkman     |  Working          |
